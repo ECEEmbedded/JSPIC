@@ -18825,13 +18825,15 @@ void putch(char data);
 void strcpy2(char *dest, const char *loc);
 
 # 6 "async.h"
-typedef void (*AsyncCallback_t)(char *);
+extern char *AsyncMessage;
+
+typedef void (*AsyncCallback_t)();
 
 
 void AsyncBegin();
 
 
-void Async(void (*function)(char *), char *string);
+void Async(AsyncCallback_t callback, char *string);
 
 
 void AsyncTick();
@@ -18840,16 +18842,16 @@ void AsyncTick();
 void JWireOnInterrupt();
 
 
-void JWireOnReceive(AsyncCallback_t callbackToUse);
+void JWireOnReceive(AsyncCallback_t callback);
 
 
-void JWireOnRequest();
+void JWireOnRequest(AsyncCallback_t callback);
 
 
 void JWireBegin(int id);
 
 
-void JWireWrite(char *msg);
+void JWireRespond(char *msg);
 
 # 6 "jwire.c"
 static AsyncCallback_t receiveCallback = 0;
@@ -18860,7 +18862,9 @@ static char buffer[100];
 static int bufferReadPos = 0;
 static int bufferWritePos = 0;
 
-# 20
+static int locked = 0;
+
+# 23
 void JWireOnInterrupt() {
 
 if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 0 && SSPSTATbits.D_A == 0 && SSPSTATbits.BF == 1)) {
@@ -18891,13 +18895,28 @@ CKP = 1;
 
 else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 0)) {
 
-SSPBUF = 'F';
+if(!locked) {
+if(requestCallback) {
+requestCallback();
+}
+locked = 1;
+
+
+bufferWritePos = 0;
+}
+SSPBUF = buffer[bufferWritePos];
 CKP = 1;
 }
 
 
 else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0)) {
-SSPBUF = 'U';
+bufferWritePos = bufferWritePos + 1;
+SSPBUF = buffer[bufferWritePos];
+
+if(buffer[bufferWritePos] == 0) {
+locked = 0;
+}
+
 CKP = 1;
 }
 
@@ -18913,8 +18932,8 @@ receiveCallback = callbackToUse;
 }
 
 
-void JWireOnRequest() {
-
+void JWireOnRequest(AsyncCallback_t callbackToUse) {
+requestCallback = callbackToUse;
 }
 
 
@@ -18924,7 +18943,6 @@ TRISCbits.RC4 = 1;
 
 
 SSPADD = id << 1;
-
 
 
 SSPM0 = 0;
@@ -18939,7 +18957,7 @@ SSPEN = 1;
 SSPIE = 1;
 }
 
+void JWireRespond(char *msg) {
 
-void JWireWrite(char *msg) {
-
+strcpy2(buffer, msg);
 }

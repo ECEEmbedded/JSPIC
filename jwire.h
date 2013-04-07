@@ -9,15 +9,15 @@
 void JWireOnInterrupt();
 
 //What to do when we get JWire data from a master
-void JWireOnReceive(AsyncCallback_t callbackToUse);
+void JWireOnReceive(AsyncCallback_t callback);
 
 //What to do on a JWire request from a master
-void JWireOnRequest();
+void JWireOnRequest(AsyncCallback_t callback);
 
 //Start a JWire session with a slave id
 void JWireBegin(int id);
 
 //Write JWire data back to a master device
-void JWireWrite(char *msg);
+void JWireRespond(char *msg);
 
 #endif

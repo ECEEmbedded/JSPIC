@@ -1,68 +1,59 @@
 #include "async.h"
 
-#define MAX_MESSAGE_SIZE 200
-
-//Callback structure that holds the info for the que
-typedef struct CALLBACK_T {
-    void (*function)(char *);
-    char string[MAX_MESSAGE_SIZE];
-} Callback_t;
+#define MAX_MESSAGE_SIZE 100
 
 //Callback holders (DO NOT TRY TO USE AN ARRAY, XC8 FLIPS SHIT)
-static Callback_t callbackA;
-static Callback_t callbackB;
-static Callback_t callbackC;
-static Callback_t callbackD;
-static Callback_t callbackE;
-static Callback_t callbackF;
+AsyncCallback_t callbackA;
+static char callbackAString[MAX_MESSAGE_SIZE];
 
-void Async(void (*function)(char *), char *string) {
+AsyncCallback_t callbackB;
+static char callbackBString[MAX_MESSAGE_SIZE];
+
+AsyncCallback_t callbackC;
+static char callbackCString[MAX_MESSAGE_SIZE];
+
+AsyncCallback_t callbackD;
+static char callbackDString[MAX_MESSAGE_SIZE];
+
+static char *AsyncMessage = 0;
+
+void Async(AsyncCallback_t function, char *string) {
     //Load an open callback
-    if (callbackA.function == NULL) {
-        strcpy2(callbackA.string, string);
-        callbackA.function = function;
-    } else if (callbackB.function == NULL) {
-        strcpy2(callbackB.string, string);
-        callbackB.function = function;
-    } else if (callbackC.function == NULL) {
-        strcpy2(callbackC.string, string);
-        callbackC.function = function;
-    } else if (callbackD.function == NULL) {
-        strcpy2(callbackD.string, string);
-        callbackD.function = function;
-    } else if (callbackE.function == NULL) {
-        strcpy2(callbackE.string, string);
-        callbackE.function = function;
-    } else if (callbackF.function == NULL) {
-        strcpy2(callbackF.string, string);
-        callbackF.function = function;
+    if (callbackA == 0) {
+        strcpy2(callbackAString, string);
+        callbackA = function;
+    } else if (callbackB == 0) {
+        strcpy2(callbackBString, string);
+        callbackB = function;
+    } else if (callbackC == 0) {
+        strcpy2(callbackCString, string);
+        callbackC = function;
+    } else if (callbackD == 0) {
+        strcpy2(callbackDString, string);
+        callbackD = function;
     }
 }
 
 void AsyncTick() {
     //Run any functions that need to be run
-    if (callbackA.function) {
-        callbackA.function(callbackA.string);
+    if (callbackA) {
+        AsyncMessage = callbackAString;
+        callbackA();
     }
 
-    if (callbackB.function) {
-        callbackB.function(callbackB.string);
+    if (callbackB) {
+        AsyncMessage = callbackBString;
+        callbackB();
     }
 
-    if (callbackC.function) {
-        callbackC.function(callbackC.string);
+    if (callbackC) {
+        AsyncMessage = callbackCString;
+        callbackC();
     }
 
-    if (callbackD.function) {
-        callbackD.function(callbackD.string);
-    }
-
-    if (callbackE.function) {
-        callbackE.function(callbackE.string);
-    }
-
-    if (callbackF.function) {
-        callbackF.function(callbackF.string);
+    if (callbackD) {
+        AsyncMessage = callbackDString;
+        callbackD();
     }
 
     //Reset all function pointers
@@ -71,11 +62,8 @@ void AsyncTick() {
 
 void AsyncBegin() {
     //Clear all the functions to resting
-    callbackA.function = NULL;
-    callbackB.function = NULL;
-    callbackC.function = NULL;
-    callbackD.function = NULL;
-    callbackE.function = NULL;
-    callbackF.function = NULL;
-
+    callbackA = 0;
+    callbackB = 0;
+    callbackC = 0;
+    callbackD = 0;
 }

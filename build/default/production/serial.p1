@@ -1,13 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"6 async.h
-[v F16501 `(v ~T0 @X0 0 tf1`*uc ]
+"8 async.h
+[v F16502 `(v ~T0 @X0 0 tf ]
 "30697 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCSTA `Vuc ~T0 @X0 0 e@4011 ]
 "31128
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
-"12 async.h
-[v F16506 `(v ~T0 @X0 0 tf1`*uc ]
-[v _Async `(v ~T0 @X0 0 ef2`*F16506`*uc ]
+"14 async.h
+[v _Async `(v ~T0 @X0 0 ef2`*F16502`*uc ]
 "38007 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SPEN `Vb ~T0 @X0 0 e@32095 ]
 [s S1843 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -14879,10 +14878,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
-[; ;async.h: 9: void AsyncBegin();
-[; ;async.h: 12: void Async(void (*function)(char *), char *string);
-[; ;async.h: 15: void AsyncTick();
+[; ;async.h: 6: extern char *AsyncMessage;
+[; ;async.h: 8: typedef void (*AsyncCallback_t)();
+[; ;async.h: 11: void AsyncBegin();
+[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 17: void AsyncTick();
 [; ;serial.h: 8: void OnSerialInterrupt();
 [; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
 [; ;serial.h: 14: void SerialBegin();
@@ -14898,9 +14898,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;serial.c: 7: static int bufferPosition = 0;
 "10
-[v _callback `*F16501 ~T0 @X0 1 s ]
+[v _callback `*F16502 ~T0 @X0 1 s ]
 [i _callback
--> -> 0 `i `*F16501
+-> -> 0 `i `*F16502
 ]
 [; ;serial.c: 10: static AsyncCallback_t callback = 0;
 "12
@@ -14929,7 +14929,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _bufferPosition -> 0 `i ]
 [; ;serial.c: 22: if (callback) {
 "22
-[e $ ! != _callback -> -> 0 `i `*F16501 2094  ]
+[e $ ! != _callback -> -> 0 `i `*F16502 2094  ]
 {
 [; ;serial.c: 23: Async(callback, bufferSerial);
 "23
@@ -15005,11 +15005,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2095 ]
 }
 "59
-[v _OnSerial `(v ~T0 @X0 1 ef1`*F16501 ]
+[v _OnSerial `(v ~T0 @X0 1 ef1`*F16502 ]
 {
 [; ;serial.c: 59: void OnSerial(AsyncCallback_t callbackToUse) {
 [e :U _OnSerial ]
-[v _callbackToUse `*F16501 ~T0 @X0 1 r1 ]
+[v _callbackToUse `*F16502 ~T0 @X0 1 r1 ]
 [f ]
 [; ;serial.c: 61: callback = callbackToUse;
 "61

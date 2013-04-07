@@ -4,6 +4,7 @@
 #include "interval.h"
 #include "serial.h"
 #include "json.h"
+#include "jwire.h"
 
 void serial(char *msg) {
     LA0 = ~LA0;
@@ -25,27 +26,29 @@ void serial(char *msg) {
 }
 
 void myTimer() {
-    static char seo[200];
+    printf("tick tock...\n");
+}
 
+void gotJ() {
+    static char world[20];
+    //jsonGetString(AsyncMessage, "hello", world);
+    printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
+}
 
-    jsonNew(seo);
-    jsonSetString(seo, "call", "get/ir1 my name!");
-    jsonSetValue(seo, "key0", 3);
-    jsonSetValue(seo, "key1", 4);
-    jsonSetValue(seo, "key2", 5);
-    jsonSetValue(seo, "key3", 6);
-    jsonSetValue(seo, "key4", 7);
-
-
-    SerialWrite(seo);
+void onRequest() {
+    JWireRespond("Suck it this is a really long request not usually available on i2c");
 }
 
 void onSetup() {
     TRISA = 0;
     MacawBegin();
     SerialBegin();
-    SetInterval(70, myTimer);;;;;;;;
+    SetInterval(30, myTimer);
 
+    JWireBegin(0x4F);
+
+    JWireOnReceive(gotJ);
+    JWireOnRequest(onRequest);
 }
 
 void onLoop() {

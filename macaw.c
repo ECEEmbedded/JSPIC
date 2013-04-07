@@ -14,5 +14,5 @@ void putch(char data) {
     RB7 = 1;
     RB7 = 0;
 
-    __delay_us(100);
+    __delay_us(35);
 }

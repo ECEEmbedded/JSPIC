@@ -14874,9 +14874,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;macaw.c: 15: RB7 = 0;
 "15
 [e = _RB7 -> -> 0 `i `b ]
-[; ;macaw.c: 17: _delay((unsigned long)((100)*(2000000 * 4/4000000.0)));
+[; ;macaw.c: 17: _delay((unsigned long)((35)*(2000000 * 4/4000000.0)));
 "17
-[e ( __delay (1 -> * -> -> 100 `i `d / -> * -> 2000000 `l -> -> 4 `i `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 35 `i `d / -> * -> 2000000 `l -> -> 4 `i `l `d .4000000.0 `ul ]
 [; ;macaw.c: 18: }
 "18
 [e :UE 2093 ]

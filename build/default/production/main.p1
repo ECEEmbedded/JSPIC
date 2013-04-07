@@ -1,14 +1,14 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "35977 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _LA0 `Vb ~T0 @X0 0 e@31816 ]
-"6 json.h
-[v _jsonNew `(v ~T0 @X0 0 ef1`*uc ]
-"9
-[v _jsonSetString `(v ~T0 @X0 0 ef3`*uc`*uc`*uc ]
-"10
-[v _jsonSetValue `(v ~T0 @X0 0 ef3`*uc`*uc`i ]
-"17 serial.h
-[v _SerialWrite `(v ~T0 @X0 0 ef1`*uc ]
+"206 /Applications/microchip/xc8/v1.12/include/stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"13 json.h
+[v _jsonGetValue `(i ~T0 @X0 0 ef2`*uc`*uc ]
+"6 async.h
+[v _AsyncMessage `*uc ~T0 @X0 0 e ]
+"21 jwire.h
+[v _JWireRespond `(v ~T0 @X0 0 ef1`*uc ]
 "29176 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "6 macaw.h
@@ -16,8 +16,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 "14 serial.h
 [v _SerialBegin `(v ~T0 @X0 0 ef ]
 "14 interval.h
-[v F16516 `(v ~T0 @X0 0 tf ]
-[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16516 ]
+[v F16514 `(v ~T0 @X0 0 tf ]
+[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16514 ]
+"18 jwire.h
+[v _JWireBegin `(v ~T0 @X0 0 ef1`i ]
+"8 async.h
+[v F16502 `(v ~T0 @X0 0 tf ]
+"12 jwire.h
+[v _JWireOnReceive `(v ~T0 @X0 0 ef1`*F16502 ]
+"15
+[v _JWireOnRequest `(v ~T0 @X0 0 ef1`*F16502 ]
 "35981 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _LA2 `Vb ~T0 @X0 0 e@31818 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -14855,10 +14863,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
-[; ;async.h: 9: void AsyncBegin();
-[; ;async.h: 12: void Async(void (*function)(char *), char *string);
-[; ;async.h: 15: void AsyncTick();
+[; ;async.h: 6: extern char *AsyncMessage;
+[; ;async.h: 8: typedef void (*AsyncCallback_t)();
+[; ;async.h: 11: void AsyncBegin();
+[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 17: void AsyncTick();
 [; ;interval.h: 8: void IntervalBegin(int ms);
 [; ;interval.h: 11: void OnIntervalInterrupt();
 [; ;interval.h: 14: void SetInterval(int delayInMs, void (*callbackToUse)());
@@ -14872,131 +14881,148 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;json.h: 10: void jsonSetValue(char* input, char* key, int value);
 [; ;json.h: 12: int jsonGetString(char* input, char* key, char* string);
 [; ;json.h: 13: int jsonGetValue(char* input, char* key);
-"8 main.c
+[; ;jwire.h: 9: void JWireOnInterrupt();
+[; ;jwire.h: 12: void JWireOnReceive(AsyncCallback_t callback);
+[; ;jwire.h: 15: void JWireOnRequest(AsyncCallback_t callback);
+[; ;jwire.h: 18: void JWireBegin(int id);
+[; ;jwire.h: 21: void JWireRespond(char *msg);
+"9 main.c
 [v _serial `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;main.c: 8: void serial(char *msg) {
+[; ;main.c: 9: void serial(char *msg) {
 [e :U _serial ]
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 9: LA0 = ~LA0;
-"9
+[; ;main.c: 10: LA0 = ~LA0;
+"10
 [e = _LA0 ! _LA0 ]
-[; ;main.c: 11: if (msg[0] == 'm')
-"11
-[e $ ! == -> *U + _msg * -> -> 0 `i `x -> -> # *U _msg `i `x `ui -> 109 `ui 2093  ]
-[; ;main.c: 12: LA0 = ~LA0;
+[; ;main.c: 12: if (msg[0] == 'm')
 "12
+[e $ ! == -> *U + _msg * -> -> 0 `i `x -> -> # *U _msg `i `x `ui -> 109 `ui 2093  ]
+[; ;main.c: 13: LA0 = ~LA0;
+"13
 [e = _LA0 ! _LA0 ]
 [e :U 2093 ]
-[; ;main.c: 14: if (msg[1] == 'a')
-"14
-[e $ ! == -> *U + _msg * -> -> 1 `i `x -> -> # *U _msg `i `x `ui -> 97 `ui 2094  ]
-[; ;main.c: 15: LA0 = ~LA0;
+[; ;main.c: 15: if (msg[1] == 'a')
 "15
+[e $ ! == -> *U + _msg * -> -> 1 `i `x -> -> # *U _msg `i `x `ui -> 97 `ui 2094  ]
+[; ;main.c: 16: LA0 = ~LA0;
+"16
 [e = _LA0 ! _LA0 ]
 [e :U 2094 ]
-[; ;main.c: 17: if (msg[2] == 't')
-"17
-[e $ ! == -> *U + _msg * -> -> 2 `i `x -> -> # *U _msg `i `x `ui -> 116 `ui 2095  ]
-[; ;main.c: 18: LA0 = ~LA0;
+[; ;main.c: 18: if (msg[2] == 't')
 "18
+[e $ ! == -> *U + _msg * -> -> 2 `i `x -> -> # *U _msg `i `x `ui -> 116 `ui 2095  ]
+[; ;main.c: 19: LA0 = ~LA0;
+"19
 [e = _LA0 ! _LA0 ]
 [e :U 2095 ]
-[; ;main.c: 20: if (msg[3] == '\n')
-"20
-[e $ ! == -> *U + _msg * -> -> 3 `i `x -> -> # *U _msg `i `x `ui -> 10 `ui 2096  ]
-[; ;main.c: 21: LA0 = ~LA0;
+[; ;main.c: 21: if (msg[3] == '\n')
 "21
+[e $ ! == -> *U + _msg * -> -> 3 `i `x -> -> # *U _msg `i `x `ui -> 10 `ui 2096  ]
+[; ;main.c: 22: LA0 = ~LA0;
+"22
 [e = _LA0 ! _LA0 ]
 [e :U 2096 ]
-[; ;main.c: 23: if (msg[4] == 0)
-"23
-[e $ ! == -> *U + _msg * -> -> 4 `i `x -> -> # *U _msg `i `x `i -> 0 `i 2097  ]
-[; ;main.c: 24: LA0 = ~LA0;
+[; ;main.c: 24: if (msg[4] == 0)
 "24
+[e $ ! == -> *U + _msg * -> -> 4 `i `x -> -> # *U _msg `i `x `i -> 0 `i 2097  ]
+[; ;main.c: 25: LA0 = ~LA0;
+"25
 [e = _LA0 ! _LA0 ]
 [e :U 2097 ]
-[; ;main.c: 25: }
-"25
+[; ;main.c: 26: }
+"26
 [e :UE 2092 ]
 }
-"27
+"28
 [v _myTimer `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 27: void myTimer() {
+[; ;main.c: 28: void myTimer() {
 [e :U _myTimer ]
 [f ]
-"28
-[v F16544 `uc ~T0 @X0 -> 200 `i s seo ]
-[; ;main.c: 28: static char seo[200];
-[; ;main.c: 31: jsonNew(seo);
-"31
-[e ( _jsonNew (1 &U F16544 ]
-[; ;main.c: 32: jsonSetString(seo, "call", "get/ir1 my name!");
-"32
-[e ( _jsonSetString (3 , , &U F16544 -> :s 1C `*uc -> :s 2C `*uc ]
-[; ;main.c: 33: jsonSetValue(seo, "key0", 3);
-"33
-[e ( _jsonSetValue (3 , , &U F16544 -> :s 3C `*uc -> 3 `i ]
-[; ;main.c: 34: jsonSetValue(seo, "key1", 4);
-"34
-[e ( _jsonSetValue (3 , , &U F16544 -> :s 4C `*uc -> 4 `i ]
-[; ;main.c: 35: jsonSetValue(seo, "key2", 5);
-"35
-[e ( _jsonSetValue (3 , , &U F16544 -> :s 5C `*uc -> 5 `i ]
-[; ;main.c: 36: jsonSetValue(seo, "key3", 6);
-"36
-[e ( _jsonSetValue (3 , , &U F16544 -> :s 6C `*uc -> 6 `i ]
-[; ;main.c: 37: jsonSetValue(seo, "key4", 7);
-"37
-[e ( _jsonSetValue (3 , , &U F16544 -> :s 7C `*uc -> 7 `i ]
-[; ;main.c: 40: SerialWrite(seo);
-"40
-[e ( _SerialWrite (1 &U F16544 ]
-[; ;main.c: 41: }
-"41
+[; ;main.c: 29: printf("tick tock...\n");
+"29
+[e ( _printf :s 1C ]
+[; ;main.c: 30: }
+"30
 [e :UE 2098 ]
 }
-"43
-[v _onSetup `(v ~T0 @X0 1 ef ]
+"32
+[v _gotJ `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 43: void onSetup() {
-[e :U _onSetup ]
+[; ;main.c: 32: void gotJ() {
+[e :U _gotJ ]
 [f ]
-[; ;main.c: 44: TRISA = 0;
-"44
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 45: MacawBegin();
-"45
-[e ( _MacawBegin ..  ]
-[; ;main.c: 46: SerialBegin();
-"46
-[e ( _SerialBegin ..  ]
-[; ;main.c: 47: SetInterval(70, myTimer);;;;;;;;
-"47
-[e ( _SetInterval (2 , -> 70 `i &U _myTimer ]
-[; ;main.c: 49: }
-"49
+"33
+[v F16552 `uc ~T0 @X0 -> 20 `i s world ]
+[; ;main.c: 33: static char world[20];
+[; ;main.c: 35: printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
+"35
+[e ( _printf , (. :s 2C ( _jsonGetValue (2 , _AsyncMessage -> :s 3C `*uc ]
+[; ;main.c: 36: }
+"36
 [e :UE 2099 ]
 }
-"51
-[v _onLoop `(v ~T0 @X0 1 ef ]
+"38
+[v _onRequest `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 51: void onLoop() {
-[e :U _onLoop ]
+[; ;main.c: 38: void onRequest() {
+[e :U _onRequest ]
 [f ]
-[; ;main.c: 54: LA2 = ~LA2;
-"54
-[e = _LA2 ! _LA2 ]
-[; ;main.c: 55: }
-"55
+[; ;main.c: 39: JWireRespond("Suck it this is a really long request not usually available on i2c");
+"39
+[e ( _JWireRespond (1 -> :s 4C `*uc ]
+[; ;main.c: 40: }
+"40
 [e :UE 2100 ]
 }
-[a 1C 99 97 108 108 0 ]
-[a 7C 107 101 121 52 0 ]
-[a 6C 107 101 121 51 0 ]
-[a 5C 107 101 121 50 0 ]
-[a 4C 107 101 121 49 0 ]
-[a 3C 107 101 121 48 0 ]
-[a 2C 103 101 116 47 105 114 49 32 109 121 32 110 97 109 101 33 0 ]
+"42
+[v _onSetup `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 42: void onSetup() {
+[e :U _onSetup ]
+[f ]
+[; ;main.c: 43: TRISA = 0;
+"43
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 44: MacawBegin();
+"44
+[e ( _MacawBegin ..  ]
+[; ;main.c: 45: SerialBegin();
+"45
+[e ( _SerialBegin ..  ]
+[; ;main.c: 46: SetInterval(30, myTimer);
+"46
+[e ( _SetInterval (2 , -> 30 `i &U _myTimer ]
+[; ;main.c: 48: JWireBegin(0x4F);
+"48
+[e ( _JWireBegin (1 -> 79 `i ]
+[; ;main.c: 50: JWireOnReceive(gotJ);
+"50
+[e ( _JWireOnReceive (1 &U _gotJ ]
+[; ;main.c: 51: JWireOnRequest(onRequest);
+"51
+[e ( _JWireOnRequest (1 &U _onRequest ]
+[; ;main.c: 52: }
+"52
+[e :UE 2101 ]
+}
+"54
+[v _onLoop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 54: void onLoop() {
+[e :U _onLoop ]
+[f ]
+[; ;main.c: 57: LA2 = ~LA2;
+"57
+[e = _LA2 ! _LA2 ]
+[; ;main.c: 58: }
+"58
+[e :UE 2102 ]
+}
+[p f _printf 8388736 ]
+[a 3C 112 105 0 ]
+[a 4C 83 117 99 107 32 105 116 32 116 104 105 115 32 105 115 32 97 32 114 101 97 108 108 121 32 108 111 110 103 32 114 101 113 117 101 115 116 32 110 111 116 32 117 115 117 97 108 108 121 32 97 118 97 105 108 97 98 108 101 32 111 110 32 105 50 99 0 ]
+[a 1C 116 105 99 107 32 116 111 99 107 46 46 46 10 0 ]
+[a 2C 80 105 32 105 115 32 101 113 117 97 108 32 116 111 32 37 100 32 97 110 100 32 104 101 108 108 111 32 45 62 32 10 0 ]

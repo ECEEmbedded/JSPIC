@@ -28,8 +28,6 @@ interrupt void onInterrupt() {
     if (TXIF) {
         SerialWriteInterrupt();
     }
-
-    AsyncTick();
 }
 
 #endif

@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"6 async.h
-[v F16501 `(v ~T0 @X0 0 tf1`*uc ]
+"8 async.h
+[v F16502 `(v ~T0 @X0 0 tf ]
 [s S1971 :2 `uc 1 :1 `uc 1 ]
 [n S1971 . . R_NOT_W ]
 [s S1972 :5 `uc 1 :1 `uc 1 ]
@@ -47,9 +47,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
 "35507
 [v _CKP `Vb ~T0 @X0 0 e@32308 ]
-"12 async.h
-[v F16506 `(v ~T0 @X0 0 tf1`*uc ]
-[v _Async `(v ~T0 @X0 0 ef2`*F16506`*uc ]
+"14 async.h
+[v _Async `(v ~T0 @X0 0 ef2`*F16502`*uc ]
 [s S1843 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1843 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
 [s S1844 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -74,6 +73,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SSPEN `Vb ~T0 @X0 0 e@32309 ]
 "38017
 [v _SSPIE `Vb ~T0 @X0 0 e@31979 ]
+"6 string2.h
+[v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14909,25 +14910,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
-[; ;async.h: 9: void AsyncBegin();
-[; ;async.h: 12: void Async(void (*function)(char *), char *string);
-[; ;async.h: 15: void AsyncTick();
+[; ;async.h: 6: extern char *AsyncMessage;
+[; ;async.h: 8: typedef void (*AsyncCallback_t)();
+[; ;async.h: 11: void AsyncBegin();
+[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 17: void AsyncTick();
 [; ;jwire.h: 9: void JWireOnInterrupt();
-[; ;jwire.h: 12: void JWireOnReceive(AsyncCallback_t callbackToUse);
-[; ;jwire.h: 15: void JWireOnRequest();
+[; ;jwire.h: 12: void JWireOnReceive(AsyncCallback_t callback);
+[; ;jwire.h: 15: void JWireOnRequest(AsyncCallback_t callback);
 [; ;jwire.h: 18: void JWireBegin(int id);
-[; ;jwire.h: 21: void JWireWrite(char *msg);
+[; ;jwire.h: 21: void JWireRespond(char *msg);
 "6 jwire.c
-[v _receiveCallback `*F16501 ~T0 @X0 1 s ]
+[v _receiveCallback `*F16502 ~T0 @X0 1 s ]
 [i _receiveCallback
--> -> 0 `i `*F16501
+-> -> 0 `i `*F16502
 ]
 [; ;jwire.c: 6: static AsyncCallback_t receiveCallback = 0;
 "7
-[v _requestCallback `*F16501 ~T0 @X0 1 s ]
+[v _requestCallback `*F16502 ~T0 @X0 1 s ]
 [i _requestCallback
--> -> 0 `i `*F16501
+-> -> 0 `i `*F16502
 ]
 [; ;jwire.c: 7: static AsyncCallback_t requestCallback = 0;
 "15
@@ -14945,189 +14947,241 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ]
 [; ;jwire.c: 17: static int bufferWritePos = 0;
-"20
+"19
+[v _locked `i ~T0 @X0 1 s ]
+[i _locked
+-> 0 `i
+]
+[; ;jwire.c: 19: static int locked = 0;
+"23
 [v _JWireOnInterrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;jwire.c: 20: void JWireOnInterrupt() {
+[; ;jwire.c: 23: void JWireOnInterrupt() {
 [e :U _JWireOnInterrupt ]
 [f ]
-[; ;jwire.c: 22: if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 0 && SSPSTATbits.D_A == 0 && SSPSTATbits.BF == 1)) {
-"22
+[; ;jwire.c: 25: if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 0 && SSPSTATbits.D_A == 0 && SSPSTATbits.BF == 1)) {
+"25
 [e $ ! && && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 1 `i -> 0 `i == -> . . _SSPSTATbits 5 3 `i -> 0 `i == -> . . _SSPSTATbits 2 0 `i -> 1 `i 2093  ]
 {
-"23
-[v _addr `i ~T0 @X0 1 a ]
-[; ;jwire.c: 23: int addr = SSPBUF;
-[e = _addr -> _SSPBUF `i ]
-[; ;jwire.c: 24: CKP = 1;
-"24
-[e = _CKP -> -> 1 `i `b ]
-[; ;jwire.c: 26: bufferReadPos = 0;
 "26
-[e = _bufferReadPos -> 0 `i ]
+[v _addr `i ~T0 @X0 1 a ]
+[; ;jwire.c: 26: int addr = SSPBUF;
+[e = _addr -> _SSPBUF `i ]
+[; ;jwire.c: 27: CKP = 1;
 "27
+[e = _CKP -> -> 1 `i `b ]
+[; ;jwire.c: 29: bufferReadPos = 0;
+"29
+[e = _bufferReadPos -> 0 `i ]
+"30
 }
 [e :U 2093 ]
-[; ;jwire.c: 27: }
-[; ;jwire.c: 30: if (((SSPSTATbits.S == 1 || SSPSTATbits.P == 1) && SSPSTATbits.R_W == 0 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 1)) {
-"30
+[; ;jwire.c: 30: }
+[; ;jwire.c: 33: if (((SSPSTATbits.S == 1 || SSPSTATbits.P == 1) && SSPSTATbits.R_W == 0 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 1)) {
+"33
 [e $ ! && && && || == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 2 4 `i -> 1 `i == -> . . _SSPSTATbits 5 1 `i -> 0 `i == -> . . _SSPSTATbits 5 3 `i -> 1 `i == -> . . _SSPSTATbits 2 0 `i -> 1 `i 2094  ]
 {
-"31
-[v _data `i ~T0 @X0 1 a ]
-[; ;jwire.c: 31: int data = SSPBUF;
-[e = _data -> _SSPBUF `i ]
-[; ;jwire.c: 34: buffer[bufferReadPos] = data;
 "34
+[v _data `i ~T0 @X0 1 a ]
+[; ;jwire.c: 34: int data = SSPBUF;
+[e = _data -> _SSPBUF `i ]
+[; ;jwire.c: 37: buffer[bufferReadPos] = data;
+"37
 [e = *U + &U _buffer * -> -> _bufferReadPos `ui `ux -> -> # *U &U _buffer `ui `ux -> _data `uc ]
-[; ;jwire.c: 36: if (buffer[bufferReadPos] == 0) {
-"36
+[; ;jwire.c: 39: if (buffer[bufferReadPos] == 0) {
+"39
 [e $ ! == -> *U + &U _buffer * -> -> _bufferReadPos `ui `ux -> -> # *U &U _buffer `ui `ux `i -> 0 `i 2095  ]
 {
-[; ;jwire.c: 37: if (receiveCallback) {
-"37
-[e $ ! != _receiveCallback -> -> 0 `i `*F16501 2096  ]
+[; ;jwire.c: 40: if (receiveCallback) {
+"40
+[e $ ! != _receiveCallback -> -> 0 `i `*F16502 2096  ]
 {
-[; ;jwire.c: 38: Async(receiveCallback, buffer);
-"38
+[; ;jwire.c: 41: Async(receiveCallback, buffer);
+"41
 [e ( _Async (2 , _receiveCallback &U _buffer ]
-"39
+"42
 }
 [e :U 2096 ]
-"40
+"43
 }
 [e :U 2095 ]
-[; ;jwire.c: 39: }
-[; ;jwire.c: 40: }
-[; ;jwire.c: 42: ++bufferReadPos;
-"42
-[e =+ _bufferReadPos -> 1 `i ]
-[; ;jwire.c: 44: CKP = 1;
-"44
-[e = _CKP -> -> 1 `i `b ]
+[; ;jwire.c: 42: }
+[; ;jwire.c: 43: }
+[; ;jwire.c: 45: ++bufferReadPos;
 "45
-}
-[; ;jwire.c: 45: }
-[e $U 2097  ]
+[e =+ _bufferReadPos -> 1 `i ]
+[; ;jwire.c: 47: CKP = 1;
+"47
+[e = _CKP -> -> 1 `i `b ]
 "48
+}
+[; ;jwire.c: 48: }
+[e $U 2097  ]
+"51
 [e :U 2094 ]
-[; ;jwire.c: 48: else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 0)) {
+[; ;jwire.c: 51: else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 0)) {
 [e $ ! && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 1 `i -> 1 `i == -> . . _SSPSTATbits 5 3 `i -> 0 `i 2098  ]
 {
-[; ;jwire.c: 50: SSPBUF = 'F';
-"50
-[e = _SSPBUF -> -> 70 `ui `uc ]
-[; ;jwire.c: 51: CKP = 1;
-"51
-[e = _CKP -> -> 1 `i `b ]
-"52
-}
-[; ;jwire.c: 52: }
-[e $U 2099  ]
+[; ;jwire.c: 53: if(!locked) {
+"53
+[e $ ! ! != _locked -> 0 `i 2099  ]
+{
+[; ;jwire.c: 54: if(requestCallback) {
+"54
+[e $ ! != _requestCallback -> -> 0 `i `*F16502 2100  ]
+{
+[; ;jwire.c: 55: requestCallback();
 "55
-[e :U 2098 ]
-[; ;jwire.c: 55: else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0)) {
-[e $ ! && && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 1 `i -> 1 `i == -> . . _SSPSTATbits 5 3 `i -> 1 `i == -> . . _SSPSTATbits 2 0 `i -> 0 `i 2100  ]
-{
-[; ;jwire.c: 56: SSPBUF = 'U';
+[e ( *U _requestCallback ..  ]
 "56
-[e = _SSPBUF -> -> 85 `ui `uc ]
-[; ;jwire.c: 57: CKP = 1;
-"57
-[e = _CKP -> -> 1 `i `b ]
-"58
 }
-[; ;jwire.c: 58: }
-[e $U 2101  ]
-"61
 [e :U 2100 ]
-[; ;jwire.c: 61: else if ((SSPSTATbits.S == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0 && CKP == 1)) {
-[e $ ! && && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 3 `i -> 1 `i == -> . . _SSPSTATbits 2 0 `i -> 0 `i == -> _CKP `i -> 1 `i 2102  ]
-{
-"63
+[; ;jwire.c: 56: }
+[; ;jwire.c: 57: locked = 1;
+"57
+[e = _locked -> 1 `i ]
+[; ;jwire.c: 60: bufferWritePos = 0;
+"60
+[e = _bufferWritePos -> 0 `i ]
+"61
 }
-[e :U 2102 ]
-"64
-[e :U 2101 ]
 [e :U 2099 ]
-[e :U 2097 ]
-[; ;jwire.c: 63: }
+[; ;jwire.c: 61: }
+[; ;jwire.c: 62: SSPBUF = buffer[bufferWritePos];
+"62
+[e = _SSPBUF *U + &U _buffer * -> -> _bufferWritePos `ui `ux -> -> # *U &U _buffer `ui `ux ]
+[; ;jwire.c: 63: CKP = 1;
+"63
+[e = _CKP -> -> 1 `i `b ]
+"64
+}
 [; ;jwire.c: 64: }
+[e $U 2101  ]
+"67
+[e :U 2098 ]
+[; ;jwire.c: 67: else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0)) {
+[e $ ! && && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 1 `i -> 1 `i == -> . . _SSPSTATbits 5 3 `i -> 1 `i == -> . . _SSPSTATbits 2 0 `i -> 0 `i 2102  ]
+{
+[; ;jwire.c: 68: bufferWritePos = bufferWritePos + 1;
+"68
+[e = _bufferWritePos + _bufferWritePos -> 1 `i ]
+[; ;jwire.c: 69: SSPBUF = buffer[bufferWritePos];
+"69
+[e = _SSPBUF *U + &U _buffer * -> -> _bufferWritePos `ui `ux -> -> # *U &U _buffer `ui `ux ]
+[; ;jwire.c: 71: if(buffer[bufferWritePos] == 0) {
+"71
+[e $ ! == -> *U + &U _buffer * -> -> _bufferWritePos `ui `ux -> -> # *U &U _buffer `ui `ux `i -> 0 `i 2103  ]
+{
+[; ;jwire.c: 72: locked = 0;
+"72
+[e = _locked -> 0 `i ]
+"73
+}
+[e :U 2103 ]
+[; ;jwire.c: 73: }
+[; ;jwire.c: 75: CKP = 1;
+"75
+[e = _CKP -> -> 1 `i `b ]
+"76
+}
+[; ;jwire.c: 76: }
+[e $U 2104  ]
+"79
+[e :U 2102 ]
+[; ;jwire.c: 79: else if ((SSPSTATbits.S == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0 && CKP == 1)) {
+[e $ ! && && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 3 `i -> 1 `i == -> . . _SSPSTATbits 2 0 `i -> 0 `i == -> _CKP `i -> 1 `i 2105  ]
+{
+"81
+}
+[e :U 2105 ]
+"82
+[e :U 2104 ]
+[e :U 2101 ]
+[e :U 2097 ]
+[; ;jwire.c: 81: }
+[; ;jwire.c: 82: }
 [e :UE 2092 ]
 }
-"67
-[v _JWireOnReceive `(v ~T0 @X0 1 ef1`*F16501 ]
+"85
+[v _JWireOnReceive `(v ~T0 @X0 1 ef1`*F16502 ]
 {
-[; ;jwire.c: 67: void JWireOnReceive(AsyncCallback_t callbackToUse) {
+[; ;jwire.c: 85: void JWireOnReceive(AsyncCallback_t callbackToUse) {
 [e :U _JWireOnReceive ]
-[v _callbackToUse `*F16501 ~T0 @X0 1 r1 ]
+[v _callbackToUse `*F16502 ~T0 @X0 1 r1 ]
 [f ]
-[; ;jwire.c: 68: receiveCallback = callbackToUse;
-"68
+[; ;jwire.c: 86: receiveCallback = callbackToUse;
+"86
 [e = _receiveCallback _callbackToUse ]
-[; ;jwire.c: 69: }
-"69
-[e :UE 2103 ]
+[; ;jwire.c: 87: }
+"87
+[e :UE 2106 ]
 }
-"72
-[v _JWireOnRequest `(v ~T0 @X0 1 ef ]
+"90
+[v _JWireOnRequest `(v ~T0 @X0 1 ef1`*F16502 ]
 {
-[; ;jwire.c: 72: void JWireOnRequest() {
+[; ;jwire.c: 90: void JWireOnRequest(AsyncCallback_t callbackToUse) {
 [e :U _JWireOnRequest ]
+[v _callbackToUse `*F16502 ~T0 @X0 1 r1 ]
 [f ]
-[; ;jwire.c: 74: }
-"74
-[e :UE 2104 ]
+[; ;jwire.c: 91: requestCallback = callbackToUse;
+"91
+[e = _requestCallback _callbackToUse ]
+[; ;jwire.c: 92: }
+"92
+[e :UE 2107 ]
 }
-"77
+"95
 [v _JWireBegin `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;jwire.c: 77: void JWireBegin(int id) {
+[; ;jwire.c: 95: void JWireBegin(int id) {
 [e :U _JWireBegin ]
 [v _id `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;jwire.c: 78: TRISCbits.RC3 = 1;
-"78
-[e = . . _TRISCbits 1 3 -> -> 1 `i `uc ]
-[; ;jwire.c: 79: TRISCbits.RC4 = 1;
-"79
-[e = . . _TRISCbits 1 4 -> -> 1 `i `uc ]
-[; ;jwire.c: 82: SSPADD = id << 1;
-"82
-[e = _SSPADD -> << _id -> 1 `i `uc ]
-[; ;jwire.c: 86: SSPM0 = 0;
-"86
-[e = _SSPM0 -> -> 0 `i `b ]
-[; ;jwire.c: 87: SSPM1 = 1;
-"87
-[e = _SSPM1 -> -> 1 `i `b ]
-[; ;jwire.c: 88: SSPM2 = 1;
-"88
-[e = _SSPM2 -> -> 1 `i `b ]
-[; ;jwire.c: 89: SSPM3 = 1;
-"89
-[e = _SSPM3 -> -> 1 `i `b ]
-[; ;jwire.c: 91: SEN = 1;
-"91
-[e = _SEN -> -> 1 `i `b ]
-[; ;jwire.c: 94: SSPEN = 1;
-"94
-[e = _SSPEN -> -> 1 `i `b ]
-[; ;jwire.c: 95: SSPIE = 1;
-"95
-[e = _SSPIE -> -> 1 `i `b ]
-[; ;jwire.c: 96: }
+[; ;jwire.c: 96: TRISCbits.RC3 = 1;
 "96
-[e :UE 2105 ]
+[e = . . _TRISCbits 1 3 -> -> 1 `i `uc ]
+[; ;jwire.c: 97: TRISCbits.RC4 = 1;
+"97
+[e = . . _TRISCbits 1 4 -> -> 1 `i `uc ]
+[; ;jwire.c: 100: SSPADD = id << 1;
+"100
+[e = _SSPADD -> << _id -> 1 `i `uc ]
+[; ;jwire.c: 103: SSPM0 = 0;
+"103
+[e = _SSPM0 -> -> 0 `i `b ]
+[; ;jwire.c: 104: SSPM1 = 1;
+"104
+[e = _SSPM1 -> -> 1 `i `b ]
+[; ;jwire.c: 105: SSPM2 = 1;
+"105
+[e = _SSPM2 -> -> 1 `i `b ]
+[; ;jwire.c: 106: SSPM3 = 1;
+"106
+[e = _SSPM3 -> -> 1 `i `b ]
+[; ;jwire.c: 108: SEN = 1;
+"108
+[e = _SEN -> -> 1 `i `b ]
+[; ;jwire.c: 111: SSPEN = 1;
+"111
+[e = _SSPEN -> -> 1 `i `b ]
+[; ;jwire.c: 112: SSPIE = 1;
+"112
+[e = _SSPIE -> -> 1 `i `b ]
+[; ;jwire.c: 113: }
+"113
+[e :UE 2108 ]
 }
-"99
-[v _JWireWrite `(v ~T0 @X0 1 ef1`*uc ]
+"115
+[v _JWireRespond `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;jwire.c: 99: void JWireWrite(char *msg) {
-[e :U _JWireWrite ]
+[; ;jwire.c: 115: void JWireRespond(char *msg) {
+[e :U _JWireRespond ]
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;jwire.c: 101: }
-"101
-[e :UE 2106 ]
+[; ;jwire.c: 117: strcpy2(buffer, msg);
+"117
+[e ( _strcpy2 (2 , &U _buffer -> _msg `*Cuc ]
+[; ;jwire.c: 118: }
+"118
+[e :UE 2109 ]
 }

@@ -11,7 +11,7 @@ static IntervalCallback_t callbackB;
 static IntervalCallback_t callbackC;
 
 //Handle interval timings in userland
-void IntervalTick(char *msg) {
+void IntervalTick() {
     static int time = 0;
 
     if (callbackA.function && (time % callbackA.delay == 0))

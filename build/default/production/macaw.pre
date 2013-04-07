@@ -18838,5 +18838,5 @@ LATB = data;
 RB7 = 1;
 RB7 = 0;
 
-_delay((unsigned long)((100)*(2000000 * 4/4000000.0)));
+_delay((unsigned long)((35)*(2000000 * 4/4000000.0)));
 }

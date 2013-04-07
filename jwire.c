@@ -15,6 +15,9 @@ static AsyncCallback_t requestCallback = 0;
 static char buffer[MAX_MESSAGE_SIZE];
 static int bufferReadPos = 0;
 static int bufferWritePos = 0;
+
+static int locked = 0;
+
 #include <stdio.h>
 //I2C interrupted us
 void JWireOnInterrupt() {
@@ -46,18 +49,33 @@ void JWireOnInterrupt() {
 
     //Master is requesting some data (First byte)
     else if (ReadGotAddress) {
-        //Send some data back
-        SSPBUF = 'F';
+        // Check for the lock
+        if(!locked) {
+            if(requestCallback) {
+                requestCallback();
+            }
+            locked = 1;
+
+            //Send some data back, specifically the first data byte
+            bufferWritePos = 0;
+        }
+        SSPBUF = buffer[bufferWritePos];
         CKP = 1;
     }
 
     //Master really wants some more data (Not the first byte)
     else if (ReadGotData) {
-        SSPBUF = 'U';
+        bufferWritePos = bufferWritePos + 1;
+        SSPBUF = buffer[bufferWritePos];
+
+        if(buffer[bufferWritePos] == 0) {
+            locked = 0;
+        }
+
         CKP = 1;
     }
 
-    //Master dosen't want anything more :[
+    //Master dosen't want anything more D:, :[
     else if (ReadDone) {
 
     }
@@ -69,8 +87,8 @@ void JWireOnReceive(AsyncCallback_t callbackToUse) {
 }
 
 //What to do on a JWire request from a master
-void JWireOnRequest() {
-
+void JWireOnRequest(AsyncCallback_t callbackToUse) {
+    requestCallback = callbackToUse;
 }
 
 //Start a JWire session with a slave id
@@ -80,7 +98,6 @@ void JWireBegin(int id) {
 
     //Set slave address
     SSPADD = id << 1;
-
     
     //7Bit Slave mode with start and stop bit interrupts enabled
     SSPM0 = 0;
@@ -95,7 +112,7 @@ void JWireBegin(int id) {
     SSPIE = 1;
 }
 
-//Write JWire data back to a master device
-void JWireWrite(char *msg) {
-
+void JWireRespond(char *msg) {
+    //Copy message
+    strcpy2(buffer, msg);
 }

@@ -18825,78 +18825,71 @@ void putch(char data);
 void strcpy2(char *dest, const char *loc);
 
 # 6 "async.h"
-typedef void (*AsyncCallback_t)(char *);
+extern char *AsyncMessage;
+
+typedef void (*AsyncCallback_t)();
 
 
 void AsyncBegin();
 
 
-void Async(void (*function)(char *), char *string);
+void Async(AsyncCallback_t callback, char *string);
 
 
 void AsyncTick();
 
 # 6 "async.c"
-typedef struct CALLBACK_T {
-void (*function)(char *);
-char string[200];
-} Callback_t;
+AsyncCallback_t callbackA;
+static char callbackAString[100];
 
+AsyncCallback_t callbackB;
+static char callbackBString[100];
 
-static Callback_t callbackA;
-static Callback_t callbackB;
-static Callback_t callbackC;
-static Callback_t callbackD;
-static Callback_t callbackE;
-static Callback_t callbackF;
+AsyncCallback_t callbackC;
+static char callbackCString[100];
 
-void Async(void (*function)(char *), char *string) {
+AsyncCallback_t callbackD;
+static char callbackDString[100];
 
-if (callbackA.function == (0)) {
-strcpy2(callbackA.string, string);
-callbackA.function = function;
-} else if (callbackB.function == (0)) {
-strcpy2(callbackB.string, string);
-callbackB.function = function;
-} else if (callbackC.function == (0)) {
-strcpy2(callbackC.string, string);
-callbackC.function = function;
-} else if (callbackD.function == (0)) {
-strcpy2(callbackD.string, string);
-callbackD.function = function;
-} else if (callbackE.function == (0)) {
-strcpy2(callbackE.string, string);
-callbackE.function = function;
-} else if (callbackF.function == (0)) {
-strcpy2(callbackF.string, string);
-callbackF.function = function;
+static char *AsyncMessage = 0;
+
+void Async(AsyncCallback_t function, char *string) {
+
+if (callbackA == 0) {
+strcpy2(callbackAString, string);
+callbackA = function;
+} else if (callbackB == 0) {
+strcpy2(callbackBString, string);
+callbackB = function;
+} else if (callbackC == 0) {
+strcpy2(callbackCString, string);
+callbackC = function;
+} else if (callbackD == 0) {
+strcpy2(callbackDString, string);
+callbackD = function;
 }
 }
 
 void AsyncTick() {
 
-if (callbackA.function) {
-callbackA.function(callbackA.string);
+if (callbackA) {
+AsyncMessage = callbackAString;
+callbackA();
 }
 
-if (callbackB.function) {
-callbackB.function(callbackB.string);
+if (callbackB) {
+AsyncMessage = callbackBString;
+callbackB();
 }
 
-if (callbackC.function) {
-callbackC.function(callbackC.string);
+if (callbackC) {
+AsyncMessage = callbackCString;
+callbackC();
 }
 
-if (callbackD.function) {
-callbackD.function(callbackD.string);
-}
-
-if (callbackE.function) {
-callbackE.function(callbackE.string);
-}
-
-if (callbackF.function) {
-callbackF.function(callbackF.string);
+if (callbackD) {
+AsyncMessage = callbackDString;
+callbackD();
 }
 
 
@@ -18905,11 +18898,8 @@ AsyncBegin();
 
 void AsyncBegin() {
 
-callbackA.function = (0);
-callbackB.function = (0);
-callbackC.function = (0);
-callbackD.function = (0);
-callbackE.function = (0);
-callbackF.function = (0);
-
+callbackA = 0;
+callbackB = 0;
+callbackC = 0;
+callbackD = 0;
 }

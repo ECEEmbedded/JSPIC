@@ -18825,13 +18825,15 @@ void putch(char data);
 void strcpy2(char *dest, const char *loc);
 
 # 6 "async.h"
-typedef void (*AsyncCallback_t)(char *);
+extern char *AsyncMessage;
+
+typedef void (*AsyncCallback_t)();
 
 
 void AsyncBegin();
 
 
-void Async(void (*function)(char *), char *string);
+void Async(AsyncCallback_t callback, char *string);
 
 
 void AsyncTick();

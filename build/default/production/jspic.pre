@@ -18825,13 +18825,15 @@ void MacawBegin();
 void putch(char data);
 
 # 6 "async.h"
-typedef void (*AsyncCallback_t)(char *);
+extern char *AsyncMessage;
+
+typedef void (*AsyncCallback_t)();
 
 
 void AsyncBegin();
 
 
-void Async(void (*function)(char *), char *string);
+void Async(AsyncCallback_t callback, char *string);
 
 
 void AsyncTick();
@@ -18840,16 +18842,16 @@ void AsyncTick();
 void JWireOnInterrupt();
 
 
-void JWireOnReceive(AsyncCallback_t callbackToUse);
+void JWireOnReceive(AsyncCallback_t callback);
 
 
-void JWireOnRequest();
+void JWireOnRequest(AsyncCallback_t callback);
 
 
 void JWireBegin(int id);
 
 
-void JWireWrite(char *msg);
+void JWireRespond(char *msg);
 
 # 8 "interval.h"
 void IntervalBegin(int ms);
@@ -18898,8 +18900,6 @@ OnSerialInterrupt();
 if (TXIF) {
 SerialWriteInterrupt();
 }
-
-AsyncTick();
 }
 
 

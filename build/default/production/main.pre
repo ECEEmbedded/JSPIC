@@ -18825,13 +18825,15 @@ void putch(char data);
 void strcpy2(char *dest, const char *loc);
 
 # 6 "async.h"
-typedef void (*AsyncCallback_t)(char *);
+extern char *AsyncMessage;
+
+typedef void (*AsyncCallback_t)();
 
 
 void AsyncBegin();
 
 
-void Async(void (*function)(char *), char *string);
+void Async(AsyncCallback_t callback, char *string);
 
 
 void AsyncTick();
@@ -18870,7 +18872,22 @@ void jsonSetValue(char* input, char* key, int value);
 int jsonGetString(char* input, char* key, char* string);
 int jsonGetValue(char* input, char* key);
 
-# 8 "main.c"
+# 9 "jwire.h"
+void JWireOnInterrupt();
+
+
+void JWireOnReceive(AsyncCallback_t callback);
+
+
+void JWireOnRequest(AsyncCallback_t callback);
+
+
+void JWireBegin(int id);
+
+
+void JWireRespond(char *msg);
+
+# 9 "main.c"
 void serial(char *msg) {
 LA0 = ~LA0;
 
@@ -18891,27 +18908,29 @@ LA0 = ~LA0;
 }
 
 void myTimer() {
-static char seo[200];
+printf("tick tock...\n");
+}
 
+void gotJ() {
+static char world[20];
 
-jsonNew(seo);
-jsonSetString(seo, "call", "get/ir1 my name!");
-jsonSetValue(seo, "key0", 3);
-jsonSetValue(seo, "key1", 4);
-jsonSetValue(seo, "key2", 5);
-jsonSetValue(seo, "key3", 6);
-jsonSetValue(seo, "key4", 7);
+printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
+}
 
-
-SerialWrite(seo);
+void onRequest() {
+JWireRespond("Suck it this is a really long request not usually available on i2c");
 }
 
 void onSetup() {
 TRISA = 0;
 MacawBegin();
 SerialBegin();
-SetInterval(70, myTimer);;;;;;;;
+SetInterval(30, myTimer);
 
+JWireBegin(0x4F);
+
+JWireOnReceive(gotJ);
+JWireOnRequest(onRequest);
 }
 
 void onLoop() {
