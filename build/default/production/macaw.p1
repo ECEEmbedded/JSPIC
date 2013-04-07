@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"29397 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"29397 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
 "28912
 [v _LATB `Vuc ~T0 @X0 0 e@3978 ]
@@ -7,11 +7,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [t T19 __deprecated__ ]
 "36243
 [v _RB7 `Vb ~T19 @X0 0 e@31759 ]
-"144 /opt/microchip/xc8/v1.12/include/pic18.h
+"144 /Applications/microchip/xc8/v1.12/include/pic18.h
 [v __delay `(v ~T0 @X0 0 ef1`ul ]
 [p i __delay ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14842,7 +14842,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;string2.h: 6: void strcpy2(unsigned char *dest, const unsigned char *loc);
+[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
 "4 macaw.c
@@ -14874,9 +14874,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;macaw.c: 15: RB7 = 0;
 "15
 [e = _RB7 -> -> 0 `i `b ]
-[; ;macaw.c: 17: _delay((unsigned long)((50)*(2000000 * 4/4000000.0)));
+[; ;macaw.c: 17: _delay((unsigned long)((100)*(2000000 * 4/4000000.0)));
 "17
-[e ( __delay (1 -> * -> -> 50 `i `d / -> * -> 2000000 `l -> -> 4 `i `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 100 `i `d / -> * -> 2000000 `l -> -> 4 `i `l `d .4000000.0 `ul ]
 [; ;macaw.c: 18: }
 "18
 [e :UE 2093 ]

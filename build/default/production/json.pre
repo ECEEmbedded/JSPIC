@@ -1,5 +1,73 @@
 
-# 1 "macaw.c"
+# 1 "json.c"
+
+# 8 "/Applications/microchip/xc8/v1.12/include/stdio.h"
+typedef int ptrdiff_t;
+typedef unsigned size_t;
+typedef unsigned short wchar_t;
+
+# 7 "/Applications/microchip/xc8/v1.12/include/stdarg.h"
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 23 "/Applications/microchip/xc8/v1.12/include/stdio.h"
+extern int errno;
+
+# 54
+struct __prbuf
+{
+char * ptr;
+void (* func)(char);
+};
+
+# 17 "/Applications/microchip/xc8/v1.12/include/conio.h"
+extern int errno;
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+# 31
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 99 "/Applications/microchip/xc8/v1.12/include/stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+
+# 191
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...);
+extern int sscanf(const char *, const char *, ...);
+extern int vprintf(const char *, va_list);
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap);
+extern int vsscanf(const char *, const char *, va_list);
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
 
 # 44 "/Applications/microchip/xc8/v1.12/include/pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -17954,12 +18022,7 @@ void Busy_eep ( void );
 unsigned char Read_b_eep( unsigned int badd );
 void Write_b_eep( unsigned int badd, unsigned char bdata );
 
-# 2 "/Applications/microchip/xc8/v1.12/include/stddef.h"
-typedef int ptrdiff_t;
-typedef unsigned size_t;
-typedef unsigned short wchar_t;
-
-# 13
+# 13 "/Applications/microchip/xc8/v1.12/include/stddef.h"
 extern int errno;
 
 # 65 "/Applications/microchip/xc8/v1.12/include/GenericTypeDefs.h"
@@ -18652,69 +18715,6 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 7 "/Applications/microchip/xc8/v1.12/include/stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 23 "/Applications/microchip/xc8/v1.12/include/stdio.h"
-extern int errno;
-
-# 54
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 17 "/Applications/microchip/xc8/v1.12/include/conio.h"
-extern int errno;
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 31
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 99 "/Applications/microchip/xc8/v1.12/include/stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 191
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...);
-extern int sscanf(const char *, const char *, ...);
-extern int vprintf(const char *, va_list);
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap);
-extern int vsscanf(const char *, const char *, va_list);
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
 # 27 "/Applications/microchip/xc8/v1.12/include/stdlib.h"
 typedef struct {
 int rem;
@@ -18815,28 +18815,154 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 6 "string2.h"
-void strcpy2(char *dest, const char *loc);
-
 # 6 "macaw.h"
 void MacawBegin();
 
 
 void putch(char data);
 
-# 4 "macaw.c"
-void MacawBegin() {
+# 6 "string2.h"
+void strcpy2(char *dest, const char *loc);
 
-TRISB = 0;
+# 6 "json.h"
+void jsonNew(char* string);
+
+
+void jsonSetString(char* input, char* key, char* string);
+void jsonSetValue(char* input, char* key, int value);
+
+int jsonGetString(char* input, char* key, char* string);
+int jsonGetValue(char* input, char* key);
+
+# 22 "/Applications/microchip/xc8/v1.12/include/string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 35
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 103 "/Applications/microchip/xc8/v1.12/include/stdlib.h"
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+
+# 21 "json.c"
+static char KEY_COLON_SPACE[200];
+static char result[200];
+
+void jsonNew(char* string) {
+sprintf(string, "{\n}");
 }
 
-void putch(char data) {
+int jsonGetValue(char* input, char* key) {
+static char KEY_COLON_SPACE[200];
 
-LATB = data;
+sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
+char* substr_s = strstr(input, KEY_COLON_SPACE);
 
+substr_s = strstr(substr_s, " ");
+substr_s++;
 
-RB7 = 1;
-RB7 = 0;
+if(substr_s != (0)) {
+char* substr2_s = strstr(substr_s, ",\n");
+unsigned long length_substr_s = strlen(substr_s);
+unsigned long length_substr2_s = strlen(substr2_s);
+unsigned long length_sub_s = length_substr_s - length_substr2_s;
 
-_delay((unsigned long)((100)*(2000000 * 4/4000000.0)));
+for (int i=0; i<length_sub_s; i++) {
+result[i] = substr_s[i];
+}
+
+result[length_sub_s] = 0;
+
+int result_float = 0;
+
+if(result[0] == '\"') {
+char *p = result;
+p++;
+p[strlen(p)-1] = 0;
+result_float = atoi(p);
+}
+else {
+result_float = atoi(result);
+}
+return result_float;
+}
+return -696969;
+}
+
+void jsonSetString(char* input, char* key, char* str) {
+unsigned long original_json_input_len = strlen(input);
+input[original_json_input_len - 1] = 0;
+strcpy2(KEY_COLON_SPACE, input);
+sprintf(input, "%s\"%s\": \"%s\",\n}", KEY_COLON_SPACE, key, str);
+}
+
+void jsonSetValue(char* input, char* key, int value) {
+
+unsigned long original_json_input_len = strlen(input);
+input[original_json_input_len - 1] = 0;
+strcpy2(KEY_COLON_SPACE, input);
+sprintf(input, "%s\"%s\": %d,\n}", KEY_COLON_SPACE, key, value);
+}
+
+int jsonGetString(char* input, char* key, char* string) {
+
+sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
+char* substr_s = strstr(input, KEY_COLON_SPACE);
+
+substr_s = strstr(substr_s, " ");
+substr_s++;
+
+if(substr_s != (0)) {
+char* substr2_s = strstr(substr_s, ",\n");
+unsigned long length_substr_s = strlen(substr_s);
+unsigned long length_substr2_s = strlen(substr2_s);
+unsigned long length_sub_s = length_substr_s - length_substr2_s;
+
+for (int i=0; i<length_sub_s; i++) {
+result[i] = substr_s[i];
+}
+
+result[length_sub_s] = 0;
+
+char *p = result;
+p++;
+p[strlen(p)-1] = 0;
+strcpy2(string, p);
+return 0;
+}
+return -1;
 }

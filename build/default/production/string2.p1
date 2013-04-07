@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14833,11 +14833,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
-[; ;string2.h: 6: void strcpy2(unsigned char *dest, const unsigned char *loc);
+[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 "3 string2.c
 [v _strcpy2 `(v ~T0 @X0 1 ef2`*uc`*Cuc ]
 {
-[; ;string2.c: 3: void strcpy2(unsigned char *dest, const unsigned char *loc) {
+[; ;string2.c: 3: void strcpy2(char *dest, const char *loc) {
 [e :U _strcpy2 ]
 [v _dest `*uc ~T0 @X0 1 r1 ]
 [v _loc `*Cuc ~T0 @X0 1 r2 ]
@@ -14870,7 +14870,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ != -> *U _loc `i -> -> -> 0 `i `Cuc `i 2095  ]
 [e :U 2096 ]
 [; ;string2.c: 11: }
-[; ;string2.c: 12: }
-"12
+[; ;string2.c: 13: *dest = 0;
+"13
+[e = *U _dest -> -> 0 `i `uc ]
+[; ;string2.c: 14: }
+"14
 [e :UE 2092 ]
 }

@@ -1,14 +1,14 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "6 async.h
 [v F16501 `(v ~T0 @X0 0 tf1`*uc ]
-"30697 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"30697 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCSTA `Vuc ~T0 @X0 0 e@4011 ]
 "31128
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
 "12 async.h
 [v F16506 `(v ~T0 @X0 0 tf1`*uc ]
 [v _Async `(v ~T0 @X0 0 ef2`*F16506`*uc ]
-"38007 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"38007 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SPEN `Vb ~T0 @X0 0 e@32095 ]
 [s S1843 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1843 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
@@ -38,14 +38,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXIE `Vb ~T0 @X0 0 e@31980 ]
 "36279
 [v _RCIE `Vb ~T0 @X0 0 e@31981 ]
-"36 /opt/microchip/xc8/v1.12/include/string.h
+"36 /Applications/microchip/xc8/v1.12/include/string.h
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 "55
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-"31117 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"31117 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14878,7 +14878,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
-[; ;string2.h: 6: void strcpy2(unsigned char *dest, const unsigned char *loc);
+[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
 [; ;async.h: 9: void AsyncBegin();
 [; ;async.h: 12: void Async(void (*function)(char *), char *string);
@@ -14889,8 +14889,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.h: 17: void SerialWrite(char *data);
 [; ;serial.h: 20: void SerialWriteInterrupt();
 "6 serial.c
-[v _bufferSerial `uc ~T0 @X0 -> 200 `i s ]
-[; ;serial.c: 6: static char bufferSerial[200];
+[v _bufferSerial `uc ~T0 @X0 -> 100 `i s ]
+[; ;serial.c: 6: static char bufferSerial[100];
 "7
 [v _bufferPosition `i ~T0 @X0 1 s ]
 [i _bufferPosition

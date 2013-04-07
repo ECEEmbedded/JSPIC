@@ -12,6 +12,7 @@
       <itemPath>jwire.h</itemPath>
       <itemPath>globals.h</itemPath>
       <itemPath>string2.h</itemPath>
+      <itemPath>json.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -27,6 +28,8 @@
       <itemPath>serial.c</itemPath>
       <itemPath>jwire.c</itemPath>
       <itemPath>string2.c</itemPath>
+      <itemPath>main.c</itemPath>
+      <itemPath>json.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -45,7 +48,7 @@
         <platformTool>PICkit2PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>1.12</languageToolchainVersion>
-        <platform>2</platform>
+        <platform>4</platform>
       </toolsSet>
       <compileType>
         <linkerTool>
@@ -78,7 +81,7 @@
         <property key="optimization-global" value="true"/>
         <property key="optimization-level" value="9"/>
         <property key="optimization-set" value="all"/>
-        <property key="optimization-speed" value="true"/>
+        <property key="optimization-speed" value="false"/>
         <property key="preprocess-assembler" value="true"/>
         <property key="undefine-macros" value=""/>
         <property key="use-cci" value="false"/>

@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void strcpy2(unsigned char *dest, const unsigned char *loc);
+void strcpy2(char *dest, const char *loc);
 
 #endif

@@ -41,7 +41,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1989 . . NOT_A ]
 [u S1970 `S1971 1 `S1972 1 `S1973 1 `S1974 1 `S1975 1 `S1976 1 `S1977 1 `S1978 1 `S1979 1 `S1980 1 `S1981 1 `S1982 1 `S1983 1 `S1984 1 `S1985 1 `S1986 1 `S1987 1 `S1988 1 `S1989 1 ]
 [n S1970 . . . . . . . . . . . . . . . . . . . . ]
-"32165 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"32165 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SSPSTATbits `VS1970 ~T0 @X0 0 e@4039 ]
 "32335
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
@@ -56,7 +56,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1844 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
 [u S1842 `S1843 1 `S1844 1 ]
 [n S1842 . . . ]
-"29650 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"29650 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TRISCbits `VS1842 ~T0 @X0 0 e@3988 ]
 "32329
 [v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
@@ -75,7 +75,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "38017
 [v _SSPIE `Vb ~T0 @X0 0 e@31979 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14908,7 +14908,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
-[; ;string2.h: 6: void strcpy2(unsigned char *dest, const unsigned char *loc);
+[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
 [; ;async.h: 9: void AsyncBegin();
 [; ;async.h: 12: void Async(void (*function)(char *), char *string);

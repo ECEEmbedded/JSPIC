@@ -10,7 +10,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "9 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14843,7 +14843,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
-[; ;string2.h: 6: void strcpy2(unsigned char *dest, const unsigned char *loc);
+[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
 [; ;async.h: 9: void AsyncBegin();
 [; ;async.h: 12: void Async(void (*function)(char *), char *string);

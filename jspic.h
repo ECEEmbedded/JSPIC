@@ -1,0 +1,17 @@
+#ifndef JSPIC_H_
+#define JSPIC_H_
+
+#include <xc.h>
+#include "macaw.h"
+#include "async.h"
+#include "jwire.h"
+#include "interrupts.h"
+#include "interval.h"
+#include "serial.h"
+#include "globals.h"
+
+void onSetup();
+void onLoop();
+
+
+#endif

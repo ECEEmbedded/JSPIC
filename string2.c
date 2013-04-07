@@ -1,6 +1,6 @@
 #include "string2.h"
 
-void strcpy2(unsigned char *dest, const unsigned char *loc) {
+void strcpy2(char *dest, const char *loc) {
     if (loc == NULL)
         return;
     
@@ -9,4 +9,6 @@ void strcpy2(unsigned char *dest, const unsigned char *loc) {
         ++dest;
         ++loc;
     }
+
+    *dest = 0;
 }

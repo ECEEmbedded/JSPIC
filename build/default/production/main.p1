@@ -1,35 +1,25 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"5 interval.c
-[v F16519 `(v ~T0 @X0 0 tf ]
-[s S2092 `*F16519 1 `s 1 ]
-[n S2092 INTERVAL_CALLBACK_T function delay ]
-"12 async.h
-[v F16506 `(v ~T0 @X0 0 tf1`*uc ]
-[v _Async `(v ~T0 @X0 0 ef2`*F16506`*uc ]
+"35977 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+[v _LA0 `Vb ~T0 @X0 0 e@31816 ]
+"6 json.h
+[v _jsonNew `(v ~T0 @X0 0 ef1`*uc ]
+"9
+[v _jsonSetString `(v ~T0 @X0 0 ef3`*uc`*uc`*uc ]
+"10
+[v _jsonSetValue `(v ~T0 @X0 0 ef3`*uc`*uc`i ]
+"17 serial.h
+[v _SerialWrite `(v ~T0 @X0 0 ef1`*uc ]
+"29176 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"6 macaw.h
+[v _MacawBegin `(v ~T0 @X0 0 ef ]
+"14 serial.h
+[v _SerialBegin `(v ~T0 @X0 0 ef ]
 "14 interval.h
 [v F16516 `(v ~T0 @X0 0 tf ]
-[s S2027 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2027 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
-[s S2028 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2028 . T0PS0 T0PS1 T0PS2 T0PS3 ]
-[u S2026 `S2027 1 `S2028 1 ]
-[n S2026 . . . ]
-"33120 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
-[v _T0CONbits `VS2026 ~T0 @X0 0 e@4053 ]
-[s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-[s S2044 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2044 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
-[s S2045 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2045 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
-[s S2046 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2046 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-[s S2047 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2047 . . GIEL GIEH ]
-[u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
-[n S2042 . . . . . . ]
-"33645
-[v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
+[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16516 ]
+"35981 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+[v _LA2 `Vb ~T0 @X0 0 e@31818 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14872,169 +14862,141 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interval.h: 8: void IntervalBegin(int ms);
 [; ;interval.h: 11: void OnIntervalInterrupt();
 [; ;interval.h: 14: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;interval.c: 4: typedef struct INTERVAL_CALLBACK_T {
-[; ;interval.c: 5: void (*function)();
-[; ;interval.c: 6: short delay;
-[; ;interval.c: 7: } IntervalCallback_t;
-"9 interval.c
-[v _callbackA `S2092 ~T0 @X0 1 s ]
-[; ;interval.c: 9: static IntervalCallback_t callbackA;
-"10
-[v _callbackB `S2092 ~T0 @X0 1 s ]
-[; ;interval.c: 10: static IntervalCallback_t callbackB;
-"11
-[v _callbackC `S2092 ~T0 @X0 1 s ]
-[; ;interval.c: 11: static IntervalCallback_t callbackC;
-"14
-[v _IntervalTick `(v ~T0 @X0 1 ef1`*uc ]
+[; ;serial.h: 8: void OnSerialInterrupt();
+[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
+[; ;serial.h: 14: void SerialBegin();
+[; ;serial.h: 17: void SerialWrite(char *data);
+[; ;serial.h: 20: void SerialWriteInterrupt();
+[; ;json.h: 6: void jsonNew(char* string);
+[; ;json.h: 9: void jsonSetString(char* input, char* key, char* string);
+[; ;json.h: 10: void jsonSetValue(char* input, char* key, int value);
+[; ;json.h: 12: int jsonGetString(char* input, char* key, char* string);
+[; ;json.h: 13: int jsonGetValue(char* input, char* key);
+"8 main.c
+[v _serial `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;interval.c: 14: void IntervalTick(char *msg) {
-[e :U _IntervalTick ]
+[; ;main.c: 8: void serial(char *msg) {
+[e :U _serial ]
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [f ]
+[; ;main.c: 9: LA0 = ~LA0;
+"9
+[e = _LA0 ! _LA0 ]
+[; ;main.c: 11: if (msg[0] == 'm')
+"11
+[e $ ! == -> *U + _msg * -> -> 0 `i `x -> -> # *U _msg `i `x `ui -> 109 `ui 2093  ]
+[; ;main.c: 12: LA0 = ~LA0;
+"12
+[e = _LA0 ! _LA0 ]
+[e :U 2093 ]
+[; ;main.c: 14: if (msg[1] == 'a')
+"14
+[e $ ! == -> *U + _msg * -> -> 1 `i `x -> -> # *U _msg `i `x `ui -> 97 `ui 2094  ]
+[; ;main.c: 15: LA0 = ~LA0;
 "15
-[v F16527 `i ~T0 @X0 1 s time ]
-[i F16527
--> 0 `i
-]
-[; ;interval.c: 15: static int time = 0;
-[; ;interval.c: 17: if (callbackA.function && (time % callbackA.delay == 0))
-"17
-[e $ ! && != . _callbackA 0 -> -> 0 `i `*F16519 == % F16527 -> . _callbackA 1 `i -> 0 `i 2094  ]
-[; ;interval.c: 18: callbackA.function();
-"18
-[e ( *U . _callbackA 0 ..  ]
+[e = _LA0 ! _LA0 ]
 [e :U 2094 ]
-[; ;interval.c: 20: if (callbackB.function && (time % callbackB.delay == 0))
-"20
-[e $ ! && != . _callbackB 0 -> -> 0 `i `*F16519 == % F16527 -> . _callbackB 1 `i -> 0 `i 2095  ]
-[; ;interval.c: 21: callbackB.function();
-"21
-[e ( *U . _callbackB 0 ..  ]
+[; ;main.c: 17: if (msg[2] == 't')
+"17
+[e $ ! == -> *U + _msg * -> -> 2 `i `x -> -> # *U _msg `i `x `ui -> 116 `ui 2095  ]
+[; ;main.c: 18: LA0 = ~LA0;
+"18
+[e = _LA0 ! _LA0 ]
 [e :U 2095 ]
-[; ;interval.c: 23: if (callbackC.function && (time % callbackC.delay == 0))
-"23
-[e $ ! && != . _callbackC 0 -> -> 0 `i `*F16519 == % F16527 -> . _callbackC 1 `i -> 0 `i 2096  ]
-[; ;interval.c: 24: callbackC.function();
-"24
-[e ( *U . _callbackC 0 ..  ]
+[; ;main.c: 20: if (msg[3] == '\n')
+"20
+[e $ ! == -> *U + _msg * -> -> 3 `i `x -> -> # *U _msg `i `x `ui -> 10 `ui 2096  ]
+[; ;main.c: 21: LA0 = ~LA0;
+"21
+[e = _LA0 ! _LA0 ]
 [e :U 2096 ]
-[; ;interval.c: 26: ++time;
-"26
-[e =+ F16527 -> 1 `i ]
-[; ;interval.c: 27: }
+[; ;main.c: 23: if (msg[4] == 0)
+"23
+[e $ ! == -> *U + _msg * -> -> 4 `i `x -> -> # *U _msg `i `x `i -> 0 `i 2097  ]
+[; ;main.c: 24: LA0 = ~LA0;
+"24
+[e = _LA0 ! _LA0 ]
+[e :U 2097 ]
+[; ;main.c: 25: }
+"25
+[e :UE 2092 ]
+}
 "27
-[e :UE 2093 ]
-}
-"29
-[v _OnIntervalInterrupt `(v ~T0 @X0 1 ef ]
+[v _myTimer `(v ~T0 @X0 1 ef ]
 {
-[; ;interval.c: 29: void OnIntervalInterrupt() {
-[e :U _OnIntervalInterrupt ]
+[; ;main.c: 27: void myTimer() {
+[e :U _myTimer ]
 [f ]
-[; ;interval.c: 31: Async(IntervalTick, (0));
+"28
+[v F16544 `uc ~T0 @X0 -> 200 `i s seo ]
+[; ;main.c: 28: static char seo[200];
+[; ;main.c: 31: jsonNew(seo);
 "31
-[e ( _Async (2 , &U _IntervalTick -> -> 0 `i `*uc ]
-[; ;interval.c: 32: }
+[e ( _jsonNew (1 &U F16544 ]
+[; ;main.c: 32: jsonSetString(seo, "call", "get/ir1 my name!");
 "32
-[e :UE 2097 ]
-}
+[e ( _jsonSetString (3 , , &U F16544 -> :s 1C `*uc -> :s 2C `*uc ]
+[; ;main.c: 33: jsonSetValue(seo, "key0", 3);
+"33
+[e ( _jsonSetValue (3 , , &U F16544 -> :s 3C `*uc -> 3 `i ]
+[; ;main.c: 34: jsonSetValue(seo, "key1", 4);
 "34
-[v _SetInterval `(v ~T0 @X0 1 ef2`i`*F16516 ]
-{
-[; ;interval.c: 34: void SetInterval(int delayInMs, void (*callbackToUse)()) {
-[e :U _SetInterval ]
-[v _delayInMs `i ~T0 @X0 1 r1 ]
-[v F16531 `(v ~T0 @X0 0 tf ]
-[v _callbackToUse `*F16531 ~T0 @X0 1 r2 ]
-[f ]
+[e ( _jsonSetValue (3 , , &U F16544 -> :s 4C `*uc -> 4 `i ]
+[; ;main.c: 35: jsonSetValue(seo, "key2", 5);
+"35
+[e ( _jsonSetValue (3 , , &U F16544 -> :s 5C `*uc -> 5 `i ]
+[; ;main.c: 36: jsonSetValue(seo, "key3", 6);
 "36
-[v F16532 `uc ~T0 @X0 1 s hasLoaded ]
-[i F16532
--> -> 0 `i `uc
-]
-[; ;interval.c: 36: static char hasLoaded = 0;
-[; ;interval.c: 37: if (!hasLoaded) {
+[e ( _jsonSetValue (3 , , &U F16544 -> :s 6C `*uc -> 6 `i ]
+[; ;main.c: 37: jsonSetValue(seo, "key4", 7);
 "37
-[e $ ! ! != -> F16532 `i -> -> -> 0 `i `uc `i 2099  ]
-{
-[; ;interval.c: 39: T0CONbits.TMR0ON = 1;
-"39
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-[; ;interval.c: 40: T0CONbits.T08BIT = 1;
+[e ( _jsonSetValue (3 , , &U F16544 -> :s 7C `*uc -> 7 `i ]
+[; ;main.c: 40: SerialWrite(seo);
 "40
-[e = . . _T0CONbits 0 4 -> -> 1 `i `uc ]
-[; ;interval.c: 41: T0CONbits.T0CS = 0;
+[e ( _SerialWrite (1 &U F16544 ]
+[; ;main.c: 41: }
 "41
-[e = . . _T0CONbits 0 3 -> -> 0 `i `uc ]
-[; ;interval.c: 42: T0CONbits.PSA = 0;
-"42
-[e = . . _T0CONbits 0 1 -> -> 0 `i `uc ]
-[; ;interval.c: 43: T0CONbits.T0PS = 2;
-"43
-[e = . . _T0CONbits 0 0 -> -> 2 `i `uc ]
-[; ;interval.c: 44: INTCONbits.TMR0IE = 1;
-"44
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-[; ;interval.c: 46: callbackA.function = (0);
-"46
-[e = . _callbackA 0 -> -> 0 `i `*F16519 ]
-[; ;interval.c: 47: callbackB.function = (0);
-"47
-[e = . _callbackB 0 -> -> 0 `i `*F16519 ]
-[; ;interval.c: 48: callbackC.function = (0);
-"48
-[e = . _callbackC 0 -> -> 0 `i `*F16519 ]
-[; ;interval.c: 50: hasLoaded = 1;
-"50
-[e = F16532 -> -> 1 `i `uc ]
-"51
-}
-[e :U 2099 ]
-[; ;interval.c: 51: }
-[; ;interval.c: 53: if (callbackA.function == (0)) {
-"53
-[e $ ! == . _callbackA 0 -> -> 0 `i `*F16519 2100  ]
-{
-[; ;interval.c: 54: callbackA.function = callbackToUse;
-"54
-[e = . _callbackA 0 _callbackToUse ]
-[; ;interval.c: 55: callbackA.delay = delayInMs;
-"55
-[e = . _callbackA 1 -> _delayInMs `s ]
-"56
-}
-[; ;interval.c: 56: } else if (callbackB.function == (0)) {
-[e $U 2101  ]
-[e :U 2100 ]
-[e $ ! == . _callbackB 0 -> -> 0 `i `*F16519 2102  ]
-{
-[; ;interval.c: 57: callbackB.function = callbackToUse;
-"57
-[e = . _callbackB 0 _callbackToUse ]
-[; ;interval.c: 58: callbackB.delay = delayInMs;
-"58
-[e = . _callbackB 1 -> _delayInMs `s ]
-"59
-}
-[; ;interval.c: 59: } else if (callbackC.function == (0)) {
-[e $U 2103  ]
-[e :U 2102 ]
-[e $ ! == . _callbackC 0 -> -> 0 `i `*F16519 2104  ]
-{
-[; ;interval.c: 60: callbackC.function = callbackToUse;
-"60
-[e = . _callbackC 0 _callbackToUse ]
-[; ;interval.c: 61: callbackC.delay = delayInMs;
-"61
-[e = . _callbackC 1 -> _delayInMs `s ]
-"62
-}
-[e :U 2104 ]
-"63
-[e :U 2103 ]
-[e :U 2101 ]
-[; ;interval.c: 62: }
-[; ;interval.c: 63: }
 [e :UE 2098 ]
 }
+"43
+[v _onSetup `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 43: void onSetup() {
+[e :U _onSetup ]
+[f ]
+[; ;main.c: 44: TRISA = 0;
+"44
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 45: MacawBegin();
+"45
+[e ( _MacawBegin ..  ]
+[; ;main.c: 46: SerialBegin();
+"46
+[e ( _SerialBegin ..  ]
+[; ;main.c: 47: SetInterval(70, myTimer);;;;;;;;
+"47
+[e ( _SetInterval (2 , -> 70 `i &U _myTimer ]
+[; ;main.c: 49: }
+"49
+[e :UE 2099 ]
+}
+"51
+[v _onLoop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 51: void onLoop() {
+[e :U _onLoop ]
+[f ]
+[; ;main.c: 54: LA2 = ~LA2;
+"54
+[e = _LA2 ! _LA2 ]
+[; ;main.c: 55: }
+"55
+[e :UE 2100 ]
+}
+[a 1C 99 97 108 108 0 ]
+[a 7C 107 101 121 52 0 ]
+[a 6C 107 101 121 51 0 ]
+[a 5C 107 101 121 50 0 ]
+[a 4C 107 101 121 49 0 ]
+[a 3C 107 101 121 48 0 ]
+[a 2C 103 101 116 47 105 114 49 32 109 121 32 110 97 109 101 33 0 ]

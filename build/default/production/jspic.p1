@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"38019 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"38019 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SSPIF `Vb ~T0 @X0 0 e@31987 ]
 "9 jwire.h
 [v _JWireOnInterrupt `(v ~T0 @X0 0 ef ]
@@ -15,24 +15,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2047 . . GIEL GIEH ]
 [u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
 [n S2042 . . . . . . ]
-"33645 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"33645 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
 "11 interval.h
 [v _OnIntervalInterrupt `(v ~T0 @X0 0 ef ]
-"36281 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"36281 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCIF `Vb ~T0 @X0 0 e@31989 ]
 "8 serial.h
 [v _OnSerialInterrupt `(v ~T0 @X0 0 ef ]
-"38957 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"38957 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TXIF `Vb ~T0 @X0 0 e@31988 ]
 "20 serial.h
 [v _SerialWriteInterrupt `(v ~T0 @X0 0 ef ]
 "15 async.h
 [v _AsyncTick `(v ~T0 @X0 0 ef ]
-"206 /opt/microchip/xc8/v1.12/include/stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"35977 /opt/microchip/xc8/v1.12/include/pic18f2680.h
-[v _LA0 `Vb ~T0 @X0 0 e@31816 ]
 [p mainexit ]
 [s S2024 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
 [n S2024 . SCS IOFS OSTS IRCF IDLEN ]
@@ -40,31 +36,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2025 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
 [u S2023 `S2024 1 `S2025 1 ]
 [n S2023 . . . ]
-"33045
+"33045 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
-"29176
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"6 macaw.h
-[v _MacawBegin `(v ~T0 @X0 0 ef ]
 "9 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
-"14 serial.h
-[v _SerialBegin `(v ~T0 @X0 0 ef ]
-"18 jwire.h
-[v _JWireBegin `(v ~T0 @X0 0 ef1`i ]
-"6 async.h
-[v F16501 `(v ~T0 @X0 0 tf1`*uc ]
-"11 serial.h
-[v _OnSerial `(v ~T0 @X0 0 ef1`*F16501 ]
-"14 interval.h
-[v F16524 `(v ~T0 @X0 0 tf ]
-[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16524 ]
-"35851 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"33 jspic.c
+[v _onSetup `(v ~T0 @X0 0 ef ]
+"35851 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 "36183
 [v _PEIE `Vb ~T0 @X0 0 e@32662 ]
+"34 jspic.c
+[v _onLoop `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14895,7 +14880,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;string2.h: 6: void strcpy2(unsigned char *dest, const unsigned char *loc);
+[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;macaw.h: 6: void MacawBegin();
 [; ;macaw.h: 9: void putch(char data);
 [; ;async.h: 6: typedef void (*AsyncCallback_t)(char *);
@@ -15007,137 +14992,47 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x LVP=OFF ]
 "31
 [p x BBSIZ=1024 ]
-"35
-[v _purr `(v ~T0 @X0 1 ef ]
-{
-[; ;jspic.c: 35: void purr() {
-[e :U _purr ]
-[f ]
+[; ;jspic.c: 33: void onSetup();
+[; ;jspic.c: 34: void onLoop();
 "36
-[v F16535 `i ~T0 @X0 1 s count ]
-[i F16535
--> 0 `i
-]
-[; ;jspic.c: 36: static int count = 0;
-[; ;jspic.c: 37: ++count;
-"37
-[e =+ F16535 -> 1 `i ]
-[; ;jspic.c: 38: printf("purr %d\n", count);
-"38
-[e ( _printf , (. :s 1C F16535 ]
-[; ;jspic.c: 39: }
-"39
-[e :UE 2097 ]
-}
-"41
-[v _jwire `(v ~T0 @X0 1 ef1`*uc ]
-{
-[; ;jspic.c: 41: void jwire(char *msg) {
-[e :U _jwire ]
-[v _msg `*uc ~T0 @X0 1 r1 ]
-[f ]
-[; ;jspic.c: 42: printf(msg);
-"42
-[e ( _printf -> _msg `*Cuc ]
-[; ;jspic.c: 43: }
-"43
-[e :UE 2098 ]
-}
-"45
-[v _serial `(v ~T0 @X0 1 ef1`*uc ]
-{
-[; ;jspic.c: 45: void serial(char *msg) {
-[e :U _serial ]
-[v _msg `*uc ~T0 @X0 1 r1 ]
-[f ]
-[; ;jspic.c: 46: LA0 = ~LA0;
-"46
-[e = _LA0 ! _LA0 ]
-[; ;jspic.c: 48: if (msg[0] == 'm')
-"48
-[e $ ! == -> *U + _msg * -> -> 0 `i `x -> -> # *U _msg `i `x `ui -> 109 `ui 2100  ]
-[; ;jspic.c: 49: LA0 = ~LA0;
-"49
-[e = _LA0 ! _LA0 ]
-[e :U 2100 ]
-[; ;jspic.c: 51: if (msg[1] == 'a')
-"51
-[e $ ! == -> *U + _msg * -> -> 1 `i `x -> -> # *U _msg `i `x `ui -> 97 `ui 2101  ]
-[; ;jspic.c: 52: LA0 = ~LA0;
-"52
-[e = _LA0 ! _LA0 ]
-[e :U 2101 ]
-[; ;jspic.c: 54: if (msg[2] == 't')
-"54
-[e $ ! == -> *U + _msg * -> -> 2 `i `x -> -> # *U _msg `i `x `ui -> 116 `ui 2102  ]
-[; ;jspic.c: 55: LA0 = ~LA0;
-"55
-[e = _LA0 ! _LA0 ]
-[e :U 2102 ]
-[; ;jspic.c: 57: if (msg[3] == '\n')
-"57
-[e $ ! == -> *U + _msg * -> -> 3 `i `x -> -> # *U _msg `i `x `ui -> 10 `ui 2103  ]
-[; ;jspic.c: 58: LA0 = ~LA0;
-"58
-[e = _LA0 ! _LA0 ]
-[e :U 2103 ]
-[; ;jspic.c: 60: if (msg[4] == 0)
-"60
-[e $ ! == -> *U + _msg * -> -> 4 `i `x -> -> # *U _msg `i `x `i -> 0 `i 2104  ]
-[; ;jspic.c: 61: LA0 = ~LA0;
-"61
-[e = _LA0 ! _LA0 ]
-[e :U 2104 ]
-[; ;jspic.c: 62: }
-"62
-[e :UE 2099 ]
-}
-"64
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;jspic.c: 64: int main() {
+[; ;jspic.c: 36: int main() {
 [e :U _main ]
 [f ]
-[; ;jspic.c: 66: OSCCONbits.IRCF = 7;
-"66
+[; ;jspic.c: 38: OSCCONbits.IRCF = 7;
+"38
 [e = . . _OSCCONbits 0 3 -> -> 7 `i `uc ]
-[; ;jspic.c: 68: TRISA = 0;
-"68
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;jspic.c: 70: MacawBegin();
-"70
-[e ( _MacawBegin ..  ]
-[; ;jspic.c: 71: AsyncBegin();
-"71
+[; ;jspic.c: 40: AsyncBegin();
+"40
 [e ( _AsyncBegin ..  ]
-[; ;jspic.c: 72: SerialBegin();
-"72
-[e ( _SerialBegin ..  ]
-[; ;jspic.c: 75: JWireBegin(0x4F);
-"75
-[e ( _JWireBegin (1 -> 79 `i ]
-[; ;jspic.c: 77: OnSerial(serial);
-"77
-[e ( _OnSerial (1 &U _serial ]
-[; ;jspic.c: 79: SetInterval(1000, purr);
-"79
-[e ( _SetInterval (2 , -> 1000 `i &U _purr ]
-[; ;jspic.c: 81: GIE = 1;
-"81
+[; ;jspic.c: 41: onSetup();
+"41
+[e ( _onSetup ..  ]
+[; ;jspic.c: 43: GIE = 1;
+"43
 [e = _GIE -> -> 1 `i `b ]
-[; ;jspic.c: 82: PEIE = 1;
-"82
+[; ;jspic.c: 44: PEIE = 1;
+"44
 [e = _PEIE -> -> 1 `i `b ]
-[; ;jspic.c: 84: while (1);
-"84
-[e :U 2107 ]
-[e :U 2106 ]
-[e $U 2107  ]
-[e :U 2108 ]
-[; ;jspic.c: 85: }
-"85
-[e :UE 2105 ]
+[; ;jspic.c: 46: while (1) {
+"46
+[e :U 2099 ]
+{
+[; ;jspic.c: 47: AsyncTick();
+"47
+[e ( _AsyncTick ..  ]
+[; ;jspic.c: 48: onLoop();
+"48
+[e ( _onLoop ..  ]
+"49
 }
-[p f _printf 9437824 ]
-[a 1C 112 117 114 114 32 37 100 10 0 ]
-
+[e :U 2098 ]
+"46
+[e $U 2099  ]
+[e :U 2100 ]
+[; ;jspic.c: 49: }
+[; ;jspic.c: 50: }
+"50
+[e :UE 2097 ]
+}

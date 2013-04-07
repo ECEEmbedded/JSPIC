@@ -30,56 +30,21 @@
 #pragma config LVP = OFF        // Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
 #pragma config BBSIZ = 1024     // Boot Block Size Select bits (1K words (2K bytes) Boot Block)
 
-#include <stdio.h>
-
-void purr() {
-    static int count = 0;
-    ++count;
-    printf("purr %d\n", count);
-}
-
-void jwire(char *msg) {
-    printf(msg);
-}
-
-void serial(char *msg) {
-    LA0 = ~LA0;
-    //printf(msg);
-    if (msg[0] == 'm')
-        LA0 = ~LA0;
-
-    if (msg[1] == 'a')
-        LA0 = ~LA0;
-
-    if (msg[2] == 't')
-        LA0 = ~LA0;
-
-    if (msg[3] == '\n')
-        LA0 = ~LA0;
-
-    if (msg[4] == 0)
-        LA0 = ~LA0;
-}
+void onSetup();
+void onLoop();
 
 int main() {
     //Set clock to 2MHZ (FOSC = 8MHZ)
     OSCCONbits.IRCF = 7;
 
-    TRISA = 0;
-
-    MacawBegin();
     AsyncBegin();
-    SerialBegin();
-    
-    //SerialBegin();
-    JWireBegin(0x4F);
-    //JWireOnReceive(jwire);
-    OnSerial(serial);
-
-    SetInterval(1000, purr);
+    onSetup();
 
     GIE = 1;
     PEIE = 1;
 
-    while (1);
+    while (1) {
+        AsyncTick();
+        onLoop();
+    }
 }
