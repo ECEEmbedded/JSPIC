@@ -3,6 +3,5 @@
  wireMaster.c  \
 async.h  \
 string2.h  \
-macaw.h  \
 globals.h  \
 wireMaster.h 

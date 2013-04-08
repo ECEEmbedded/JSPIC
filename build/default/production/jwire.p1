@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"8 async.h
-[v F16502 `(v ~T0 @X0 0 tf ]
+"9 async.h
+[v F16500 `(v ~T0 @X0 0 tf ]
 [s S1971 :2 `uc 1 :1 `uc 1 ]
 [n S1971 . . R_NOT_W ]
 [s S1972 :5 `uc 1 :1 `uc 1 ]
@@ -41,21 +41,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1989 . . NOT_A ]
 [u S1970 `S1971 1 `S1972 1 `S1973 1 `S1974 1 `S1975 1 `S1976 1 `S1977 1 `S1978 1 `S1979 1 `S1980 1 `S1981 1 `S1982 1 `S1983 1 `S1984 1 `S1985 1 `S1986 1 `S1987 1 `S1988 1 `S1989 1 ]
 [n S1970 . . . . . . . . . . . . . . . . . . . . ]
-"32165 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"32165 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SSPSTATbits `VS1970 ~T0 @X0 0 e@4039 ]
 "32335
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
 "35507
 [v _CKP `Vb ~T0 @X0 0 e@32308 ]
-"14 async.h
-[v _Async `(v ~T0 @X0 0 ef2`*F16502`*uc ]
+"15 async.h
+[v _Async `(v ~T0 @X0 0 ef2`*F16500`*uc ]
 [s S1843 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1843 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
 [s S1844 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1844 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
 [u S1842 `S1843 1 `S1844 1 ]
 [n S1842 . . . ]
-"29650 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"29650 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TRISCbits `VS1842 ~T0 @X0 0 e@3988 ]
 "32329
 [v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
@@ -76,7 +76,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14907,14 +14907,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
-[; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: extern char *AsyncMessage;
-[; ;async.h: 8: typedef void (*AsyncCallback_t)();
-[; ;async.h: 11: void AsyncBegin();
-[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
-[; ;async.h: 17: void AsyncTick();
+[; ;async.h: 7: extern char *AsyncMessage;
+[; ;async.h: 9: typedef void (*AsyncCallback_t)();
+[; ;async.h: 12: void AsyncBegin();
+[; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 18: void AsyncTick();
+[; ;macaw.h: 6: void MacawBegin();
 [; ;jwire.h: 8: extern int jWireEnabled;
 [; ;jwire.h: 11: void JWireOnInterrupt();
 [; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
@@ -14922,15 +14921,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.h: 20: void JWireBegin(int id);
 [; ;jwire.h: 23: void JWireRespond(char *msg);
 "6 jwire.c
-[v _receiveCallback `*F16502 ~T0 @X0 1 s ]
+[v _receiveCallback `*F16500 ~T0 @X0 1 s ]
 [i _receiveCallback
--> -> 0 `i `*F16502
+-> -> 0 `i `*F16500
 ]
 [; ;jwire.c: 6: static AsyncCallback_t receiveCallback = 0;
 "7
-[v _requestCallback `*F16502 ~T0 @X0 1 s ]
+[v _requestCallback `*F16500 ~T0 @X0 1 s ]
 [i _requestCallback
--> -> 0 `i `*F16502
+-> -> 0 `i `*F16500
 ]
 [; ;jwire.c: 7: static AsyncCallback_t requestCallback = 0;
 "15
@@ -15001,7 +15000,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;jwire.c: 42: if (receiveCallback) {
 "42
-[e $ ! != _receiveCallback -> -> 0 `i `*F16502 2096  ]
+[e $ ! != _receiveCallback -> -> 0 `i `*F16500 2096  ]
 {
 [; ;jwire.c: 43: Async(receiveCallback, buffer);
 "43
@@ -15035,7 +15034,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;jwire.c: 56: if(requestCallback) {
 "56
-[e $ ! != _requestCallback -> -> 0 `i `*F16502 2100  ]
+[e $ ! != _requestCallback -> -> 0 `i `*F16500 2100  ]
 {
 [; ;jwire.c: 57: requestCallback();
 "57
@@ -15110,11 +15109,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2092 ]
 }
 "87
-[v _JWireOnReceive `(v ~T0 @X0 1 ef1`*F16502 ]
+[v _JWireOnReceive `(v ~T0 @X0 1 ef1`*F16500 ]
 {
 [; ;jwire.c: 87: void JWireOnReceive(AsyncCallback_t callbackToUse) {
 [e :U _JWireOnReceive ]
-[v _callbackToUse `*F16502 ~T0 @X0 1 r1 ]
+[v _callbackToUse `*F16500 ~T0 @X0 1 r1 ]
 [f ]
 [; ;jwire.c: 88: receiveCallback = callbackToUse;
 "88
@@ -15124,11 +15123,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2106 ]
 }
 "92
-[v _JWireOnRequest `(v ~T0 @X0 1 ef1`*F16502 ]
+[v _JWireOnRequest `(v ~T0 @X0 1 ef1`*F16500 ]
 {
 [; ;jwire.c: 92: void JWireOnRequest(AsyncCallback_t callbackToUse) {
 [e :U _JWireOnRequest ]
-[v _callbackToUse `*F16502 ~T0 @X0 1 r1 ]
+[v _callbackToUse `*F16500 ~T0 @X0 1 r1 ]
 [f ]
 [; ;jwire.c: 93: requestCallback = callbackToUse;
 "93

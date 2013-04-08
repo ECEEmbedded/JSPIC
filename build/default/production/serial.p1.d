@@ -3,6 +3,5 @@
  serial.c  \
 async.h  \
 string2.h  \
-macaw.h  \
 serial.h  \
 globals.h 

@@ -4,9 +4,6 @@
 #include <xc.h>
 #include "async.h"
 
-//Setup interval for some milliseconds
-void IntervalBegin(int ms);
-
 //Called on the actual interval interrupt
 void OnIntervalInterrupt();
 

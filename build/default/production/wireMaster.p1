@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"8 async.h
-[v F16502 `(v ~T0 @X0 0 tf ]
-[s S2092 `i 1 `uc -> 100 `i `i 1 `*F16502 1 ]
+"9 async.h
+[v F16500 `(v ~T0 @X0 0 tf ]
+[s S2092 `i 1 `uc -> 100 `i `i 1 `*F16500 1 ]
 [n S2092 . deviceId data len callback ]
-"22 /Applications/microchip/xc8/v1.12/include/string.h
+"22 /opt/microchip/xc8/v1.12/include/string.h
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
-"37991 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"37991 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SEN `Vb ~T0 @X0 0 e@32296 ]
 "29618
 [v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
@@ -30,7 +30,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "35981
 [v _LA2 `Vb ~T0 @X0 0 e@31818 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14861,14 +14861,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
-[; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: extern char *AsyncMessage;
-[; ;async.h: 8: typedef void (*AsyncCallback_t)();
-[; ;async.h: 11: void AsyncBegin();
-[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
-[; ;async.h: 17: void AsyncTick();
+[; ;async.h: 7: extern char *AsyncMessage;
+[; ;async.h: 9: typedef void (*AsyncCallback_t)();
+[; ;async.h: 12: void AsyncBegin();
+[; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 18: void AsyncTick();
 [; ;wireMaster.h: 6: extern int wireMasterEnabled;
 [; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 [; ;wireMaster.h: 11: void WireBegin();
@@ -14920,14 +14918,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2093 ]
 }
 "26
-[v _WireSend `(v ~T0 @X0 1 ef4`i`*uc`i`*F16502 ]
+[v _WireSend `(v ~T0 @X0 1 ef4`i`*uc`i`*F16500 ]
 {
 [; ;wireMaster.c: 26: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback) {
 [e :U _WireSend ]
 [v _deviceId `i ~T0 @X0 1 r1 ]
 [v _data `*uc ~T0 @X0 1 r2 ]
 [v _len `i ~T0 @X0 1 r3 ]
-[v _callback `*F16502 ~T0 @X0 1 r4 ]
+[v _callback `*F16500 ~T0 @X0 1 r4 ]
 [f ]
 [; ;wireMaster.c: 27: if (wireSendA.deviceId == -1) {
 "27

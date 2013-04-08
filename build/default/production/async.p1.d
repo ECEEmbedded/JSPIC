@@ -3,5 +3,4 @@
  async.c  \
 async.h  \
 string2.h  \
-macaw.h  \
 globals.h 

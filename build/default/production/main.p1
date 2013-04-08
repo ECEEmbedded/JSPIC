@@ -1,27 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"35977 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
-[v _LA0 `Vb ~T0 @X0 0 e@31816 ]
-"206 /Applications/microchip/xc8/v1.12/include/stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"13 json.h
-[v _jsonGetValue `(i ~T0 @X0 0 ef2`*uc`*uc ]
-"6 async.h
-[v _AsyncMessage `*uc ~T0 @X0 0 e ]
-"23 jwire.h
-[v _JWireRespond `(v ~T0 @X0 0 ef1`*uc ]
-"29176 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"6 macaw.h
-[v _MacawBegin `(v ~T0 @X0 0 ef ]
-"14 serial.h
-[v _SerialBegin `(v ~T0 @X0 0 ef ]
-"14 interval.h
-[v F16514 `(v ~T0 @X0 0 tf ]
-[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16514 ]
-"11 wireMaster.h
-[v _WireBegin `(v ~T0 @X0 0 ef ]
+"10 superSimpleSerial.h
+[v _Sout `(v ~T0 @X0 0 ef1`uc ]
+"11 interval.h
+[v F16521 `(v ~T0 @X0 0 tf ]
+[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14853,167 +14837,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;macaw.h: 6: void MacawBegin();
-[; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: extern char *AsyncMessage;
-[; ;async.h: 8: typedef void (*AsyncCallback_t)();
-[; ;async.h: 11: void AsyncBegin();
-[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
-[; ;async.h: 17: void AsyncTick();
-[; ;interval.h: 8: void IntervalBegin(int ms);
-[; ;interval.h: 11: void OnIntervalInterrupt();
-[; ;interval.h: 14: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;serial.h: 8: void OnSerialInterrupt();
-[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
-[; ;serial.h: 14: void SerialBegin();
-[; ;serial.h: 17: void SerialWrite(char *data);
-[; ;serial.h: 20: void SerialWriteInterrupt();
-[; ;json.h: 6: void jsonNew(char* string);
-[; ;json.h: 9: void jsonSetString(char* input, char* key, char* string);
-[; ;json.h: 10: void jsonSetValue(char* input, char* key, int value);
-[; ;json.h: 12: int jsonGetString(char* input, char* key, char* string);
-[; ;json.h: 13: int jsonGetValue(char* input, char* key);
+[; ;async.h: 7: extern char *AsyncMessage;
+[; ;async.h: 9: typedef void (*AsyncCallback_t)();
+[; ;async.h: 12: void AsyncBegin();
+[; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 18: void AsyncTick();
 [; ;jwire.h: 8: extern int jWireEnabled;
 [; ;jwire.h: 11: void JWireOnInterrupt();
 [; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
 [; ;jwire.h: 17: void JWireOnRequest(AsyncCallback_t callback);
 [; ;jwire.h: 20: void JWireBegin(int id);
 [; ;jwire.h: 23: void JWireRespond(char *msg);
+[; ;interval.h: 8: void OnIntervalInterrupt();
+[; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
+[; ;serial.h: 8: void OnSerialInterrupt();
+[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
+[; ;serial.h: 14: void SerialBegin();
+[; ;serial.h: 17: void SerialWrite(char *data);
+[; ;serial.h: 20: void SerialWriteInterrupt();
 [; ;wireMaster.h: 6: extern int wireMasterEnabled;
 [; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 [; ;wireMaster.h: 11: void WireBegin();
 [; ;wireMaster.h: 14: void WireOnInterrupt();
-"10 main.c
-[v _serial `(v ~T0 @X0 1 ef1`*uc ]
+[; ;interrupts.h: 10: interrupt void onInterrupt();
+[; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
+[; ;superSimpleSerial.h: 10: void Sout(char byte);
+[; ;jspic.h: 14: void onSetup();
+[; ;jspic.h: 15: void onLoop();
+"3 main.c
+[v _serialOut `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 10: void serial(char *msg) {
-[e :U _serial ]
-[v _msg `*uc ~T0 @X0 1 r1 ]
+[; ;main.c: 3: void serialOut() {
+[e :U _serialOut ]
 [f ]
-[; ;main.c: 12: if (msg[0] == 'm')
-"12
-[e $ ! == -> *U + _msg * -> -> 0 `i `x -> -> # *U _msg `i `x `ui -> 109 `ui 2093  ]
-[; ;main.c: 13: LA0 = ~LA0;
-"13
-[e = _LA0 ! _LA0 ]
-[e :U 2093 ]
-[; ;main.c: 15: if (msg[1] == 'a')
-"15
-[e $ ! == -> *U + _msg * -> -> 1 `i `x -> -> # *U _msg `i `x `ui -> 97 `ui 2094  ]
-[; ;main.c: 16: LA0 = ~LA0;
-"16
-[e = _LA0 ! _LA0 ]
-[e :U 2094 ]
-[; ;main.c: 18: if (msg[2] == 't')
-"18
-[e $ ! == -> *U + _msg * -> -> 2 `i `x -> -> # *U _msg `i `x `ui -> 116 `ui 2095  ]
-[; ;main.c: 19: LA0 = ~LA0;
-"19
-[e = _LA0 ! _LA0 ]
-[e :U 2095 ]
-[; ;main.c: 21: if (msg[3] == '\n')
-"21
-[e $ ! == -> *U + _msg * -> -> 3 `i `x -> -> # *U _msg `i `x `ui -> 10 `ui 2096  ]
-[; ;main.c: 22: LA0 = ~LA0;
-"22
-[e = _LA0 ! _LA0 ]
-[e :U 2096 ]
-[; ;main.c: 24: if (msg[4] == 0)
-"24
-[e $ ! == -> *U + _msg * -> -> 4 `i `x -> -> # *U _msg `i `x `i -> 0 `i 2097  ]
-[; ;main.c: 25: LA0 = ~LA0;
-"25
-[e = _LA0 ! _LA0 ]
-[e :U 2097 ]
-[; ;main.c: 26: }
-"26
+[; ;main.c: 4: Sout('H');
+"4
+[e ( _Sout (1 -> -> 72 `ui `uc ]
+[; ;main.c: 5: }
+"5
 [e :UE 2092 ]
 }
-"28
-[v _call `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 28: void call() {
-[e :U _call ]
-[f ]
-[; ;main.c: 30: }
-"30
-[e :UE 2098 ]
-}
-"32
-[v _myTimer `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 32: void myTimer() {
-[e :U _myTimer ]
-[f ]
-[; ;main.c: 38: }
-"38
-[e :UE 2099 ]
-}
-"40
-[v _gotJ `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 40: void gotJ() {
-[e :U _gotJ ]
-[f ]
-"41
-[v F16562 `uc ~T0 @X0 -> 20 `i s world ]
-[; ;main.c: 41: static char world[20];
-[; ;main.c: 43: printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
-"43
-[e ( _printf , (. :s 1C ( _jsonGetValue (2 , _AsyncMessage -> :s 2C `*uc ]
-[; ;main.c: 44: }
-"44
-[e :UE 2100 ]
-}
-"46
-[v _onRequest `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 46: void onRequest() {
-[e :U _onRequest ]
-[f ]
-[; ;main.c: 47: JWireRespond("Suck it this is a really long request not usually available on i2c");
-"47
-[e ( _JWireRespond (1 -> :s 3C `*uc ]
-[; ;main.c: 48: }
-"48
-[e :UE 2101 ]
-}
-"50
+"7
 [v _onSetup `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 50: void onSetup() {
+[; ;main.c: 7: void onSetup() {
 [e :U _onSetup ]
 [f ]
-[; ;main.c: 51: TRISA = 0;
-"51
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 52: MacawBegin();
-"52
-[e ( _MacawBegin ..  ]
-[; ;main.c: 53: SerialBegin();
-"53
-[e ( _SerialBegin ..  ]
-[; ;main.c: 54: SetInterval(100, myTimer);
-"54
-[e ( _SetInterval (2 , -> 100 `i &U _myTimer ]
-[; ;main.c: 60: WireBegin();
-"60
-[e ( _WireBegin ..  ]
-[; ;main.c: 61: }
-"61
-[e :UE 2102 ]
+[; ;main.c: 8: SetInterval(100, serialOut);
+"8
+[e ( _SetInterval (2 , -> 100 `i &U _serialOut ]
+[; ;main.c: 9: }
+"9
+[e :UE 2093 ]
 }
-"63
+"11
 [v _onLoop `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 63: void onLoop() {
+[; ;main.c: 11: void onLoop() {
 [e :U _onLoop ]
 [f ]
-[; ;main.c: 64: }
-"64
-[e :UE 2103 ]
+[; ;main.c: 13: }
+"13
+[e :UE 2094 ]
 }
-[p f _printf 8388736 ]
-[a 2C 112 105 0 ]
-[a 3C 83 117 99 107 32 105 116 32 116 104 105 115 32 105 115 32 97 32 114 101 97 108 108 121 32 108 111 110 103 32 114 101 113 117 101 115 116 32 110 111 116 32 117 115 117 97 108 108 121 32 97 118 97 105 108 97 98 108 101 32 111 110 32 105 50 99 0 ]
-[a 1C 80 105 32 105 115 32 101 113 117 97 108 32 116 111 32 37 100 32 97 110 100 32 104 101 108 108 111 32 45 62 32 10 0 ]

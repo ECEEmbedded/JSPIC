@@ -3,5 +3,4 @@
  json.c  \
 string2.h  \
 json.h  \
-macaw.h  \
 globals.h 

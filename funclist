@@ -1,13 +1,23 @@
-_WireOnInterrupt: CODE, 4896 0 4
-__stringdata: SMALLCONST, 3338 0 157
-_dpowers: SMALLCONST, 3328 0 10
-_main: CODE, 4834 0 40
-_onInterrupt: CODE, 8 0 4126
-_SerialWriteInterrupt: CODE, 4326 0 138
-_OnSerialInterrupt: CODE, 4722 0 112
-__initialization: CODE, 4596 0 120
-_strcpy2: CODE, 4464 0 132
-_JWireOnInterrupt: CODE, 3496 0 442
-_OnIntervalInterrupt: CODE, 4874 0 22
-_Async: CODE, 4134 0 192
-Total: 5495
+_onLoop: CODE, 5204 0 2
+_AsyncTick: CODE, 4124 0 142
+_WireOnInterrupt: CODE, 5200 0 4
+_onSetup: CODE, 5108 0 22
+_AsyncBegin: CODE, 5152 0 18
+_SuperSimpleSerialBegin: CODE, 5080 0 28
+__stringdata: SMALLCONST, 3328 0 54
+_MacawBegin: CODE, 5196 0 4
+___awmod: CODE, 4266 0 134
+_main: CODE, 5040 0 68
+_Sout: CODE, 5170 0 18
+_onInterrupt: CODE, 8 0 4644
+_SerialWriteInterrupt: CODE, 4766 0 106
+_OnSerialInterrupt: CODE, 4872 0 94
+__initialization: CODE, 4652 0 108
+_strcpy2: CODE, 4966 0 74
+_JWireOnInterrupt: CODE, 3384 0 358
+_serialOut: CODE, 5188 0 8
+_SetInterval: CODE, 4400 0 132
+_OnIntervalInterrupt: CODE, 5130 0 22
+_IntervalTick: CODE, 3742 0 204
+_Async: CODE, 3946 0 178
+Total: 6422

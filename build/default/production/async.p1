@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"8 async.h
-[v F16502 `(v ~T0 @X0 0 tf ]
+"9 async.h
+[v F16500 `(v ~T0 @X0 0 tf ]
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
-"11 async.h
+"12 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14837,34 +14837,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
-[; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: extern char *AsyncMessage;
-[; ;async.h: 8: typedef void (*AsyncCallback_t)();
-[; ;async.h: 11: void AsyncBegin();
-[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
-[; ;async.h: 17: void AsyncTick();
+[; ;async.h: 7: extern char *AsyncMessage;
+[; ;async.h: 9: typedef void (*AsyncCallback_t)();
+[; ;async.h: 12: void AsyncBegin();
+[; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 18: void AsyncTick();
 "6 async.c
-[v _callbackA `*F16502 ~T0 @X0 1 e ]
+[v _callbackA `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 6: AsyncCallback_t callbackA;
 "7
 [v _callbackAString `uc ~T0 @X0 -> 100 `i s ]
 [; ;async.c: 7: static char callbackAString[100];
 "9
-[v _callbackB `*F16502 ~T0 @X0 1 e ]
+[v _callbackB `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 9: AsyncCallback_t callbackB;
 "10
 [v _callbackBString `uc ~T0 @X0 -> 100 `i s ]
 [; ;async.c: 10: static char callbackBString[100];
 "12
-[v _callbackC `*F16502 ~T0 @X0 1 e ]
+[v _callbackC `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 12: AsyncCallback_t callbackC;
 "13
 [v _callbackCString `uc ~T0 @X0 -> 100 `i s ]
 [; ;async.c: 13: static char callbackCString[100];
 "15
-[v _callbackD `*F16502 ~T0 @X0 1 e ]
+[v _callbackD `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 15: AsyncCallback_t callbackD;
 "16
 [v _callbackDString `uc ~T0 @X0 -> 100 `i s ]
@@ -14876,16 +14874,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;async.c: 18: static char *AsyncMessage = 0;
 "20
-[v _Async `(v ~T0 @X0 1 ef2`*F16502`*uc ]
+[v _Async `(v ~T0 @X0 1 ef2`*F16500`*uc ]
 {
 [; ;async.c: 20: void Async(AsyncCallback_t function, char *string) {
 [e :U _Async ]
-[v _function `*F16502 ~T0 @X0 1 r1 ]
+[v _function `*F16500 ~T0 @X0 1 r1 ]
 [v _string `*uc ~T0 @X0 1 r2 ]
 [f ]
 [; ;async.c: 22: if (callbackA == 0) {
 "22
-[e $ ! == _callbackA -> -> 0 `i `*F16502 2093  ]
+[e $ ! == _callbackA -> -> 0 `i `*F16500 2093  ]
 {
 [; ;async.c: 23: strcpy2(callbackAString, string);
 "23
@@ -14898,7 +14896,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.c: 25: } else if (callbackB == 0) {
 [e $U 2094  ]
 [e :U 2093 ]
-[e $ ! == _callbackB -> -> 0 `i `*F16502 2095  ]
+[e $ ! == _callbackB -> -> 0 `i `*F16500 2095  ]
 {
 [; ;async.c: 26: strcpy2(callbackBString, string);
 "26
@@ -14911,7 +14909,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.c: 28: } else if (callbackC == 0) {
 [e $U 2096  ]
 [e :U 2095 ]
-[e $ ! == _callbackC -> -> 0 `i `*F16502 2097  ]
+[e $ ! == _callbackC -> -> 0 `i `*F16500 2097  ]
 {
 [; ;async.c: 29: strcpy2(callbackCString, string);
 "29
@@ -14924,7 +14922,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.c: 31: } else if (callbackD == 0) {
 [e $U 2098  ]
 [e :U 2097 ]
-[e $ ! == _callbackD -> -> 0 `i `*F16502 2099  ]
+[e $ ! == _callbackD -> -> 0 `i `*F16500 2099  ]
 {
 [; ;async.c: 32: strcpy2(callbackDString, string);
 "32
@@ -14951,7 +14949,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;async.c: 39: if (callbackA) {
 "39
-[e $ ! != _callbackA -> -> 0 `i `*F16502 2101  ]
+[e $ ! != _callbackA -> -> 0 `i `*F16500 2101  ]
 {
 [; ;async.c: 40: AsyncMessage = callbackAString;
 "40
@@ -14965,7 +14963,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.c: 42: }
 [; ;async.c: 44: if (callbackB) {
 "44
-[e $ ! != _callbackB -> -> 0 `i `*F16502 2102  ]
+[e $ ! != _callbackB -> -> 0 `i `*F16500 2102  ]
 {
 [; ;async.c: 45: AsyncMessage = callbackBString;
 "45
@@ -14979,7 +14977,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.c: 47: }
 [; ;async.c: 49: if (callbackC) {
 "49
-[e $ ! != _callbackC -> -> 0 `i `*F16502 2103  ]
+[e $ ! != _callbackC -> -> 0 `i `*F16500 2103  ]
 {
 [; ;async.c: 50: AsyncMessage = callbackCString;
 "50
@@ -14993,7 +14991,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.c: 52: }
 [; ;async.c: 54: if (callbackD) {
 "54
-[e $ ! != _callbackD -> -> 0 `i `*F16502 2104  ]
+[e $ ! != _callbackD -> -> 0 `i `*F16500 2104  ]
 {
 [; ;async.c: 55: AsyncMessage = callbackDString;
 "55
@@ -15020,16 +15018,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;async.c: 65: callbackA = 0;
 "65
-[e = _callbackA -> -> 0 `i `*F16502 ]
+[e = _callbackA -> -> 0 `i `*F16500 ]
 [; ;async.c: 66: callbackB = 0;
 "66
-[e = _callbackB -> -> 0 `i `*F16502 ]
+[e = _callbackB -> -> 0 `i `*F16500 ]
 [; ;async.c: 67: callbackC = 0;
 "67
-[e = _callbackC -> -> 0 `i `*F16502 ]
+[e = _callbackC -> -> 0 `i `*F16500 ]
 [; ;async.c: 68: callbackD = 0;
 "68
-[e = _callbackD -> -> 0 `i `*F16502 ]
+[e = _callbackD -> -> 0 `i `*F16500 ]
 [; ;async.c: 69: }
 "69
 [e :UE 2105 ]

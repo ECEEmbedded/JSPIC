@@ -1,0 +1,32 @@
+#include "superSimpleSerial.h"
+
+void SuperSimpleSerialBegin() {
+    TX9 = 0;
+    TXEN = 1;                  // transmit enable
+    SYNC = 0;                  // async mode
+
+    //Configure baud-rate to 19200
+    BRGH = 1;
+    BRG16 = 0;
+    SPBRG = 25;
+
+    TRISCbits.RC7 = 1;
+    TRISCbits.RC6 = 1;
+    RX9 = 0;                   // 8-bit reception
+    SPEN = 1;                  // serial port enable
+    CREN = 0;                  // clear enable first
+    CREN = 1;                  // now enable
+}
+
+void Sout(char byte) {
+    //Block till we can write to the register
+    while (!TXIF);
+    
+    TXREG = byte;
+}
+
+#ifdef SERIAL_CONSOLE
+void putch(char byte) {
+    Sout(byte);
+}
+#endif

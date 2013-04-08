@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"205 /Applications/microchip/xc8/v1.12/include/stdio.h
+"205 /opt/microchip/xc8/v1.12/include/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"52 /Applications/microchip/xc8/v1.12/include/string.h
+"52 /opt/microchip/xc8/v1.12/include/string.h
 [v _strstr `(*uc ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "55
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-"67 /Applications/microchip/xc8/v1.12/include/stdlib.h
+"67 /opt/microchip/xc8/v1.12/include/stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
@@ -43,7 +43,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 206: extern int printf(const char *, ...);
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14841,8 +14841,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
-[; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;json.h: 6: void jsonNew(char* string);
 [; ;json.h: 9: void jsonSetString(char* input, char* key, char* string);
@@ -14909,15 +14907,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _key `*uc ~T0 @X0 1 r2 ]
 [f ]
 "29
-[v F16594 `uc ~T0 @X0 -> 200 `i s KEY_COLON_SPACE ]
+[v F16592 `uc ~T0 @X0 -> 200 `i s KEY_COLON_SPACE ]
 [; ;json.c: 29: static char KEY_COLON_SPACE[200];
 [; ;json.c: 31: sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
 "31
-[e ( _sprintf (1 , , (. , &U F16594 :s 2C -> _key `*Cuc :s 3C ]
+[e ( _sprintf (1 , , (. , &U F16592 :s 2C -> _key `*Cuc :s 3C ]
 "32
 [v _substr_s `*uc ~T0 @X0 1 a ]
 [; ;json.c: 32: char* substr_s = strstr(input, KEY_COLON_SPACE);
-[e = _substr_s ( _strstr (2 , -> _input `*Cuc -> &U F16594 `*Cuc ]
+[e = _substr_s ( _strstr (2 , -> _input `*Cuc -> &U F16592 `*Cuc ]
 [; ;json.c: 34: substr_s = strstr(substr_s, " ");
 "34
 [e = _substr_s ( _strstr (2 , -> _substr_s `*Cuc :s 4C ]

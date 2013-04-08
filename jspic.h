@@ -9,9 +9,9 @@
 #include "interval.h"
 #include "serial.h"
 #include "globals.h"
+#include "superSimpleSerial.h"
 
 void onSetup();
 void onLoop();
-
 
 #endif

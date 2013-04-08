@@ -6,6 +6,8 @@
 void MacawBegin();
 
 //Used for printf utility
+#ifdef MACAW_CONSOLE
 void putch(char data);
+#endif
 
 #endif

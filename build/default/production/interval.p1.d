@@ -3,6 +3,5 @@
  interval.c  \
 async.h  \
 string2.h  \
-macaw.h  \
 interval.h  \
 globals.h 

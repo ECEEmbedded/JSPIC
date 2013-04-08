@@ -2,7 +2,9 @@
  build/default/production/jspic.p1:  \
  jspic.c  \
 jwire.h  \
+superSimpleSerial.h  \
 async.h  \
+jspic.h  \
 interrupts.h  \
 string2.h  \
 macaw.h  \

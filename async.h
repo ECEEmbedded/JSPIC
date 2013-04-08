@@ -2,6 +2,7 @@
 #define ASYNC_H_
 
 #include "globals.h"
+#include "string2.h"
 
 extern char *AsyncMessage;
 

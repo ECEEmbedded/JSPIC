@@ -1,21 +1,21 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "5 interval.c
-[v F16517 `(v ~T0 @X0 0 tf ]
-[s S2092 `*F16517 1 `s 1 ]
+[v F16513 `(v ~T0 @X0 0 tf ]
+[s S2092 `*F16513 1 `s 1 ]
 [n S2092 INTERVAL_CALLBACK_T function delay ]
-"8 async.h
-[v F16502 `(v ~T0 @X0 0 tf ]
-"14
-[v _Async `(v ~T0 @X0 0 ef2`*F16502`*uc ]
-"14 interval.h
-[v F16514 `(v ~T0 @X0 0 tf ]
+"9 async.h
+[v F16500 `(v ~T0 @X0 0 tf ]
+"15
+[v _Async `(v ~T0 @X0 0 ef2`*F16500`*uc ]
+"11 interval.h
+[v F16510 `(v ~T0 @X0 0 tf ]
 [s S2027 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2027 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
 [s S2028 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2028 . T0PS0 T0PS1 T0PS2 T0PS3 ]
 [u S2026 `S2027 1 `S2028 1 ]
 [n S2026 . . . ]
-"33120 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"33120 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _T0CONbits `VS2026 ~T0 @X0 0 e@4053 ]
 [s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -32,7 +32,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "33645
 [v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14863,17 +14863,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
-[; ;macaw.h: 9: void putch(char data);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 6: extern char *AsyncMessage;
-[; ;async.h: 8: typedef void (*AsyncCallback_t)();
-[; ;async.h: 11: void AsyncBegin();
-[; ;async.h: 14: void Async(AsyncCallback_t callback, char *string);
-[; ;async.h: 17: void AsyncTick();
-[; ;interval.h: 8: void IntervalBegin(int ms);
-[; ;interval.h: 11: void OnIntervalInterrupt();
-[; ;interval.h: 14: void SetInterval(int delayInMs, void (*callbackToUse)());
+[; ;async.h: 7: extern char *AsyncMessage;
+[; ;async.h: 9: typedef void (*AsyncCallback_t)();
+[; ;async.h: 12: void AsyncBegin();
+[; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
+[; ;async.h: 18: void AsyncTick();
+[; ;interval.h: 8: void OnIntervalInterrupt();
+[; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
 [; ;interval.c: 4: typedef struct INTERVAL_CALLBACK_T {
 [; ;interval.c: 5: void (*function)();
 [; ;interval.c: 6: short delay;
@@ -14894,35 +14891,35 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _IntervalTick ]
 [f ]
 "15
-[v F16524 `i ~T0 @X0 1 s time ]
-[i F16524
+[v F16520 `i ~T0 @X0 1 s time ]
+[i F16520
 -> 0 `i
 ]
 [; ;interval.c: 15: static int time = 0;
 [; ;interval.c: 17: if (callbackA.function && (time % callbackA.delay == 0))
 "17
-[e $ ! && != . _callbackA 0 -> -> 0 `i `*F16517 == % F16524 -> . _callbackA 1 `i -> 0 `i 2094  ]
+[e $ ! && != . _callbackA 0 -> -> 0 `i `*F16513 == % F16520 -> . _callbackA 1 `i -> 0 `i 2094  ]
 [; ;interval.c: 18: callbackA.function();
 "18
 [e ( *U . _callbackA 0 ..  ]
 [e :U 2094 ]
 [; ;interval.c: 20: if (callbackB.function && (time % callbackB.delay == 0))
 "20
-[e $ ! && != . _callbackB 0 -> -> 0 `i `*F16517 == % F16524 -> . _callbackB 1 `i -> 0 `i 2095  ]
+[e $ ! && != . _callbackB 0 -> -> 0 `i `*F16513 == % F16520 -> . _callbackB 1 `i -> 0 `i 2095  ]
 [; ;interval.c: 21: callbackB.function();
 "21
 [e ( *U . _callbackB 0 ..  ]
 [e :U 2095 ]
 [; ;interval.c: 23: if (callbackC.function && (time % callbackC.delay == 0))
 "23
-[e $ ! && != . _callbackC 0 -> -> 0 `i `*F16517 == % F16524 -> . _callbackC 1 `i -> 0 `i 2096  ]
+[e $ ! && != . _callbackC 0 -> -> 0 `i `*F16513 == % F16520 -> . _callbackC 1 `i -> 0 `i 2096  ]
 [; ;interval.c: 24: callbackC.function();
 "24
 [e ( *U . _callbackC 0 ..  ]
 [e :U 2096 ]
 [; ;interval.c: 26: ++time;
 "26
-[e =+ F16524 -> 1 `i ]
+[e =+ F16520 -> 1 `i ]
 [; ;interval.c: 27: }
 "27
 [e :UE 2093 ]
@@ -14941,23 +14938,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2097 ]
 }
 "34
-[v _SetInterval `(v ~T0 @X0 1 ef2`i`*F16514 ]
+[v _SetInterval `(v ~T0 @X0 1 ef2`i`*F16510 ]
 {
 [; ;interval.c: 34: void SetInterval(int delayInMs, void (*callbackToUse)()) {
 [e :U _SetInterval ]
 [v _delayInMs `i ~T0 @X0 1 r1 ]
-[v F16528 `(v ~T0 @X0 0 tf ]
-[v _callbackToUse `*F16528 ~T0 @X0 1 r2 ]
+[v F16524 `(v ~T0 @X0 0 tf ]
+[v _callbackToUse `*F16524 ~T0 @X0 1 r2 ]
 [f ]
 "36
-[v F16529 `uc ~T0 @X0 1 s hasLoaded ]
-[i F16529
+[v F16525 `uc ~T0 @X0 1 s hasLoaded ]
+[i F16525
 -> -> 0 `i `uc
 ]
 [; ;interval.c: 36: static char hasLoaded = 0;
 [; ;interval.c: 37: if (!hasLoaded) {
 "37
-[e $ ! ! != -> F16529 `i -> -> -> 0 `i `uc `i 2099  ]
+[e $ ! ! != -> F16525 `i -> -> -> 0 `i `uc `i 2099  ]
 {
 [; ;interval.c: 39: T0CONbits.TMR0ON = 1;
 "39
@@ -14979,23 +14976,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 [; ;interval.c: 46: callbackA.function = (0);
 "46
-[e = . _callbackA 0 -> -> 0 `i `*F16517 ]
+[e = . _callbackA 0 -> -> 0 `i `*F16513 ]
 [; ;interval.c: 47: callbackB.function = (0);
 "47
-[e = . _callbackB 0 -> -> 0 `i `*F16517 ]
+[e = . _callbackB 0 -> -> 0 `i `*F16513 ]
 [; ;interval.c: 48: callbackC.function = (0);
 "48
-[e = . _callbackC 0 -> -> 0 `i `*F16517 ]
+[e = . _callbackC 0 -> -> 0 `i `*F16513 ]
 [; ;interval.c: 50: hasLoaded = 1;
 "50
-[e = F16529 -> -> 1 `i `uc ]
+[e = F16525 -> -> 1 `i `uc ]
 "51
 }
 [e :U 2099 ]
 [; ;interval.c: 51: }
 [; ;interval.c: 53: if (callbackA.function == (0)) {
 "53
-[e $ ! == . _callbackA 0 -> -> 0 `i `*F16517 2100  ]
+[e $ ! == . _callbackA 0 -> -> 0 `i `*F16513 2100  ]
 {
 [; ;interval.c: 54: callbackA.function = callbackToUse;
 "54
@@ -15008,7 +15005,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interval.c: 56: } else if (callbackB.function == (0)) {
 [e $U 2101  ]
 [e :U 2100 ]
-[e $ ! == . _callbackB 0 -> -> 0 `i `*F16517 2102  ]
+[e $ ! == . _callbackB 0 -> -> 0 `i `*F16513 2102  ]
 {
 [; ;interval.c: 57: callbackB.function = callbackToUse;
 "57
@@ -15021,7 +15018,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interval.c: 59: } else if (callbackC.function == (0)) {
 [e $U 2103  ]
 [e :U 2102 ]
-[e $ ! == . _callbackC 0 -> -> 0 `i `*F16517 2104  ]
+[e $ ! == . _callbackC 0 -> -> 0 `i `*F16513 2104  ]
 {
 [; ;interval.c: 60: callbackC.function = callbackToUse;
 "60
