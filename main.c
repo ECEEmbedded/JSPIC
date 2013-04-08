@@ -5,9 +5,9 @@
 #include "serial.h"
 #include "json.h"
 #include "jwire.h"
+#include "wireMaster.h"
 
 void serial(char *msg) {
-    LA0 = ~LA0;
     //printf(msg);
     if (msg[0] == 'm')
         LA0 = ~LA0;
@@ -25,8 +25,16 @@ void serial(char *msg) {
         LA0 = ~LA0;
 }
 
+void call() {
+
+}
+
 void myTimer() {
-    printf("tick tock...\n");
+    //static char msg[1];
+    //printf("tick tock...\n");
+    //WireSend(3, msg, 1, call);
+
+    
 }
 
 void gotJ() {
@@ -43,16 +51,14 @@ void onSetup() {
     TRISA = 0;
     MacawBegin();
     SerialBegin();
-    SetInterval(30, myTimer);
+    SetInterval(100, myTimer);
 
-    JWireBegin(0x4F);
+   // JWireBegin(0x4F);
 
-    JWireOnReceive(gotJ);
-    JWireOnRequest(onRequest);
+    //JWireOnReceive(gotJ);
+    //JWireOnRequest(onRequest);
+    WireBegin();
 }
 
 void onLoop() {
-    //LA0 = ~LA0;
-    //LA1 = ~LA1;
-    LA2 = ~LA2;
 }

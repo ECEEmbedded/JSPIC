@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/jwire.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/wireMaster.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/wireMaster.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/interrupts.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/jwire.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/string2.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/jspic.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/main.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/serial.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/globals.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/async.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/json.h</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/macaw.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/async.c</file>
+        <file>file:/Users/Maebe/dev/Embedded%20Spring%202013/ECEEmbedded_Spring2013/JSPIC/json.c</file>
+    </open-files>
 </project-private>

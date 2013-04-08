@@ -18838,7 +18838,10 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 9 "jwire.h"
+# 8 "jwire.h"
+extern int jWireEnabled;
+
+
 void JWireOnInterrupt();
 
 
@@ -18877,13 +18880,31 @@ void SerialWrite(char *data);
 
 void SerialWriteInterrupt();
 
-# 9 "interrupts.h"
+# 6 "wireMaster.h"
+extern int wireMasterEnabled;
+
+void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
+
+
+void WireBegin();
+
+
+void WireOnInterrupt();
+
+# 10 "interrupts.h"
 interrupt void onInterrupt() {
 
 
 if (SSPIF) {
 SSPIF = 0;
+
+if (jWireEnabled) {
 JWireOnInterrupt();
+}
+
+if (wireMasterEnabled) {
+WireOnInterrupt();
+}
 }
 
 
@@ -18900,6 +18921,8 @@ OnSerialInterrupt();
 if (TXIF) {
 SerialWriteInterrupt();
 }
+
+
 }
 
 
@@ -18934,14 +18957,21 @@ int main() {
 
 OSCCONbits.IRCF = 7;
 
-AsyncBegin();
-onSetup();
+
+
 
 GIE = 1;
 PEIE = 1;
 
-while (1) {
-AsyncTick();
-onLoop();
-}
+TRISC = 0b00011000;
+SSPM3 = 1;
+SSPM2 = 0;
+SSPM1 = 0;
+SSPM0 = 0;
+SMP = 1;
+SSPEN = 1;
+
+SEN = 1;
+SSPADD = 0x09;
+SSPBUF = 0xA2;
 }

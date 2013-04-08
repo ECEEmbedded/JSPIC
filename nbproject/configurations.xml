@@ -13,6 +13,7 @@
       <itemPath>globals.h</itemPath>
       <itemPath>string2.h</itemPath>
       <itemPath>json.h</itemPath>
+      <itemPath>wireMaster.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,6 +31,7 @@
       <itemPath>string2.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>json.c</itemPath>
+      <itemPath>wireMaster.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

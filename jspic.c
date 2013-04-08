@@ -37,14 +37,21 @@ int main() {
     //Set clock to 2MHZ (FOSC = 8MHZ)
     OSCCONbits.IRCF = 7;
 
-    AsyncBegin();
-    onSetup();
+   // AsyncBegin();
+   // onSetup();
 
     GIE = 1;
     PEIE = 1;
 
-    while (1) {
-        AsyncTick();
-        onLoop();
-    }
+    TRISC = 0b00011000; //RC3-RC4 INPUTS
+    SSPM3 = 1; //set as I2C master
+    SSPM2 = 0;
+    SSPM1 = 0;
+    SSPM0 = 0;
+    SMP = 1; //disable slew rate control (running at 100khz)
+    SSPEN = 1; //enable serial port
+
+    SEN = 1; //create START condition
+    SSPADD = 0x09; //set baud rate to 100khz
+    SSPBUF = 0xA2; //buffer in number
 }

@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "wireMaster.c"
 
 # 44 "/Applications/microchip/xc8/v1.12/include/pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18838,58 +18838,6 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 8 "interval.h"
-void IntervalBegin(int ms);
-
-
-void OnIntervalInterrupt();
-
-
-void SetInterval(int delayInMs, void (*callbackToUse)());
-
-# 8 "serial.h"
-void OnSerialInterrupt();
-
-
-void OnSerial(AsyncCallback_t callback);
-
-
-void SerialBegin();
-
-
-void SerialWrite(char *data);
-
-
-void SerialWriteInterrupt();
-
-# 6 "json.h"
-void jsonNew(char* string);
-
-
-void jsonSetString(char* input, char* key, char* string);
-void jsonSetValue(char* input, char* key, int value);
-
-int jsonGetString(char* input, char* key, char* string);
-int jsonGetValue(char* input, char* key);
-
-# 8 "jwire.h"
-extern int jWireEnabled;
-
-
-void JWireOnInterrupt();
-
-
-void JWireOnReceive(AsyncCallback_t callback);
-
-
-void JWireOnRequest(AsyncCallback_t callback);
-
-
-void JWireBegin(int id);
-
-
-void JWireRespond(char *msg);
-
 # 6 "wireMaster.h"
 extern int wireMasterEnabled;
 
@@ -18901,53 +18849,84 @@ void WireBegin();
 
 void WireOnInterrupt();
 
-# 10 "main.c"
-void serial(char *msg) {
+# 3 "wireMaster.c"
+static int wireMasterEnabled = 0;
 
-if (msg[0] == 'm')
-LA0 = ~LA0;
 
-if (msg[1] == 'a')
-LA0 = ~LA0;
+typedef struct {
+int deviceId;
+unsigned char data[100];
+int len;
+AsyncCallback_t callback;
+} WireSend_t;
 
-if (msg[2] == 't')
-LA0 = ~LA0;
+static WireSend_t wireSendA;
+static WireSend_t wireSendB;
+static WireSend_t wireSendC;
+static WireSend_t wireSendD;
 
-if (msg[3] == '\n')
-LA0 = ~LA0;
+void WireSendInit() {
 
-if (msg[4] == 0)
-LA0 = ~LA0;
+wireSendA.deviceId = -1;
+wireSendB.deviceId = -1;
+wireSendC.deviceId = -1;
+wireSendD.deviceId = -1;
 }
 
-void call() {
-
+void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback) {
+if (wireSendA.deviceId == -1) {
+wireSendA.deviceId = deviceId;
+memcpy(wireSendA.data, data, len);
+wireSendA.len = len;
+wireSendA.callback = callback;
 }
 
-void myTimer() {
-
-# 38
+if (wireSendB.deviceId == -1) {
+wireSendB.deviceId = deviceId;
+memcpy(wireSendB.data, data, len);
+wireSendB.len = len;
+wireSendB.callback = callback;
 }
 
-void gotJ() {
-static char world[20];
 
-printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
+SEN = 1;
 }
 
-void onRequest() {
-JWireRespond("Suck it this is a really long request not usually available on i2c");
+void WireBegin() {
+wireMasterEnabled = 1;
+
+TRISC = 0b00011000;
+SSPM3 = 1;
+SSPM2 = 0;
+SSPM1 = 0;
+SSPM0 = 0;
+SMP = 1;
+SSPEN = 1;
+
+SEN = 1;
+SSPADD = 0x09;
+SSPBUF = 0xA2;
+
+WireSendInit();
 }
 
-void onSetup() {
-TRISA = 0;
-MacawBegin();
-SerialBegin();
-SetInterval(100, myTimer);
+# 67
+static int count = 0;
 
-# 60
-WireBegin();
+
+
+void SendData() {
+if (count < 3) {
+SSPBUF = count;
+count = count + 1;
+} else {
+PEN = 1;
+}
 }
 
-void onLoop() {
+
+void WireOnInterrupt() {
+LA2 = ~LA2;
+
+# 107
 }

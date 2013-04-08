@@ -7,7 +7,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _jsonGetValue `(i ~T0 @X0 0 ef2`*uc`*uc ]
 "6 async.h
 [v _AsyncMessage `*uc ~T0 @X0 0 e ]
-"21 jwire.h
+"23 jwire.h
 [v _JWireRespond `(v ~T0 @X0 0 ef1`*uc ]
 "29176 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
@@ -18,16 +18,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "14 interval.h
 [v F16514 `(v ~T0 @X0 0 tf ]
 [v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16514 ]
-"18 jwire.h
-[v _JWireBegin `(v ~T0 @X0 0 ef1`i ]
-"8 async.h
-[v F16502 `(v ~T0 @X0 0 tf ]
-"12 jwire.h
-[v _JWireOnReceive `(v ~T0 @X0 0 ef1`*F16502 ]
-"15
-[v _JWireOnRequest `(v ~T0 @X0 0 ef1`*F16502 ]
-"35981 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
-[v _LA2 `Vb ~T0 @X0 0 e@31818 ]
+"11 wireMaster.h
+[v _WireBegin `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14881,21 +14873,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;json.h: 10: void jsonSetValue(char* input, char* key, int value);
 [; ;json.h: 12: int jsonGetString(char* input, char* key, char* string);
 [; ;json.h: 13: int jsonGetValue(char* input, char* key);
-[; ;jwire.h: 9: void JWireOnInterrupt();
-[; ;jwire.h: 12: void JWireOnReceive(AsyncCallback_t callback);
-[; ;jwire.h: 15: void JWireOnRequest(AsyncCallback_t callback);
-[; ;jwire.h: 18: void JWireBegin(int id);
-[; ;jwire.h: 21: void JWireRespond(char *msg);
-"9 main.c
+[; ;jwire.h: 8: extern int jWireEnabled;
+[; ;jwire.h: 11: void JWireOnInterrupt();
+[; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
+[; ;jwire.h: 17: void JWireOnRequest(AsyncCallback_t callback);
+[; ;jwire.h: 20: void JWireBegin(int id);
+[; ;jwire.h: 23: void JWireRespond(char *msg);
+[; ;wireMaster.h: 6: extern int wireMasterEnabled;
+[; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
+[; ;wireMaster.h: 11: void WireBegin();
+[; ;wireMaster.h: 14: void WireOnInterrupt();
+"10 main.c
 [v _serial `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;main.c: 9: void serial(char *msg) {
+[; ;main.c: 10: void serial(char *msg) {
 [e :U _serial ]
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 10: LA0 = ~LA0;
-"10
-[e = _LA0 ! _LA0 ]
 [; ;main.c: 12: if (msg[0] == 'm')
 "12
 [e $ ! == -> *U + _msg * -> -> 0 `i `x -> -> # *U _msg `i `x `ui -> 109 `ui 2093  ]
@@ -14936,93 +14930,90 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2092 ]
 }
 "28
-[v _myTimer `(v ~T0 @X0 1 ef ]
+[v _call `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 28: void myTimer() {
-[e :U _myTimer ]
+[; ;main.c: 28: void call() {
+[e :U _call ]
 [f ]
-[; ;main.c: 29: printf("tick tock...\n");
-"29
-[e ( _printf :s 1C ]
 [; ;main.c: 30: }
 "30
 [e :UE 2098 ]
 }
 "32
-[v _gotJ `(v ~T0 @X0 1 ef ]
+[v _myTimer `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 32: void gotJ() {
-[e :U _gotJ ]
+[; ;main.c: 32: void myTimer() {
+[e :U _myTimer ]
 [f ]
-"33
-[v F16552 `uc ~T0 @X0 -> 20 `i s world ]
-[; ;main.c: 33: static char world[20];
-[; ;main.c: 35: printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
-"35
-[e ( _printf , (. :s 2C ( _jsonGetValue (2 , _AsyncMessage -> :s 3C `*uc ]
-[; ;main.c: 36: }
-"36
+[; ;main.c: 38: }
+"38
 [e :UE 2099 ]
 }
-"38
-[v _onRequest `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 38: void onRequest() {
-[e :U _onRequest ]
-[f ]
-[; ;main.c: 39: JWireRespond("Suck it this is a really long request not usually available on i2c");
-"39
-[e ( _JWireRespond (1 -> :s 4C `*uc ]
-[; ;main.c: 40: }
 "40
+[v _gotJ `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 40: void gotJ() {
+[e :U _gotJ ]
+[f ]
+"41
+[v F16562 `uc ~T0 @X0 -> 20 `i s world ]
+[; ;main.c: 41: static char world[20];
+[; ;main.c: 43: printf("Pi is equal to %d and hello -> \n", jsonGetValue(AsyncMessage, "pi"));
+"43
+[e ( _printf , (. :s 1C ( _jsonGetValue (2 , _AsyncMessage -> :s 2C `*uc ]
+[; ;main.c: 44: }
+"44
 [e :UE 2100 ]
 }
-"42
-[v _onSetup `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 42: void onSetup() {
-[e :U _onSetup ]
-[f ]
-[; ;main.c: 43: TRISA = 0;
-"43
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 44: MacawBegin();
-"44
-[e ( _MacawBegin ..  ]
-[; ;main.c: 45: SerialBegin();
-"45
-[e ( _SerialBegin ..  ]
-[; ;main.c: 46: SetInterval(30, myTimer);
 "46
-[e ( _SetInterval (2 , -> 30 `i &U _myTimer ]
-[; ;main.c: 48: JWireBegin(0x4F);
+[v _onRequest `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 46: void onRequest() {
+[e :U _onRequest ]
+[f ]
+[; ;main.c: 47: JWireRespond("Suck it this is a really long request not usually available on i2c");
+"47
+[e ( _JWireRespond (1 -> :s 3C `*uc ]
+[; ;main.c: 48: }
 "48
-[e ( _JWireBegin (1 -> 79 `i ]
-[; ;main.c: 50: JWireOnReceive(gotJ);
-"50
-[e ( _JWireOnReceive (1 &U _gotJ ]
-[; ;main.c: 51: JWireOnRequest(onRequest);
-"51
-[e ( _JWireOnRequest (1 &U _onRequest ]
-[; ;main.c: 52: }
-"52
 [e :UE 2101 ]
 }
-"54
-[v _onLoop `(v ~T0 @X0 1 ef ]
+"50
+[v _onSetup `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 54: void onLoop() {
-[e :U _onLoop ]
+[; ;main.c: 50: void onSetup() {
+[e :U _onSetup ]
 [f ]
-[; ;main.c: 57: LA2 = ~LA2;
-"57
-[e = _LA2 ! _LA2 ]
-[; ;main.c: 58: }
-"58
+[; ;main.c: 51: TRISA = 0;
+"51
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 52: MacawBegin();
+"52
+[e ( _MacawBegin ..  ]
+[; ;main.c: 53: SerialBegin();
+"53
+[e ( _SerialBegin ..  ]
+[; ;main.c: 54: SetInterval(100, myTimer);
+"54
+[e ( _SetInterval (2 , -> 100 `i &U _myTimer ]
+[; ;main.c: 60: WireBegin();
+"60
+[e ( _WireBegin ..  ]
+[; ;main.c: 61: }
+"61
 [e :UE 2102 ]
 }
+"63
+[v _onLoop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 63: void onLoop() {
+[e :U _onLoop ]
+[f ]
+[; ;main.c: 64: }
+"64
+[e :UE 2103 ]
+}
 [p f _printf 8388736 ]
-[a 3C 112 105 0 ]
-[a 4C 83 117 99 107 32 105 116 32 116 104 105 115 32 105 115 32 97 32 114 101 97 108 108 121 32 108 111 110 103 32 114 101 113 117 101 115 116 32 110 111 116 32 117 115 117 97 108 108 121 32 97 118 97 105 108 97 98 108 101 32 111 110 32 105 50 99 0 ]
-[a 1C 116 105 99 107 32 116 111 99 107 46 46 46 10 0 ]
-[a 2C 80 105 32 105 115 32 101 113 117 97 108 32 116 111 32 37 100 32 97 110 100 32 104 101 108 108 111 32 45 62 32 10 0 ]
+[a 2C 112 105 0 ]
+[a 3C 83 117 99 107 32 105 116 32 116 104 105 115 32 105 115 32 97 32 114 101 97 108 108 121 32 108 111 110 103 32 114 101 113 117 101 115 116 32 110 111 116 32 117 115 117 97 108 108 121 32 97 118 97 105 108 97 98 108 101 32 111 110 32 105 50 99 0 ]
+[a 1C 80 105 32 105 115 32 101 113 117 97 108 32 116 111 32 37 100 32 97 110 100 32 104 101 108 108 111 32 45 62 32 10 0 ]

@@ -5,6 +5,8 @@
 #include "async.h"
 #include "macaw.h"
 
+extern int jWireEnabled;
+
 //Got an I2C interrupt
 void JWireOnInterrupt();
 

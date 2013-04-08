@@ -18838,7 +18838,10 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 9 "jwire.h"
+# 8 "jwire.h"
+extern int jWireEnabled;
+
+
 void JWireOnInterrupt();
 
 
@@ -18864,7 +18867,9 @@ static int bufferWritePos = 0;
 
 static int locked = 0;
 
-# 23
+static int jWireEnabled = 0;
+
+# 25
 void JWireOnInterrupt() {
 
 if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 0 && SSPSTATbits.D_A == 0 && SSPSTATbits.BF == 1)) {
@@ -18938,6 +18943,8 @@ requestCallback = callbackToUse;
 
 
 void JWireBegin(int id) {
+jWireEnabled = 1;
+
 TRISCbits.RC3 = 1;
 TRISCbits.RC4 = 1;
 

@@ -8,4 +8,5 @@ json.h  \
 macaw.h  \
 serial.h  \
 globals.h  \
-interval.h 
+interval.h  \
+wireMaster.h 

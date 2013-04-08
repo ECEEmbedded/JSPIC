@@ -18,6 +18,8 @@ static int bufferWritePos = 0;
 
 static int locked = 0;
 
+static int jWireEnabled = 0;
+
 #include <stdio.h>
 //I2C interrupted us
 void JWireOnInterrupt() {
@@ -93,6 +95,8 @@ void JWireOnRequest(AsyncCallback_t callbackToUse) {
 
 //Start a JWire session with a slave id
 void JWireBegin(int id) {
+    jWireEnabled = 1;
+    
     TRISCbits.RC3 = 1;
     TRISCbits.RC4 = 1;
 

@@ -5,13 +5,21 @@
 #include "interval.h"
 #include "serial.h"
 #include "jwire.h"
+#include "wireMaster.h"
 
 interrupt void onInterrupt() {
 
     //I2C
     if (SSPIF) {
         SSPIF = 0;
-        JWireOnInterrupt();
+
+        if (jWireEnabled) {
+            JWireOnInterrupt();
+        }
+
+        if (wireMasterEnabled) {
+            WireOnInterrupt();
+        }
     }
     
     //Millisecond timer
@@ -28,6 +36,8 @@ interrupt void onInterrupt() {
     if (TXIF) {
         SerialWriteInterrupt();
     }
+
+    //AsyncTick();
 }
 
 #endif
