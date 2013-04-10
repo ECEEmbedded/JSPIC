@@ -1,8 +1,8 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"29397 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"29397 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {

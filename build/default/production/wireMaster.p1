@@ -1,36 +1,32 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "9 async.h
 [v F16500 `(v ~T0 @X0 0 tf ]
-[s S2092 `i 1 `uc -> 100 `i `i 1 `*F16500 1 ]
-[n S2092 . deviceId data len callback ]
-"22 /opt/microchip/xc8/v1.12/include/string.h
-[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
-"37991 /opt/microchip/xc8/v1.12/include/pic18f2680.h
-[v _SEN `Vb ~T0 @X0 0 e@32296 ]
-"29618
-[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
-"38029
-[v _SSPM3 `Vb ~T0 @X0 0 e@32307 ]
-"38027
-[v _SSPM2 `Vb ~T0 @X0 0 e@32306 ]
-"38025
-[v _SSPM1 `Vb ~T0 @X0 0 e@32305 ]
-"38023
-[v _SSPM0 `Vb ~T0 @X0 0 e@32304 ]
-"38001
-[v _SMP `Vb ~T0 @X0 0 e@32319 ]
-"38015
-[v _SSPEN `Vb ~T0 @X0 0 e@32309 ]
+[s S2092 `i 1 `uc -> 100 `i `i 1 `i 1 `*F16500 1 ]
+[n S2092 . address data bytesSent len callback ]
+"38231 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _TRISC3 `Vb ~T0 @X0 0 e@31907 ]
+"38233
+[v _TRISC4 `Vb ~T0 @X0 0 e@31908 ]
+"32063
+[v _SSPSTAT `Vuc ~T0 @X0 0 e@4039 ]
+"31994
+[v _SSPCON1 `Vuc ~T0 @X0 0 e@4038 ]
 "32329
 [v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
-"32335
+"38017
+[v _SSPIE `Vb ~T0 @X0 0 e@31979 ]
+"37991
+[v _SEN `Vb ~T0 @X0 0 e@32296 ]
+"22 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+"32335 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
 "36187
 [v _PEN `Vb ~T0 @X0 0 e@32298 ]
-"35981
-[v _LA2 `Vb ~T0 @X0 0 e@31818 ]
+"15 async.h
+[v _Async `(v ~T0 @X0 0 ef2`*F16500`*uc ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14878,11 +14874,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;wireMaster.c: 3: static int wireMasterEnabled = 0;
 [; ;wireMaster.c: 6: typedef struct {
-[; ;wireMaster.c: 7: int deviceId;
+[; ;wireMaster.c: 7: int address;
 [; ;wireMaster.c: 8: unsigned char data[100];
-[; ;wireMaster.c: 9: int len;
-[; ;wireMaster.c: 10: AsyncCallback_t callback;
-[; ;wireMaster.c: 11: } WireSend_t;
+[; ;wireMaster.c: 9: int bytesSent;
+[; ;wireMaster.c: 10: int len;
+[; ;wireMaster.c: 11: AsyncCallback_t callback;
+[; ;wireMaster.c: 12: } WireSend_t;
 "13
 [v _wireSendA `S2092 ~T0 @X0 1 s ]
 [; ;wireMaster.c: 13: static WireSend_t wireSendA;
@@ -14895,180 +14892,257 @@ Version 3.2 HI-TECH Software Intermediate Code
 "16
 [v _wireSendD `S2092 ~T0 @X0 1 s ]
 [; ;wireMaster.c: 16: static WireSend_t wireSendD;
-"18
-[v _WireSendInit `(v ~T0 @X0 1 ef ]
+"26
+[v _state `i ~T0 @X0 1 s ]
+[; ;wireMaster.c: 26: static int state;
+"29
+[v _personBeingHelped `*S2092 ~T0 @X0 1 s ]
+[; ;wireMaster.c: 29: static WireSend_t *personBeingHelped;
+"31
+[v _WireBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMaster.c: 18: void WireSendInit() {
-[e :U _WireSendInit ]
+[; ;wireMaster.c: 31: void WireBegin() {
+[e :U _WireBegin ]
 [f ]
-[; ;wireMaster.c: 20: wireSendA.deviceId = -1;
-"20
+[; ;wireMaster.c: 32: wireMasterEnabled = 1;
+"32
+[e = _wireMasterEnabled -> 1 `i ]
+[; ;wireMaster.c: 35: TRISC3 = 1;
+"35
+[e = _TRISC3 -> -> 1 `i `b ]
+[; ;wireMaster.c: 36: TRISC4 = 1;
+"36
+[e = _TRISC4 -> -> 1 `i `b ]
+[; ;wireMaster.c: 37: SSPSTAT |= 0x80;
+"37
+[e =| _SSPSTAT -> -> 128 `i `uc ]
+[; ;wireMaster.c: 38: SSPCON1 = 0x28;
+"38
+[e = _SSPCON1 -> -> 40 `i `uc ]
+[; ;wireMaster.c: 39: SSPADD = 0x0A;
+"39
+[e = _SSPADD -> -> 10 `i `uc ]
+[; ;wireMaster.c: 40: SSPIE = 1;
+"40
+[e = _SSPIE -> -> 1 `i `b ]
+[; ;wireMaster.c: 43: wireSendA.address = -1;
+"43
 [e = . _wireSendA 0 -U -> 1 `i ]
-[; ;wireMaster.c: 21: wireSendB.deviceId = -1;
-"21
+[; ;wireMaster.c: 44: wireSendB.address = -1;
+"44
 [e = . _wireSendB 0 -U -> 1 `i ]
-[; ;wireMaster.c: 22: wireSendC.deviceId = -1;
-"22
+[; ;wireMaster.c: 45: wireSendC.address = -1;
+"45
 [e = . _wireSendC 0 -U -> 1 `i ]
-[; ;wireMaster.c: 23: wireSendD.deviceId = -1;
-"23
+[; ;wireMaster.c: 46: wireSendD.address = -1;
+"46
 [e = . _wireSendD 0 -U -> 1 `i ]
-[; ;wireMaster.c: 24: }
-"24
+[; ;wireMaster.c: 47: personBeingHelped = (0);
+"47
+[e = _personBeingHelped -> -> 0 `i `*S2092 ]
+[; ;wireMaster.c: 48: }
+"48
 [e :UE 2093 ]
 }
-"26
+"50
+[v _TryToHelp `(v ~T0 @X0 1 ef ]
+{
+[; ;wireMaster.c: 50: void TryToHelp() {
+[e :U _TryToHelp ]
+[f ]
+[; ;wireMaster.c: 52: if (!personBeingHelped) {
+"52
+[e $ ! ! != _personBeingHelped -> -> 0 `i `*S2092 2095  ]
+{
+[; ;wireMaster.c: 54: if (!(wireSendA.address == -1)) {
+"54
+[e $ ! ! == . _wireSendA 0 -U -> 1 `i 2096  ]
+{
+[; ;wireMaster.c: 55: personBeingHelped = &wireSendA;
+"55
+[e = _personBeingHelped &U _wireSendA ]
+"56
+}
+[; ;wireMaster.c: 56: }
+[e $U 2097  ]
+"57
+[e :U 2096 ]
+[; ;wireMaster.c: 57: else if (!(wireSendB.address == -1)) {
+[e $ ! ! == . _wireSendB 0 -U -> 1 `i 2098  ]
+{
+[; ;wireMaster.c: 58: personBeingHelped = &wireSendB;
+"58
+[e = _personBeingHelped &U _wireSendB ]
+"59
+}
+[e :U 2098 ]
+"62
+[e :U 2097 ]
+[; ;wireMaster.c: 59: }
+[; ;wireMaster.c: 62: if (personBeingHelped) {
+[e $ ! != _personBeingHelped -> -> 0 `i `*S2092 2099  ]
+{
+[; ;wireMaster.c: 64: state = 1;
+"64
+[e = _state -> 1 `i ]
+[; ;wireMaster.c: 65: SEN = 1;
+"65
+[e = _SEN -> -> 1 `i `b ]
+"66
+}
+[e :U 2099 ]
+"67
+}
+[e :U 2095 ]
+[; ;wireMaster.c: 66: }
+[; ;wireMaster.c: 67: }
+[; ;wireMaster.c: 68: }
+"68
+[e :UE 2094 ]
+}
+"70
 [v _WireSend `(v ~T0 @X0 1 ef4`i`*uc`i`*F16500 ]
 {
-[; ;wireMaster.c: 26: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback) {
+[; ;wireMaster.c: 70: void WireSend(int address, unsigned char *data, int len, AsyncCallback_t callback) {
 [e :U _WireSend ]
-[v _deviceId `i ~T0 @X0 1 r1 ]
+[v _address `i ~T0 @X0 1 r1 ]
 [v _data `*uc ~T0 @X0 1 r2 ]
 [v _len `i ~T0 @X0 1 r3 ]
 [v _callback `*F16500 ~T0 @X0 1 r4 ]
 [f ]
-[; ;wireMaster.c: 27: if (wireSendA.deviceId == -1) {
-"27
-[e $ ! == . _wireSendA 0 -U -> 1 `i 2095  ]
-{
-[; ;wireMaster.c: 28: wireSendA.deviceId = deviceId;
-"28
-[e = . _wireSendA 0 _deviceId ]
-[; ;wireMaster.c: 29: memcpy(wireSendA.data, data, len);
-"29
-[e ( _memcpy (3 , , -> &U . _wireSendA 1 `*v -> _data `*Cv -> _len `ui ]
-[; ;wireMaster.c: 30: wireSendA.len = len;
-"30
-[e = . _wireSendA 2 _len ]
-[; ;wireMaster.c: 31: wireSendA.callback = callback;
-"31
-[e = . _wireSendA 3 _callback ]
-"32
-}
-[e :U 2095 ]
-[; ;wireMaster.c: 32: }
-[; ;wireMaster.c: 34: if (wireSendB.deviceId == -1) {
-"34
-[e $ ! == . _wireSendB 0 -U -> 1 `i 2096  ]
-{
-[; ;wireMaster.c: 35: wireSendB.deviceId = deviceId;
-"35
-[e = . _wireSendB 0 _deviceId ]
-[; ;wireMaster.c: 36: memcpy(wireSendB.data, data, len);
-"36
-[e ( _memcpy (3 , , -> &U . _wireSendB 1 `*v -> _data `*Cv -> _len `ui ]
-[; ;wireMaster.c: 37: wireSendB.len = len;
-"37
-[e = . _wireSendB 2 _len ]
-[; ;wireMaster.c: 38: wireSendB.callback = callback;
-"38
-[e = . _wireSendB 3 _callback ]
-"39
-}
-[e :U 2096 ]
-[; ;wireMaster.c: 39: }
-[; ;wireMaster.c: 42: SEN = 1;
-"42
-[e = _SEN -> -> 1 `i `b ]
-[; ;wireMaster.c: 43: }
-"43
-[e :UE 2094 ]
-}
-"45
-[v _WireBegin `(v ~T0 @X0 1 ef ]
-{
-[; ;wireMaster.c: 45: void WireBegin() {
-[e :U _WireBegin ]
-[f ]
-[; ;wireMaster.c: 46: wireMasterEnabled = 1;
-"46
-[e = _wireMasterEnabled -> 1 `i ]
-[; ;wireMaster.c: 48: TRISC = 0b00011000;
-"48
-[e = _TRISC -> -> 24 `i `uc ]
-[; ;wireMaster.c: 49: SSPM3 = 1;
-"49
-[e = _SSPM3 -> -> 1 `i `b ]
-[; ;wireMaster.c: 50: SSPM2 = 0;
-"50
-[e = _SSPM2 -> -> 0 `i `b ]
-[; ;wireMaster.c: 51: SSPM1 = 0;
-"51
-[e = _SSPM1 -> -> 0 `i `b ]
-[; ;wireMaster.c: 52: SSPM0 = 0;
-"52
-[e = _SSPM0 -> -> 0 `i `b ]
-[; ;wireMaster.c: 53: SMP = 1;
-"53
-[e = _SMP -> -> 1 `i `b ]
-[; ;wireMaster.c: 54: SSPEN = 1;
-"54
-[e = _SSPEN -> -> 1 `i `b ]
-[; ;wireMaster.c: 56: SEN = 1;
-"56
-[e = _SEN -> -> 1 `i `b ]
-[; ;wireMaster.c: 57: SSPADD = 0x09;
-"57
-[e = _SSPADD -> -> 9 `i `uc ]
-[; ;wireMaster.c: 58: SSPBUF = 0xA2;
-"58
-[e = _SSPBUF -> -> 162 `i `uc ]
-[; ;wireMaster.c: 60: WireSendInit();
-"60
-[e ( _WireSendInit ..  ]
-[; ;wireMaster.c: 61: }
-"61
-[e :UE 2097 ]
-}
-"67
-[v _count `i ~T0 @X0 1 s ]
-[i _count
--> 0 `i
-]
-[; ;wireMaster.c: 67: static int count = 0;
-"71
-[v _SendData `(v ~T0 @X0 1 ef ]
-{
-[; ;wireMaster.c: 71: void SendData() {
-[e :U _SendData ]
-[f ]
-[; ;wireMaster.c: 72: if (count < 3) {
-"72
-[e $ ! < _count -> 3 `i 2099  ]
-{
-[; ;wireMaster.c: 73: SSPBUF = count;
+[; ;wireMaster.c: 73: if ((wireSendA.address == -1)) {
 "73
-[e = _SSPBUF -> _count `uc ]
-[; ;wireMaster.c: 74: count = count + 1;
-"74
-[e = _count + _count -> 1 `i ]
-"75
-}
-[; ;wireMaster.c: 75: } else {
-[e $U 2100  ]
-[e :U 2099 ]
+[e $ ! == . _wireSendA 0 -U -> 1 `i 2101  ]
 {
-[; ;wireMaster.c: 76: PEN = 1;
+[; ;wireMaster.c: 74: wireSendA.address = address;
+"74
+[e = . _wireSendA 0 _address ]
+[; ;wireMaster.c: 75: memcpy(wireSendA.data, data, len);
+"75
+[e ( _memcpy (3 , , -> &U . _wireSendA 1 `*v -> _data `*Cv -> _len `ui ]
+[; ;wireMaster.c: 76: wireSendA.bytesSent = 0;
 "76
-[e = _PEN -> -> 1 `i `b ]
+[e = . _wireSendA 2 -> 0 `i ]
+[; ;wireMaster.c: 77: wireSendA.len = len;
 "77
-}
-[e :U 2100 ]
-[; ;wireMaster.c: 77: }
-[; ;wireMaster.c: 78: }
+[e = . _wireSendA 3 _len ]
+[; ;wireMaster.c: 78: wireSendA.callback = callback;
 "78
-[e :UE 2098 ]
+[e = . _wireSendA 4 _callback ]
+"79
 }
+[; ;wireMaster.c: 79: }
+[e $U 2102  ]
 "81
+[e :U 2101 ]
+[; ;wireMaster.c: 81: else if ((wireSendB.address == -1)) {
+[e $ ! == . _wireSendB 0 -U -> 1 `i 2103  ]
+{
+[; ;wireMaster.c: 82: wireSendB.address = address;
+"82
+[e = . _wireSendB 0 _address ]
+[; ;wireMaster.c: 83: wireSendB.bytesSent = 0;
+"83
+[e = . _wireSendB 2 -> 0 `i ]
+[; ;wireMaster.c: 84: memcpy(wireSendB.data, data, len);
+"84
+[e ( _memcpy (3 , , -> &U . _wireSendB 1 `*v -> _data `*Cv -> _len `ui ]
+[; ;wireMaster.c: 85: wireSendB.len = len;
+"85
+[e = . _wireSendB 3 _len ]
+[; ;wireMaster.c: 86: wireSendB.callback = callback;
+"86
+[e = . _wireSendB 4 _callback ]
+"87
+}
+[e :U 2103 ]
+"90
+[e :U 2102 ]
+[; ;wireMaster.c: 87: }
+[; ;wireMaster.c: 90: TryToHelp();
+[e ( _TryToHelp ..  ]
+[; ;wireMaster.c: 91: }
+"91
+[e :UE 2100 ]
+}
+"93
 [v _WireOnInterrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMaster.c: 81: void WireOnInterrupt() {
+[; ;wireMaster.c: 93: void WireOnInterrupt() {
 [e :U _WireOnInterrupt ]
 [f ]
-[; ;wireMaster.c: 82: LA2 = ~LA2;
-"82
-[e = _LA2 ! _LA2 ]
-[; ;wireMaster.c: 107: }
+[; ;wireMaster.c: 94: if (state == 1) {
+"94
+[e $ ! == _state -> 1 `i 2105  ]
+{
+[; ;wireMaster.c: 95: SSPBUF = personBeingHelped->address << 1;
+"95
+[e = _SSPBUF -> << . *U _personBeingHelped 0 -> 1 `i `uc ]
+[; ;wireMaster.c: 96: state = 2;
+"96
+[e = _state -> 2 `i ]
+"97
+}
+[; ;wireMaster.c: 97: } else if (state == 2 || state == 3) {
+[e $U 2106  ]
+[e :U 2105 ]
+[e $ ! || == _state -> 2 `i == _state -> 3 `i 2107  ]
+{
+[; ;wireMaster.c: 98: if (personBeingHelped->bytesSent < personBeingHelped->len) {
+"98
+[e $ ! < . *U _personBeingHelped 2 . *U _personBeingHelped 3 2108  ]
+{
+[; ;wireMaster.c: 99: SSPBUF = personBeingHelped->data[personBeingHelped->bytesSent];
+"99
+[e = _SSPBUF *U + &U . *U _personBeingHelped 1 * -> -> . *U _personBeingHelped 2 `ui `ux -> -> # *U &U . *U _personBeingHelped 1 `ui `ux ]
+[; ;wireMaster.c: 100: ++personBeingHelped->bytesSent;
+"100
+[e =+ . *U _personBeingHelped 2 -> 1 `i ]
+[; ;wireMaster.c: 101: state = 3;
+"101
+[e = _state -> 3 `i ]
+"102
+}
+[; ;wireMaster.c: 102: } else {
+[e $U 2109  ]
+[e :U 2108 ]
+{
+[; ;wireMaster.c: 103: PEN = 1;
+"103
+[e = _PEN -> -> 1 `i `b ]
+[; ;wireMaster.c: 104: state = 4;
+"104
+[e = _state -> 4 `i ]
+"105
+}
+[e :U 2109 ]
+"106
+}
+[; ;wireMaster.c: 105: }
+[; ;wireMaster.c: 106: } else if (state == 4) {
+[e $U 2110  ]
+[e :U 2107 ]
+[e $ ! == _state -> 4 `i 2111  ]
+{
+[; ;wireMaster.c: 107: Async(personBeingHelped->callback, (0));
 "107
-[e :UE 2101 ]
+[e ( _Async (2 , . *U _personBeingHelped 4 -> -> 0 `i `*uc ]
+[; ;wireMaster.c: 108: personBeingHelped->address = -1;
+"108
+[e = . *U _personBeingHelped 0 -U -> 1 `i ]
+[; ;wireMaster.c: 109: personBeingHelped = (0);
+"109
+[e = _personBeingHelped -> -> 0 `i `*S2092 ]
+[; ;wireMaster.c: 110: TryToHelp();
+"110
+[e ( _TryToHelp ..  ]
+"111
+}
+[e :U 2111 ]
+"112
+[e :U 2110 ]
+[e :U 2106 ]
+[; ;wireMaster.c: 111: }
+[; ;wireMaster.c: 112: }
+[e :UE 2104 ]
 }

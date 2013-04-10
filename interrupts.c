@@ -37,4 +37,6 @@ interrupt void onInterrupt() {
         SerialWriteInterrupt();
     }
     //###########################################
+
+    AsyncTick();
 }

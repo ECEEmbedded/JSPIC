@@ -1,11 +1,27 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"10 superSimpleSerial.h
-[v _Sout `(v ~T0 @X0 0 ef1`uc ]
+"35979 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _LA1 `Vb ~T0 @X0 0 e@31817 ]
+"6 json.h
+[v _jsonNew `(v ~T0 @X0 0 ef1`*uc ]
+"9
+[v _jsonSetString `(v ~T0 @X0 0 ef3`*uc`*uc`*uc ]
+"10
+[v _jsonSetValue `(v ~T0 @X0 0 ef3`*uc`*uc`i ]
+"9 async.h
+[v F16501 `(v ~T0 @X0 0 tf ]
+"8 wireMaster.h
+[v _WireSend `(v ~T0 @X0 0 ef4`i`*uc`i`*F16501 ]
+"55 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+[v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
+"29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"11 wireMaster.h
+[v _WireBegin `(v ~T0 @X0 0 ef ]
 "11 interval.h
 [v F16521 `(v ~T0 @X0 0 tf ]
 [v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14865,39 +14881,107 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
 [; ;jspic.h: 14: void onSetup();
 [; ;jspic.h: 15: void onLoop();
-"3 main.c
-[v _serialOut `(v ~T0 @X0 1 ef ]
+[; ;json.h: 6: void jsonNew(char* string);
+[; ;json.h: 9: void jsonSetString(char* input, char* key, char* string);
+[; ;json.h: 10: void jsonSetValue(char* input, char* key, int value);
+[; ;json.h: 12: int jsonGetString(char* input, char* key, char* string);
+[; ;json.h: 13: int jsonGetValue(char* input, char* key);
+"4 main.c
+[v _blah `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 3: void serialOut() {
-[e :U _serialOut ]
+[; ;main.c: 4: void blah (){
+[e :U _blah ]
 [f ]
-[; ;main.c: 4: Sout('H');
-"4
-[e ( _Sout (1 -> -> 72 `ui `uc ]
-[; ;main.c: 5: }
+[; ;main.c: 5: for (int i = 0; i < 10; ++i)
 "5
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 2093  ]
+[e $U 2094  ]
+"6
+[e :U 2093 ]
+[; ;main.c: 6: LA1 = ~LA1;
+[e = _LA1 ! _LA1 ]
+"5
+[e =+ _i -> 1 `i ]
+[e $ < _i -> 10 `i 2093  ]
+[e :U 2094 ]
+"6
+}
+[; ;main.c: 7: }
+"7
 [e :UE 2092 ]
 }
-"7
+"9
+[v _master `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 9: void master() {
+[e :U _master ]
+[f ]
+"10
+[v F16564 `uc ~T0 @X0 -> 150 `i s output ]
+[; ;main.c: 10: static char output[150];
+[; ;main.c: 11: jsonNew(output);
+"11
+[e ( _jsonNew (1 &U F16564 ]
+"12
+[v F16565 `i ~T0 @X0 1 s count ]
+[i F16565
+-> 0 `i
+]
+[; ;main.c: 12: static int count = 0;
+[; ;main.c: 13: ++count;
+"13
+[e =+ F16565 -> 1 `i ]
+[; ;main.c: 14: jsonSetString(output, "hello", "wod");
+"14
+[e ( _jsonSetString (3 , , &U F16564 -> :s 1C `*uc -> :s 2C `*uc ]
+[; ;main.c: 15: jsonSetValue(output, "oeu", count);
+"15
+[e ( _jsonSetValue (3 , , &U F16564 -> :s 3C `*uc F16565 ]
+[; ;main.c: 16: WireSend(0x4F, output, strlen(output), blah);
+"16
+[e ( _WireSend (4 , , , -> 79 `i &U F16564 -> ( _strlen (1 -> &U F16564 `*Cuc `i &U _blah ]
+[; ;main.c: 17: WireSend(0x4F, output, strlen(output), blah);
+"17
+[e ( _WireSend (4 , , , -> 79 `i &U F16564 -> ( _strlen (1 -> &U F16564 `*Cuc `i &U _blah ]
+[; ;main.c: 18: }
+"18
+[e :UE 2096 ]
+}
+"20
 [v _onSetup `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 7: void onSetup() {
+[; ;main.c: 20: void onSetup() {
 [e :U _onSetup ]
 [f ]
-[; ;main.c: 8: SetInterval(100, serialOut);
-"8
-[e ( _SetInterval (2 , -> 100 `i &U _serialOut ]
-[; ;main.c: 9: }
-"9
-[e :UE 2093 ]
+[; ;main.c: 21: TRISA = 0;
+"21
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 22: WireBegin();
+"22
+[e ( _WireBegin ..  ]
+[; ;main.c: 23: SetInterval(12, master);
+"23
+[e ( _SetInterval (2 , -> 12 `i &U _master ]
+"24
+[v F16569 `uc ~T0 @X0 -> -> 1 `i `ux s data ]
+[; ;main.c: 24: static char data[1];
+[; ;main.c: 26: }
+"26
+[e :UE 2097 ]
 }
-"11
+"28
 [v _onLoop `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 11: void onLoop() {
+[; ;main.c: 28: void onLoop() {
 [e :U _onLoop ]
 [f ]
-[; ;main.c: 13: }
-"13
-[e :UE 2094 ]
+[; ;main.c: 29: }
+"29
+[e :UE 2098 ]
 }
+[a 3C 111 101 117 0 ]
+[a 1C 104 101 108 108 111 0 ]
+[a 2C 119 111 100 0 ]
