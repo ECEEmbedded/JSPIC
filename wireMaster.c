@@ -12,8 +12,6 @@ typedef struct {
 } WireSend_t;
 static WireSend_t wireSendA;
 static WireSend_t wireSendB;
-static WireSend_t wireSendC;
-static WireSend_t wireSendD;
 
 #define AIsVacant (wireSendA.address == -1)
 #define BIsVacant (wireSendB.address == -1)
@@ -42,8 +40,6 @@ void WireBegin() {
     //Clear for assignment later (que)
     wireSendA.address = -1;
     wireSendB.address = -1;
-    wireSendC.address = -1;
-    wireSendD.address = -1;
     personBeingHelped = NULL;
 }
 

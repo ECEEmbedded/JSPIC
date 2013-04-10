@@ -18819,14 +18819,14 @@ extern char * strrichr(const char *, int);
 void strcpy2(char *dest, const char *loc);
 
 # 6 "json.h"
-void jsonNew(char* string);
+void JsonNew(char* string);
 
 
-void jsonSetString(char* input, char* key, char* string);
-void jsonSetValue(char* input, char* key, int value);
+void JsonSetString(char* input, char* key, char* string);
+void JsonSetValue(char* input, char* key, int value);
 
-int jsonGetString(char* input, char* key, char* string);
-int jsonGetValue(char* input, char* key);
+int JsonGetString(char* input, char* key, char* string);
+int JsonGetValue(char* input, char* key);
 
 # 22 "C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
@@ -18876,11 +18876,11 @@ extern char * ftoa(float f, int * status);
 static char KEY_COLON_SPACE[200];
 static char result[200];
 
-void jsonNew(char* string) {
+void JsonNew(char* string) {
 sprintf(string, "{\n}");
 }
 
-int jsonGetValue(char* input, char* key) {
+int JsonGetValue(char* input, char* key) {
 static char KEY_COLON_SPACE[200];
 
 sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
@@ -18917,14 +18917,14 @@ return result_float;
 return -696969;
 }
 
-void jsonSetString(char* input, char* key, char* str) {
+void JsonSetString(char* input, char* key, char* str) {
 unsigned long original_json_input_len = strlen(input);
 input[original_json_input_len - 1] = 0;
 strcpy2(KEY_COLON_SPACE, input);
 sprintf(input, "%s\"%s\": \"%s\",\n}", KEY_COLON_SPACE, key, str);
 }
 
-void jsonSetValue(char* input, char* key, int value) {
+void JsonSetValue(char* input, char* key, int value) {
 
 unsigned long original_json_input_len = strlen(input);
 input[original_json_input_len - 1] = 0;
@@ -18932,7 +18932,7 @@ strcpy2(KEY_COLON_SPACE, input);
 sprintf(input, "%s\"%s\": %d,\n}", KEY_COLON_SPACE, key, value);
 }
 
-int jsonGetString(char* input, char* key, char* string) {
+int JsonGetString(char* input, char* key, char* string) {
 
 sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
 char* substr_s = strstr(input, KEY_COLON_SPACE);

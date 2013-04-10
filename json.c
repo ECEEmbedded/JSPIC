@@ -21,11 +21,11 @@
 static char KEY_COLON_SPACE[MAX_STRING_SIZE];  // Shouldn't need more than 200
 static char result[MAX_STRING_SIZE];   // Shouldn't need more than 200
 
-void jsonNew(char* string) {
+void JsonNew(char* string) {
     sprintf(string, "{\n}");
 }
 
-int jsonGetValue(char* input, char* key) {
+int JsonGetValue(char* input, char* key) {
     static char KEY_COLON_SPACE[MAX_STRING_SIZE];  // Shouldn't need more than 200
     // Will know to look here if this becomes a problem.
     sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, COLON_SPACE);
@@ -62,14 +62,14 @@ int jsonGetValue(char* input, char* key) {
     return -696969;
 }
 
-void jsonSetString(char* input, char* key, char* str) {
+void JsonSetString(char* input, char* key, char* str) {
     unsigned long original_json_input_len = strlen(input);
     input[original_json_input_len - 1] = 0;
     strcpy2(KEY_COLON_SPACE, input);
     sprintf(input, "%s\"%s\": \"%s\",\n}", KEY_COLON_SPACE, key, str);
 }
 
-void jsonSetValue(char* input, char* key, int value) {
+void JsonSetValue(char* input, char* key, int value) {
 
     unsigned long original_json_input_len = strlen(input);
     input[original_json_input_len - 1] = 0;
@@ -77,7 +77,7 @@ void jsonSetValue(char* input, char* key, int value) {
     sprintf(input, "%s\"%s\": %d,\n}", KEY_COLON_SPACE, key, value);
 }
 
-int jsonGetString(char* input, char* key, char* string) {
+int JsonGetString(char* input, char* key, char* string) {
     // Will know to look here if this becomes a problem.
     sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, COLON_SPACE);
     char* substr_s = strstr(input, KEY_COLON_SPACE);

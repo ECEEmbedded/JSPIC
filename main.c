@@ -1,29 +1,34 @@
 #include "jspic.h"
 #include "json.h"
 
-void blah (){
-for (int i = 0; i < 10; ++i)
-    LA1 = ~LA1;
+void onFinishedI2C(){
+    //Sent I2C Message
+    for (int i = 0; i < 10; ++i)
+        LA1 = ~LA1;
 }
 
 void master() {
     static char output[150];
-    jsonNew(output);
-    static int count = 0;
-    ++count;
-    jsonSetString(output, "hello", "wod");
-    jsonSetValue(output, "oeu", count);
-    WireSend(0x4F, output, strlen(output), blah);
-    WireSend(0x4F, output, strlen(output), blah);
+    output[0] = 'h';
+    output[1] = 'e';
+    output[2] = 'l';
+    output[3] = 0;
+
+    //Send message and callback when finished
+    WireSend(0x4F, output, 4, onFinishedI2C);
 }
 
 void onSetup() {
+    //Called once in a lifetime
     TRISA = 0;
+
+    //Setup I2C master
     WireBegin();
-    SetInterval(15, master);
-     static char data[1];
-    //WireSend(0x4F, data, 1, blah);
+
+    //Call the master function every 100ms (Sends an I2C request)
+    SetInterval(100, master);
 }
 
 void onLoop() {
+    //Free While Loop
 }

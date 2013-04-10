@@ -18856,10 +18856,8 @@ AsyncCallback_t callback;
 } WireSend_t;
 static WireSend_t wireSendA;
 static WireSend_t wireSendB;
-static WireSend_t wireSendC;
-static WireSend_t wireSendD;
 
-# 26
+# 24
 static int state;
 
 
@@ -18879,8 +18877,6 @@ SSPIE = 1;
 
 wireSendA.address = -1;
 wireSendB.address = -1;
-wireSendC.address = -1;
-wireSendD.address = -1;
 personBeingHelped = (0);
 }
 

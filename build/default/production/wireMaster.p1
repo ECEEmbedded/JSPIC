@@ -14886,263 +14886,251 @@ Version 3.2 HI-TECH Software Intermediate Code
 "14
 [v _wireSendB `S2092 ~T0 @X0 1 s ]
 [; ;wireMaster.c: 14: static WireSend_t wireSendB;
-"15
-[v _wireSendC `S2092 ~T0 @X0 1 s ]
-[; ;wireMaster.c: 15: static WireSend_t wireSendC;
-"16
-[v _wireSendD `S2092 ~T0 @X0 1 s ]
-[; ;wireMaster.c: 16: static WireSend_t wireSendD;
-"26
+"24
 [v _state `i ~T0 @X0 1 s ]
-[; ;wireMaster.c: 26: static int state;
-"29
+[; ;wireMaster.c: 24: static int state;
+"27
 [v _personBeingHelped `*S2092 ~T0 @X0 1 s ]
-[; ;wireMaster.c: 29: static WireSend_t *personBeingHelped;
-"31
+[; ;wireMaster.c: 27: static WireSend_t *personBeingHelped;
+"29
 [v _WireBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMaster.c: 31: void WireBegin() {
+[; ;wireMaster.c: 29: void WireBegin() {
 [e :U _WireBegin ]
 [f ]
-[; ;wireMaster.c: 32: wireMasterEnabled = 1;
-"32
+[; ;wireMaster.c: 30: wireMasterEnabled = 1;
+"30
 [e = _wireMasterEnabled -> 1 `i ]
-[; ;wireMaster.c: 35: TRISC3 = 1;
-"35
+[; ;wireMaster.c: 33: TRISC3 = 1;
+"33
 [e = _TRISC3 -> -> 1 `i `b ]
-[; ;wireMaster.c: 36: TRISC4 = 1;
-"36
+[; ;wireMaster.c: 34: TRISC4 = 1;
+"34
 [e = _TRISC4 -> -> 1 `i `b ]
-[; ;wireMaster.c: 37: SSPSTAT |= 0x80;
-"37
+[; ;wireMaster.c: 35: SSPSTAT |= 0x80;
+"35
 [e =| _SSPSTAT -> -> 128 `i `uc ]
-[; ;wireMaster.c: 38: SSPCON1 = 0x28;
-"38
+[; ;wireMaster.c: 36: SSPCON1 = 0x28;
+"36
 [e = _SSPCON1 -> -> 40 `i `uc ]
-[; ;wireMaster.c: 39: SSPADD = 0x0A;
-"39
+[; ;wireMaster.c: 37: SSPADD = 0x0A;
+"37
 [e = _SSPADD -> -> 10 `i `uc ]
-[; ;wireMaster.c: 40: SSPIE = 1;
-"40
+[; ;wireMaster.c: 38: SSPIE = 1;
+"38
 [e = _SSPIE -> -> 1 `i `b ]
-[; ;wireMaster.c: 43: wireSendA.address = -1;
-"43
+[; ;wireMaster.c: 41: wireSendA.address = -1;
+"41
 [e = . _wireSendA 0 -U -> 1 `i ]
-[; ;wireMaster.c: 44: wireSendB.address = -1;
-"44
+[; ;wireMaster.c: 42: wireSendB.address = -1;
+"42
 [e = . _wireSendB 0 -U -> 1 `i ]
-[; ;wireMaster.c: 45: wireSendC.address = -1;
-"45
-[e = . _wireSendC 0 -U -> 1 `i ]
-[; ;wireMaster.c: 46: wireSendD.address = -1;
-"46
-[e = . _wireSendD 0 -U -> 1 `i ]
-[; ;wireMaster.c: 47: personBeingHelped = (0);
-"47
+[; ;wireMaster.c: 43: personBeingHelped = (0);
+"43
 [e = _personBeingHelped -> -> 0 `i `*S2092 ]
-[; ;wireMaster.c: 48: }
-"48
+[; ;wireMaster.c: 44: }
+"44
 [e :UE 2093 ]
 }
-"50
+"46
 [v _TryToHelp `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMaster.c: 50: void TryToHelp() {
+[; ;wireMaster.c: 46: void TryToHelp() {
 [e :U _TryToHelp ]
 [f ]
-[; ;wireMaster.c: 52: if (!personBeingHelped) {
-"52
+[; ;wireMaster.c: 48: if (!personBeingHelped) {
+"48
 [e $ ! ! != _personBeingHelped -> -> 0 `i `*S2092 2095  ]
 {
-[; ;wireMaster.c: 54: if (!(wireSendA.address == -1)) {
-"54
+[; ;wireMaster.c: 50: if (!(wireSendA.address == -1)) {
+"50
 [e $ ! ! == . _wireSendA 0 -U -> 1 `i 2096  ]
 {
-[; ;wireMaster.c: 55: personBeingHelped = &wireSendA;
-"55
+[; ;wireMaster.c: 51: personBeingHelped = &wireSendA;
+"51
 [e = _personBeingHelped &U _wireSendA ]
-"56
+"52
 }
-[; ;wireMaster.c: 56: }
+[; ;wireMaster.c: 52: }
 [e $U 2097  ]
-"57
+"53
 [e :U 2096 ]
-[; ;wireMaster.c: 57: else if (!(wireSendB.address == -1)) {
+[; ;wireMaster.c: 53: else if (!(wireSendB.address == -1)) {
 [e $ ! ! == . _wireSendB 0 -U -> 1 `i 2098  ]
 {
-[; ;wireMaster.c: 58: personBeingHelped = &wireSendB;
-"58
+[; ;wireMaster.c: 54: personBeingHelped = &wireSendB;
+"54
 [e = _personBeingHelped &U _wireSendB ]
-"59
+"55
 }
 [e :U 2098 ]
-"62
+"58
 [e :U 2097 ]
-[; ;wireMaster.c: 59: }
-[; ;wireMaster.c: 62: if (personBeingHelped) {
+[; ;wireMaster.c: 55: }
+[; ;wireMaster.c: 58: if (personBeingHelped) {
 [e $ ! != _personBeingHelped -> -> 0 `i `*S2092 2099  ]
 {
-[; ;wireMaster.c: 64: state = 1;
-"64
+[; ;wireMaster.c: 60: state = 1;
+"60
 [e = _state -> 1 `i ]
-[; ;wireMaster.c: 65: SEN = 1;
-"65
+[; ;wireMaster.c: 61: SEN = 1;
+"61
 [e = _SEN -> -> 1 `i `b ]
-"66
+"62
 }
 [e :U 2099 ]
-"67
+"63
 }
 [e :U 2095 ]
-[; ;wireMaster.c: 66: }
-[; ;wireMaster.c: 67: }
-[; ;wireMaster.c: 68: }
-"68
+[; ;wireMaster.c: 62: }
+[; ;wireMaster.c: 63: }
+[; ;wireMaster.c: 64: }
+"64
 [e :UE 2094 ]
 }
-"70
+"66
 [v _WireSend `(v ~T0 @X0 1 ef4`i`*uc`i`*F16500 ]
 {
-[; ;wireMaster.c: 70: void WireSend(int address, unsigned char *data, int len, AsyncCallback_t callback) {
+[; ;wireMaster.c: 66: void WireSend(int address, unsigned char *data, int len, AsyncCallback_t callback) {
 [e :U _WireSend ]
 [v _address `i ~T0 @X0 1 r1 ]
 [v _data `*uc ~T0 @X0 1 r2 ]
 [v _len `i ~T0 @X0 1 r3 ]
 [v _callback `*F16500 ~T0 @X0 1 r4 ]
 [f ]
-[; ;wireMaster.c: 73: if ((wireSendA.address == -1)) {
-"73
+[; ;wireMaster.c: 69: if ((wireSendA.address == -1)) {
+"69
 [e $ ! == . _wireSendA 0 -U -> 1 `i 2101  ]
 {
-[; ;wireMaster.c: 74: wireSendA.address = address;
-"74
+[; ;wireMaster.c: 70: wireSendA.address = address;
+"70
 [e = . _wireSendA 0 _address ]
-[; ;wireMaster.c: 75: memcpy(wireSendA.data, data, len);
-"75
+[; ;wireMaster.c: 71: memcpy(wireSendA.data, data, len);
+"71
 [e ( _memcpy (3 , , -> &U . _wireSendA 1 `*v -> _data `*Cv -> _len `ui ]
-[; ;wireMaster.c: 76: wireSendA.bytesSent = 0;
-"76
+[; ;wireMaster.c: 72: wireSendA.bytesSent = 0;
+"72
 [e = . _wireSendA 2 -> 0 `i ]
-[; ;wireMaster.c: 77: wireSendA.len = len;
-"77
+[; ;wireMaster.c: 73: wireSendA.len = len;
+"73
 [e = . _wireSendA 3 _len ]
-[; ;wireMaster.c: 78: wireSendA.callback = callback;
-"78
+[; ;wireMaster.c: 74: wireSendA.callback = callback;
+"74
 [e = . _wireSendA 4 _callback ]
-"79
+"75
 }
-[; ;wireMaster.c: 79: }
+[; ;wireMaster.c: 75: }
 [e $U 2102  ]
-"81
+"77
 [e :U 2101 ]
-[; ;wireMaster.c: 81: else if ((wireSendB.address == -1)) {
+[; ;wireMaster.c: 77: else if ((wireSendB.address == -1)) {
 [e $ ! == . _wireSendB 0 -U -> 1 `i 2103  ]
 {
-[; ;wireMaster.c: 82: wireSendB.address = address;
-"82
+[; ;wireMaster.c: 78: wireSendB.address = address;
+"78
 [e = . _wireSendB 0 _address ]
-[; ;wireMaster.c: 83: wireSendB.bytesSent = 0;
-"83
+[; ;wireMaster.c: 79: wireSendB.bytesSent = 0;
+"79
 [e = . _wireSendB 2 -> 0 `i ]
-[; ;wireMaster.c: 84: memcpy(wireSendB.data, data, len);
-"84
+[; ;wireMaster.c: 80: memcpy(wireSendB.data, data, len);
+"80
 [e ( _memcpy (3 , , -> &U . _wireSendB 1 `*v -> _data `*Cv -> _len `ui ]
-[; ;wireMaster.c: 85: wireSendB.len = len;
-"85
+[; ;wireMaster.c: 81: wireSendB.len = len;
+"81
 [e = . _wireSendB 3 _len ]
-[; ;wireMaster.c: 86: wireSendB.callback = callback;
-"86
+[; ;wireMaster.c: 82: wireSendB.callback = callback;
+"82
 [e = . _wireSendB 4 _callback ]
-"87
+"83
 }
 [e :U 2103 ]
-"90
+"86
 [e :U 2102 ]
-[; ;wireMaster.c: 87: }
-[; ;wireMaster.c: 90: TryToHelp();
+[; ;wireMaster.c: 83: }
+[; ;wireMaster.c: 86: TryToHelp();
 [e ( _TryToHelp ..  ]
-[; ;wireMaster.c: 91: }
-"91
+[; ;wireMaster.c: 87: }
+"87
 [e :UE 2100 ]
 }
-"93
+"89
 [v _WireOnInterrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMaster.c: 93: void WireOnInterrupt() {
+[; ;wireMaster.c: 89: void WireOnInterrupt() {
 [e :U _WireOnInterrupt ]
 [f ]
-[; ;wireMaster.c: 94: if (state == 1) {
-"94
+[; ;wireMaster.c: 90: if (state == 1) {
+"90
 [e $ ! == _state -> 1 `i 2105  ]
 {
-[; ;wireMaster.c: 95: SSPBUF = personBeingHelped->address << 1;
-"95
+[; ;wireMaster.c: 91: SSPBUF = personBeingHelped->address << 1;
+"91
 [e = _SSPBUF -> << . *U _personBeingHelped 0 -> 1 `i `uc ]
-[; ;wireMaster.c: 96: state = 2;
-"96
+[; ;wireMaster.c: 92: state = 2;
+"92
 [e = _state -> 2 `i ]
-"97
+"93
 }
-[; ;wireMaster.c: 97: } else if (state == 2 || state == 3) {
+[; ;wireMaster.c: 93: } else if (state == 2 || state == 3) {
 [e $U 2106  ]
 [e :U 2105 ]
 [e $ ! || == _state -> 2 `i == _state -> 3 `i 2107  ]
 {
-[; ;wireMaster.c: 98: if (personBeingHelped->bytesSent < personBeingHelped->len) {
-"98
+[; ;wireMaster.c: 94: if (personBeingHelped->bytesSent < personBeingHelped->len) {
+"94
 [e $ ! < . *U _personBeingHelped 2 . *U _personBeingHelped 3 2108  ]
 {
-[; ;wireMaster.c: 99: SSPBUF = personBeingHelped->data[personBeingHelped->bytesSent];
-"99
+[; ;wireMaster.c: 95: SSPBUF = personBeingHelped->data[personBeingHelped->bytesSent];
+"95
 [e = _SSPBUF *U + &U . *U _personBeingHelped 1 * -> -> . *U _personBeingHelped 2 `ui `ux -> -> # *U &U . *U _personBeingHelped 1 `ui `ux ]
-[; ;wireMaster.c: 100: ++personBeingHelped->bytesSent;
-"100
+[; ;wireMaster.c: 96: ++personBeingHelped->bytesSent;
+"96
 [e =+ . *U _personBeingHelped 2 -> 1 `i ]
-[; ;wireMaster.c: 101: state = 3;
-"101
+[; ;wireMaster.c: 97: state = 3;
+"97
 [e = _state -> 3 `i ]
-"102
+"98
 }
-[; ;wireMaster.c: 102: } else {
+[; ;wireMaster.c: 98: } else {
 [e $U 2109  ]
 [e :U 2108 ]
 {
-[; ;wireMaster.c: 103: PEN = 1;
-"103
+[; ;wireMaster.c: 99: PEN = 1;
+"99
 [e = _PEN -> -> 1 `i `b ]
-[; ;wireMaster.c: 104: state = 4;
-"104
+[; ;wireMaster.c: 100: state = 4;
+"100
 [e = _state -> 4 `i ]
-"105
+"101
 }
 [e :U 2109 ]
-"106
+"102
 }
-[; ;wireMaster.c: 105: }
-[; ;wireMaster.c: 106: } else if (state == 4) {
+[; ;wireMaster.c: 101: }
+[; ;wireMaster.c: 102: } else if (state == 4) {
 [e $U 2110  ]
 [e :U 2107 ]
 [e $ ! == _state -> 4 `i 2111  ]
 {
-[; ;wireMaster.c: 107: Async(personBeingHelped->callback, (0));
-"107
+[; ;wireMaster.c: 103: Async(personBeingHelped->callback, (0));
+"103
 [e ( _Async (2 , . *U _personBeingHelped 4 -> -> 0 `i `*uc ]
-[; ;wireMaster.c: 108: personBeingHelped->address = -1;
-"108
+[; ;wireMaster.c: 104: personBeingHelped->address = -1;
+"104
 [e = . *U _personBeingHelped 0 -U -> 1 `i ]
-[; ;wireMaster.c: 109: personBeingHelped = (0);
-"109
+[; ;wireMaster.c: 105: personBeingHelped = (0);
+"105
 [e = _personBeingHelped -> -> 0 `i `*S2092 ]
-[; ;wireMaster.c: 110: TryToHelp();
-"110
+[; ;wireMaster.c: 106: TryToHelp();
+"106
 [e ( _TryToHelp ..  ]
-"111
+"107
 }
 [e :U 2111 ]
-"112
+"108
 [e :U 2110 ]
 [e :U 2106 ]
-[; ;wireMaster.c: 111: }
-[; ;wireMaster.c: 112: }
+[; ;wireMaster.c: 107: }
+[; ;wireMaster.c: 108: }
 [e :UE 2104 ]
 }

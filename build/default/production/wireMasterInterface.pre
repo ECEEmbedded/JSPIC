@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "wireMasterInterface.c"
 
 # 44 "C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18815,9 +18815,6 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 6 "macaw.h"
-void MacawBegin();
-
 # 6 "string2.h"
 void strcpy2(char *dest, const char *loc);
 
@@ -18835,108 +18832,15 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 8 "jwire.h"
-extern int jWireEnabled;
+# 6 "wireMasterInterface.h"
+void WireMasterInterfaceSend(char *message);
+void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
 
+# 3 "wireMasterInterface.c"
+void WireMasterInterfaceSend(char *message) {
 
-void JWireOnInterrupt();
-
-
-void JWireOnReceive(AsyncCallback_t callback);
-
-
-void JWireOnRequest(AsyncCallback_t callback);
-
-
-void JWireBegin(int id);
-
-
-void JWireRespond(char *msg);
-
-# 8 "interval.h"
-void OnIntervalInterrupt();
-
-
-void SetInterval(int delayInMs, void (*callbackToUse)());
-
-# 8 "serial.h"
-void OnSerialInterrupt();
-
-
-void OnSerial(AsyncCallback_t callback);
-
-
-void SerialBegin();
-
-
-void SerialWrite(char *data);
-
-
-void SerialWriteInterrupt();
-
-# 6 "wireMaster.h"
-extern int wireMasterEnabled;
-
-void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-
-
-void WireBegin();
-
-
-void WireOnInterrupt();
-
-# 10 "interrupts.h"
-interrupt void onInterrupt();
-
-# 7 "superSimpleSerial.h"
-void SuperSimpleSerialBegin();
-
-
-void Sout(char byte);
-
-# 14 "jspic.h"
-void onSetup();
-void onLoop();
-
-# 6 "json.h"
-void JsonNew(char* string);
-
-
-void JsonSetString(char* input, char* key, char* string);
-void JsonSetValue(char* input, char* key, int value);
-
-int JsonGetString(char* input, char* key, char* string);
-int JsonGetValue(char* input, char* key);
-
-# 4 "main.c"
-void onFinishedI2C(){
-
-for (int i = 0; i < 10; ++i)
-LA1 = ~LA1;
 }
 
-void master() {
-static char output[150];
-output[0] = 'h';
-output[1] = 'e';
-output[2] = 'l';
-output[3] = 0;
-
-
-WireSend(0x4F, output, 4, onFinishedI2C);
-}
-
-void onSetup() {
-
-TRISA = 0;
-
-
-WireBegin();
-
-
-SetInterval(100, master);
-}
-
-void onLoop() {
+void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback) {
 
 }

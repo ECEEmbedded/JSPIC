@@ -1,17 +1,24 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"35979 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _LA1 `Vb ~T0 @X0 0 e@31817 ]
 "9 async.h
-[v F16501 `(v ~T0 @X0 0 tf ]
-"8 wireMaster.h
-[v _WireSend `(v ~T0 @X0 0 ef4`i`*uc`i`*F16501 ]
-"29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"11 wireMaster.h
-[v _WireBegin `(v ~T0 @X0 0 ef ]
-"11 interval.h
-[v F16521 `(v ~T0 @X0 0 tf ]
-[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
+[v F16500 `(v ~T0 @X0 0 tf ]
+[s S2092 `i 1 `*F16500 1 ]
+[n S2092 SESSION key callback ]
+"6 wireMasterInterface.h
+[v _WireMasterInterfaceSend `(v ~T0 @X0 0 ef1`*uc ]
+"7 async.h
+[v _AsyncMessage `*uc ~T0 @X0 0 e ]
+"12 json.h
+[v _JsonGetString `(i ~T0 @X0 0 ef3`*uc`*uc`*uc ]
+"7 wireMasterInterface.h
+[v _WireMasterInterfaceOn `(v ~T0 @X0 0 ef2`*uc`*F16500 ]
+"36 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"6 json.h
+[v _JsonNew `(v ~T0 @X0 0 ef1`*uc ]
+"9
+[v _JsonSetString `(v ~T0 @X0 0 ef3`*uc`*uc`*uc ]
+"10
+[v _JsonSetValue `(v ~T0 @X0 0 ef3`*uc`*uc`i ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14844,121 +14851,266 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;async.h: 7: extern char *AsyncMessage;
 [; ;async.h: 9: typedef void (*AsyncCallback_t)();
 [; ;async.h: 12: void AsyncBegin();
 [; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
 [; ;async.h: 18: void AsyncTick();
-[; ;jwire.h: 8: extern int jWireEnabled;
-[; ;jwire.h: 11: void JWireOnInterrupt();
-[; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
-[; ;jwire.h: 17: void JWireOnRequest(AsyncCallback_t callback);
-[; ;jwire.h: 20: void JWireBegin(int id);
-[; ;jwire.h: 23: void JWireRespond(char *msg);
-[; ;interval.h: 8: void OnIntervalInterrupt();
-[; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;serial.h: 8: void OnSerialInterrupt();
-[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
-[; ;serial.h: 14: void SerialBegin();
-[; ;serial.h: 17: void SerialWrite(char *data);
-[; ;serial.h: 20: void SerialWriteInterrupt();
-[; ;wireMaster.h: 6: extern int wireMasterEnabled;
-[; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-[; ;wireMaster.h: 11: void WireBegin();
-[; ;wireMaster.h: 14: void WireOnInterrupt();
-[; ;interrupts.h: 10: interrupt void onInterrupt();
-[; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
-[; ;superSimpleSerial.h: 10: void Sout(char byte);
-[; ;jspic.h: 14: void onSetup();
-[; ;jspic.h: 15: void onLoop();
+[; ;wireMasterInterface.h: 6: void WireMasterInterfaceSend(char *message);
+[; ;wireMasterInterface.h: 7: void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
 [; ;json.h: 6: void JsonNew(char* string);
 [; ;json.h: 9: void JsonSetString(char* input, char* key, char* string);
 [; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
 [; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
 [; ;json.h: 13: int JsonGetValue(char* input, char* key);
-"4 main.c
-[v _onFinishedI2C `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 4: void onFinishedI2C(){
-[e :U _onFinishedI2C ]
-[f ]
-[; ;main.c: 6: for (int i = 0; i < 10; ++i)
-"6
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 2093  ]
-[e $U 2094  ]
-"7
-[e :U 2093 ]
-[; ;main.c: 7: LA1 = ~LA1;
-[e = _LA1 ! _LA1 ]
-"6
-[e =+ _i -> 1 `i ]
-[e $ < _i -> 10 `i 2093  ]
-[e :U 2094 ]
-"7
-}
-[; ;main.c: 8: }
-"8
-[e :UE 2092 ]
-}
-"10
-[v _master `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 10: void master() {
-[e :U _master ]
-[f ]
+[; ;twitter.h: 9: void TwitterSignUp(char *name);
+[; ;twitter.h: 12: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
+[; ;twitter.h: 13: void TweetReturn(char *msg);
+[; ;twitter.h: 16: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+"4 twitter.c
+[v _tempBuffer `uc ~T0 @X0 -> 200 `i s ]
+[; ;twitter.c: 4: static char tempBuffer[200];
+[; ;twitter.c: 7: typedef struct SESSION {
+[; ;twitter.c: 8: int key;
+[; ;twitter.c: 9: AsyncCallback_t callback;
+[; ;twitter.c: 10: } Session;
 "11
-[v F16564 `uc ~T0 @X0 -> 150 `i s output ]
-[; ;main.c: 11: static char output[150];
-[; ;main.c: 12: output[0] = 'h';
+[v _sessionA `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 11: Session sessionA;
 "12
-[e = *U + &U F16564 * -> -> -> 0 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 104 `ui `uc ]
-[; ;main.c: 13: output[1] = 'e';
+[v _sessionB `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 12: Session sessionB;
 "13
-[e = *U + &U F16564 * -> -> -> 1 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 101 `ui `uc ]
-[; ;main.c: 14: output[2] = 'l';
+[v _sessionC `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 13: Session sessionC;
 "14
-[e = *U + &U F16564 * -> -> -> 2 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 108 `ui `uc ]
-[; ;main.c: 15: output[3] = 0;
-"15
-[e = *U + &U F16564 * -> -> -> 3 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 18: WireSend(0x4F, output, 4, onFinishedI2C);
-"18
-[e ( _WireSend (4 , , , -> 79 `i &U F16564 -> 4 `i &U _onFinishedI2C ]
-[; ;main.c: 19: }
-"19
+[v _sessionD `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 14: Session sessionD;
+"24
+[v _TwitterSendToAll `(v ~T0 @X0 1 ef1`*uc ]
+{
+[; ;twitter.c: 24: void TwitterSendToAll(char *message) {
+[e :U _TwitterSendToAll ]
+[v _message `*uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;twitter.c: 25: WireMasterInterfaceSend(message);
+"25
+[e ( _WireMasterInterfaceSend (1 _message ]
+[; ;twitter.c: 26: }
+"26
+[e :UE 2093 ]
+}
+"29
+[v _TwitterOnReceive `(v ~T0 @X0 1 ef ]
+{
+[; ;twitter.c: 29: void TwitterOnReceive() {
+[e :U _TwitterOnReceive ]
+[f ]
+"30
+[v _message `*uc ~T0 @X0 1 a ]
+[; ;twitter.c: 30: char *message = AsyncMessage;
+[e = _message _AsyncMessage ]
+[; ;twitter.c: 33: JsonGetString(message, "to", tempBuffer);
+"33
+[e ( _JsonGetString (3 , , _message -> :s 1C `*uc &U _tempBuffer ]
+[; ;twitter.c: 36: if (tempBuffer[0] == '#') {
+"36
+[e $ ! == -> *U + &U _tempBuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempBuffer `ui `ux `ui -> 35 `ui 2095  ]
+{
+[; ;twitter.c: 41: TwitterSendToAll(message);
+"41
+[e ( _TwitterSendToAll (1 _message ]
+"42
+}
+[e :U 2095 ]
+[; ;twitter.c: 42: }
+[; ;twitter.c: 43: }
+"43
+[e :UE 2094 ]
+}
+"46
+[v _TwitterCustomSetup `(v ~T0 @X0 1 ef ]
+{
+[; ;twitter.c: 46: void TwitterCustomSetup() {
+[e :U _TwitterCustomSetup ]
+[f ]
+[; ;twitter.c: 47: WireMasterInterfaceOn("rcv", TwitterOnReceive);
+"47
+[e ( _WireMasterInterfaceOn (2 , -> :s 2C `*uc &U _TwitterOnReceive ]
+[; ;twitter.c: 48: }
+"48
 [e :UE 2096 ]
 }
-"21
-[v _onSetup `(v ~T0 @X0 1 ef ]
+"51
+[v _name `uc ~T0 @X0 -> 20 `i s ]
+[; ;twitter.c: 51: static char name[20];
+"52
+[v _TwitterSignUp `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;main.c: 21: void onSetup() {
-[e :U _onSetup ]
+[; ;twitter.c: 52: void TwitterSignUp(char *nameToUse) {
+[e :U _TwitterSignUp ]
+[v _nameToUse `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 23: TRISA = 0;
-"23
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 26: WireBegin();
-"26
-[e ( _WireBegin ..  ]
-[; ;main.c: 29: SetInterval(100, master);
-"29
-[e ( _SetInterval (2 , -> 100 `i &U _master ]
-[; ;main.c: 30: }
-"30
+[; ;twitter.c: 53: strcpy(name, nameToUse);
+"53
+[e ( _strcpy (2 , &U _name -> _nameToUse `*Cuc ]
+[; ;twitter.c: 56: sessionA.key = -1;
+"56
+[e = . _sessionA 0 -U -> 1 `i ]
+[; ;twitter.c: 57: sessionB.key = -1;
+"57
+[e = . _sessionB 0 -U -> 1 `i ]
+[; ;twitter.c: 58: sessionC.key = -1;
+"58
+[e = . _sessionC 0 -U -> 1 `i ]
+[; ;twitter.c: 59: sessionD.key = -1;
+"59
+[e = . _sessionD 0 -U -> 1 `i ]
+[; ;twitter.c: 61: }
+"61
 [e :UE 2097 ]
 }
-"32
-[v _onLoop `(v ~T0 @X0 1 ef ]
+"63
+[v _Tweet `(v ~T0 @X0 1 ef4`*uc`*uc`*uc`*F16500 ]
 {
-[; ;main.c: 32: void onLoop() {
-[e :U _onLoop ]
+[; ;twitter.c: 63: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {
+[e :U _Tweet ]
+[v _subject `*uc ~T0 @X0 1 r1 ]
+[v _to `*uc ~T0 @X0 1 r2 ]
+[v _message `*uc ~T0 @X0 1 r3 ]
+[v _callback `*F16500 ~T0 @X0 1 r4 ]
 [f ]
-[; ;main.c: 34: }
-"34
+"65
+[v F16561 `i ~T0 @X0 1 s sessionKey ]
+[i F16561
+-> 0 `i
+]
+[; ;twitter.c: 65: static int sessionKey = 0;
+[; ;twitter.c: 68: if (to[0] == '#') {
+"68
+[e $ ! == -> *U + _to * -> -> 0 `i `x -> -> # *U _to `i `x `ui -> 35 `ui 2099  ]
+{
+[; ;twitter.c: 69: JsonNew(tempBuffer);
+"69
+[e ( _JsonNew (1 &U _tempBuffer ]
+[; ;twitter.c: 70: JsonSetString(tempBuffer, "from", name);
+"70
+[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 3C `*uc &U _name ]
+[; ;twitter.c: 71: JsonSetString(tempBuffer, "msg", message);
+"71
+[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 4C `*uc _message ]
+[; ;twitter.c: 72: JsonSetString(tempBuffer, "to", to);
+"72
+[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 5C `*uc _to ]
+[; ;twitter.c: 75: if (callback) {
+"75
+[e $ ! != _callback -> -> 0 `i `*F16500 2100  ]
+{
+"77
+[v F16562 `i ~T0 @X0 1 s nextSession ]
+[i F16562
+-> 0 `i
+]
+[; ;twitter.c: 77: static int nextSession = 0;
+[; ;twitter.c: 80: if (nextSession == 0) {
+"80
+[e $ ! == F16562 -> 0 `i 2101  ]
+{
+[; ;twitter.c: 81: sessionA.callback = callback;
+"81
+[e = . _sessionA 1 _callback ]
+[; ;twitter.c: 82: sessionA.key = sessionKey;
+"82
+[e = . _sessionA 0 F16561 ]
+"83
+}
+[; ;twitter.c: 83: } else if (nextSession == 1) {
+[e $U 2102  ]
+[e :U 2101 ]
+[e $ ! == F16562 -> 1 `i 2103  ]
+{
+[; ;twitter.c: 84: sessionB.callback = callback;
+"84
+[e = . _sessionB 1 _callback ]
+[; ;twitter.c: 85: sessionB.key = sessionKey;
+"85
+[e = . _sessionB 0 F16561 ]
+"86
+}
+[; ;twitter.c: 86: } else if (nextSession == 2) {
+[e $U 2104  ]
+[e :U 2103 ]
+[e $ ! == F16562 -> 2 `i 2105  ]
+{
+[; ;twitter.c: 87: sessionC.callback = callback;
+"87
+[e = . _sessionC 1 _callback ]
+[; ;twitter.c: 88: sessionC.key = sessionKey;
+"88
+[e = . _sessionC 0 F16561 ]
+"89
+}
+[; ;twitter.c: 89: } else if (nextSession == 3) {
+[e $U 2106  ]
+[e :U 2105 ]
+[e $ ! == F16562 -> 3 `i 2107  ]
+{
+[; ;twitter.c: 90: sessionD.callback = callback;
+"90
+[e = . _sessionD 1 _callback ]
+[; ;twitter.c: 91: sessionD.key = sessionKey;
+"91
+[e = . _sessionD 0 F16561 ]
+"92
+}
+[e :U 2107 ]
+"94
+[e :U 2106 ]
+[e :U 2104 ]
+[e :U 2102 ]
+[; ;twitter.c: 92: }
+[; ;twitter.c: 94: ++nextSession;
+[e =+ F16562 -> 1 `i ]
+[; ;twitter.c: 95: nextSession = nextSession % 4;
+"95
+[e = F16562 % F16562 -> 4 `i ]
+[; ;twitter.c: 97: JsonSetValue(tempBuffer, "key", sessionKey);
+"97
+[e ( _JsonSetValue (3 , , &U _tempBuffer -> :s 6C `*uc F16561 ]
+"98
+}
+[e :U 2100 ]
+[; ;twitter.c: 98: }
+[; ;twitter.c: 101: TwitterSendToAll(tempBuffer);
+"101
+[e ( _TwitterSendToAll (1 &U _tempBuffer ]
+"102
+}
+[e :U 2099 ]
+[; ;twitter.c: 102: }
+[; ;twitter.c: 104: ++sessionKey;
+"104
+[e =+ F16561 -> 1 `i ]
+[; ;twitter.c: 105: }
+"105
 [e :UE 2098 ]
 }
+"107
+[v _TwitterRegisterHashtag `(v ~T0 @X0 1 ef2`*uc`*F16500 ]
+{
+[; ;twitter.c: 107: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback) {
+[e :U _TwitterRegisterHashtag ]
+[v _hashtag `*uc ~T0 @X0 1 r1 ]
+[v _callback `*F16500 ~T0 @X0 1 r2 ]
+[f ]
+[; ;twitter.c: 108: }
+"108
+[e :UE 2108 ]
+}
+[a 6C 107 101 121 0 ]
+[a 2C 114 99 118 0 ]
+[a 1C 116 111 0 ]
+[a 5C 116 111 0 ]
+[a 3C 102 114 111 109 0 ]
+[a 4C 109 115 103 0 ]

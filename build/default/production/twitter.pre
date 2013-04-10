@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "twitter.c"
 
 # 44 "C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18815,9 +18815,6 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 6 "macaw.h"
-void MacawBegin();
-
 # 6 "string2.h"
 void strcpy2(char *dest, const char *loc);
 
@@ -18835,68 +18832,9 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 8 "jwire.h"
-extern int jWireEnabled;
-
-
-void JWireOnInterrupt();
-
-
-void JWireOnReceive(AsyncCallback_t callback);
-
-
-void JWireOnRequest(AsyncCallback_t callback);
-
-
-void JWireBegin(int id);
-
-
-void JWireRespond(char *msg);
-
-# 8 "interval.h"
-void OnIntervalInterrupt();
-
-
-void SetInterval(int delayInMs, void (*callbackToUse)());
-
-# 8 "serial.h"
-void OnSerialInterrupt();
-
-
-void OnSerial(AsyncCallback_t callback);
-
-
-void SerialBegin();
-
-
-void SerialWrite(char *data);
-
-
-void SerialWriteInterrupt();
-
-# 6 "wireMaster.h"
-extern int wireMasterEnabled;
-
-void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-
-
-void WireBegin();
-
-
-void WireOnInterrupt();
-
-# 10 "interrupts.h"
-interrupt void onInterrupt();
-
-# 7 "superSimpleSerial.h"
-void SuperSimpleSerialBegin();
-
-
-void Sout(char byte);
-
-# 14 "jspic.h"
-void onSetup();
-void onLoop();
+# 6 "wireMasterInterface.h"
+void WireMasterInterfaceSend(char *message);
+void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
 
 # 6 "json.h"
 void JsonNew(char* string);
@@ -18908,35 +18846,112 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 4 "main.c"
-void onFinishedI2C(){
+# 9 "twitter.h"
+void TwitterSignUp(char *name);
 
-for (int i = 0; i < 10; ++i)
-LA1 = ~LA1;
+
+void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
+void TweetReturn(char *msg);
+
+
+void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+
+# 4 "twitter.c"
+static char tempBuffer[200];
+
+
+typedef struct SESSION {
+int key;
+AsyncCallback_t callback;
+} Session;
+Session sessionA;
+Session sessionB;
+Session sessionC;
+Session sessionD;
+
+# 24
+void TwitterSendToAll(char *message) {
+WireMasterInterfaceSend(message);
 }
 
-void master() {
-static char output[150];
-output[0] = 'h';
-output[1] = 'e';
-output[2] = 'l';
-output[3] = 0;
+
+void TwitterOnReceive() {
+char *message = AsyncMessage;
 
 
-WireSend(0x4F, output, 4, onFinishedI2C);
+JsonGetString(message, "to", tempBuffer);
+
+
+if (tempBuffer[0] == '#') {
+
+
+
+
+TwitterSendToAll(message);
+}
 }
 
-void onSetup() {
 
-TRISA = 0;
-
-
-WireBegin();
-
-
-SetInterval(100, master);
+void TwitterCustomSetup() {
+WireMasterInterfaceOn("rcv", TwitterOnReceive);
 }
 
-void onLoop() {
 
+static char name[20];
+void TwitterSignUp(char *nameToUse) {
+strcpy(name, nameToUse);
+
+
+sessionA.key = -1;
+sessionB.key = -1;
+sessionC.key = -1;
+sessionD.key = -1;
+
+}
+
+void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {
+
+static int sessionKey = 0;
+
+
+if (to[0] == '#') {
+JsonNew(tempBuffer);
+JsonSetString(tempBuffer, "from", name);
+JsonSetString(tempBuffer, "msg", message);
+JsonSetString(tempBuffer, "to", to);
+
+
+if (callback) {
+
+static int nextSession = 0;
+
+
+if (nextSession == 0) {
+sessionA.callback = callback;
+sessionA.key = sessionKey;
+} else if (nextSession == 1) {
+sessionB.callback = callback;
+sessionB.key = sessionKey;
+} else if (nextSession == 2) {
+sessionC.callback = callback;
+sessionC.key = sessionKey;
+} else if (nextSession == 3) {
+sessionD.callback = callback;
+sessionD.key = sessionKey;
+}
+
+++nextSession;
+nextSession = nextSession % 4;
+
+JsonSetValue(tempBuffer, "key", sessionKey);
+}
+
+
+TwitterSendToAll(tempBuffer);
+}
+
+++sessionKey;
+}
+
+void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback) {
 }

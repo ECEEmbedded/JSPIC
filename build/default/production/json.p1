@@ -14842,11 +14842,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;json.h: 6: void jsonNew(char* string);
-[; ;json.h: 9: void jsonSetString(char* input, char* key, char* string);
-[; ;json.h: 10: void jsonSetValue(char* input, char* key, int value);
-[; ;json.h: 12: int jsonGetString(char* input, char* key, char* string);
-[; ;json.h: 13: int jsonGetValue(char* input, char* key);
+[; ;json.h: 6: void JsonNew(char* string);
+[; ;json.h: 9: void JsonSetString(char* input, char* key, char* string);
+[; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
+[; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
+[; ;json.h: 13: int JsonGetValue(char* input, char* key);
 [; ;string.h: 22: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 23: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 24: extern void * memset(void *, int, size_t);
@@ -14885,10 +14885,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _result `uc ~T0 @X0 -> 200 `i s ]
 [; ;json.c: 22: static char result[200];
 "24
-[v _jsonNew `(v ~T0 @X0 1 ef1`*uc ]
+[v _JsonNew `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;json.c: 24: void jsonNew(char* string) {
-[e :U _jsonNew ]
+[; ;json.c: 24: void JsonNew(char* string) {
+[e :U _JsonNew ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
 [; ;json.c: 25: sprintf(string, "{\n}");
@@ -14899,10 +14899,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2092 ]
 }
 "28
-[v _jsonGetValue `(i ~T0 @X0 1 ef2`*uc`*uc ]
+[v _JsonGetValue `(i ~T0 @X0 1 ef2`*uc`*uc ]
 {
-[; ;json.c: 28: int jsonGetValue(char* input, char* key) {
-[e :U _jsonGetValue ]
+[; ;json.c: 28: int JsonGetValue(char* input, char* key) {
+[e :U _JsonGetValue ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [f ]
@@ -15019,10 +15019,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2093 ]
 }
 "65
-[v _jsonSetString `(v ~T0 @X0 1 ef3`*uc`*uc`*uc ]
+[v _JsonSetString `(v ~T0 @X0 1 ef3`*uc`*uc`*uc ]
 {
-[; ;json.c: 65: void jsonSetString(char* input, char* key, char* str) {
-[e :U _jsonSetString ]
+[; ;json.c: 65: void JsonSetString(char* input, char* key, char* str) {
+[e :U _JsonSetString ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [v _str `*uc ~T0 @X0 1 r3 ]
@@ -15045,10 +15045,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2101 ]
 }
 "72
-[v _jsonSetValue `(v ~T0 @X0 1 ef3`*uc`*uc`i ]
+[v _JsonSetValue `(v ~T0 @X0 1 ef3`*uc`*uc`i ]
 {
-[; ;json.c: 72: void jsonSetValue(char* input, char* key, int value) {
-[e :U _jsonSetValue ]
+[; ;json.c: 72: void JsonSetValue(char* input, char* key, int value) {
+[e :U _JsonSetValue ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [v _value `i ~T0 @X0 1 r3 ]
@@ -15071,10 +15071,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2102 ]
 }
 "80
-[v _jsonGetString `(i ~T0 @X0 1 ef3`*uc`*uc`*uc ]
+[v _JsonGetString `(i ~T0 @X0 1 ef3`*uc`*uc`*uc ]
 {
-[; ;json.c: 80: int jsonGetString(char* input, char* key, char* string) {
-[e :U _jsonGetString ]
+[; ;json.c: 80: int JsonGetString(char* input, char* key, char* string) {
+[e :U _JsonGetString ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [v _string `*uc ~T0 @X0 1 r3 ]

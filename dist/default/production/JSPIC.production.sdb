@@ -281,9 +281,13 @@
 [v F16501 `(v  1 t 0 ]
 "11 interval.h
 [v F16521 `(v  1 t 0 ]
+"9 async.h
+[v async@F16500 `(v  1 t 0 ]
+[s S844 SESSION 4 `i 1 key 2 0 `*.M(v 1 callback 2 2 ]
+[v async@F16500 `(v  1 t 0 ]
 "533 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
-[s S881 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
-[u S884 . 5 `ui 1 _val 2 0 `S881 1 _str 5 0 ]
+[s S924 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
+[u S927 . 5 `ui 1 _val 2 0 `S924 1 _str 5 0 ]
 "5 ../common/asfladd.c
 [v ___asfladd `(d  1 e 3 0 ]
 "5 ../common/asfldiv.c
@@ -441,15 +445,15 @@
 "34
 [v _SetInterval `(v  1 e 0 0 ]
 "24 json.c
-[v _jsonNew `(v  1 e 0 0 ]
+[v _JsonNew `(v  1 e 0 0 ]
 "28
-[v _jsonGetValue `(i  1 e 2 0 ]
+[v _JsonGetValue `(i  1 e 2 0 ]
 "65
-[v _jsonSetString `(v  1 e 0 0 ]
+[v _JsonSetString `(v  1 e 0 0 ]
 "72
-[v _jsonSetValue `(v  1 e 0 0 ]
+[v _JsonSetValue `(v  1 e 0 0 ]
 "80
-[v _jsonGetString `(i  1 e 2 0 ]
+[v _JsonGetString `(i  1 e 2 0 ]
 "26 jspic.c
 [v _main `(i  1 e 2 0 ]
 "25 jwire.c
@@ -465,12 +469,12 @@
 "3 macaw.c
 [v _MacawBegin `(v  1 e 0 0 ]
 "4 main.c
-[v _blah `(v  1 e 0 0 ]
-"9
+[v _onFinishedI2C `(v  1 e 0 0 ]
+"10
 [v _master `(v  1 e 0 0 ]
-"20
+"21
 [v _onSetup `(v  1 e 0 0 ]
-"28
+"32
 [v _onLoop `(v  1 e 0 0 ]
 "12 serial.c
 [v _OnSerialInterrupt `(v  1 e 0 0 ]
@@ -490,14 +494,30 @@
 [v _Sout `(v  1 e 0 0 ]
 "29
 [v _putch `(v  1 e 0 0 ]
-"31 wireMaster.c
+"24 twitter.c
+[v _TwitterSendToAll `(v  1 e 0 0 ]
+"29
+[v _TwitterOnReceive `(v  1 e 0 0 ]
+"46
+[v _TwitterCustomSetup `(v  1 e 0 0 ]
+"52
+[v _TwitterSignUp `(v  1 e 0 0 ]
+"63
+[v _Tweet `(v  1 e 0 0 ]
+"107
+[v _TwitterRegisterHashtag `(v  1 e 0 0 ]
+"29 wireMaster.c
 [v _WireBegin `(v  1 e 0 0 ]
-"50
+"46
 [v _TryToHelp `(v  1 e 0 0 ]
-"70
+"66
 [v _WireSend `(v  1 e 0 0 ]
-"93
+"89
 [v _WireOnInterrupt `(v  1 e 0 0 ]
+"3 wireMasterInterface.c
+[v _WireMasterInterfaceSend `(v  1 e 0 0 ]
+"7
+[v _WireMasterInterfaceOn `(v  1 e 0 0 ]
 "6 async.c
 [v _callbackA `*.f(v  1 e 2 0 ]
 "7
@@ -770,8 +790,6 @@
 [v _TXIE `VEb  1 e 0 @31980 ]
 "38957
 [v _TXIF `VEb  1 e 0 @31988 ]
-"354 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
-[v _dpowers `C[5]ui  1 s 10 dpowers ]
 [s S175 INTERVAL_CALLBACK_T 4 `*.f(v 1 function 2 0 `s 1 delay 2 2 ]
 "9 interval.c
 [v interval@callbackA `S175  1 s 4 callbackA ]
@@ -809,6 +827,10 @@
 [v _writeBufferPosition `i  1 s 2 writeBufferPosition ]
 "68
 [v _isDoneTransmitting `i  1 s 2 isDoneTransmitting ]
+"4 twitter.c
+[v _tempBuffer `[200]uc  1 s 200 tempBuffer ]
+"51
+[v _name `[20]uc  1 s 20 name ]
 "3 wireMaster.c
 [v _wireMasterEnabled `i  1 e 2 0 ]
 [s S779 . 108 `i 1 address 2 0 `[100]uc 1 data 100 2 `i 1 bytesSent 2 102 `i 1 len 2 104 `*.f(v 1 callback 2 106 ]
@@ -816,9 +838,9 @@
 [v _wireSendA `S779  1 s 108 wireSendA ]
 "14
 [v _wireSendB `S779  1 s 108 wireSendB ]
-"26
+"24
 [v _state `i  1 s 2 state ]
-"29
+"27
 [v _personBeingHelped `*.bS779  1 s 2 personBeingHelped ]
 "26 jspic.c
 [v _main `(i  1 e 2 0 ]
@@ -840,29 +862,29 @@
 {
 "19
 } 0
-"20 main.c
+"21 main.c
 [v _onSetup `(v  1 e 0 0 ]
 {
-"26
+"30
 } 0
 "34 interval.c
 [v _SetInterval `(v  1 e 0 0 ]
 {
-[v SetInterval@delayInMs `i  1 p 2 14 ]
-[v SetInterval@callbackToUse `*.f(v  1 p 2 16 ]
+[v SetInterval@delayInMs `i  1 p 2 0 ]
+[v SetInterval@callbackToUse `*.f(v  1 p 2 2 ]
 "36
 [v SetInterval@hasLoaded `uc  1 s 1 hasLoaded ]
 "63
 } 0
-"28 main.c
+"32 main.c
 [v _onLoop `(v  1 e 0 0 ]
 {
-"29
+"34
 } 0
-"31 wireMaster.c
+"29 wireMaster.c
 [v _WireBegin `(v  1 e 0 0 ]
 {
-"48
+"44
 } 0
 "3 interrupts.c
 [v _onInterrupt `II(v  1 e 0 0 ]
@@ -881,10 +903,10 @@
 [v JWireOnInterrupt@data `i  1 a 2 8 ]
 "84
 } 0
-"93 wireMaster.c
+"89 wireMaster.c
 [v _WireOnInterrupt `(v  1 e 0 0 ]
 {
-"112
+"108
 } 0
 "29 interval.c
 [v _OnIntervalInterrupt `(v  1 e 0 0 ]
@@ -905,17 +927,24 @@
 [v Async@string `*.buc  1 p 2 6 ]
 "35
 } 0
+"3 string2.c
+[v _strcpy2 `(v  1 e 0 0 ]
+{
+[v strcpy2@dest `*.buc  1 p 2 0 ]
+[v strcpy2@loc `*.bCuc  1 p 2 2 ]
+"14
+} 0
 "86 serial.c
 [v _SerialWriteInterrupt `(v  1 e 0 0 ]
 {
 "106
 } 0
 "4 main.c
-[v _blah `(v  1 e 0 0 ]
+[v _onFinishedI2C `(v  1 e 0 0 ]
 {
-"5
-[v blah@i `i  1 a 2 0 ]
-"7
+"6
+[v onFinishedI2C@i `i  1 a 2 0 ]
+"8
 } 0
 "14 interval.c
 [v _IntervalTick `(v  1 e 0 0 ]
@@ -924,92 +953,26 @@
 [v IntervalTick@time `i  1 s 2 time ]
 "27
 } 0
-"9 main.c
+"10 main.c
 [v _master `(v  1 e 0 0 ]
 {
-"10
+"11
 [v master@output `[150]uc  1 s 150 output ]
-"12
-[v master@count `i  1 s 2 count ]
-"18
+"19
 } 0
-"24 json.c
-[v _jsonNew `(v  1 e 0 0 ]
-{
-[v jsonNew@string `*.buc  1 p 2 32 ]
-"26
-} 0
-"65
-[v _jsonSetString `(v  1 e 0 0 ]
-{
-"66
-[v jsonSetString@original_json_input_len `ul  1 a 4 38 ]
-"65
-[v jsonSetString@input `*.buc  1 p 2 32 ]
-[v jsonSetString@key `*.cuc  1 p 1 34 ]
-[v jsonSetString@str `*.cuc  1 p 1 35 ]
-"70
-} 0
-"72
-[v _jsonSetValue `(v  1 e 0 0 ]
-{
-"74
-[v jsonSetValue@original_json_input_len `ul  1 a 4 39 ]
-"72
-[v jsonSetValue@input `*.buc  1 p 2 32 ]
-[v jsonSetValue@key `*.cuc  1 p 1 34 ]
-[v jsonSetValue@value `i  1 p 2 35 ]
-"78
-} 0
-"3 string2.c
-[v _strcpy2 `(v  1 e 0 0 ]
-{
-[v strcpy2@dest `*.buc  1 p 2 0 ]
-[v strcpy2@loc `*.bCuc  1 p 2 2 ]
-"14
-} 0
-"493 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
-[v _sprintf `(i  1 e 2 0 ]
-{
-[s S881 . 4 `*.sCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
-"533
-[u S884 . 4 `ui 1 _val 2 0 `S881 1 _str 4 0 ]
-[v sprintf@_val `S884  1 a 4 27 ]
-"499
-[v sprintf@c `c  1 a 1 31 ]
-"494
-[v sprintf@ap `[1]*.sv  1 a 1 26 ]
-"506
-[v sprintf@prec `c  1 a 1 25 ]
-"508
-[v sprintf@flag `uc  1 a 1 24 ]
-"493
-[v sprintf@sp `*.buc  1 p 2 12 ]
-[v sprintf@f `*.cCuc  1 p 1 14 ]
-"1548
-} 0
-"5 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\strlen.c
-[v _strlen `(ui  1 e 2 0 ]
-{
-"6
-[v strlen@cp `*.sCuc  1 a 2 2 ]
-"5
-[v strlen@s `*.sCuc  1 p 2 0 ]
-"13
-} 0
-"70 wireMaster.c
+"66 wireMaster.c
 [v _WireSend `(v  1 e 0 0 ]
 {
 [v WireSend@address `i  1 p 2 10 ]
 [v WireSend@data `*.buc  1 p 2 12 ]
 [v WireSend@len `i  1 p 2 14 ]
 [v WireSend@callback `*.f(v  1 p 2 16 ]
-"91
+"87
 } 0
-"50
+"46
 [v _TryToHelp `(v  1 e 0 0 ]
 {
-"68
+"64
 } 0
 "13 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\memcpy.c
 [v _memcpy `(*.Mv  1 e 1 0 ]
@@ -1034,28 +997,6 @@
 [v ___awmod@dividend `i  1 p 2 0 ]
 [v ___awmod@divisor `i  1 p 2 2 ]
 "35
-} 0
-"10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\lwdiv.c
-[v ___lwdiv `(ui  1 e 2 0 ]
-{
-"11
-[v ___lwdiv@quotient `ui  1 a 2 4 ]
-"12
-[v ___lwdiv@counter `uc  1 a 1 6 ]
-"10
-[v ___lwdiv@dividend `ui  1 p 2 0 ]
-[v ___lwdiv@divisor `ui  1 p 2 2 ]
-"31
-} 0
-"10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\lwmod.c
-[v ___lwmod `(ui  1 e 2 0 ]
-{
-"11
-[v ___lwmod@counter `uc  1 a 1 11 ]
-"10
-[v ___lwmod@dividend `ui  1 p 2 7 ]
-[v ___lwmod@divisor `ui  1 p 2 9 ]
-"26
 } 0
 "63 async.c
 [v i2_AsyncBegin `(v  1 e 0 0 ]

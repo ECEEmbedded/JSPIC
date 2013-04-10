@@ -1,17 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"35979 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _LA1 `Vb ~T0 @X0 0 e@31817 ]
 "9 async.h
-[v F16501 `(v ~T0 @X0 0 tf ]
-"8 wireMaster.h
-[v _WireSend `(v ~T0 @X0 0 ef4`i`*uc`i`*F16501 ]
-"29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"11 wireMaster.h
-[v _WireBegin `(v ~T0 @X0 0 ef ]
-"11 interval.h
-[v F16521 `(v ~T0 @X0 0 tf ]
-[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
+[v F16500 `(v ~T0 @X0 0 tf ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14844,121 +14833,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
 [; ;async.h: 7: extern char *AsyncMessage;
 [; ;async.h: 9: typedef void (*AsyncCallback_t)();
 [; ;async.h: 12: void AsyncBegin();
 [; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
 [; ;async.h: 18: void AsyncTick();
-[; ;jwire.h: 8: extern int jWireEnabled;
-[; ;jwire.h: 11: void JWireOnInterrupt();
-[; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
-[; ;jwire.h: 17: void JWireOnRequest(AsyncCallback_t callback);
-[; ;jwire.h: 20: void JWireBegin(int id);
-[; ;jwire.h: 23: void JWireRespond(char *msg);
-[; ;interval.h: 8: void OnIntervalInterrupt();
-[; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;serial.h: 8: void OnSerialInterrupt();
-[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
-[; ;serial.h: 14: void SerialBegin();
-[; ;serial.h: 17: void SerialWrite(char *data);
-[; ;serial.h: 20: void SerialWriteInterrupt();
-[; ;wireMaster.h: 6: extern int wireMasterEnabled;
-[; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-[; ;wireMaster.h: 11: void WireBegin();
-[; ;wireMaster.h: 14: void WireOnInterrupt();
-[; ;interrupts.h: 10: interrupt void onInterrupt();
-[; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
-[; ;superSimpleSerial.h: 10: void Sout(char byte);
-[; ;jspic.h: 14: void onSetup();
-[; ;jspic.h: 15: void onLoop();
-[; ;json.h: 6: void JsonNew(char* string);
-[; ;json.h: 9: void JsonSetString(char* input, char* key, char* string);
-[; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
-[; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
-[; ;json.h: 13: int JsonGetValue(char* input, char* key);
-"4 main.c
-[v _onFinishedI2C `(v ~T0 @X0 1 ef ]
+[; ;wireMasterInterface.h: 6: void WireMasterInterfaceSend(char *message);
+[; ;wireMasterInterface.h: 7: void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
+"3 wireMasterInterface.c
+[v _WireMasterInterfaceSend `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;main.c: 4: void onFinishedI2C(){
-[e :U _onFinishedI2C ]
+[; ;wireMasterInterface.c: 3: void WireMasterInterfaceSend(char *message) {
+[e :U _WireMasterInterfaceSend ]
+[v _message `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 6: for (int i = 0; i < 10; ++i)
-"6
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 2093  ]
-[e $U 2094  ]
-"7
-[e :U 2093 ]
-[; ;main.c: 7: LA1 = ~LA1;
-[e = _LA1 ! _LA1 ]
-"6
-[e =+ _i -> 1 `i ]
-[e $ < _i -> 10 `i 2093  ]
-[e :U 2094 ]
-"7
-}
-[; ;main.c: 8: }
-"8
+[; ;wireMasterInterface.c: 5: }
+"5
 [e :UE 2092 ]
 }
-"10
-[v _master `(v ~T0 @X0 1 ef ]
+"7
+[v _WireMasterInterfaceOn `(v ~T0 @X0 1 ef2`*uc`*F16500 ]
 {
-[; ;main.c: 10: void master() {
-[e :U _master ]
+[; ;wireMasterInterface.c: 7: void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback) {
+[e :U _WireMasterInterfaceOn ]
+[v _eventName `*uc ~T0 @X0 1 r1 ]
+[v _callback `*F16500 ~T0 @X0 1 r2 ]
 [f ]
-"11
-[v F16564 `uc ~T0 @X0 -> 150 `i s output ]
-[; ;main.c: 11: static char output[150];
-[; ;main.c: 12: output[0] = 'h';
-"12
-[e = *U + &U F16564 * -> -> -> 0 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 104 `ui `uc ]
-[; ;main.c: 13: output[1] = 'e';
-"13
-[e = *U + &U F16564 * -> -> -> 1 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 101 `ui `uc ]
-[; ;main.c: 14: output[2] = 'l';
-"14
-[e = *U + &U F16564 * -> -> -> 2 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 108 `ui `uc ]
-[; ;main.c: 15: output[3] = 0;
-"15
-[e = *U + &U F16564 * -> -> -> 3 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 18: WireSend(0x4F, output, 4, onFinishedI2C);
-"18
-[e ( _WireSend (4 , , , -> 79 `i &U F16564 -> 4 `i &U _onFinishedI2C ]
-[; ;main.c: 19: }
-"19
-[e :UE 2096 ]
-}
-"21
-[v _onSetup `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 21: void onSetup() {
-[e :U _onSetup ]
-[f ]
-[; ;main.c: 23: TRISA = 0;
-"23
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 26: WireBegin();
-"26
-[e ( _WireBegin ..  ]
-[; ;main.c: 29: SetInterval(100, master);
-"29
-[e ( _SetInterval (2 , -> 100 `i &U _master ]
-[; ;main.c: 30: }
-"30
-[e :UE 2097 ]
-}
-"32
-[v _onLoop `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 32: void onLoop() {
-[e :U _onLoop ]
-[f ]
-[; ;main.c: 34: }
-"34
-[e :UE 2098 ]
+[; ;wireMasterInterface.c: 9: }
+"9
+[e :UE 2093 ]
 }
