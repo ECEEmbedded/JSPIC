@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"35979 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _LA1 `Vb ~T0 @X0 0 e@31817 ]
+"206 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "9 async.h
 [v F16501 `(v ~T0 @X0 0 tf ]
 "8 wireMaster.h
@@ -14884,81 +14884,70 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 4: void onFinishedI2C(){
 [e :U _onFinishedI2C ]
 [f ]
-[; ;main.c: 6: for (int i = 0; i < 10; ++i)
+[; ;main.c: 6: printf("I2C mesage was sent");
 "6
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 2093  ]
-[e $U 2094  ]
+[e ( _printf :s 1C ]
+[; ;main.c: 7: }
 "7
-[e :U 2093 ]
-[; ;main.c: 7: LA1 = ~LA1;
-[e = _LA1 ! _LA1 ]
-"6
-[e =+ _i -> 1 `i ]
-[e $ < _i -> 10 `i 2093  ]
-[e :U 2094 ]
-"7
-}
-[; ;main.c: 8: }
-"8
 [e :UE 2092 ]
 }
-"10
+"9
 [v _master `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 10: void master() {
+[; ;main.c: 9: void master() {
 [e :U _master ]
 [f ]
+"10
+[v F16563 `uc ~T0 @X0 -> 150 `i s output ]
+[; ;main.c: 10: static char output[150];
+[; ;main.c: 11: output[0] = 'h';
 "11
-[v F16564 `uc ~T0 @X0 -> 150 `i s output ]
-[; ;main.c: 11: static char output[150];
-[; ;main.c: 12: output[0] = 'h';
+[e = *U + &U F16563 * -> -> -> 0 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 104 `ui `uc ]
+[; ;main.c: 12: output[1] = 'e';
 "12
-[e = *U + &U F16564 * -> -> -> 0 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 104 `ui `uc ]
-[; ;main.c: 13: output[1] = 'e';
+[e = *U + &U F16563 * -> -> -> 1 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 101 `ui `uc ]
+[; ;main.c: 13: output[2] = 'l';
 "13
-[e = *U + &U F16564 * -> -> -> 1 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 101 `ui `uc ]
-[; ;main.c: 14: output[2] = 'l';
+[e = *U + &U F16563 * -> -> -> 2 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 108 `ui `uc ]
+[; ;main.c: 14: output[3] = 0;
 "14
-[e = *U + &U F16564 * -> -> -> 2 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 108 `ui `uc ]
-[; ;main.c: 15: output[3] = 0;
-"15
-[e = *U + &U F16564 * -> -> -> 3 `i `ui `ux -> -> # *U &U F16564 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 18: WireSend(0x4F, output, 4, onFinishedI2C);
+[e = *U + &U F16563 * -> -> -> 3 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 0 `i `uc ]
+[; ;main.c: 17: WireSend(0x4F, output, 4, onFinishedI2C);
+"17
+[e ( _WireSend (4 , , , -> 79 `i &U F16563 -> 4 `i &U _onFinishedI2C ]
+[; ;main.c: 18: }
 "18
-[e ( _WireSend (4 , , , -> 79 `i &U F16564 -> 4 `i &U _onFinishedI2C ]
-[; ;main.c: 19: }
-"19
-[e :UE 2096 ]
+[e :UE 2093 ]
 }
-"21
+"20
 [v _onSetup `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 21: void onSetup() {
+[; ;main.c: 20: void onSetup() {
 [e :U _onSetup ]
 [f ]
-[; ;main.c: 23: TRISA = 0;
-"23
+[; ;main.c: 22: TRISA = 0;
+"22
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 26: WireBegin();
-"26
+[; ;main.c: 25: WireBegin();
+"25
 [e ( _WireBegin ..  ]
-[; ;main.c: 29: SetInterval(100, master);
-"29
+[; ;main.c: 28: SetInterval(100, master);
+"28
 [e ( _SetInterval (2 , -> 100 `i &U _master ]
-[; ;main.c: 30: }
-"30
-[e :UE 2097 ]
+[; ;main.c: 29: }
+"29
+[e :UE 2094 ]
 }
-"32
+"31
 [v _onLoop `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 32: void onLoop() {
+[; ;main.c: 31: void onLoop() {
 [e :U _onLoop ]
 [f ]
-[; ;main.c: 34: }
-"34
-[e :UE 2098 ]
+[; ;main.c: 33: }
+"33
+[e :UE 2095 ]
 }
+[p f _printf 8388608 ]
+[a 1C 73 50 67 32 109 101 115 97 103 101 32 119 97 115 32 115 101 110 116 0 ]
+

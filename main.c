@@ -2,9 +2,8 @@
 #include "json.h"
 
 void onFinishedI2C(){
-    //Sent I2C Message
-    for (int i = 0; i < 10; ++i)
-        LA1 = ~LA1;
+    //Output over serial (Check out global.h for changing this)
+    printf("I2C mesage was sent");
 }
 
 void master() {

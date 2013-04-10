@@ -283,11 +283,21 @@
 [v F16521 `(v  1 t 0 ]
 "9 async.h
 [v async@F16500 `(v  1 t 0 ]
-[s S844 SESSION 4 `i 1 key 2 0 `*.M(v 1 callback 2 2 ]
+[s S848 SESSION 4 `i 1 key 2 0 `*.M(v 1 callback 2 2 ]
 [v async@F16500 `(v  1 t 0 ]
+"57 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdio.h
+[v F13 `(v  1 t 0 ]
+[s S912 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
 "533 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
-[s S924 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
-[u S927 . 5 `ui 1 _val 2 0 `S924 1 _str 5 0 ]
+[s S932 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
+[u S935 . 5 `ui 1 _val 2 0 `S932 1 _str 5 0 ]
+"57 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/stdio.h
+[v stdio@F13 `(v  1 t 0 ]
+[s S1210 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
+[v stdio@F13 `(v  1 t 0 ]
+[s S1230 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
+"32 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\sprintf.c
+[v F69 `(v  1 t 0 ]
 "5 ../common/asfladd.c
 [v ___asfladd `(d  1 e 3 0 ]
 "5 ../common/asfldiv.c
@@ -350,8 +360,8 @@
 [v ___awtoft `(f  1 e 3 0 ]
 "3 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\bmul.c
 [v ___bmul `(uc  1 e 1 0 ]
-"493 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
-[v _sprintf `(i  1 e 2 0 ]
+"459 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
+[v __doprnt `(i  1 e 2 0 ]
 "64 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\double.c
 [v ___flpack `(d  1 e 3 0 ]
 "89 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\fladd.c
@@ -422,6 +432,10 @@
 [v ___lwtoft `(f  1 e 3 0 ]
 "13 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\memcpy.c
 [v _memcpy `(*.Mv  1 e 1 0 ]
+"14 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\printf.c
+[v _printf `(i  1 e 2 0 ]
+"14 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\sprintf.c
+[v _sprintf `(i  1 e 2 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\strchr.c
 [v _strchr `(*.Muc  1 e 1 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\strcpy.c
@@ -470,11 +484,11 @@
 [v _MacawBegin `(v  1 e 0 0 ]
 "4 main.c
 [v _onFinishedI2C `(v  1 e 0 0 ]
-"10
+"9
 [v _master `(v  1 e 0 0 ]
-"21
+"20
 [v _onSetup `(v  1 e 0 0 ]
-"32
+"31
 [v _onLoop `(v  1 e 0 0 ]
 "12 serial.c
 [v _OnSerialInterrupt `(v  1 e 0 0 ]
@@ -744,8 +758,6 @@
 [v _CREN `VEb  1 e 0 @32092 ]
 "35851
 [v _GIE `VEb  1 e 0 @32663 ]
-"35979
-[v _LA1 `VEb  1 e 0 @31817 ]
 "36183
 [v _PEIE `VEb  1 e 0 @32662 ]
 "36187
@@ -790,6 +802,8 @@
 [v _TXIE `VEb  1 e 0 @31980 ]
 "38957
 [v _TXIF `VEb  1 e 0 @31988 ]
+"354 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
+[v _dpowers `C[5]ui  1 s 10 dpowers ]
 [s S175 INTERVAL_CALLBACK_T 4 `*.f(v 1 function 2 0 `s 1 delay 2 2 ]
 "9 interval.c
 [v interval@callbackA `S175  1 s 4 callbackA ]
@@ -862,10 +876,10 @@
 {
 "19
 } 0
-"21 main.c
+"20 main.c
 [v _onSetup `(v  1 e 0 0 ]
 {
-"30
+"29
 } 0
 "34 interval.c
 [v _SetInterval `(v  1 e 0 0 ]
@@ -876,10 +890,10 @@
 [v SetInterval@hasLoaded `uc  1 s 1 hasLoaded ]
 "63
 } 0
-"32 main.c
+"31 main.c
 [v _onLoop `(v  1 e 0 0 ]
 {
-"34
+"33
 } 0
 "29 wireMaster.c
 [v _WireBegin `(v  1 e 0 0 ]
@@ -942,9 +956,7 @@
 "4 main.c
 [v _onFinishedI2C `(v  1 e 0 0 ]
 {
-"6
-[v onFinishedI2C@i `i  1 a 2 0 ]
-"8
+"7
 } 0
 "14 interval.c
 [v _IntervalTick `(v  1 e 0 0 ]
@@ -953,12 +965,25 @@
 [v IntervalTick@time `i  1 s 2 time ]
 "27
 } 0
-"10 main.c
+"14 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\printf.c
+[v _printf `(i  1 e 2 0 ]
+{
+[v printf@f `*.cCuc  1 a 1 wreg ]
+[s S912 __prbuf 4 `*.buc 1 ptr 2 0 `*.f(v 1 func 2 2 ]
+"21
+[v printf@pb `S912  1 a 4 27 ]
+"15
+[v printf@ap `[1]*.Mv  1 a 1 26 ]
+"14
+[v printf@f `*.cCuc  1 a 1 wreg ]
+"28
+} 0
+"9 main.c
 [v _master `(v  1 e 0 0 ]
 {
-"11
+"10
 [v master@output `[150]uc  1 s 150 output ]
-"19
+"18
 } 0
 "66 wireMaster.c
 [v _WireSend `(v  1 e 0 0 ]
@@ -987,6 +1012,40 @@
 [v memcpy@n `ui  1 p 2 4 ]
 "32
 } 0
+"459 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
+[v __doprnt `(i  1 e 2 0 ]
+{
+[v __doprnt@pb `*.aS912  1 a 1 wreg ]
+[s S932 . 4 `*.sCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+"533
+[u S935 . 4 `ui 1 _val 2 0 `S932 1 _str 4 0 ]
+[v __doprnt@_val `S935  1 a 4 19 ]
+"499
+[v __doprnt@c `c  1 a 1 23 ]
+"506
+[v __doprnt@prec `c  1 a 1 18 ]
+"508
+[v __doprnt@flag `uc  1 a 1 17 ]
+"459
+[v __doprnt@pb `*.aS912  1 a 1 wreg ]
+[v __doprnt@f `*.cCuc  1 p 1 12 ]
+[v __doprnt@ap `*.a*.av  1 p 1 13 ]
+"1548
+} 0
+"29 superSimpleSerial.c
+[v _putch `(v  1 e 0 0 ]
+{
+[v putch@byte `uc  1 a 1 wreg ]
+[v putch@byte `uc  1 a 1 wreg ]
+"31
+} 0
+"21
+[v _Sout `(v  1 e 0 0 ]
+{
+[v Sout@byte `uc  1 a 1 wreg ]
+[v Sout@byte `uc  1 a 1 wreg ]
+"26
+} 0
 "10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\awmod.c
 [v ___awmod `(i  1 e 2 0 ]
 {
@@ -997,6 +1056,28 @@
 [v ___awmod@dividend `i  1 p 2 0 ]
 [v ___awmod@divisor `i  1 p 2 2 ]
 "35
+} 0
+"10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\lwdiv.c
+[v ___lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient `ui  1 a 2 4 ]
+"12
+[v ___lwdiv@counter `uc  1 a 1 6 ]
+"10
+[v ___lwdiv@dividend `ui  1 p 2 0 ]
+[v ___lwdiv@divisor `ui  1 p 2 2 ]
+"31
+} 0
+"10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\lwmod.c
+[v ___lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter `uc  1 a 1 11 ]
+"10
+[v ___lwmod@dividend `ui  1 p 2 7 ]
+[v ___lwmod@divisor `ui  1 p 2 9 ]
+"26
 } 0
 "63 async.c
 [v i2_AsyncBegin `(v  1 e 0 0 ]

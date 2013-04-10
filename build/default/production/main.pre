@@ -18911,8 +18911,7 @@ int JsonGetValue(char* input, char* key);
 # 4 "main.c"
 void onFinishedI2C(){
 
-for (int i = 0; i < 10; ++i)
-LA1 = ~LA1;
+printf("I2C mesage was sent");
 }
 
 void master() {

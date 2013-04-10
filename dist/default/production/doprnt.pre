@@ -284,14 +284,11 @@ const static unsigned int dpowers[] = {1, 10, 100, 1000, 10000,
 # 455
 int
 
-# 492
-sprintf(char * sp, const char * f, ...)
+
+_doprnt(struct __prbuf * pb, register const char * f, register va_list ap)
 {
-va_list ap;
 
-
-
-
+# 499
 signed char c;
 
 # 506
@@ -308,16 +305,13 @@ unsigned _len;
 } _str;
 } _val;
 
-# 542
-*ap = __va_start();
-
-
+# 545
 while(c = *f++) {
 
 if(c != '%')
 
 {
-((*sp++ = (c)));
+if(pb->func) (pb->func(c)); else ((*pb->ptr++ = c));
 continue;
 }
 
@@ -347,7 +341,7 @@ _val._str._cp = "(null)";
 
 # 786
 while(*_val._str._cp)
-((*sp++ = (*_val._str._cp++)));
+if(pb->func) (pb->func(*_val._str._cp++)); else ((*pb->ptr++ = *_val._str._cp++));
 continue;
 
 # 811
@@ -382,7 +376,7 @@ break;
 
 # 1445
 if(flag & 0x03)
-((*sp++ = ('-')));
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1476
 }
@@ -400,7 +394,7 @@ c = (_val._val / dpowers[prec]) % 10 + '0';
 
 # 1530
 }
-((*sp++ = (c)));
+if(pb->func) (pb->func(c)); else ((*pb->ptr++ = c));
 }
 
 # 1540
@@ -408,9 +402,7 @@ c = (_val._val / dpowers[prec]) % 10 + '0';
 
 alldone:
 
-
-*sp = 0;
-
+# 1547
 return 0;
 }
 
