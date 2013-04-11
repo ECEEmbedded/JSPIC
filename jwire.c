@@ -67,9 +67,9 @@ void JWireOnInterrupt() {
         SSPBUF = buffer[bufferWritePos];
         CKP = 1;
 
-        LA4 = ~LA4;
-        LA4 = ~LA4;
-        LA4 = ~LA4;
+//        LA4 = ~LA4;
+//        LA4 = ~LA4;
+//        LA4 = ~LA4;
     }
 
     //Master really wants some more data (Not the first byte)
@@ -78,9 +78,9 @@ void JWireOnInterrupt() {
         bufferWritePos = bufferWritePos + 1;
         SSPBUF = buffer[bufferWritePos];
 
-        LA5 = ~LA5;
-        LA5 = ~LA5;
-        LA5 = ~LA5;
+//        LA5 = ~LA5;
+//        LA5 = ~LA5;
+//        LA5 = ~LA5;
 
 
         if(buffer[bufferWritePos] == 0) {
@@ -93,9 +93,9 @@ void JWireOnInterrupt() {
 
     //Master dosen't want anything more D:, :[
     else if (ReadDone) {
-        LA7 = ~LA7;
-        LA7 = ~LA7;
-        LA7 = ~LA7;
+//        LA7 = ~LA7;
+//        LA7 = ~LA7;
+//        LA7 = ~LA7;
     }
 }
 
@@ -124,6 +124,8 @@ void JWireBegin(int id) {
     SSPM1 = 1;
     SSPM2 = 1;
     SSPM3 = 1;
+
+    SEN = 1;
 
     //Enable SSPN
     SSPEN = 1;

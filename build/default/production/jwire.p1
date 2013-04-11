@@ -41,7 +41,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1989 . . NOT_A ]
 [u S1970 `S1971 1 `S1972 1 `S1973 1 `S1974 1 `S1975 1 `S1976 1 `S1977 1 `S1978 1 `S1979 1 `S1980 1 `S1981 1 `S1982 1 `S1983 1 `S1984 1 `S1985 1 `S1986 1 `S1987 1 `S1988 1 `S1989 1 ]
 [n S1970 . . . . . . . . . . . . . . . . . . . . ]
-"32165 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"32165 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SSPSTATbits `VS1970 ~T0 @X0 0 e@4039 ]
 "32335
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
@@ -49,19 +49,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _CKP `Vb ~T0 @X0 0 e@32308 ]
 "15 async.h
 [v _Async `(v ~T0 @X0 0 ef2`*F16500`*uc ]
-"35985 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _LA4 `Vb ~T0 @X0 0 e@31820 ]
-"35987
-[v _LA5 `Vb ~T0 @X0 0 e@31821 ]
-"35991
-[v _LA7 `Vb ~T0 @X0 0 e@31823 ]
 [s S1843 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1843 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
 [s S1844 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1844 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
 [u S1842 `S1843 1 `S1844 1 ]
 [n S1842 . . . ]
-"29650
+"29650 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TRISCbits `VS1842 ~T0 @X0 0 e@3988 ]
 "32329
 [v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
@@ -73,6 +67,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SSPM2 `Vb ~T0 @X0 0 e@32306 ]
 "38029
 [v _SSPM3 `Vb ~T0 @X0 0 e@32307 ]
+"37991
+[v _SEN `Vb ~T0 @X0 0 e@32296 ]
 "38015
 [v _SSPEN `Vb ~T0 @X0 0 e@32309 ]
 "38017
@@ -80,7 +76,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -15067,15 +15063,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.c: 68: CKP = 1;
 "68
 [e = _CKP -> -> 1 `i `b ]
-[; ;jwire.c: 70: LA4 = ~LA4;
-"70
-[e = _LA4 ! _LA4 ]
-[; ;jwire.c: 71: LA4 = ~LA4;
-"71
-[e = _LA4 ! _LA4 ]
-[; ;jwire.c: 72: LA4 = ~LA4;
-"72
-[e = _LA4 ! _LA4 ]
 "73
 }
 [; ;jwire.c: 73: }
@@ -15095,15 +15082,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.c: 79: SSPBUF = buffer[bufferWritePos];
 "79
 [e = _SSPBUF *U + &U _buffer * -> -> _bufferWritePos `ui `ux -> -> # *U &U _buffer `ui `ux ]
-[; ;jwire.c: 81: LA5 = ~LA5;
-"81
-[e = _LA5 ! _LA5 ]
-[; ;jwire.c: 82: LA5 = ~LA5;
-"82
-[e = _LA5 ! _LA5 ]
-[; ;jwire.c: 83: LA5 = ~LA5;
-"83
-[e = _LA5 ! _LA5 ]
 [; ;jwire.c: 86: if(buffer[bufferWritePos] == 0) {
 "86
 [e $ ! == -> *U + &U _buffer * -> -> _bufferWritePos `ui `ux -> -> # *U &U _buffer `ui `ux `i -> 0 `i 2104  ]
@@ -15131,15 +15109,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.c: 95: else if ((SSPSTATbits.S == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0 && CKP == 1)) {
 [e $ ! && && && == -> . . _SSPSTATbits 2 3 `i -> 1 `i == -> . . _SSPSTATbits 5 3 `i -> 1 `i == -> . . _SSPSTATbits 2 0 `i -> 0 `i == -> _CKP `i -> 1 `i 2106  ]
 {
-[; ;jwire.c: 96: LA7 = ~LA7;
-"96
-[e = _LA7 ! _LA7 ]
-[; ;jwire.c: 97: LA7 = ~LA7;
-"97
-[e = _LA7 ! _LA7 ]
-[; ;jwire.c: 98: LA7 = ~LA7;
-"98
-[e = _LA7 ! _LA7 ]
 "99
 }
 [e :U 2106 ]
@@ -15210,27 +15179,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.c: 126: SSPM3 = 1;
 "126
 [e = _SSPM3 -> -> 1 `i `b ]
-[; ;jwire.c: 129: SSPEN = 1;
-"129
-[e = _SSPEN -> -> 1 `i `b ]
-[; ;jwire.c: 130: SSPIE = 1;
-"130
-[e = _SSPIE -> -> 1 `i `b ]
-[; ;jwire.c: 131: }
+[; ;jwire.c: 128: SEN = 1;
+"128
+[e = _SEN -> -> 1 `i `b ]
+[; ;jwire.c: 131: SSPEN = 1;
 "131
+[e = _SSPEN -> -> 1 `i `b ]
+[; ;jwire.c: 132: SSPIE = 1;
+"132
+[e = _SSPIE -> -> 1 `i `b ]
+[; ;jwire.c: 133: }
+"133
 [e :UE 2109 ]
 }
-"133
+"135
 [v _JWireRespond `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;jwire.c: 133: void JWireRespond(char *msg) {
+[; ;jwire.c: 135: void JWireRespond(char *msg) {
 [e :U _JWireRespond ]
 [v _msg `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;jwire.c: 135: strcpy2(buffer, msg);
-"135
+[; ;jwire.c: 137: strcpy2(buffer, msg);
+"137
 [e ( _strcpy2 (2 , &U _buffer -> _msg `*Cuc ]
-[; ;jwire.c: 136: }
-"136
+[; ;jwire.c: 138: }
+"138
 [e :UE 2110 ]
 }

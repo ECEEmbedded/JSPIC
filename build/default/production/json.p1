@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"205 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdio.h
+"205 /Applications/microchip/xc8/v1.12/include/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"52 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+"52 /Applications/microchip/xc8/v1.12/include/string.h
 [v _strstr `(*uc ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "55
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-"67 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdlib.h
+"67 /Applications/microchip/xc8/v1.12/include/stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
@@ -43,7 +43,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 206: extern int printf(const char *, ...);
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {

@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F16500 `(v ~T0 @X0 0 tf ]
 [s S2092 `i 1 `i 1 `uc -> 150 `i `i 1 `i 1 `*F16500 1 ]
 [n S2092 . isSending address data bytesLeft len callback ]
-"36275 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"36275 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCEN `Vb ~T0 @X0 0 e@32299 ]
 "38231
 [v _TRISC3 `Vb ~T0 @X0 0 e@31907 ]
@@ -19,18 +19,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SSPIE `Vb ~T0 @X0 0 e@31979 ]
 "37991
 [v _SEN `Vb ~T0 @X0 0 e@32296 ]
-"22 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+"22 /Applications/microchip/xc8/v1.12/include/string.h
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
-"32335 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"32335 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
 "36187
 [v _PEN `Vb ~T0 @X0 0 e@32298 ]
 "15 async.h
 [v _Async `(v ~T0 @X0 0 ef2`*F16500`*uc ]
-"33921 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"33921 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _ACKEN `Vb ~T0 @X0 0 e@32300 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {

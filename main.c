@@ -1,6 +1,6 @@
-#define MASTER
+#if 1
 
-#ifdef SLAVE
+//SLAVE
 
 #include "jspic.h"
 #include "json.h"
@@ -30,7 +30,9 @@ void onLoop() {
 }
 #endif
 
-#ifdef MASTER
+#if 0
+
+//MASTER
 
 #include "jspic.h"
 #include "json.h"

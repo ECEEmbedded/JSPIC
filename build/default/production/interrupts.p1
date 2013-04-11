@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"38019 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"38019 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _SSPIF `Vb ~T0 @X0 0 e@31987 ]
 "8 jwire.h
 [v _jWireEnabled `i ~T0 @X0 0 e ]
@@ -21,15 +21,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2047 . . GIEL GIEH ]
 [u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
 [n S2042 . . . . . . ]
-"33645 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"33645 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
 "8 interval.h
 [v _OnIntervalInterrupt `(v ~T0 @X0 0 ef ]
-"36281 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"36281 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCIF `Vb ~T0 @X0 0 e@31989 ]
 "8 serial.h
 [v _OnSerialInterrupt `(v ~T0 @X0 0 ef ]
-"38957 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"38957 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TXIF `Vb ~T0 @X0 0 e@31988 ]
 "20 serial.h
 [v _SerialWriteInterrupt `(v ~T0 @X0 0 ef ]
@@ -40,7 +40,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "8
 [v _Crash `(v ~T0 @X0 0 ef1`i ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {

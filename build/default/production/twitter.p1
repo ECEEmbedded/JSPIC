@@ -17,13 +17,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Crash `(v ~T0 @X0 0 ef1`i ]
 "8 wireMaster.h
 [v _WireSend `(v ~T0 @X0 0 ef4`i`*uc`i`*F16500 ]
-"55 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+"55 /Applications/microchip/xc8/v1.12/include/string.h
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 "7 async.h
 [v _AsyncMessage `*uc ~T0 @X0 0 e ]
 "12 json.h
 [v _JsonGetString `(i ~T0 @X0 0 ef3`*uc`*uc`*uc ]
-"44 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
+"44 /Applications/microchip/xc8/v1.12/include/string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "36
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
@@ -36,7 +36,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {

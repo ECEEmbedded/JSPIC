@@ -6,7 +6,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2025 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
 [u S2023 `S2024 1 `S2025 1 ]
 [n S2023 . . . ]
-"33045 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"33045 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
 "6 macaw.h
 [v _MacawBegin `(v ~T0 @X0 0 ef ]
@@ -16,7 +16,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
 "15 jspic.h
 [v _onSetup `(v ~T0 @X0 0 ef ]
-"35851 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"35851 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 "36183
 [v _PEIE `Vb ~T0 @X0 0 e@32662 ]
@@ -25,7 +25,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "16 jspic.h
 [v _onLoop `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
