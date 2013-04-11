@@ -14847,26 +14847,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _callbackA `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 6: AsyncCallback_t callbackA;
 "7
-[v _callbackAString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 7: static char callbackAString[100];
+[v _callbackAString `uc ~T0 @X0 -> 200 `i s ]
+[; ;async.c: 7: static char callbackAString[200];
 "9
 [v _callbackB `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 9: AsyncCallback_t callbackB;
 "10
-[v _callbackBString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 10: static char callbackBString[100];
+[v _callbackBString `uc ~T0 @X0 -> 200 `i s ]
+[; ;async.c: 10: static char callbackBString[200];
 "12
 [v _callbackC `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 12: AsyncCallback_t callbackC;
 "13
-[v _callbackCString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 13: static char callbackCString[100];
+[v _callbackCString `uc ~T0 @X0 -> 200 `i s ]
+[; ;async.c: 13: static char callbackCString[200];
 "15
 [v _callbackD `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 15: AsyncCallback_t callbackD;
 "16
-[v _callbackDString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 16: static char callbackDString[100];
+[v _callbackDString `uc ~T0 @X0 -> 200 `i s ]
+[; ;async.c: 16: static char callbackDString[200];
 "18
 [v _AsyncMessage `*uc ~T0 @X0 1 e ]
 [i _AsyncMessage

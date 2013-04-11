@@ -10,6 +10,7 @@
 #include "serial.h"
 #include "globals.h"
 #include "superSimpleSerial.h"
+#include "ledCounter.h"
 
 void onSetup();
 void onLoop();

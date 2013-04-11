@@ -27,9 +27,6 @@ int main() {
     //Set clock to 2MHZ (FOSC = 8MHZ)
     OSCCONbits.IRCF = 7;
 
-    //PORT A for output
-    TRISA = 0;
-
     //Custom JSPic debugging platform (Uses port B)
     MacawBegin();
 
@@ -41,6 +38,9 @@ int main() {
     
     GIE = 1;
     PEIE = 1;
+
+    //Start counter on LA0-2, should tick up at 500ms per count
+    LedCounterBegin();
 
     while (1) {
         onLoop();

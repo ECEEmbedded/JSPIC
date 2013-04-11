@@ -18832,10 +18832,6 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 6 "wireMasterInterface.h"
-void WireMasterInterfaceSend(char *message);
-void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
-
 # 6 "json.h"
 void JsonNew(char* string);
 
@@ -18846,7 +18842,7 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 9 "twitter.h"
+# 8 "twitter.h"
 void TwitterSignUp(char *name);
 
 
@@ -18856,7 +18852,28 @@ void TweetReturn(char *msg);
 
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
 
-# 4 "twitter.c"
+# 6 "macaw.h"
+void MacawBegin();
+
+# 8 "jwire.h"
+extern int jWireEnabled;
+
+
+void JWireOnInterrupt();
+
+
+void JWireOnReceive(AsyncCallback_t callback);
+
+
+void JWireOnRequest(AsyncCallback_t callback);
+
+
+void JWireBegin(int id);
+
+
+void JWireRespond(char *msg);
+
+# 5 "twitter.c"
 static char tempBuffer[200];
 
 
@@ -18869,9 +18886,8 @@ Session sessionB;
 Session sessionC;
 Session sessionD;
 
-# 24
+# 25
 void TwitterSendToAll(char *message) {
-WireMasterInterfaceSend(message);
 }
 
 
@@ -18893,7 +18909,7 @@ TwitterSendToAll(message);
 
 
 void TwitterCustomSetup() {
-WireMasterInterfaceOn("rcv", TwitterOnReceive);
+JWireBegin(0x4F);
 }
 
 
@@ -18906,7 +18922,6 @@ sessionA.key = -1;
 sessionB.key = -1;
 sessionC.key = -1;
 sessionD.key = -1;
-
 }
 
 void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {

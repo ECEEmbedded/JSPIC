@@ -7,6 +7,8 @@ async.h  \
 jspic.h  \
 interrupts.h  \
 string2.h  \
+ledCounter.h  \
+twitter.h  \
 json.h  \
 macaw.h  \
 serial.h  \

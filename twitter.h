@@ -2,7 +2,6 @@
 #define TWITTER_H_
 
 #include "async.h"
-#include "wireMasterInterface.h"
 #include "json.h"
 
 //Register as a twitter user

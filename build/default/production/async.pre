@@ -18834,16 +18834,16 @@ void AsyncTick();
 
 # 6 "async.c"
 AsyncCallback_t callbackA;
-static char callbackAString[100];
+static char callbackAString[200];
 
 AsyncCallback_t callbackB;
-static char callbackBString[100];
+static char callbackBString[200];
 
 AsyncCallback_t callbackC;
-static char callbackCString[100];
+static char callbackCString[200];
 
 AsyncCallback_t callbackD;
-static char callbackDString[100];
+static char callbackDString[200];
 
 static char *AsyncMessage = 0;
 

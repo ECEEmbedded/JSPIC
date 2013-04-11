@@ -1,6 +1,6 @@
 #include "async.h"
 
-#define MAX_MESSAGE_SIZE 100
+#define MAX_MESSAGE_SIZE 200
 
 //Callback holders (DO NOT TRY TO USE AN ARRAY, XC8 FLIPS SHIT)
 AsyncCallback_t callbackA;

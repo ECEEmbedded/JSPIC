@@ -1,6 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"9 async.h
-[v F16500 `(v ~T0 @X0 0 tf ]
+"28780 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
+"27998
+[v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
+"29176
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"11 interval.h
+[v F16510 `(v ~T0 @X0 0 tf ]
+[v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16510 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14839,28 +14846,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.h: 12: void AsyncBegin();
 [; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
 [; ;async.h: 18: void AsyncTick();
-[; ;wireMasterInterface.h: 6: void WireMasterInterfaceSend(char *message);
-[; ;wireMasterInterface.h: 7: void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
-"3 wireMasterInterface.c
-[v _WireMasterInterfaceSend `(v ~T0 @X0 1 ef1`*uc ]
+[; ;interval.h: 8: void OnIntervalInterrupt();
+[; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
+[; ;ledCounter.h: 6: void LedCounterBegin();
+"4 ledCounter.c
+[v _CountUp `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMasterInterface.c: 3: void WireMasterInterfaceSend(char *message) {
-[e :U _WireMasterInterfaceSend ]
-[v _message `*uc ~T0 @X0 1 r1 ]
+[; ;ledCounter.c: 4: void CountUp() {
+[e :U _CountUp ]
 [f ]
-[; ;wireMasterInterface.c: 5: }
 "5
+[v F16513 `i ~T0 @X0 1 s count ]
+[i F16513
+-> 0 `i
+]
+[; ;ledCounter.c: 5: static int count = 0;
+[; ;ledCounter.c: 7: LATA = (PORTA & 0xF8) | count;
+"7
+[e = _LATA -> | & -> _PORTA `i -> 248 `i F16513 `uc ]
+[; ;ledCounter.c: 9: ++count;
+"9
+[e =+ F16513 -> 1 `i ]
+[; ;ledCounter.c: 10: }
+"10
 [e :UE 2092 ]
 }
-"7
-[v _WireMasterInterfaceOn `(v ~T0 @X0 1 ef2`*uc`*F16500 ]
+"12
+[v _LedCounterBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;wireMasterInterface.c: 7: void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback) {
-[e :U _WireMasterInterfaceOn ]
-[v _eventName `*uc ~T0 @X0 1 r1 ]
-[v _callback `*F16500 ~T0 @X0 1 r2 ]
+[; ;ledCounter.c: 12: void LedCounterBegin() {
+[e :U _LedCounterBegin ]
 [f ]
-[; ;wireMasterInterface.c: 9: }
-"9
+[; ;ledCounter.c: 13: TRISA = 0;
+"13
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;ledCounter.c: 15: SetInterval(250, CountUp);
+"15
+[e ( _SetInterval (2 , -> 250 `i &U _CountUp ]
+[; ;ledCounter.c: 16: }
+"16
 [e :UE 2093 ]
 }

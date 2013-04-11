@@ -1,5 +1,5 @@
 
-# 1 "wireMasterInterface.c"
+# 1 "ledCounter.c"
 
 # 44 "C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18832,15 +18832,26 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 6 "wireMasterInterface.h"
-void WireMasterInterfaceSend(char *message);
-void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
+# 8 "interval.h"
+void OnIntervalInterrupt();
 
-# 3 "wireMasterInterface.c"
-void WireMasterInterfaceSend(char *message) {
 
+void SetInterval(int delayInMs, void (*callbackToUse)());
+
+# 6 "ledCounter.h"
+void LedCounterBegin();
+
+# 4 "ledCounter.c"
+void CountUp() {
+static int count = 0;
+
+LATA = (PORTA & 0xF8) | count;
+
+++count;
 }
 
-void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback) {
+void LedCounterBegin() {
+TRISA = 0;
 
+SetInterval(250, CountUp);
 }

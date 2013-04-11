@@ -18897,7 +18897,10 @@ void SuperSimpleSerialBegin();
 
 void Sout(char byte);
 
-# 14 "jspic.h"
+# 6 "ledCounter.h"
+void LedCounterBegin();
+
+# 15 "jspic.h"
 void onSetup();
 void onLoop();
 
@@ -18931,9 +18934,6 @@ int main() {
 OSCCONbits.IRCF = 7;
 
 
-TRISA = 0;
-
-
 MacawBegin();
 
 
@@ -18944,6 +18944,9 @@ onSetup();
 
 GIE = 1;
 PEIE = 1;
+
+
+LedCounterBegin();
 
 while (1) {
 onLoop();

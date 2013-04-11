@@ -1,9 +1,10 @@
  build/default/production/twitter.d  \
  build/default/production/twitter.p1:  \
  twitter.c  \
-wireMasterInterface.h  \
+jwire.h  \
 async.h  \
 string2.h  \
 twitter.h  \
 json.h  \
+macaw.h  \
 globals.h 

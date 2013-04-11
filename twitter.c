@@ -1,4 +1,5 @@
 #include "twitter.h"
+#include "jwire.h"
 
 //Use this for string manipulations, just free space...
 static char tempBuffer[200];
@@ -22,7 +23,6 @@ Session sessionD;
 
 //Global multicast to all interfaces
 void TwitterSendToAll(char *message) {
-    WireMasterInterfaceSend(message);
 }
 
 //Register this callback function for incomming messages
@@ -44,7 +44,7 @@ void TwitterOnReceive() {
 
 //Setup interfaces, etc.
 void TwitterCustomSetup() {
-    WireMasterInterfaceOn("rcv", TwitterOnReceive);
+    JWireBegin(0x4F);
 }
 //####################################################################
 
@@ -57,7 +57,6 @@ void TwitterSignUp(char *nameToUse) {
     sessionB.key = -1;
     sessionC.key = -1;
     sessionD.key = -1;
-
 }
 
 void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {

@@ -18897,7 +18897,10 @@ void SuperSimpleSerialBegin();
 
 void Sout(char byte);
 
-# 14 "jspic.h"
+# 6 "ledCounter.h"
+void LedCounterBegin();
+
+# 15 "jspic.h"
 void onSetup();
 void onLoop();
 
@@ -18911,7 +18914,17 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 4 "main.c"
+# 8 "twitter.h"
+void TwitterSignUp(char *name);
+
+
+void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
+void TweetReturn(char *msg);
+
+
+void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+
+# 5 "main.c"
 void onFinishedI2C(){
 
 printf("I2C mesage was sent");
@@ -18930,10 +18943,6 @@ sprintf(message, "%s %d\n", AsyncMessage, count);
 SerialWrite(message);
 }
 
-void master() {
-WireGetString(0x4F, call);
-}
-
 void onSetup() {
 SerialBegin();
 
@@ -18944,7 +18953,6 @@ TRISA = 0;
 WireBegin();
 
 
-SetInterval(20, master);
 }
 
 void onLoop() {

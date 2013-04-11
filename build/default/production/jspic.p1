@@ -8,21 +8,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2023 . . . ]
 "33045 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
-"29176
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "6 macaw.h
 [v _MacawBegin `(v ~T0 @X0 0 ef ]
 "7 superSimpleSerial.h
 [v _SuperSimpleSerialBegin `(v ~T0 @X0 0 ef ]
 "12 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
-"14 jspic.h
+"15 jspic.h
 [v _onSetup `(v ~T0 @X0 0 ef ]
 "35851 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 "36183
 [v _PEIE `Vb ~T0 @X0 0 e@32662 ]
-"15 jspic.h
+"6 ledCounter.h
+[v _LedCounterBegin `(v ~T0 @X0 0 ef ]
+"16 jspic.h
 [v _onLoop `(v ~T0 @X0 0 ef ]
 "18 async.h
 [v _AsyncTick `(v ~T0 @X0 0 ef ]
@@ -14886,8 +14886,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.h: 10: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
-[; ;jspic.h: 14: void onSetup();
-[; ;jspic.h: 15: void onLoop();
+[; ;ledCounter.h: 6: void LedCounterBegin();
+[; ;jspic.h: 15: void onSetup();
+[; ;jspic.h: 16: void onLoop();
 "3 jspic.c
 [p x OSC=IRCIO7 ]
 "4
@@ -14925,27 +14926,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jspic.c: 28: OSCCONbits.IRCF = 7;
 "28
 [e = . . _OSCCONbits 0 3 -> -> 7 `i `uc ]
-[; ;jspic.c: 31: TRISA = 0;
+[; ;jspic.c: 31: MacawBegin();
 "31
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;jspic.c: 34: MacawBegin();
-"34
 [e ( _MacawBegin ..  ]
-[; ;jspic.c: 37: SuperSimpleSerialBegin();
-"37
+[; ;jspic.c: 34: SuperSimpleSerialBegin();
+"34
 [e ( _SuperSimpleSerialBegin ..  ]
-[; ;jspic.c: 39: AsyncBegin();
-"39
+[; ;jspic.c: 36: AsyncBegin();
+"36
 [e ( _AsyncBegin ..  ]
-[; ;jspic.c: 40: onSetup();
-"40
+[; ;jspic.c: 37: onSetup();
+"37
 [e ( _onSetup ..  ]
-[; ;jspic.c: 42: GIE = 1;
-"42
+[; ;jspic.c: 39: GIE = 1;
+"39
 [e = _GIE -> -> 1 `i `b ]
-[; ;jspic.c: 43: PEIE = 1;
-"43
+[; ;jspic.c: 40: PEIE = 1;
+"40
 [e = _PEIE -> -> 1 `i `b ]
+[; ;jspic.c: 43: LedCounterBegin();
+"43
+[e ( _LedCounterBegin ..  ]
 [; ;jspic.c: 45: while (1) {
 "45
 [e :U 2094 ]

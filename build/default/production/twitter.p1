@@ -3,14 +3,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F16500 `(v ~T0 @X0 0 tf ]
 [s S2092 `i 1 `*F16500 1 ]
 [n S2092 SESSION key callback ]
-"6 wireMasterInterface.h
-[v _WireMasterInterfaceSend `(v ~T0 @X0 0 ef1`*uc ]
-"7 async.h
+"7
 [v _AsyncMessage `*uc ~T0 @X0 0 e ]
 "12 json.h
 [v _JsonGetString `(i ~T0 @X0 0 ef3`*uc`*uc`*uc ]
-"7 wireMasterInterface.h
-[v _WireMasterInterfaceOn `(v ~T0 @X0 0 ef2`*uc`*F16500 ]
+"20 jwire.h
+[v _JWireBegin `(v ~T0 @X0 0 ef1`i ]
 "36 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 "6 json.h
@@ -14857,46 +14855,48 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.h: 12: void AsyncBegin();
 [; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
 [; ;async.h: 18: void AsyncTick();
-[; ;wireMasterInterface.h: 6: void WireMasterInterfaceSend(char *message);
-[; ;wireMasterInterface.h: 7: void WireMasterInterfaceOn(char *eventName, AsyncCallback_t callback);
 [; ;json.h: 6: void JsonNew(char* string);
 [; ;json.h: 9: void JsonSetString(char* input, char* key, char* string);
 [; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
 [; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
 [; ;json.h: 13: int JsonGetValue(char* input, char* key);
-[; ;twitter.h: 9: void TwitterSignUp(char *name);
-[; ;twitter.h: 12: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
-[; ;twitter.h: 13: void TweetReturn(char *msg);
-[; ;twitter.h: 16: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
-"4 twitter.c
+[; ;twitter.h: 8: void TwitterSignUp(char *name);
+[; ;twitter.h: 11: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
+[; ;twitter.h: 12: void TweetReturn(char *msg);
+[; ;twitter.h: 15: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+[; ;macaw.h: 6: void MacawBegin();
+[; ;jwire.h: 8: extern int jWireEnabled;
+[; ;jwire.h: 11: void JWireOnInterrupt();
+[; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
+[; ;jwire.h: 17: void JWireOnRequest(AsyncCallback_t callback);
+[; ;jwire.h: 20: void JWireBegin(int id);
+[; ;jwire.h: 23: void JWireRespond(char *msg);
+"5 twitter.c
 [v _tempBuffer `uc ~T0 @X0 -> 200 `i s ]
-[; ;twitter.c: 4: static char tempBuffer[200];
-[; ;twitter.c: 7: typedef struct SESSION {
-[; ;twitter.c: 8: int key;
-[; ;twitter.c: 9: AsyncCallback_t callback;
-[; ;twitter.c: 10: } Session;
-"11
-[v _sessionA `S2092 ~T0 @X0 1 e ]
-[; ;twitter.c: 11: Session sessionA;
+[; ;twitter.c: 5: static char tempBuffer[200];
+[; ;twitter.c: 8: typedef struct SESSION {
+[; ;twitter.c: 9: int key;
+[; ;twitter.c: 10: AsyncCallback_t callback;
+[; ;twitter.c: 11: } Session;
 "12
-[v _sessionB `S2092 ~T0 @X0 1 e ]
-[; ;twitter.c: 12: Session sessionB;
+[v _sessionA `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 12: Session sessionA;
 "13
-[v _sessionC `S2092 ~T0 @X0 1 e ]
-[; ;twitter.c: 13: Session sessionC;
+[v _sessionB `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 13: Session sessionB;
 "14
+[v _sessionC `S2092 ~T0 @X0 1 e ]
+[; ;twitter.c: 14: Session sessionC;
+"15
 [v _sessionD `S2092 ~T0 @X0 1 e ]
-[; ;twitter.c: 14: Session sessionD;
-"24
+[; ;twitter.c: 15: Session sessionD;
+"25
 [v _TwitterSendToAll `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;twitter.c: 24: void TwitterSendToAll(char *message) {
+[; ;twitter.c: 25: void TwitterSendToAll(char *message) {
 [e :U _TwitterSendToAll ]
 [v _message `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;twitter.c: 25: WireMasterInterfaceSend(message);
-"25
-[e ( _WireMasterInterfaceSend (1 _message ]
 [; ;twitter.c: 26: }
 "26
 [e :UE 2093 ]
@@ -14935,9 +14935,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;twitter.c: 46: void TwitterCustomSetup() {
 [e :U _TwitterCustomSetup ]
 [f ]
-[; ;twitter.c: 47: WireMasterInterfaceOn("rcv", TwitterOnReceive);
+[; ;twitter.c: 47: JWireBegin(0x4F);
 "47
-[e ( _WireMasterInterfaceOn (2 , -> :s 2C `*uc &U _TwitterOnReceive ]
+[e ( _JWireBegin (1 -> 79 `i ]
 [; ;twitter.c: 48: }
 "48
 [e :UE 2096 ]
@@ -14967,150 +14967,149 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;twitter.c: 59: sessionD.key = -1;
 "59
 [e = . _sessionD 0 -U -> 1 `i ]
-[; ;twitter.c: 61: }
-"61
+[; ;twitter.c: 60: }
+"60
 [e :UE 2097 ]
 }
-"63
+"62
 [v _Tweet `(v ~T0 @X0 1 ef4`*uc`*uc`*uc`*F16500 ]
 {
-[; ;twitter.c: 63: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {
+[; ;twitter.c: 62: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {
 [e :U _Tweet ]
 [v _subject `*uc ~T0 @X0 1 r1 ]
 [v _to `*uc ~T0 @X0 1 r2 ]
 [v _message `*uc ~T0 @X0 1 r3 ]
 [v _callback `*F16500 ~T0 @X0 1 r4 ]
 [f ]
-"65
-[v F16561 `i ~T0 @X0 1 s sessionKey ]
-[i F16561
+"64
+[v F16566 `i ~T0 @X0 1 s sessionKey ]
+[i F16566
 -> 0 `i
 ]
-[; ;twitter.c: 65: static int sessionKey = 0;
-[; ;twitter.c: 68: if (to[0] == '#') {
-"68
+[; ;twitter.c: 64: static int sessionKey = 0;
+[; ;twitter.c: 67: if (to[0] == '#') {
+"67
 [e $ ! == -> *U + _to * -> -> 0 `i `x -> -> # *U _to `i `x `ui -> 35 `ui 2099  ]
 {
-[; ;twitter.c: 69: JsonNew(tempBuffer);
-"69
+[; ;twitter.c: 68: JsonNew(tempBuffer);
+"68
 [e ( _JsonNew (1 &U _tempBuffer ]
-[; ;twitter.c: 70: JsonSetString(tempBuffer, "from", name);
+[; ;twitter.c: 69: JsonSetString(tempBuffer, "from", name);
+"69
+[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 2C `*uc &U _name ]
+[; ;twitter.c: 70: JsonSetString(tempBuffer, "msg", message);
 "70
-[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 3C `*uc &U _name ]
-[; ;twitter.c: 71: JsonSetString(tempBuffer, "msg", message);
+[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 3C `*uc _message ]
+[; ;twitter.c: 71: JsonSetString(tempBuffer, "to", to);
 "71
-[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 4C `*uc _message ]
-[; ;twitter.c: 72: JsonSetString(tempBuffer, "to", to);
-"72
-[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 5C `*uc _to ]
-[; ;twitter.c: 75: if (callback) {
-"75
+[e ( _JsonSetString (3 , , &U _tempBuffer -> :s 4C `*uc _to ]
+[; ;twitter.c: 74: if (callback) {
+"74
 [e $ ! != _callback -> -> 0 `i `*F16500 2100  ]
 {
-"77
-[v F16562 `i ~T0 @X0 1 s nextSession ]
-[i F16562
+"76
+[v F16567 `i ~T0 @X0 1 s nextSession ]
+[i F16567
 -> 0 `i
 ]
-[; ;twitter.c: 77: static int nextSession = 0;
-[; ;twitter.c: 80: if (nextSession == 0) {
-"80
-[e $ ! == F16562 -> 0 `i 2101  ]
+[; ;twitter.c: 76: static int nextSession = 0;
+[; ;twitter.c: 79: if (nextSession == 0) {
+"79
+[e $ ! == F16567 -> 0 `i 2101  ]
 {
-[; ;twitter.c: 81: sessionA.callback = callback;
-"81
+[; ;twitter.c: 80: sessionA.callback = callback;
+"80
 [e = . _sessionA 1 _callback ]
-[; ;twitter.c: 82: sessionA.key = sessionKey;
+[; ;twitter.c: 81: sessionA.key = sessionKey;
+"81
+[e = . _sessionA 0 F16566 ]
 "82
-[e = . _sessionA 0 F16561 ]
-"83
 }
-[; ;twitter.c: 83: } else if (nextSession == 1) {
+[; ;twitter.c: 82: } else if (nextSession == 1) {
 [e $U 2102  ]
 [e :U 2101 ]
-[e $ ! == F16562 -> 1 `i 2103  ]
+[e $ ! == F16567 -> 1 `i 2103  ]
 {
-[; ;twitter.c: 84: sessionB.callback = callback;
-"84
+[; ;twitter.c: 83: sessionB.callback = callback;
+"83
 [e = . _sessionB 1 _callback ]
-[; ;twitter.c: 85: sessionB.key = sessionKey;
+[; ;twitter.c: 84: sessionB.key = sessionKey;
+"84
+[e = . _sessionB 0 F16566 ]
 "85
-[e = . _sessionB 0 F16561 ]
-"86
 }
-[; ;twitter.c: 86: } else if (nextSession == 2) {
+[; ;twitter.c: 85: } else if (nextSession == 2) {
 [e $U 2104  ]
 [e :U 2103 ]
-[e $ ! == F16562 -> 2 `i 2105  ]
+[e $ ! == F16567 -> 2 `i 2105  ]
 {
-[; ;twitter.c: 87: sessionC.callback = callback;
-"87
+[; ;twitter.c: 86: sessionC.callback = callback;
+"86
 [e = . _sessionC 1 _callback ]
-[; ;twitter.c: 88: sessionC.key = sessionKey;
+[; ;twitter.c: 87: sessionC.key = sessionKey;
+"87
+[e = . _sessionC 0 F16566 ]
 "88
-[e = . _sessionC 0 F16561 ]
-"89
 }
-[; ;twitter.c: 89: } else if (nextSession == 3) {
+[; ;twitter.c: 88: } else if (nextSession == 3) {
 [e $U 2106  ]
 [e :U 2105 ]
-[e $ ! == F16562 -> 3 `i 2107  ]
+[e $ ! == F16567 -> 3 `i 2107  ]
 {
-[; ;twitter.c: 90: sessionD.callback = callback;
-"90
+[; ;twitter.c: 89: sessionD.callback = callback;
+"89
 [e = . _sessionD 1 _callback ]
-[; ;twitter.c: 91: sessionD.key = sessionKey;
+[; ;twitter.c: 90: sessionD.key = sessionKey;
+"90
+[e = . _sessionD 0 F16566 ]
 "91
-[e = . _sessionD 0 F16561 ]
-"92
 }
 [e :U 2107 ]
-"94
+"93
 [e :U 2106 ]
 [e :U 2104 ]
 [e :U 2102 ]
-[; ;twitter.c: 92: }
-[; ;twitter.c: 94: ++nextSession;
-[e =+ F16562 -> 1 `i ]
-[; ;twitter.c: 95: nextSession = nextSession % 4;
-"95
-[e = F16562 % F16562 -> 4 `i ]
-[; ;twitter.c: 97: JsonSetValue(tempBuffer, "key", sessionKey);
+[; ;twitter.c: 91: }
+[; ;twitter.c: 93: ++nextSession;
+[e =+ F16567 -> 1 `i ]
+[; ;twitter.c: 94: nextSession = nextSession % 4;
+"94
+[e = F16567 % F16567 -> 4 `i ]
+[; ;twitter.c: 96: JsonSetValue(tempBuffer, "key", sessionKey);
+"96
+[e ( _JsonSetValue (3 , , &U _tempBuffer -> :s 5C `*uc F16566 ]
 "97
-[e ( _JsonSetValue (3 , , &U _tempBuffer -> :s 6C `*uc F16561 ]
-"98
 }
 [e :U 2100 ]
-[; ;twitter.c: 98: }
-[; ;twitter.c: 101: TwitterSendToAll(tempBuffer);
-"101
+[; ;twitter.c: 97: }
+[; ;twitter.c: 100: TwitterSendToAll(tempBuffer);
+"100
 [e ( _TwitterSendToAll (1 &U _tempBuffer ]
-"102
+"101
 }
 [e :U 2099 ]
-[; ;twitter.c: 102: }
-[; ;twitter.c: 104: ++sessionKey;
+[; ;twitter.c: 101: }
+[; ;twitter.c: 103: ++sessionKey;
+"103
+[e =+ F16566 -> 1 `i ]
+[; ;twitter.c: 104: }
 "104
-[e =+ F16561 -> 1 `i ]
-[; ;twitter.c: 105: }
-"105
 [e :UE 2098 ]
 }
-"107
+"106
 [v _TwitterRegisterHashtag `(v ~T0 @X0 1 ef2`*uc`*F16500 ]
 {
-[; ;twitter.c: 107: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback) {
+[; ;twitter.c: 106: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback) {
 [e :U _TwitterRegisterHashtag ]
 [v _hashtag `*uc ~T0 @X0 1 r1 ]
 [v _callback `*F16500 ~T0 @X0 1 r2 ]
 [f ]
-[; ;twitter.c: 108: }
-"108
+[; ;twitter.c: 107: }
+"107
 [e :UE 2108 ]
 }
-[a 6C 107 101 121 0 ]
-[a 2C 114 99 118 0 ]
+[a 5C 107 101 121 0 ]
 [a 1C 116 111 0 ]
-[a 5C 116 111 0 ]
-[a 3C 102 114 111 109 0 ]
-[a 4C 109 115 103 0 ]
+[a 4C 116 111 0 ]
+[a 2C 102 114 111 109 0 ]
+[a 3C 109 115 103 0 ]
