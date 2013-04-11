@@ -18858,7 +18858,7 @@ static AsyncCallback_t receiveCallback = 0;
 static AsyncCallback_t requestCallback = 0;
 
 # 15
-static char buffer[100];
+static char buffer[200];
 static int bufferReadPos = 0;
 static int bufferWritePos = 0;
 

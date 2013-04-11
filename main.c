@@ -2,36 +2,22 @@
 #include "json.h"
 #include "twitter.h"
 
-void onFinishedI2C(){
-    //Output over serial (Check out global.h for changing this)
-    printf("I2C mesage was sent");
-}
-
-void on() {
+void call2() {
     
 }
 
 void call() {
-    static int count = 0;
- 
-    static char message[200];
-    sprintf(message, "%s %d\n", AsyncMessage, count);
-    ++count;
-    SerialWrite(message);
+    static char data[50];
+    sprintf(data, "hello world! this is the shit!\n");
+    WireSend(0x4F, data, strlen(data)+1, call2);
 }
 
 void onSetup() {
-    SerialBegin();
-    
-    //Called once in a lifetime
-    TRISA = 0;
-
     //Setup I2C master
     WireBegin();
 
-   // TwitterSignUp("@master");
+    SetInterval(100, call);
 }
 
 void onLoop() {
-    //Free While Loop
 }

@@ -14933,8 +14933,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;jwire.c: 7: static AsyncCallback_t requestCallback = 0;
 "15
-[v _buffer `uc ~T0 @X0 -> 100 `i s ]
-[; ;jwire.c: 15: static char buffer[100];
+[v _buffer `uc ~T0 @X0 -> 200 `i s ]
+[; ;jwire.c: 15: static char buffer[200];
 "16
 [v _bufferReadPos `i ~T0 @X0 1 s ]
 [i _bufferReadPos
