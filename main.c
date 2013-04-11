@@ -21,6 +21,7 @@ void call() {
 }
 
 void onSetup() {
+    Crash();
     SerialBegin();
     
     //Called once in a lifetime

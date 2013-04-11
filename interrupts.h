@@ -6,6 +6,7 @@
 #include "serial.h"
 #include "jwire.h"
 #include "wireMaster.h"
+#include "crashHelper.h"
 
 interrupt void onInterrupt();
 

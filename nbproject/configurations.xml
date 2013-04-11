@@ -23,6 +23,7 @@
         <itemPath>wireMaster.h</itemPath>
         <itemPath>jspic.h</itemPath>
         <itemPath>ledCounter.h</itemPath>
+        <itemPath>crashHelper.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="src" projectFiles="true">
         <logicalFolder name="f1" displayName="Twitter" projectFiles="true">
@@ -40,6 +41,7 @@
         <itemPath>superSimpleSerial.c</itemPath>
         <itemPath>wireMaster.c</itemPath>
         <itemPath>ledCounter.c</itemPath>
+        <itemPath>crashHelper.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"

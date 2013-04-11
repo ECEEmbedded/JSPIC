@@ -5,6 +5,7 @@ jwire.h  \
 async.h  \
 interrupts.h  \
 string2.h  \
+crashHelper.h  \
 macaw.h  \
 serial.h  \
 interval.h  \

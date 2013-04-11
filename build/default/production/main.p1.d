@@ -8,6 +8,7 @@ jspic.h  \
 interrupts.h  \
 string2.h  \
 ledCounter.h  \
+crashHelper.h  \
 twitter.h  \
 json.h  \
 macaw.h  \

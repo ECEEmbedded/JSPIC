@@ -39,4 +39,9 @@ interrupt void onInterrupt() {
     //###########################################
 
     AsyncTick();
+
+    //Catch crashes overriden by interrupts if possible
+    if (IsCrashed) {
+        Crash();
+    }
 }

@@ -18888,7 +18888,12 @@ void WireBegin();
 
 void WireOnInterrupt();
 
-# 10 "interrupts.h"
+# 6 "crashHelper.h"
+extern int IsCrashed;
+
+void Crash();
+
+# 11 "interrupts.h"
 interrupt void onInterrupt();
 
 # 3 "interrupts.c"
@@ -18931,4 +18936,9 @@ SerialWriteInterrupt();
 
 
 AsyncTick();
+
+
+if (IsCrashed) {
+Crash();
+}
 }

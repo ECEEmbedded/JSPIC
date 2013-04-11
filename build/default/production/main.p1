@@ -7,7 +7,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _AsyncMessage `*uc ~T0 @X0 0 e ]
 "17 serial.h
 [v _SerialWrite `(v ~T0 @X0 0 ef1`*uc ]
-"14
+"8 crashHelper.h
+[v _Crash `(v ~T0 @X0 0 ef ]
+"14 serial.h
 [v _SerialBegin `(v ~T0 @X0 0 ef ]
 "29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
@@ -14870,7 +14872,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
-[; ;interrupts.h: 10: interrupt void onInterrupt();
+[; ;crashHelper.h: 6: extern int IsCrashed;
+[; ;crashHelper.h: 8: void Crash();
+[; ;interrupts.h: 11: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
 [; ;ledCounter.h: 6: void LedCounterBegin();
@@ -14915,23 +14919,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _call ]
 [f ]
 "15
-[v F16580 `i ~T0 @X0 1 s count ]
-[i F16580
+[v F16582 `i ~T0 @X0 1 s count ]
+[i F16582
 -> 0 `i
 ]
 "17
-[v F16581 `uc ~T0 @X0 -> 200 `i s message ]
+[v F16583 `uc ~T0 @X0 -> 200 `i s message ]
 [; ;main.c: 15: static int count = 0;
 [; ;main.c: 17: static char message[200];
 [; ;main.c: 18: sprintf(message, "%s %d\n", AsyncMessage, count);
 "18
-[e ( _sprintf (1 , , (. , &U F16581 :s 2C -> _AsyncMessage `*Cuc F16580 ]
+[e ( _sprintf (1 , , (. , &U F16583 :s 2C -> _AsyncMessage `*Cuc F16582 ]
 [; ;main.c: 19: ++count;
 "19
-[e =+ F16580 -> 1 `i ]
+[e =+ F16582 -> 1 `i ]
 [; ;main.c: 20: SerialWrite(message);
 "20
-[e ( _SerialWrite (1 &U F16581 ]
+[e ( _SerialWrite (1 &U F16583 ]
 [; ;main.c: 21: }
 "21
 [e :UE 2094 ]
@@ -14942,27 +14946,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 23: void onSetup() {
 [e :U _onSetup ]
 [f ]
-[; ;main.c: 24: SerialBegin();
+[; ;main.c: 24: Crash();
 "24
+[e ( _Crash ..  ]
+[; ;main.c: 25: SerialBegin();
+"25
 [e ( _SerialBegin ..  ]
-[; ;main.c: 27: TRISA = 0;
-"27
+[; ;main.c: 28: TRISA = 0;
+"28
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 30: WireBegin();
-"30
+[; ;main.c: 31: WireBegin();
+"31
 [e ( _WireBegin ..  ]
-[; ;main.c: 33: }
-"33
+[; ;main.c: 34: }
+"34
 [e :UE 2095 ]
 }
-"35
+"36
 [v _onLoop `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 35: void onLoop() {
+[; ;main.c: 36: void onLoop() {
 [e :U _onLoop ]
 [f ]
-[; ;main.c: 37: }
-"37
+[; ;main.c: 38: }
+"38
 [e :UE 2096 ]
 }
 [p f _sprintf 8650880 ]

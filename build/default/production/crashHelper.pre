@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "crashHelper.c"
 
 # 44 "C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18815,152 +18815,18 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 6 "macaw.h"
-void MacawBegin();
-
-# 6 "string2.h"
-void strcpy2(char *dest, const char *loc);
-
-# 7 "async.h"
-extern char *AsyncMessage;
-
-typedef void (*AsyncCallback_t)();
-
-
-void AsyncBegin();
-
-
-void Async(AsyncCallback_t callback, char *string);
-
-
-void AsyncTick();
-
-# 8 "jwire.h"
-extern int jWireEnabled;
-
-
-void JWireOnInterrupt();
-
-
-void JWireOnReceive(AsyncCallback_t callback);
-
-
-void JWireOnRequest(AsyncCallback_t callback);
-
-
-void JWireBegin(int id);
-
-
-void JWireRespond(char *msg);
-
-# 8 "interval.h"
-void OnIntervalInterrupt();
-
-
-void SetInterval(int delayInMs, void (*callbackToUse)());
-
-# 8 "serial.h"
-void OnSerialInterrupt();
-
-
-void OnSerial(AsyncCallback_t callback);
-
-
-void SerialBegin();
-
-
-void SerialWrite(char *data);
-
-
-void SerialWriteInterrupt();
-
-# 6 "wireMaster.h"
-extern int wireMasterEnabled;
-
-void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-
-
-void WireGetString(int address, AsyncCallback_t callback);
-
-
-void WireBegin();
-
-
-void WireOnInterrupt();
-
 # 6 "crashHelper.h"
 extern int IsCrashed;
 
 void Crash();
 
-# 11 "interrupts.h"
-interrupt void onInterrupt();
+# 4 "crashHelper.c"
+static int IsCrashed = 0;
 
-# 7 "superSimpleSerial.h"
-void SuperSimpleSerialBegin();
-
-
-void Sout(char byte);
-
-# 6 "ledCounter.h"
-void LedCounterBegin();
-
-# 15 "jspic.h"
-void onSetup();
-void onLoop();
-
-# 6 "json.h"
-void JsonNew(char* string);
-
-
-void JsonSetString(char* input, char* key, char* string);
-void JsonSetValue(char* input, char* key, int value);
-
-int JsonGetString(char* input, char* key, char* string);
-int JsonGetValue(char* input, char* key);
-
-# 8 "twitter.h"
-void TwitterSignUp(char *name);
-
-
-void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
-void TweetReturn(char *msg);
-
-
-void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
-
-# 5 "main.c"
-void onFinishedI2C(){
-
-printf("I2C mesage was sent");
-}
-
-void on() {
-
-}
-
-void call() {
-static int count = 0;
-
-static char message[200];
-sprintf(message, "%s %d\n", AsyncMessage, count);
-++count;
-SerialWrite(message);
-}
-
-void onSetup() {
-Crash();
-SerialBegin();
-
-
+void Crash() {
+IsCrashed = 1;
 TRISA = 0;
+LA3 = 1;
 
-
-WireBegin();
-
-
-}
-
-void onLoop() {
-
+while (1);
 }

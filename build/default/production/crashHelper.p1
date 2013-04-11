@@ -1,31 +1,8 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[p mainexit ]
-[s S2024 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S2024 . SCS IOFS OSTS IRCF IDLEN ]
-[s S2025 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2025 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
-[u S2023 `S2024 1 `S2025 1 ]
-[n S2023 . . . ]
-"33045 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
-"6 macaw.h
-[v _MacawBegin `(v ~T0 @X0 0 ef ]
-"7 superSimpleSerial.h
-[v _SuperSimpleSerialBegin `(v ~T0 @X0 0 ef ]
-"12 async.h
-[v _AsyncBegin `(v ~T0 @X0 0 ef ]
-"15 jspic.h
-[v _onSetup `(v ~T0 @X0 0 ef ]
-"35851 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _GIE `Vb ~T0 @X0 0 e@32663 ]
-"36183
-[v _PEIE `Vb ~T0 @X0 0 e@32662 ]
-"6 ledCounter.h
-[v _LedCounterBegin `(v ~T0 @X0 0 ef ]
-"16 jspic.h
-[v _onLoop `(v ~T0 @X0 0 ef ]
-"18 async.h
-[v _AsyncTick `(v ~T0 @X0 0 ef ]
+"29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"35983
+[v _LA3 `Vb ~T0 @X0 0 e@31819 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14858,115 +14835,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 57: extern char * strichr(const char *, int);
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
-[; ;macaw.h: 6: void MacawBegin();
-[; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;async.h: 7: extern char *AsyncMessage;
-[; ;async.h: 9: typedef void (*AsyncCallback_t)();
-[; ;async.h: 12: void AsyncBegin();
-[; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
-[; ;async.h: 18: void AsyncTick();
-[; ;jwire.h: 8: extern int jWireEnabled;
-[; ;jwire.h: 11: void JWireOnInterrupt();
-[; ;jwire.h: 14: void JWireOnReceive(AsyncCallback_t callback);
-[; ;jwire.h: 17: void JWireOnRequest(AsyncCallback_t callback);
-[; ;jwire.h: 20: void JWireBegin(int id);
-[; ;jwire.h: 23: void JWireRespond(char *msg);
-[; ;interval.h: 8: void OnIntervalInterrupt();
-[; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;serial.h: 8: void OnSerialInterrupt();
-[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
-[; ;serial.h: 14: void SerialBegin();
-[; ;serial.h: 17: void SerialWrite(char *data);
-[; ;serial.h: 20: void SerialWriteInterrupt();
-[; ;wireMaster.h: 6: extern int wireMasterEnabled;
-[; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-[; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
-[; ;wireMaster.h: 14: void WireBegin();
-[; ;wireMaster.h: 17: void WireOnInterrupt();
 [; ;crashHelper.h: 6: extern int IsCrashed;
 [; ;crashHelper.h: 8: void Crash();
-[; ;interrupts.h: 11: interrupt void onInterrupt();
-[; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
-[; ;superSimpleSerial.h: 10: void Sout(char byte);
-[; ;ledCounter.h: 6: void LedCounterBegin();
-[; ;jspic.h: 15: void onSetup();
-[; ;jspic.h: 16: void onLoop();
-"3 jspic.c
-[p x OSC=IRCIO7 ]
-"4
-[p x FCMEN=OFF ]
-"5
-[p x IESO=OFF ]
-"8
-[p x PWRT=OFF ]
-"9
-[p x BOREN=OFF ]
-"10
-[p x BORV=3 ]
-"13
-[p x WDT=OFF ]
-"14
-[p x WDTPS=32768 ]
-"17
-[p x PBADEN=OFF ]
-"18
-[p x LPT1OSC=OFF ]
-"19
-[p x MCLRE=ON ]
-"22
-[p x STVREN=OFF ]
-"23
-[p x LVP=OFF ]
-"24
-[p x BBSIZ=1024 ]
-"26
-[v _main `(i ~T0 @X0 1 ef ]
+"4 crashHelper.c
+[v _IsCrashed `i ~T0 @X0 1 e ]
+[i _IsCrashed
+-> 0 `i
+]
+[; ;crashHelper.c: 4: static int IsCrashed = 0;
+"6
+[v _Crash `(v ~T0 @X0 1 ef ]
 {
-[; ;jspic.c: 26: int main() {
-[e :U _main ]
+[; ;crashHelper.c: 6: void Crash() {
+[e :U _Crash ]
 [f ]
-[; ;jspic.c: 28: OSCCONbits.IRCF = 7;
-"28
-[e = . . _OSCCONbits 0 3 -> -> 7 `i `uc ]
-[; ;jspic.c: 31: MacawBegin();
-"31
-[e ( _MacawBegin ..  ]
-[; ;jspic.c: 34: SuperSimpleSerialBegin();
-"34
-[e ( _SuperSimpleSerialBegin ..  ]
-[; ;jspic.c: 36: AsyncBegin();
-"36
-[e ( _AsyncBegin ..  ]
-[; ;jspic.c: 37: onSetup();
-"37
-[e ( _onSetup ..  ]
-[; ;jspic.c: 39: GIE = 1;
-"39
-[e = _GIE -> -> 1 `i `b ]
-[; ;jspic.c: 40: PEIE = 1;
-"40
-[e = _PEIE -> -> 1 `i `b ]
-[; ;jspic.c: 43: LedCounterBegin();
-"43
-[e ( _LedCounterBegin ..  ]
-[; ;jspic.c: 45: while (1) {
-"45
+[; ;crashHelper.c: 7: IsCrashed = 1;
+"7
+[e = _IsCrashed -> 1 `i ]
+[; ;crashHelper.c: 8: TRISA = 0;
+"8
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;crashHelper.c: 9: LA3 = 1;
+"9
+[e = _LA3 -> -> 1 `i `b ]
+[; ;crashHelper.c: 11: while (1);
+"11
 [e :U 2094 ]
-{
-[; ;jspic.c: 46: onLoop();
-"46
-[e ( _onLoop ..  ]
-[; ;jspic.c: 47: AsyncTick();
-"47
-[e ( _AsyncTick ..  ]
-"48
-}
 [e :U 2093 ]
-"45
 [e $U 2094  ]
 [e :U 2095 ]
-[; ;jspic.c: 48: }
-[; ;jspic.c: 49: }
-"49
+[; ;crashHelper.c: 12: }
+"12
 [e :UE 2092 ]
 }

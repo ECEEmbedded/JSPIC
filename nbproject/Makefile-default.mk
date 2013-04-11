@@ -41,11 +41,11 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/twitter.p1 ${OBJECTDIR}/async.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/interval.p1 ${OBJECTDIR}/json.p1 ${OBJECTDIR}/jspic.p1 ${OBJECTDIR}/jwire.p1 ${OBJECTDIR}/macaw.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/string2.p1 ${OBJECTDIR}/superSimpleSerial.p1 ${OBJECTDIR}/wireMaster.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ledCounter.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/twitter.p1.d ${OBJECTDIR}/async.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/interval.p1.d ${OBJECTDIR}/json.p1.d ${OBJECTDIR}/jspic.p1.d ${OBJECTDIR}/jwire.p1.d ${OBJECTDIR}/macaw.p1.d ${OBJECTDIR}/serial.p1.d ${OBJECTDIR}/string2.p1.d ${OBJECTDIR}/superSimpleSerial.p1.d ${OBJECTDIR}/wireMaster.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/ledCounter.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/twitter.p1 ${OBJECTDIR}/async.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/interval.p1 ${OBJECTDIR}/json.p1 ${OBJECTDIR}/jspic.p1 ${OBJECTDIR}/jwire.p1 ${OBJECTDIR}/macaw.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/string2.p1 ${OBJECTDIR}/superSimpleSerial.p1 ${OBJECTDIR}/wireMaster.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ledCounter.p1 ${OBJECTDIR}/crashHelper.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/twitter.p1.d ${OBJECTDIR}/async.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/interval.p1.d ${OBJECTDIR}/json.p1.d ${OBJECTDIR}/jspic.p1.d ${OBJECTDIR}/jwire.p1.d ${OBJECTDIR}/macaw.p1.d ${OBJECTDIR}/serial.p1.d ${OBJECTDIR}/string2.p1.d ${OBJECTDIR}/superSimpleSerial.p1.d ${OBJECTDIR}/wireMaster.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/ledCounter.p1.d ${OBJECTDIR}/crashHelper.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/twitter.p1 ${OBJECTDIR}/async.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/interval.p1 ${OBJECTDIR}/json.p1 ${OBJECTDIR}/jspic.p1 ${OBJECTDIR}/jwire.p1 ${OBJECTDIR}/macaw.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/string2.p1 ${OBJECTDIR}/superSimpleSerial.p1 ${OBJECTDIR}/wireMaster.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ledCounter.p1
+OBJECTFILES=${OBJECTDIR}/twitter.p1 ${OBJECTDIR}/async.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/interval.p1 ${OBJECTDIR}/json.p1 ${OBJECTDIR}/jspic.p1 ${OBJECTDIR}/jwire.p1 ${OBJECTDIR}/macaw.p1 ${OBJECTDIR}/serial.p1 ${OBJECTDIR}/string2.p1 ${OBJECTDIR}/superSimpleSerial.p1 ${OBJECTDIR}/wireMaster.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/ledCounter.p1 ${OBJECTDIR}/crashHelper.p1
 
 
 CFLAGS=
@@ -166,6 +166,13 @@ ${OBJECTDIR}/ledCounter.p1: ledCounter.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/ledCounter.d ${OBJECTDIR}/ledCounter.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ledCounter.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/crashHelper.p1: crashHelper.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/crashHelper.p1.d 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G --asmlist  -D__DEBUG=1 --debugger=pickit2  --double=24 --float=24 --emi=wordwrite --opt=all,-asm,-asmfile,+speed,-space,+debug,9 --addrqual=ignore --mode=pro -P -N255 -V --warn=4 --summary=default,-psect,-class,+mem,-hex,-file --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+config,+clib,+plib "--errformat=%%f:%%l: error: %%s" "--warnformat=%%f:%%l: warning: %%s" "--msgformat=%%f:%%l: advisory: %%s"  -o${OBJECTDIR}/crashHelper.p1  crashHelper.c 
+	@-${MV} ${OBJECTDIR}/crashHelper.d ${OBJECTDIR}/crashHelper.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/crashHelper.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/twitter.p1: twitter.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -264,6 +271,13 @@ ${OBJECTDIR}/ledCounter.p1: ledCounter.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G --asmlist  --double=24 --float=24 --emi=wordwrite --opt=all,-asm,-asmfile,+speed,-space,+debug,9 --addrqual=ignore --mode=pro -P -N255 -V --warn=4 --summary=default,-psect,-class,+mem,-hex,-file --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+config,+clib,+plib "--errformat=%%f:%%l: error: %%s" "--warnformat=%%f:%%l: warning: %%s" "--msgformat=%%f:%%l: advisory: %%s"  -o${OBJECTDIR}/ledCounter.p1  ledCounter.c 
 	@-${MV} ${OBJECTDIR}/ledCounter.d ${OBJECTDIR}/ledCounter.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ledCounter.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/crashHelper.p1: crashHelper.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/crashHelper.p1.d 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G --asmlist  --double=24 --float=24 --emi=wordwrite --opt=all,-asm,-asmfile,+speed,-space,+debug,9 --addrqual=ignore --mode=pro -P -N255 -V --warn=4 --summary=default,-psect,-class,+mem,-hex,-file --runtime=default,+clear,+init,-keep,-no_startup,+osccal,-resetbits,-download,-stackcall,+config,+clib,+plib "--errformat=%%f:%%l: error: %%s" "--warnformat=%%f:%%l: warning: %%s" "--msgformat=%%f:%%l: advisory: %%s"  -o${OBJECTDIR}/crashHelper.p1  crashHelper.c 
+	@-${MV} ${OBJECTDIR}/crashHelper.d ${OBJECTDIR}/crashHelper.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/crashHelper.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
