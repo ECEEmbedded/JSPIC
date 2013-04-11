@@ -1,17 +1,16 @@
 _HandleReads: CODE, 3784 0 324
-_onLoop: CODE, 6664 0 2
+_onLoop: CODE, 6660 0 2
 _AsyncTick: CODE, 5146 0 142
 _WireOnInterrupt: CODE, 6412 0 32
-_onSetup: CODE, 6584 0 16
-_AsyncBegin: CODE, 6548 0 18
+_onSetup: CODE, 6644 0 12
+_AsyncBegin: CODE, 6592 0 18
 _SuperSimpleSerialBegin: CODE, 6474 0 28
 __stringdata: SMALLCONST, 3328 0 97
-i2_Crash: CODE, 6616 0 4294966384
 i2_AsyncTick: CODE, 5288 0 142
-_Crash: CODE, 6600 0 4294967198
+_Crash: CODE, 6628 0 4294964776
 _TryToHelp: CODE, 6170 0 84
-i2_AsyncBegin: CODE, 6566 0 18
-_MacawBegin: CODE, 6660 0 4
+i2_AsyncBegin: CODE, 6610 0 18
+_MacawBegin: CODE, 6656 0 4
 ___awmod: CODE, 5570 0 134
 _main: CODE, 6328 0 4294966114
 _SerialBegin: CODE, 6444 0 30
@@ -27,9 +26,9 @@ _LedCounterBegin: CODE, 6502 0 24
 _HandleSends: CODE, 4108 0 290
 _SetInterval: CODE, 5838 0 132
 _WireBegin: CODE, 6370 0 42
-_OnIntervalInterrupt: CODE, 6526 0 22
+_OnIntervalInterrupt: CODE, 6548 0 22
 _IntervalTick: CODE, 4398 0 204
-i2_CountUp: CODE, 6646 0 14
-_CountUp: CODE, 6632 0 14
+i2_CountUp: CODE, 6570 0 22
+_CountUp: CODE, 6526 0 22
 _Async: CODE, 4806 0 178
-Total: 6487
+Total: 4989

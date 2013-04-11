@@ -7,6 +7,7 @@ void CountUp() {
     LATA = (PORTA & 0xF8) | count;
 
     ++count;
+    count = count % 8;
 }
 
 void LedCounterBegin() {

@@ -284,15 +284,15 @@
 [v interval@F16510 `(v  1 t 0 ]
 "57 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdio.h
 [v F13 `(v  1 t 0 ]
-[s S957 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
+[s S956 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
 "533 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\doprnt.c
-[s S977 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
-[u S980 . 5 `ui 1 _val 2 0 `S977 1 _str 5 0 ]
+[s S976 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
+[u S979 . 5 `ui 1 _val 2 0 `S976 1 _str 5 0 ]
 "57 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/stdio.h
 [v stdio@F13 `(v  1 t 0 ]
-[s S1255 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
+[s S1254 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
 [v stdio@F13 `(v  1 t 0 ]
-[s S1275 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
+[s S1274 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
 "32 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\sprintf.c
 [v F69 `(v  1 t 0 ]
 "5 ../common/asfladd.c
@@ -453,8 +453,6 @@
 [v ___wmul `(ui  1 e 2 0 ]
 "6 crashHelper.c
 [v _Crash `(v  1 e 0 0 ]
-[v i2_Crash `(v  1 e 0 0 ]
-[v i2_Crash `(v  1 e 0 0 ]
 "3 interrupts.c
 [v _onInterrupt `II(v  1 e 0 0 ]
 "14 interval.c
@@ -491,7 +489,7 @@
 [v _CountUp `(v  1 e 0 0 ]
 [v i2_CountUp `(v  1 e 0 0 ]
 [v i2_CountUp `(v  1 e 0 0 ]
-"12
+"13
 [v _LedCounterBegin `(v  1 e 0 0 ]
 "3 macaw.c
 [v _MacawBegin `(v  1 e 0 0 ]
@@ -503,7 +501,7 @@
 [v _call `(v  1 e 0 0 ]
 "23
 [v _onSetup `(v  1 e 0 0 ]
-"36
+"35
 [v _onLoop `(v  1 e 0 0 ]
 "12 serial.c
 [v _OnSerialInterrupt `(v  1 e 0 0 ]
@@ -918,17 +916,12 @@
 "23 main.c
 [v _onSetup `(v  1 e 0 0 ]
 {
-"34
+"33
 } 0
-"6 crashHelper.c
-[v _Crash `(v  1 e 0 0 ]
-{
-"12
-} 0
-"12 ledCounter.c
+"13 ledCounter.c
 [v _LedCounterBegin `(v  1 e 0 0 ]
 {
-"16
+"17
 } 0
 "34 interval.c
 [v _SetInterval `(v  1 e 0 0 ]
@@ -939,10 +932,10 @@
 [v SetInterval@hasLoaded `uc  1 s 1 hasLoaded ]
 "63
 } 0
-"36 main.c
+"35 main.c
 [v _onLoop `(v  1 e 0 0 ]
 {
-"38
+"37
 } 0
 "34 serial.c
 [v _SerialBegin `(v  1 e 0 0 ]
@@ -959,7 +952,7 @@
 {
 "5
 [v CountUp@count `i  1 s 2 count ]
-"10
+"11
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\awmod.c
 [v ___awmod `(i  1 e 2 0 ]
@@ -1005,6 +998,11 @@
 [v _SerialWriteInterrupt `(v  1 e 0 0 ]
 {
 "106
+} 0
+"6 crashHelper.c
+[v _Crash `(v  1 e 0 0 ]
+{
+"12
 } 0
 "117 wireMaster.c
 [v _HandleSends `(v  1 e 0 0 ]
@@ -1053,12 +1051,7 @@
 "4 ledCounter.c
 [v i2_CountUp `(v  1 e 0 0 ]
 {
-"10
-} 0
-"6 crashHelper.c
-[v i2_Crash `(v  1 e 0 0 ]
-{
-"12
+"11
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\v1.12\sources\awmod.c
 [v i2___awmod `(i  1 e 2 0 ]

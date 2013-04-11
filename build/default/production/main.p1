@@ -7,9 +7,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _AsyncMessage `*uc ~T0 @X0 0 e ]
 "17 serial.h
 [v _SerialWrite `(v ~T0 @X0 0 ef1`*uc ]
-"8 crashHelper.h
-[v _Crash `(v ~T0 @X0 0 ef ]
-"14 serial.h
+"14
 [v _SerialBegin `(v ~T0 @X0 0 ef ]
 "29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
@@ -14946,30 +14944,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 23: void onSetup() {
 [e :U _onSetup ]
 [f ]
-[; ;main.c: 24: Crash();
+[; ;main.c: 24: SerialBegin();
 "24
-[e ( _Crash ..  ]
-[; ;main.c: 25: SerialBegin();
-"25
 [e ( _SerialBegin ..  ]
-[; ;main.c: 28: TRISA = 0;
-"28
+[; ;main.c: 27: TRISA = 0;
+"27
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 31: WireBegin();
-"31
+[; ;main.c: 30: WireBegin();
+"30
 [e ( _WireBegin ..  ]
-[; ;main.c: 34: }
-"34
+[; ;main.c: 33: }
+"33
 [e :UE 2095 ]
 }
-"36
+"35
 [v _onLoop `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 36: void onLoop() {
+[; ;main.c: 35: void onLoop() {
 [e :U _onLoop ]
 [f ]
-[; ;main.c: 38: }
-"38
+[; ;main.c: 37: }
+"37
 [e :UE 2096 ]
 }
 [p f _sprintf 8650880 ]

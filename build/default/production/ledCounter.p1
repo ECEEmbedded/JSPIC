@@ -14867,23 +14867,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ledCounter.c: 9: ++count;
 "9
 [e =+ F16513 -> 1 `i ]
-[; ;ledCounter.c: 10: }
+[; ;ledCounter.c: 10: count = count % 8;
 "10
+[e = F16513 % F16513 -> 8 `i ]
+[; ;ledCounter.c: 11: }
+"11
 [e :UE 2092 ]
 }
-"12
+"13
 [v _LedCounterBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;ledCounter.c: 12: void LedCounterBegin() {
+[; ;ledCounter.c: 13: void LedCounterBegin() {
 [e :U _LedCounterBegin ]
 [f ]
-[; ;ledCounter.c: 13: TRISA = 0;
-"13
+[; ;ledCounter.c: 14: TRISA = 0;
+"14
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;ledCounter.c: 15: SetInterval(250, CountUp);
-"15
-[e ( _SetInterval (2 , -> 250 `i &U _CountUp ]
-[; ;ledCounter.c: 16: }
+[; ;ledCounter.c: 16: SetInterval(250, CountUp);
 "16
+[e ( _SetInterval (2 , -> 250 `i &U _CountUp ]
+[; ;ledCounter.c: 17: }
+"17
 [e :UE 2093 ]
 }
