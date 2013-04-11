@@ -7,6 +7,9 @@ extern int wireMasterEnabled;
 
 void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 
+//Data and info encoded as json (AsyncMessage) { data: message }
+void WireGetString(int address, AsyncCallback_t callback);
+
 //Setup I2C master mode
 void WireBegin();
 

@@ -1,13 +1,21 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "206 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"205
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"7 async.h
+[v _AsyncMessage `*uc ~T0 @X0 0 e ]
+"17 serial.h
+[v _SerialWrite `(v ~T0 @X0 0 ef1`*uc ]
 "9 async.h
 [v F16501 `(v ~T0 @X0 0 tf ]
-"8 wireMaster.h
-[v _WireSend `(v ~T0 @X0 0 ef4`i`*uc`i`*F16501 ]
+"11 wireMaster.h
+[v _WireGetString `(v ~T0 @X0 0 ef2`i`*F16501 ]
+"14 serial.h
+[v _SerialBegin `(v ~T0 @X0 0 ef ]
 "29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"11 wireMaster.h
+"14 wireMaster.h
 [v _WireBegin `(v ~T0 @X0 0 ef ]
 "11 interval.h
 [v F16521 `(v ~T0 @X0 0 tf ]
@@ -14866,8 +14874,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.h: 20: void SerialWriteInterrupt();
 [; ;wireMaster.h: 6: extern int wireMasterEnabled;
 [; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-[; ;wireMaster.h: 11: void WireBegin();
-[; ;wireMaster.h: 14: void WireOnInterrupt();
+[; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
+[; ;wireMaster.h: 14: void WireBegin();
+[; ;wireMaster.h: 17: void WireOnInterrupt();
 [; ;interrupts.h: 10: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
@@ -14892,62 +14901,89 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2092 ]
 }
 "9
-[v _master `(v ~T0 @X0 1 ef ]
+[v _on `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 9: void master() {
-[e :U _master ]
+[; ;main.c: 9: void on() {
+[e :U _on ]
 [f ]
-"10
-[v F16563 `uc ~T0 @X0 -> 150 `i s output ]
-[; ;main.c: 10: static char output[150];
-[; ;main.c: 11: output[0] = 'h';
+[; ;main.c: 11: }
 "11
-[e = *U + &U F16563 * -> -> -> 0 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 104 `ui `uc ]
-[; ;main.c: 12: output[1] = 'e';
-"12
-[e = *U + &U F16563 * -> -> -> 1 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 101 `ui `uc ]
-[; ;main.c: 13: output[2] = 'l';
-"13
-[e = *U + &U F16563 * -> -> -> 2 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 108 `ui `uc ]
-[; ;main.c: 14: output[3] = 0;
-"14
-[e = *U + &U F16563 * -> -> -> 3 `i `ui `ux -> -> # *U &U F16563 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 17: WireSend(0x4F, output, 4, onFinishedI2C);
-"17
-[e ( _WireSend (4 , , , -> 79 `i &U F16563 -> 4 `i &U _onFinishedI2C ]
-[; ;main.c: 18: }
-"18
 [e :UE 2093 ]
 }
-"20
-[v _onSetup `(v ~T0 @X0 1 ef ]
+"13
+[v _call `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 20: void onSetup() {
-[e :U _onSetup ]
+[; ;main.c: 13: void call() {
+[e :U _call ]
 [f ]
-[; ;main.c: 22: TRISA = 0;
-"22
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 25: WireBegin();
-"25
-[e ( _WireBegin ..  ]
-[; ;main.c: 28: SetInterval(100, master);
-"28
-[e ( _SetInterval (2 , -> 100 `i &U _master ]
-[; ;main.c: 29: }
-"29
+"14
+[v F16567 `i ~T0 @X0 1 s count ]
+[i F16567
+-> 0 `i
+]
+"16
+[v F16568 `uc ~T0 @X0 -> 200 `i s message ]
+[; ;main.c: 14: static int count = 0;
+[; ;main.c: 16: static char message[200];
+[; ;main.c: 17: sprintf(message, "%s %d\n", AsyncMessage, count);
+"17
+[e ( _sprintf (1 , , (. , &U F16568 :s 2C -> _AsyncMessage `*Cuc F16567 ]
+[; ;main.c: 18: ++count;
+"18
+[e =+ F16567 -> 1 `i ]
+[; ;main.c: 19: SerialWrite(message);
+"19
+[e ( _SerialWrite (1 &U F16568 ]
+[; ;main.c: 20: }
+"20
 [e :UE 2094 ]
 }
-"31
-[v _onLoop `(v ~T0 @X0 1 ef ]
+"22
+[v _master `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 31: void onLoop() {
-[e :U _onLoop ]
+[; ;main.c: 22: void master() {
+[e :U _master ]
 [f ]
-[; ;main.c: 33: }
-"33
+[; ;main.c: 23: WireGetString(0x4F, call);
+"23
+[e ( _WireGetString (2 , -> 79 `i &U _call ]
+[; ;main.c: 24: }
+"24
 [e :UE 2095 ]
 }
+"26
+[v _onSetup `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 26: void onSetup() {
+[e :U _onSetup ]
+[f ]
+[; ;main.c: 27: SerialBegin();
+"27
+[e ( _SerialBegin ..  ]
+[; ;main.c: 30: TRISA = 0;
+"30
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 33: WireBegin();
+"33
+[e ( _WireBegin ..  ]
+[; ;main.c: 36: SetInterval(20, master);
+"36
+[e ( _SetInterval (2 , -> 20 `i &U _master ]
+[; ;main.c: 37: }
+"37
+[e :UE 2096 ]
+}
+"39
+[v _onLoop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 39: void onLoop() {
+[e :U _onLoop ]
+[f ]
+[; ;main.c: 41: }
+"41
+[e :UE 2097 ]
+}
+[p f _sprintf 8650880 ]
 [p f _printf 8388608 ]
 [a 1C 73 50 67 32 109 101 115 97 103 101 32 119 97 115 32 115 101 110 116 0 ]
-
+[a 2C 37 115 32 37 100 10 0 ]

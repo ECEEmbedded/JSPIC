@@ -18880,6 +18880,9 @@ extern int wireMasterEnabled;
 void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 
 
+void WireGetString(int address, AsyncCallback_t callback);
+
+
 void WireBegin();
 
 
@@ -18914,18 +18917,26 @@ void onFinishedI2C(){
 printf("I2C mesage was sent");
 }
 
+void on() {
+
+}
+
+void call() {
+static int count = 0;
+
+static char message[200];
+sprintf(message, "%s %d\n", AsyncMessage, count);
+++count;
+SerialWrite(message);
+}
+
 void master() {
-static char output[150];
-output[0] = 'h';
-output[1] = 'e';
-output[2] = 'l';
-output[3] = 0;
-
-
-WireSend(0x4F, output, 4, onFinishedI2C);
+WireGetString(0x4F, call);
 }
 
 void onSetup() {
+SerialBegin();
+
 
 TRISA = 0;
 
@@ -18933,7 +18944,7 @@ TRISA = 0;
 WireBegin();
 
 
-SetInterval(100, master);
+SetInterval(20, master);
 }
 
 void onLoop() {

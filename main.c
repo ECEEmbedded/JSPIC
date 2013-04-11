@@ -6,18 +6,26 @@ void onFinishedI2C(){
     printf("I2C mesage was sent");
 }
 
-void master() {
-    static char output[150];
-    output[0] = 'h';
-    output[1] = 'e';
-    output[2] = 'l';
-    output[3] = 0;
+void on() {
+    
+}
 
-    //Send message and callback when finished
-    WireSend(0x4F, output, 4, onFinishedI2C);
+void call() {
+    static int count = 0;
+
+    static char message[200];
+    sprintf(message, "%s %d\n", AsyncMessage, count);
+    ++count;
+    SerialWrite(message);
+}
+
+void master() {
+    WireGetString(0x4F, call);
 }
 
 void onSetup() {
+    SerialBegin();
+    
     //Called once in a lifetime
     TRISA = 0;
 
@@ -25,7 +33,7 @@ void onSetup() {
     WireBegin();
 
     //Call the master function every 100ms (Sends an I2C request)
-    SetInterval(100, master);
+    SetInterval(20, master);
 }
 
 void onLoop() {

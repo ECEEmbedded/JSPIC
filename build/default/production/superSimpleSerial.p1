@@ -14881,12 +14881,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;superSimpleSerial.c: 9: BRGH = 1;
 "9
 [e = _BRGH -> -> 1 `i `b ]
-[; ;superSimpleSerial.c: 10: BRG16 = 0;
+[; ;superSimpleSerial.c: 10: BRG16 = 1;
 "10
-[e = _BRG16 -> -> 0 `i `b ]
-[; ;superSimpleSerial.c: 11: SPBRG = 25;
+[e = _BRG16 -> -> 1 `i `b ]
+[; ;superSimpleSerial.c: 11: SPBRG = 34;
 "11
-[e = _SPBRG -> -> 25 `i `uc ]
+[e = _SPBRG -> -> 34 `i `uc ]
 [; ;superSimpleSerial.c: 13: TRISCbits.RC7 = 1;
 "13
 [e = . . _TRISCbits 1 7 -> -> 1 `i `uc ]

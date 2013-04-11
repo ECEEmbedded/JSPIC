@@ -18880,6 +18880,9 @@ extern int wireMasterEnabled;
 void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 
 
+void WireGetString(int address, AsyncCallback_t callback);
+
+
 void WireBegin();
 
 

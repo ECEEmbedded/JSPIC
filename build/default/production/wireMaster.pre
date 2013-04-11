@@ -18838,6 +18838,9 @@ extern int wireMasterEnabled;
 void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 
 
+void WireGetString(int address, AsyncCallback_t callback);
+
+
 void WireBegin();
 
 
@@ -18848,16 +18851,17 @@ static int wireMasterEnabled = 0;
 
 
 typedef struct {
+int isSending;
 int address;
 unsigned char data[100];
-int bytesSent;
+int bytesLeft;
 int len;
 AsyncCallback_t callback;
 } WireSend_t;
 static WireSend_t wireSendA;
 static WireSend_t wireSendB;
 
-# 24
+# 27
 static int state;
 
 
@@ -18867,11 +18871,13 @@ void WireBegin() {
 wireMasterEnabled = 1;
 
 
+RCEN = 1;
 TRISC3 = 1;
 TRISC4 = 1;
 SSPSTAT |= 0x80;
 SSPCON1 = 0x28;
-SSPADD = 0x0A;
+
+SSPADD = 0x28;
 SSPIE = 1;
 
 
@@ -18906,40 +18912,107 @@ void WireSend(int address, unsigned char *data, int len, AsyncCallback_t callbac
 if ((wireSendA.address == -1)) {
 wireSendA.address = address;
 memcpy(wireSendA.data, data, len);
-wireSendA.bytesSent = 0;
+wireSendA.bytesLeft = 0;
 wireSendA.len = len;
 wireSendA.callback = callback;
+wireSendA.isSending = 1;
 }
 
 else if ((wireSendB.address == -1)) {
 wireSendB.address = address;
-wireSendB.bytesSent = 0;
+wireSendB.bytesLeft = 0;
 memcpy(wireSendB.data, data, len);
 wireSendB.len = len;
 wireSendB.callback = callback;
+wireSendB.isSending = 1;
 }
 
 
 TryToHelp();
 }
 
-void WireOnInterrupt() {
+void WireGetString(int address, AsyncCallback_t callback) {
+
+
+if ((wireSendA.address == -1)) {
+wireSendA.address = address;
+wireSendA.len = 0;
+wireSendA.callback = callback;
+wireSendA.isSending = 0;
+}
+
+else if ((wireSendB.address == -1)) {
+wireSendB.address = address;
+wireSendB.len = 0;
+wireSendB.callback = callback;
+wireSendB.isSending = 0;
+}
+
+
+TryToHelp();
+}
+
+void HandleSends() {
+
 if (state == 1) {
 SSPBUF = personBeingHelped->address << 1;
 state = 2;
+
 } else if (state == 2 || state == 3) {
-if (personBeingHelped->bytesSent < personBeingHelped->len) {
-SSPBUF = personBeingHelped->data[personBeingHelped->bytesSent];
-++personBeingHelped->bytesSent;
+if (personBeingHelped->bytesLeft < personBeingHelped->len) {
+SSPBUF = personBeingHelped->data[personBeingHelped->bytesLeft];
+++personBeingHelped->bytesLeft;
 state = 3;
 } else {
 PEN = 1;
 state = 4;
 }
+
+
 } else if (state == 4) {
 Async(personBeingHelped->callback, (0));
 personBeingHelped->address = -1;
 personBeingHelped = (0);
 TryToHelp();
 }
+}
+
+void HandleReads() {
+
+if (state == 1) {
+SSPBUF = personBeingHelped->address << 1 | 1;
+state = 6;
+
+
+} else if (state == 6) {
+RCEN = 1;
+state = 5;
+
+} else if (state == 2 || state == 5) {
+ACKEN = 1;
+personBeingHelped->data[personBeingHelped->len] = SSPBUF;
+
+if (personBeingHelped->data[personBeingHelped->len] == 0) {
+PEN = 1;
+state = 4;
+} else {
+state = 6;
+}
+
+++personBeingHelped->len;
+
+
+} else if (state == 4) {
+Async(personBeingHelped->callback, personBeingHelped->data);
+personBeingHelped->address = -1;
+personBeingHelped = (0);
+TryToHelp();
+}
+}
+
+void WireOnInterrupt() {
+if (personBeingHelped->isSending)
+HandleSends();
+else
+HandleReads();
 }

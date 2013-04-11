@@ -18893,8 +18893,8 @@ CREN = 1;
 
 
 BRGH = 1;
-BRG16 = 0;
-SPBRG = 25;
+BRG16 = 1;
+SPBRG = 34;
 
 
 TXIE = 0;

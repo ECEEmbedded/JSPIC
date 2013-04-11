@@ -7,7 +7,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _JWireOnInterrupt `(v ~T0 @X0 0 ef ]
 "6 wireMaster.h
 [v _wireMasterEnabled `i ~T0 @X0 0 e ]
-"14
+"17
 [v _WireOnInterrupt `(v ~T0 @X0 0 ef ]
 [s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -14889,13 +14889,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.h: 23: void JWireRespond(char *msg);
 [; ;wireMaster.h: 6: extern int wireMasterEnabled;
 [; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
-[; ;wireMaster.h: 11: void WireBegin();
-[; ;wireMaster.h: 14: void WireOnInterrupt();
+[; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
+[; ;wireMaster.h: 14: void WireBegin();
+[; ;wireMaster.h: 17: void WireOnInterrupt();
 [; ;interrupts.h: 10: interrupt void onInterrupt();
 "10 interrupts.h
-[v F16538 `(v ~T0 @X0 1 tf ]
+[v F16541 `(v ~T0 @X0 1 tf ]
 "3 interrupts.c
-[v _onInterrupt `IF16538 ~T0 @X0 1 e ]
+[v _onInterrupt `IF16541 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 3: interrupt void onInterrupt() {
 [e :U _onInterrupt ]

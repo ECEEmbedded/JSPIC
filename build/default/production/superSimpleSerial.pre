@@ -18829,8 +18829,8 @@ SYNC = 0;
 
 
 BRGH = 1;
-BRG16 = 0;
-SPBRG = 25;
+BRG16 = 1;
+SPBRG = 34;
 
 TRISCbits.RC7 = 1;
 TRISCbits.RC6 = 1;

@@ -46,10 +46,10 @@ void SerialBegin() {
     //Configure receiving
     CREN = 1;
 
-    //Configure baud-rate to 19200
+    //Configure baud-rate to 57kbits/s
     BRGH = 1;
-    BRG16 = 0;
-    SPBRG = 25;
+    BRG16 = 1;
+    SPBRG = 34;
 
     //Enable interrupts
     TXIE = 0;

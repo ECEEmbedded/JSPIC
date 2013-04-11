@@ -5,10 +5,10 @@ void SuperSimpleSerialBegin() {
     TXEN = 1;                  // transmit enable
     SYNC = 0;                  // async mode
 
-    //Configure baud-rate to 19200
+    //Configure baud-rate to 57kbits/s
     BRGH = 1;
-    BRG16 = 0;
-    SPBRG = 25;
+    BRG16 = 1;
+    SPBRG = 34;
 
     TRISCbits.RC7 = 1;
     TRISCbits.RC6 = 1;

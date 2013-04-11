@@ -14986,12 +14986,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;serial.c: 50: BRGH = 1;
 "50
 [e = _BRGH -> -> 1 `i `b ]
-[; ;serial.c: 51: BRG16 = 0;
+[; ;serial.c: 51: BRG16 = 1;
 "51
-[e = _BRG16 -> -> 0 `i `b ]
-[; ;serial.c: 52: SPBRG = 25;
+[e = _BRG16 -> -> 1 `i `b ]
+[; ;serial.c: 52: SPBRG = 34;
 "52
-[e = _SPBRG -> -> 25 `i `uc ]
+[e = _SPBRG -> -> 34 `i `uc ]
 [; ;serial.c: 55: TXIE = 0;
 "55
 [e = _TXIE -> -> 0 `i `b ]
