@@ -4,7 +4,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
 "8 crashHelper.h
-[v _Crash `(v ~T0 @X0 0 ef ]
+[v _Crash `(v ~T0 @X0 0 ef1`i ]
 "12 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -14846,25 +14846,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
 [; ;async.h: 18: void AsyncTick();
 [; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash();
+[; ;crashHelper.h: 8: void Crash(int id);
 "7 async.c
 [v _callbackA `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 7: AsyncCallback_t callbackA;
 "8
-[v _callbackAString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 8: static char callbackAString[100];
+[v _callbackAString `uc ~T0 @X0 -> 150 `i s ]
+[; ;async.c: 8: static char callbackAString[150];
 "10
 [v _callbackB `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 10: AsyncCallback_t callbackB;
 "11
-[v _callbackBString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 11: static char callbackBString[100];
+[v _callbackBString `uc ~T0 @X0 -> 150 `i s ]
+[; ;async.c: 11: static char callbackBString[150];
 "13
 [v _callbackC `*F16500 ~T0 @X0 1 e ]
 [; ;async.c: 13: AsyncCallback_t callbackC;
 "14
-[v _callbackCString `uc ~T0 @X0 -> 100 `i s ]
-[; ;async.c: 14: static char callbackCString[100];
+[v _callbackCString `uc ~T0 @X0 -> 150 `i s ]
+[; ;async.c: 14: static char callbackCString[150];
 "16
 [v _AsyncMessage `*uc ~T0 @X0 1 e ]
 [i _AsyncMessage
@@ -14921,9 +14921,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2098  ]
 [e :U 2097 ]
 {
-[; ;async.c: 30: Crash();
+[; ;async.c: 30: Crash(1);
 "30
-[e ( _Crash ..  ]
+[e ( _Crash (1 -> 1 `i ]
 "31
 }
 [e :U 2098 ]

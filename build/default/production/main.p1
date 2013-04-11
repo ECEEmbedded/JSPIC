@@ -17,13 +17,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _WireBegin `(v ~T0 @X0 0 ef ]
 "14 serial.h
 [v _SerialBegin `(v ~T0 @X0 0 ef ]
-"29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "11 interval.h
 [v F16521 `(v ~T0 @X0 0 tf ]
 [v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
-"35983 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
-[v _LA3 `Vb ~T0 @X0 0 e@31819 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14882,7 +14878,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
 [; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash();
+[; ;crashHelper.h: 8: void Crash(int id);
 [; ;interrupts.h: 11: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
@@ -14894,85 +14890,92 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
 [; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
 [; ;json.h: 13: int JsonGetValue(char* input, char* key);
-[; ;twitter.h: 8: void TwitterSignUp(char *name);
-[; ;twitter.h: 11: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
-[; ;twitter.h: 12: void TweetReturn(char *msg);
-[; ;twitter.h: 15: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
-"5 main.c
+[; ;twitter.h: 11: void TwitterSignUp(char *name);
+[; ;twitter.h: 14: void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
+[; ;twitter.h: 15: void TweetReturn(char *msg);
+[; ;twitter.h: 18: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+[; ;twitter.h: 21: void TwitterOnReceive();
+[; ;twitter.h: 25: void TwitterWireSlaveBegin(int id);
+[; ;twitter.h: 30: void TwitterWireMasterBegin();
+"39 main.c
 [v _call2 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 5: void call2() {
+[; ;main.c: 39: void call2() {
 [e :U _call2 ]
 [f ]
-"6
-[v F16580 `uc ~T0 @X0 -> 50 `i s message ]
-"7
+"40
+[v F16585 `uc ~T0 @X0 -> 50 `i s message ]
+"41
 [v _value `i ~T0 @X0 1 a ]
-[; ;main.c: 6: static char message[50];
-[; ;main.c: 7: int value = JsonGetValue(AsyncMessage, "sensor");
+[; ;main.c: 40: static char message[50];
+[; ;main.c: 41: int value = JsonGetValue(AsyncMessage, "sensor");
 [e = _value ( _JsonGetValue (2 , _AsyncMessage -> :s 1C `*uc ]
-[; ;main.c: 8: JsonGetString(AsyncMessage, "name", message);
-"8
-[e ( _JsonGetString (3 , , _AsyncMessage -> :s 2C `*uc &U F16580 ]
-[; ;main.c: 9: sprintf(AsyncMessage, "%s\n", message);
-"9
-[e ( _sprintf (1 , (. , _AsyncMessage :s 3C -> &U F16580 `*Cuc ]
-[; ;main.c: 10: SerialWrite(AsyncMessage);
-"10
+[; ;main.c: 42: JsonGetString(AsyncMessage, "name", message);
+"42
+[e ( _JsonGetString (3 , , _AsyncMessage -> :s 2C `*uc &U F16585 ]
+[; ;main.c: 43: sprintf(AsyncMessage, "%s %d\n", message, value);
+"43
+[e ( _sprintf (1 , , (. , _AsyncMessage :s 3C -> &U F16585 `*Cuc _value ]
+[; ;main.c: 44: SerialWrite(AsyncMessage);
+"44
 [e ( _SerialWrite (1 _AsyncMessage ]
-[; ;main.c: 11: }
-"11
+[; ;main.c: 45: }
+"45
 [e :UE 2092 ]
 }
-"13
+"47
 [v _call `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 13: void call() {
+[; ;main.c: 47: void call() {
 [e :U _call ]
 [f ]
-[; ;main.c: 14: WireGetString(0x4F, call2);
-"14
+[; ;main.c: 48: WireGetString(0x4F, call2);
+"48
 [e ( _WireGetString (2 , -> 79 `i &U _call2 ]
-[; ;main.c: 15: }
-"15
+[; ;main.c: 49: }
+"49
 [e :UE 2093 ]
 }
-"17
-[v _onSetup `(v ~T0 @X0 1 ef ]
+"51
+[v _hello `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 17: void onSetup() {
-[e :U _onSetup ]
+[; ;main.c: 51: void hello() {
+[e :U _hello ]
 [f ]
-[; ;main.c: 19: WireBegin();
-"19
-[e ( _WireBegin ..  ]
-[; ;main.c: 20: SerialBegin();
-"20
-[e ( _SerialBegin ..  ]
-[; ;main.c: 21: TRISA = 0;
-"21
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 22: SetInterval(40, call);
-"22
-[e ( _SetInterval (2 , -> 40 `i &U _call ]
-[; ;main.c: 23: }
-"23
+[; ;main.c: 53: }
+"53
 [e :UE 2094 ]
 }
-"25
-[v _onLoop `(v ~T0 @X0 1 ef ]
+"55
+[v _onSetup `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 25: void onLoop() {
-[e :U _onLoop ]
+[; ;main.c: 55: void onSetup() {
+[e :U _onSetup ]
 [f ]
-[; ;main.c: 26: LA3 = ~LA3;
-"26
-[e = _LA3 ! _LA3 ]
-[; ;main.c: 27: }
-"27
+[; ;main.c: 57: WireBegin();
+"57
+[e ( _WireBegin ..  ]
+[; ;main.c: 58: SerialBegin();
+"58
+[e ( _SerialBegin ..  ]
+[; ;main.c: 59: SetInterval(20, call);
+"59
+[e ( _SetInterval (2 , -> 20 `i &U _call ]
+[; ;main.c: 60: }
+"60
 [e :UE 2095 ]
 }
-[p f _sprintf 8650752 ]
+"62
+[v _onLoop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 62: void onLoop() {
+[e :U _onLoop ]
+[f ]
+[; ;main.c: 63: }
+"63
+[e :UE 2096 ]
+}
+[p f _sprintf 8650880 ]
 [a 1C 115 101 110 115 111 114 0 ]
 [a 2C 110 97 109 101 0 ]
-[a 3C 37 115 10 0 ]
+[a 3C 37 115 32 37 100 10 0 ]

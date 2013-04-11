@@ -18895,6 +18895,7 @@ CKP = 1;
 }
 
 
+
 else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 0)) {
 
 if(!locked) {
@@ -18906,14 +18907,26 @@ locked = 1;
 
 bufferWritePos = 0;
 }
+int temp = SSPBUF;
+
 SSPBUF = buffer[bufferWritePos];
 CKP = 1;
+
+LA4 = ~LA4;
+LA4 = ~LA4;
+LA4 = ~LA4;
 }
 
 
 else if ((SSPSTATbits.S == 1 && SSPSTATbits.R_W == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0)) {
+if (locked) {
 bufferWritePos = bufferWritePos + 1;
 SSPBUF = buffer[bufferWritePos];
+
+LA5 = ~LA5;
+LA5 = ~LA5;
+LA5 = ~LA5;
+
 
 if(buffer[bufferWritePos] == 0) {
 locked = 0;
@@ -18921,10 +18934,13 @@ locked = 0;
 
 CKP = 1;
 }
+}
 
 
 else if ((SSPSTATbits.S == 1 && SSPSTATbits.D_A == 1 && SSPSTATbits.BF == 0 && CKP == 1)) {
-
+LA7 = ~LA7;
+LA7 = ~LA7;
+LA7 = ~LA7;
 }
 }
 
@@ -18953,8 +18969,6 @@ SSPM0 = 0;
 SSPM1 = 1;
 SSPM2 = 1;
 SSPM3 = 1;
-
-SEN = 1;
 
 
 SSPEN = 1;

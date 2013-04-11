@@ -5,6 +5,6 @@
 
 extern int IsCrashed;
 
-void Crash();
+void Crash(int id);
 
 #endif

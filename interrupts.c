@@ -42,6 +42,6 @@ interrupt void onInterrupt() {
 
     //Catch crashes overriden by interrupts if possible
     if (IsCrashed) {
-        Crash();
+        Crash(7);
     }
 }

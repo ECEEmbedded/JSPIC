@@ -4,7 +4,9 @@
 jwire.h  \
 async.h  \
 string2.h  \
+crashHelper.h  \
 twitter.h  \
 json.h  \
 macaw.h  \
-globals.h 
+globals.h  \
+wireMaster.h 

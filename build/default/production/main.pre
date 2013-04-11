@@ -18891,7 +18891,7 @@ void WireOnInterrupt();
 # 6 "crashHelper.h"
 extern int IsCrashed;
 
-void Crash();
+void Crash(int id);
 
 # 11 "interrupts.h"
 interrupt void onInterrupt();
@@ -18919,7 +18919,7 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 8 "twitter.h"
+# 11 "twitter.h"
 void TwitterSignUp(char *name);
 
 
@@ -18929,12 +18929,24 @@ void TweetReturn(char *msg);
 
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
 
-# 5 "main.c"
+
+void TwitterOnReceive();
+
+
+
+void TwitterWireSlaveBegin(int id);
+
+
+
+
+void TwitterWireMasterBegin();
+
+# 39 "main.c"
 void call2() {
 static char message[50];
 int value = JsonGetValue(AsyncMessage, "sensor");
 JsonGetString(AsyncMessage, "name", message);
-sprintf(AsyncMessage, "%s\n", message);
+sprintf(AsyncMessage, "%s %d\n", message, value);
 SerialWrite(AsyncMessage);
 }
 
@@ -18942,14 +18954,17 @@ void call() {
 WireGetString(0x4F, call2);
 }
 
+void hello() {
+
+}
+
 void onSetup() {
 
 WireBegin();
 SerialBegin();
-TRISA = 0;
-SetInterval(40, call);
+SetInterval(20, call);
 }
 
 void onLoop() {
-LA3 = ~LA3;
 }
+

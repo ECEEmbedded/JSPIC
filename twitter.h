@@ -3,6 +3,9 @@
 
 #include "async.h"
 #include "json.h"
+#include "crashHelper.h"
+#include "jwire.h"
+#include "wireMaster.h"
 
 //Register as a twitter user
 void TwitterSignUp(char *name);
@@ -14,6 +17,17 @@ void TweetReturn(char *msg);  //Return a message from a callback
 //What to do when we receive a certain hashtag
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
 
-void TwitterAddWireSlave(int id);
+//Call this when receiving a mesasge from some interface
+void TwitterOnReceive();
+
+//##################
+//Twitter slave wire
+void TwitterWireSlaveBegin(int id);
+//##################
+
+//##################
+//Twitter master wire
+void TwitterWireMasterBegin();
+//##################
 
 #endif

@@ -18842,15 +18842,10 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 8 "twitter.h"
-void TwitterSignUp(char *name);
+# 6 "crashHelper.h"
+extern int IsCrashed;
 
-
-void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
-void TweetReturn(char *msg);
-
-
-void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+void Crash(int id);
 
 # 6 "macaw.h"
 void MacawBegin();
@@ -18873,21 +18868,113 @@ void JWireBegin(int id);
 
 void JWireRespond(char *msg);
 
-# 5 "twitter.c"
-static char tempBuffer[200];
+# 6 "wireMaster.h"
+extern int wireMasterEnabled;
+
+void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
+
+
+void WireGetString(int address, AsyncCallback_t callback);
+
+
+void WireBegin();
+
+
+void WireOnInterrupt();
+
+# 11 "twitter.h"
+void TwitterSignUp(char *name);
+
+
+void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback);
+void TweetReturn(char *msg);
+
+
+void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+
+
+void TwitterOnReceive();
+
+
+
+void TwitterWireSlaveBegin(int id);
+
+
+
+
+void TwitterWireMasterBegin();
+
+# 4 "twitter.c"
+static char tempBuffer[150];
 
 
 typedef struct SESSION {
 int key;
 AsyncCallback_t callback;
 } Session;
-Session sessionA;
-Session sessionB;
-Session sessionC;
-Session sessionD;
+static Session sessionA;
+static Session sessionB;
+static Session sessionC;
+static Session sessionD;
 
-# 25
+# 21
+typedef struct HASHTAG {
+char hashtag[20];
+AsyncCallback_t callback;
+} Hashtag;
+
+static Hashtag hashtagA;
+static Hashtag hashtagB;
+static Hashtag hashtagC;
+
+# 35
+static int TwitterWireSlaveEnabled = 0;
+
+
+void TwitterWireSlaveBegin(int id) {
+JWireBegin(id);
+JWireOnReceive(TwitterOnReceive);
+
+TwitterWireSlaveEnabled = 1;
+}
+
+
+
+
+static int TwitterWireMasterEnabled = 0;
+
+void TwitterWireMasterBegin() {
+WireBegin();
+}
+
+static int wireSlaveA = 0;
+static int wireSlaveB = 0;
+static int wireSlaveC = 0;
+
+void TwitterWireMasterAddSlave(int id) {
+if (wireSlaveA == 0)
+wireSlaveA = id;
+else if (wireSlaveB == 0)
+wireSlaveB = id;
+else if (wireSlaveC == 0)
+wireSlaveC = id;
+else
+Crash(3);
+}
+
+
+
 void TwitterSendToAll(char *message) {
+if (TwitterWireSlaveEnabled) {
+} else if (TwitterWireMasterEnabled) {
+
+if (wireSlaveA)
+WireSend(wireSlaveA, message, strlen(message)+1, (0));
+if (wireSlaveB)
+WireSend(wireSlaveB, message, strlen(message)+1, (0));
+if (wireSlaveC)
+WireSend(wireSlaveC, message, strlen(message)+1, (0));
+}
 }
 
 
@@ -18900,16 +18987,17 @@ JsonGetString(message, "to", tempBuffer);
 
 if (tempBuffer[0] == '#') {
 
-
+if (hashtagA.callback && !strcmp(hashtagA.hashtag, message)) {
+hashtagA.callback();
+} else if (hashtagB.callback && !strcmp(hashtagB.hashtag, message)) {
+hashtagB.callback();
+} else if (hashtagC.callback && !strcmp(hashtagC.hashtag, message)) {
+hashtagC.callback();
+}
 
 
 TwitterSendToAll(message);
 }
-}
-
-
-void TwitterCustomSetup() {
-JWireBegin(0x4F);
 }
 
 
@@ -18922,6 +19010,11 @@ sessionA.key = -1;
 sessionB.key = -1;
 sessionC.key = -1;
 sessionD.key = -1;
+
+
+hashtagA.callback = 0;
+hashtagB.callback = 0;
+hashtagC.callback = 0;
 }
 
 void Tweet(char *subject, char *to, char *message, AsyncCallback_t callback) {
@@ -18931,9 +19024,10 @@ static int sessionKey = 0;
 
 if (to[0] == '#') {
 JsonNew(tempBuffer);
-JsonSetString(tempBuffer, "from", name);
-JsonSetString(tempBuffer, "msg", message);
 JsonSetString(tempBuffer, "to", to);
+JsonSetString(tempBuffer, "from", name);
+JsonSetString(tempBuffer, "subject", subject);
+JsonSetString(tempBuffer, " msg", message);
 
 
 if (callback) {
@@ -18969,4 +19063,16 @@ TwitterSendToAll(tempBuffer);
 }
 
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback) {
+if (!hashtagA.callback) {
+hashtagA.callback = callback;
+strcpy2(hashtagA.hashtag, hashtag);
+} else if (!hashtagB.callback) {
+hashtagB.callback = callback;
+strcpy2(hashtagB.hashtag, hashtag);
+} else if (!hashtagC.callback) {
+hashtagC.callback = callback;
+strcpy2(hashtagC.hashtag, hashtag);
+} else {
+Crash(2);
+}
 }

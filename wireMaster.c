@@ -6,7 +6,7 @@ static int wireMasterEnabled = 0;
 typedef struct {
     int isSending;
     int address;
-    unsigned char data[100];
+    unsigned char data[150];
     int bytesLeft; //How much have we sent?
     int len;
     AsyncCallback_t callback;
@@ -131,7 +131,8 @@ void HandleSends() {
 
      //Stop
      } else if (state == Stopped) {
-         Async(personBeingHelped->callback, NULL);
+         if (personBeingHelped->callback)
+            Async(personBeingHelped->callback, NULL);
          personBeingHelped->address = -1;
          personBeingHelped = NULL;
          TryToHelp();
@@ -164,7 +165,8 @@ void HandleReads() {
 
      //Stop
      } else if (state == Stopped) {
-         Async(personBeingHelped->callback, personBeingHelped->data);
+         if (personBeingHelped->callback)
+            Async(personBeingHelped->callback, personBeingHelped->data);
          personBeingHelped->address = -1;
          personBeingHelped = NULL;
          TryToHelp();

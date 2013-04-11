@@ -18873,7 +18873,7 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 
 # 21 "json.c"
-static char result[100];
+static char result[150];
 
 void JsonNew(char* string) {
 sprintf(string, "{\n}");

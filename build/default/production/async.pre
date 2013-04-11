@@ -18835,17 +18835,17 @@ void AsyncTick();
 # 6 "crashHelper.h"
 extern int IsCrashed;
 
-void Crash();
+void Crash(int id);
 
 # 7 "async.c"
 AsyncCallback_t callbackA;
-static char callbackAString[100];
+static char callbackAString[150];
 
 AsyncCallback_t callbackB;
-static char callbackBString[100];
+static char callbackBString[150];
 
 AsyncCallback_t callbackC;
-static char callbackCString[100];
+static char callbackCString[150];
 
 static char *AsyncMessage = 0;
 
@@ -18861,7 +18861,7 @@ callbackB = function;
 strcpy2(callbackCString, string);
 callbackC = function;
 } else {
-Crash();
+Crash(1);
 }
 }
 

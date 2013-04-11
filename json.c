@@ -16,7 +16,7 @@
 
 #define COLON_SPACE ": "
 
-#define MAX_STRING_SIZE 100
+#define MAX_STRING_SIZE 150
 
 static char result[MAX_STRING_SIZE];  // Shouldn't need more than 200
 

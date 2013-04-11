@@ -1,7 +1,7 @@
 #include "async.h"
 #include "crashHelper.h"
 
-#define MAX_MESSAGE_SIZE 100
+#define MAX_MESSAGE_SIZE 150
 
 //Callback holders (DO NOT TRY TO USE AN ARRAY, XC8 FLIPS SHIT)
 AsyncCallback_t callbackA;
@@ -27,7 +27,7 @@ void Async(AsyncCallback_t function, char *string) {
         strcpy2(callbackCString, string);
         callbackC = function;
     } else {
-        Crash();
+        Crash(1);
     }
 }
 

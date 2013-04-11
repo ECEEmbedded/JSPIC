@@ -14879,8 +14879,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdlib.h: 110: extern char * ultoa(char * buf, unsigned long val, int base);
 [; ;stdlib.h: 112: extern char * ftoa(float f, int * status);
 "21 json.c
-[v _result `uc ~T0 @X0 -> 100 `i s ]
-[; ;json.c: 21: static char result[100];
+[v _result `uc ~T0 @X0 -> 150 `i s ]
+[; ;json.c: 21: static char result[150];
 "23
 [v _JsonNew `(v ~T0 @X0 1 ef1`*uc ]
 {

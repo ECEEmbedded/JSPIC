@@ -1,12 +1,10 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"35977
-[v _LA0 `Vb ~T0 @X0 0 e@31816 ]
-"35979
-[v _LA1 `Vb ~T0 @X0 0 e@31817 ]
-"35981
-[v _LA2 `Vb ~T0 @X0 0 e@31818 ]
+"28780
+[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
+"27998
+[v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14840,7 +14838,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash();
+[; ;crashHelper.h: 8: void Crash(int id);
 "4 crashHelper.c
 [v _IsCrashed `i ~T0 @X0 1 e ]
 [i _IsCrashed
@@ -14848,10 +14846,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;crashHelper.c: 4: static int IsCrashed = 0;
 "6
-[v _Crash `(v ~T0 @X0 1 ef ]
+[v _Crash `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;crashHelper.c: 6: void Crash() {
+[; ;crashHelper.c: 6: void Crash(int id) {
 [e :U _Crash ]
+[v _id `i ~T0 @X0 1 r1 ]
 [f ]
 [; ;crashHelper.c: 7: IsCrashed = 1;
 "7
@@ -14859,22 +14858,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;crashHelper.c: 8: TRISA = 0;
 "8
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;crashHelper.c: 9: LA0 = 1;
-"9
-[e = _LA0 -> -> 1 `i `b ]
-[; ;crashHelper.c: 10: LA1 = 1;
+[; ;crashHelper.c: 10: LATA = (PORTA & 0xF8) | id;
 "10
-[e = _LA1 -> -> 1 `i `b ]
-[; ;crashHelper.c: 11: LA2 = 1;
-"11
-[e = _LA2 -> -> 1 `i `b ]
-[; ;crashHelper.c: 13: while (1);
-"13
+[e = _LATA -> | & -> _PORTA `i -> 248 `i _id `uc ]
+[; ;crashHelper.c: 12: while (1);
+"12
 [e :U 2094 ]
 [e :U 2093 ]
 [e $U 2094  ]
 [e :U 2095 ]
-[; ;crashHelper.c: 14: }
-"14
+[; ;crashHelper.c: 13: }
+"13
 [e :UE 2092 ]
 }

@@ -18848,7 +18848,7 @@ void SerialWrite(char *data);
 void SerialWriteInterrupt();
 
 # 6 "serial.c"
-static char bufferSerial[100];
+static char bufferSerial[150];
 static int bufferPosition = 0;
 
 

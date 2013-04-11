@@ -49,6 +49,7 @@ void JWireOnInterrupt() {
         CKP = 1;
     }
 
+
     //Master is requesting some data (First byte)
     else if (ReadGotAddress) {
         // Check for the lock
@@ -61,25 +62,40 @@ void JWireOnInterrupt() {
             //Send some data back, specifically the first data byte
             bufferWritePos = 0;
         }
+        int temp = SSPBUF;
+
         SSPBUF = buffer[bufferWritePos];
         CKP = 1;
+
+        LA4 = ~LA4;
+        LA4 = ~LA4;
+        LA4 = ~LA4;
     }
 
     //Master really wants some more data (Not the first byte)
     else if (ReadGotData) {
+        if (locked) {
         bufferWritePos = bufferWritePos + 1;
         SSPBUF = buffer[bufferWritePos];
+
+        LA5 = ~LA5;
+        LA5 = ~LA5;
+        LA5 = ~LA5;
+
 
         if(buffer[bufferWritePos] == 0) {
             locked = 0;
         }
 
         CKP = 1;
+        }
     }
 
     //Master dosen't want anything more D:, :[
     else if (ReadDone) {
-
+        LA7 = ~LA7;
+        LA7 = ~LA7;
+        LA7 = ~LA7;
     }
 }
 
@@ -96,20 +112,18 @@ void JWireOnRequest(AsyncCallback_t callbackToUse) {
 //Start a JWire session with a slave id
 void JWireBegin(int id) {
     jWireEnabled = 1;
-    
+
     TRISCbits.RC3 = 1;
     TRISCbits.RC4 = 1;
 
     //Set slave address
     SSPADD = id << 1;
-    
+
     //7Bit Slave mode with start and stop bit interrupts enabled
     SSPM0 = 0;
     SSPM1 = 1;
     SSPM2 = 1;
     SSPM3 = 1;
-    
-    SEN = 1;
 
     //Enable SSPN
     SSPEN = 1;

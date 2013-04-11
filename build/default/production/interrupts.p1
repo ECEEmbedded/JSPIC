@@ -38,7 +38,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6 crashHelper.h
 [v _IsCrashed `i ~T0 @X0 0 e ]
 "8
-[v _Crash `(v ~T0 @X0 0 ef ]
+[v _Crash `(v ~T0 @X0 0 ef1`i ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14897,12 +14897,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
 [; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash();
+[; ;crashHelper.h: 8: void Crash(int id);
 [; ;interrupts.h: 11: interrupt void onInterrupt();
 "11 interrupts.h
-[v F16543 `(v ~T0 @X0 1 tf ]
+[v F16544 `(v ~T0 @X0 1 tf ]
 "3 interrupts.c
-[v _onInterrupt `IF16543 ~T0 @X0 1 e ]
+[v _onInterrupt `IF16544 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 3: interrupt void onInterrupt() {
 [e :U _onInterrupt ]
@@ -14983,9 +14983,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "44
 [e $ ! != _IsCrashed -> 0 `i 2099  ]
 {
-[; ;interrupts.c: 45: Crash();
+[; ;interrupts.c: 45: Crash(7);
 "45
-[e ( _Crash ..  ]
+[e ( _Crash (1 -> 7 `i ]
 "46
 }
 [e :U 2099 ]

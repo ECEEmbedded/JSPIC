@@ -18853,7 +18853,7 @@ static int wireMasterEnabled = 0;
 typedef struct {
 int isSending;
 int address;
-unsigned char data[100];
+unsigned char data[150];
 int bytesLeft;
 int len;
 AsyncCallback_t callback;
@@ -18969,6 +18969,7 @@ state = 4;
 
 
 } else if (state == 4) {
+if (personBeingHelped->callback)
 Async(personBeingHelped->callback, (0));
 personBeingHelped->address = -1;
 personBeingHelped = (0);
@@ -19002,6 +19003,7 @@ ACKEN = 1;
 
 
 } else if (state == 4) {
+if (personBeingHelped->callback)
 Async(personBeingHelped->callback, personBeingHelped->data);
 personBeingHelped->address = -1;
 personBeingHelped = (0);

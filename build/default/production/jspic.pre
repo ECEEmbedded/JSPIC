@@ -18891,7 +18891,7 @@ void WireOnInterrupt();
 # 6 "crashHelper.h"
 extern int IsCrashed;
 
-void Crash();
+void Crash(int id);
 
 # 11 "interrupts.h"
 interrupt void onInterrupt();

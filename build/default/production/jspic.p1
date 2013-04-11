@@ -14882,7 +14882,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
 [; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash();
+[; ;crashHelper.h: 8: void Crash(int id);
 [; ;interrupts.h: 11: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);

@@ -1,6 +1,6 @@
 #include "serial.h"
 
-#define MAX_MESSAGE_SIZE 100
+#define MAX_MESSAGE_SIZE 150
 
 //Buffer to store serial data
 static char bufferSerial[MAX_MESSAGE_SIZE];
