@@ -18876,8 +18876,7 @@ TRISC3 = 1;
 TRISC4 = 1;
 SSPSTAT |= 0x80;
 SSPCON1 = 0x28;
-
-SSPADD = 0x28;
+SSPADD = 0x0A;
 SSPIE = 1;
 
 
@@ -18989,7 +18988,6 @@ RCEN = 1;
 state = 5;
 
 } else if (state == 2 || state == 5) {
-ACKEN = 1;
 personBeingHelped->data[personBeingHelped->len] = SSPBUF;
 
 if (personBeingHelped->data[personBeingHelped->len] == 0) {
@@ -18997,6 +18995,7 @@ PEN = 1;
 state = 4;
 } else {
 state = 6;
+ACKEN = 1;
 }
 
 ++personBeingHelped->len;

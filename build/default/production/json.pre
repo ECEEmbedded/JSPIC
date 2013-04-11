@@ -18873,27 +18873,30 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 
 # 21 "json.c"
-static char KEY_COLON_SPACE[200];
-static char result[200];
+static char result[100];
 
 void JsonNew(char* string) {
 sprintf(string, "{\n}");
 }
 
 int JsonGetValue(char* input, char* key) {
-static char KEY_COLON_SPACE[200];
 
-sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
-char* substr_s = strstr(input, KEY_COLON_SPACE);
+sprintf(result, "\"%s\": ", key);
+char* substr_s = strstr(input, result);
 
 substr_s = strstr(substr_s, " ");
 substr_s++;
 
+
 if(substr_s != (0)) {
+
 char* substr2_s = strstr(substr_s, ",\n");
-unsigned long length_substr_s = strlen(substr_s);
-unsigned long length_substr2_s = strlen(substr2_s);
-unsigned long length_sub_s = length_substr_s - length_substr2_s;
+
+
+int length_substr_s = strlen(substr_s);
+int length_substr2_s = strlen(substr2_s);
+int length_sub_s = length_substr_s - length_substr2_s;
+
 
 for (int i=0; i<length_sub_s; i++) {
 result[i] = substr_s[i];
@@ -18912,30 +18915,30 @@ result_float = atoi(p);
 else {
 result_float = atoi(result);
 }
+
 return result_float;
 }
-return -696969;
+return 666;
 }
 
 void JsonSetString(char* input, char* key, char* str) {
 unsigned long original_json_input_len = strlen(input);
 input[original_json_input_len - 1] = 0;
-strcpy2(KEY_COLON_SPACE, input);
-sprintf(input, "%s\"%s\": \"%s\",\n}", KEY_COLON_SPACE, key, str);
+strcpy2(result, input);
+sprintf(input, "%s\"%s\": \"%s\",\n}", result, key, str);
 }
 
 void JsonSetValue(char* input, char* key, int value) {
-
 unsigned long original_json_input_len = strlen(input);
 input[original_json_input_len - 1] = 0;
-strcpy2(KEY_COLON_SPACE, input);
-sprintf(input, "%s\"%s\": %d,\n}", KEY_COLON_SPACE, key, value);
+strcpy2(result, input);
+sprintf(input, "%s\"%s\": %d,\n}", result, key, value);
 }
 
 int JsonGetString(char* input, char* key, char* string) {
 
-sprintf(KEY_COLON_SPACE, "\"%s\"%s", key, ": ");
-char* substr_s = strstr(input, KEY_COLON_SPACE);
+sprintf(result, "\"%s\"%s", key, ": ");
+char* substr_s = strstr(input, result);
 
 substr_s = strstr(substr_s, " ");
 substr_s++;

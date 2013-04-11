@@ -18931,21 +18931,25 @@ void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
 
 # 5 "main.c"
 void call2() {
-
+static char message[50];
+int value = JsonGetValue(AsyncMessage, "sensor");
+JsonGetString(AsyncMessage, "name", message);
+sprintf(AsyncMessage, "%s\n", message);
+SerialWrite(AsyncMessage);
 }
 
 void call() {
-static char data[50];
-sprintf(data, "hello world! this is the shit!\n");
-WireSend(0x4F, data, strlen(data)+1, call2);
+WireGetString(0x4F, call2);
 }
 
 void onSetup() {
 
 WireBegin();
-
-SetInterval(100, call);
+SerialBegin();
+TRISA = 0;
+SetInterval(40, call);
 }
 
 void onLoop() {
+LA3 = ~LA3;
 }

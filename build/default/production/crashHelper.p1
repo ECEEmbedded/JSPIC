@@ -1,8 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"35983
-[v _LA3 `Vb ~T0 @X0 0 e@31819 ]
+"35977
+[v _LA0 `Vb ~T0 @X0 0 e@31816 ]
+"35979
+[v _LA1 `Vb ~T0 @X0 0 e@31817 ]
+"35981
+[v _LA2 `Vb ~T0 @X0 0 e@31818 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14855,16 +14859,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;crashHelper.c: 8: TRISA = 0;
 "8
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;crashHelper.c: 9: LA3 = 1;
+[; ;crashHelper.c: 9: LA0 = 1;
 "9
-[e = _LA3 -> -> 1 `i `b ]
-[; ;crashHelper.c: 11: while (1);
+[e = _LA0 -> -> 1 `i `b ]
+[; ;crashHelper.c: 10: LA1 = 1;
+"10
+[e = _LA1 -> -> 1 `i `b ]
+[; ;crashHelper.c: 11: LA2 = 1;
 "11
+[e = _LA2 -> -> 1 `i `b ]
+[; ;crashHelper.c: 13: while (1);
+"13
 [e :U 2094 ]
 [e :U 2093 ]
 [e $U 2094  ]
 [e :U 2095 ]
-[; ;crashHelper.c: 12: }
-"12
+[; ;crashHelper.c: 14: }
+"14
 [e :UE 2092 ]
 }

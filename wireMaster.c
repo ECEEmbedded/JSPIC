@@ -38,8 +38,7 @@ void WireBegin() {
     TRISC4 = 1;
     SSPSTAT |= 0x80;
     SSPCON1 = 0x28;
-   // SSPADD = 0x0A;
-    SSPADD = 0x28;
+    SSPADD = 0x0A;
     SSPIE = 1;
 
     //Clear for assignment later (que)
@@ -151,7 +150,6 @@ void HandleReads() {
          state = GotSomeData;
      //Got some data
      } else if (state == SentAddress || state == GotSomeData) {
-         ACKEN = 1;
          personBeingHelped->data[personBeingHelped->len] = SSPBUF;
 
          if (personBeingHelped->data[personBeingHelped->len] == 0) {
@@ -159,6 +157,7 @@ void HandleReads() {
              state = Stopped;
          } else {
              state = WaitingForSomeData;
+             ACKEN = 1;
          }
 
          ++personBeingHelped->len;

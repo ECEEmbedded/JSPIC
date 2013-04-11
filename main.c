@@ -3,20 +3,30 @@
 #include "twitter.h"
 
 void call2() {
-    
+    static char message[50];
+    int value = JsonGetValue(AsyncMessage, "sensor");
+    JsonGetString(AsyncMessage, "name", message);
+    sprintf(AsyncMessage, "%s\n", message);
+    SerialWrite(AsyncMessage);
 }
 
 void call() {
-    static char data[50];
-    sprintf(data, "hello world! this is the shit!\n");
-    WireSend(0x4F, data, strlen(data)+1, call2);
+    WireGetString(0x4F, call2);
+}
+
+void hello() {
+    
 }
 
 void onSetup() {
     //Setup I2C master
     WireBegin();
+    SerialBegin();
+    SetInterval(40, call);
 
-    SetInterval(100, call);
+    TwitterSignUp("@sotownesnd");
+    TwitterAddWireSlave(0x4F);
+    TwitterRegisterHashtag("#hello", hello);
 }
 
 void onLoop() {

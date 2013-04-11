@@ -18832,18 +18832,20 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 6 "async.c"
+# 6 "crashHelper.h"
+extern int IsCrashed;
+
+void Crash();
+
+# 7 "async.c"
 AsyncCallback_t callbackA;
-static char callbackAString[200];
+static char callbackAString[100];
 
 AsyncCallback_t callbackB;
-static char callbackBString[200];
+static char callbackBString[100];
 
 AsyncCallback_t callbackC;
-static char callbackCString[200];
-
-AsyncCallback_t callbackD;
-static char callbackDString[200];
+static char callbackCString[100];
 
 static char *AsyncMessage = 0;
 
@@ -18858,9 +18860,8 @@ callbackB = function;
 } else if (callbackC == 0) {
 strcpy2(callbackCString, string);
 callbackC = function;
-} else if (callbackD == 0) {
-strcpy2(callbackDString, string);
-callbackD = function;
+} else {
+Crash();
 }
 }
 
@@ -18881,11 +18882,6 @@ AsyncMessage = callbackCString;
 callbackC();
 }
 
-if (callbackD) {
-AsyncMessage = callbackDString;
-callbackD();
-}
-
 
 AsyncBegin();
 }
@@ -18895,5 +18891,4 @@ void AsyncBegin() {
 callbackA = 0;
 callbackB = 0;
 callbackC = 0;
-callbackD = 0;
 }

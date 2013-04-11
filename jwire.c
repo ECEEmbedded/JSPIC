@@ -1,6 +1,6 @@
 #include "jwire.h"
 
-#define MAX_MESSAGE_SIZE 200
+#define MAX_MESSAGE_SIZE 100
 
 //Handlers
 static AsyncCallback_t receiveCallback = 0;

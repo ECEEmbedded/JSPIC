@@ -1,6 +1,7 @@
 #include "async.h"
+#include "crashHelper.h"
 
-#define MAX_MESSAGE_SIZE 200
+#define MAX_MESSAGE_SIZE 100
 
 //Callback holders (DO NOT TRY TO USE AN ARRAY, XC8 FLIPS SHIT)
 AsyncCallback_t callbackA;
@@ -11,9 +12,6 @@ static char callbackBString[MAX_MESSAGE_SIZE];
 
 AsyncCallback_t callbackC;
 static char callbackCString[MAX_MESSAGE_SIZE];
-
-AsyncCallback_t callbackD;
-static char callbackDString[MAX_MESSAGE_SIZE];
 
 static char *AsyncMessage = 0;
 
@@ -28,9 +26,8 @@ void Async(AsyncCallback_t function, char *string) {
     } else if (callbackC == 0) {
         strcpy2(callbackCString, string);
         callbackC = function;
-    } else if (callbackD == 0) {
-        strcpy2(callbackDString, string);
-        callbackD = function;
+    } else {
+        Crash();
     }
 }
 
@@ -51,11 +48,6 @@ void AsyncTick() {
         callbackC();
     }
 
-    if (callbackD) {
-        AsyncMessage = callbackDString;
-        callbackD();
-    }
-
     //Reset all function pointers
     AsyncBegin();
 }
@@ -65,5 +57,4 @@ void AsyncBegin() {
     callbackA = 0;
     callbackB = 0;
     callbackC = 0;
-    callbackD = 0;
 }

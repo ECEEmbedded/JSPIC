@@ -3,4 +3,5 @@
  async.c  \
 async.h  \
 string2.h  \
+crashHelper.h  \
 globals.h 

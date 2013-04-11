@@ -14,4 +14,6 @@ void TweetReturn(char *msg);  //Return a message from a callback
 //What to do when we receive a certain hashtag
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
 
+void TwitterAddWireSlave(int id);
+
 #endif

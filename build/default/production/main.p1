@@ -1,17 +1,29 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"13 json.h
+[v _JsonGetValue `(i ~T0 @X0 0 ef2`*uc`*uc ]
+"7 async.h
+[v _AsyncMessage `*uc ~T0 @X0 0 e ]
+"12 json.h
+[v _JsonGetString `(i ~T0 @X0 0 ef3`*uc`*uc`*uc ]
 "205 C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"17 serial.h
+[v _SerialWrite `(v ~T0 @X0 0 ef1`*uc ]
 "9 async.h
 [v F16501 `(v ~T0 @X0 0 tf ]
-"8 wireMaster.h
-[v _WireSend `(v ~T0 @X0 0 ef4`i`*uc`i`*F16501 ]
-"55 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
-[v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-"14 wireMaster.h
+"11 wireMaster.h
+[v _WireGetString `(v ~T0 @X0 0 ef2`i`*F16501 ]
+"14
 [v _WireBegin `(v ~T0 @X0 0 ef ]
+"14 serial.h
+[v _SerialBegin `(v ~T0 @X0 0 ef ]
+"29176 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "11 interval.h
 [v F16521 `(v ~T0 @X0 0 tf ]
 [v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
+"35983 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
+[v _LA3 `Vb ~T0 @X0 0 e@31819 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14892,55 +14904,75 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 5: void call2() {
 [e :U _call2 ]
 [f ]
-[; ;main.c: 7: }
+"6
+[v F16580 `uc ~T0 @X0 -> 50 `i s message ]
 "7
+[v _value `i ~T0 @X0 1 a ]
+[; ;main.c: 6: static char message[50];
+[; ;main.c: 7: int value = JsonGetValue(AsyncMessage, "sensor");
+[e = _value ( _JsonGetValue (2 , _AsyncMessage -> :s 1C `*uc ]
+[; ;main.c: 8: JsonGetString(AsyncMessage, "name", message);
+"8
+[e ( _JsonGetString (3 , , _AsyncMessage -> :s 2C `*uc &U F16580 ]
+[; ;main.c: 9: sprintf(AsyncMessage, "%s\n", message);
+"9
+[e ( _sprintf (1 , (. , _AsyncMessage :s 3C -> &U F16580 `*Cuc ]
+[; ;main.c: 10: SerialWrite(AsyncMessage);
+"10
+[e ( _SerialWrite (1 _AsyncMessage ]
+[; ;main.c: 11: }
+"11
 [e :UE 2092 ]
 }
-"9
+"13
 [v _call `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 9: void call() {
+[; ;main.c: 13: void call() {
 [e :U _call ]
 [f ]
-"10
-[v F16581 `uc ~T0 @X0 -> 50 `i s data ]
-[; ;main.c: 10: static char data[50];
-[; ;main.c: 11: sprintf(data, "hello world! this is the shit!\n");
-"11
-[e ( _sprintf (1 , &U F16581 :s 1C ]
-[; ;main.c: 12: WireSend(0x4F, data, strlen(data)+1, call2);
-"12
-[e ( _WireSend (4 , , , -> 79 `i &U F16581 -> + ( _strlen (1 -> &U F16581 `*Cuc -> -> 1 `i `ui `i &U _call2 ]
-[; ;main.c: 13: }
-"13
+[; ;main.c: 14: WireGetString(0x4F, call2);
+"14
+[e ( _WireGetString (2 , -> 79 `i &U _call2 ]
+[; ;main.c: 15: }
+"15
 [e :UE 2093 ]
 }
-"15
+"17
 [v _onSetup `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 15: void onSetup() {
+[; ;main.c: 17: void onSetup() {
 [e :U _onSetup ]
 [f ]
-[; ;main.c: 17: WireBegin();
-"17
-[e ( _WireBegin ..  ]
-[; ;main.c: 19: SetInterval(100, call);
+[; ;main.c: 19: WireBegin();
 "19
-[e ( _SetInterval (2 , -> 100 `i &U _call ]
-[; ;main.c: 20: }
+[e ( _WireBegin ..  ]
+[; ;main.c: 20: SerialBegin();
 "20
-[e :UE 2094 ]
-}
+[e ( _SerialBegin ..  ]
+[; ;main.c: 21: TRISA = 0;
+"21
+[e = _TRISA -> -> 0 `i `uc ]
+[; ;main.c: 22: SetInterval(40, call);
 "22
-[v _onLoop `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 22: void onLoop() {
-[e :U _onLoop ]
-[f ]
+[e ( _SetInterval (2 , -> 40 `i &U _call ]
 [; ;main.c: 23: }
 "23
+[e :UE 2094 ]
+}
+"25
+[v _onLoop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 25: void onLoop() {
+[e :U _onLoop ]
+[f ]
+[; ;main.c: 26: LA3 = ~LA3;
+"26
+[e = _LA3 ! _LA3 ]
+[; ;main.c: 27: }
+"27
 [e :UE 2095 ]
 }
-[p f _sprintf 8388608 ]
-[a 1C 104 101 108 108 111 32 119 111 114 108 100 33 32 116 104 105 115 32 105 115 32 116 104 101 32 115 104 105 116 33 10 0 ]
-
+[p f _sprintf 8650752 ]
+[a 1C 115 101 110 115 111 114 0 ]
+[a 2C 110 97 109 101 0 ]
+[a 3C 37 115 10 0 ]

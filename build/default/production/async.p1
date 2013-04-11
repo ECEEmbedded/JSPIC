@@ -3,6 +3,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F16500 `(v ~T0 @X0 0 tf ]
 "6 string2.h
 [v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
+"8 crashHelper.h
+[v _Crash `(v ~T0 @X0 0 ef ]
 "12 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -14843,192 +14845,166 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.h: 12: void AsyncBegin();
 [; ;async.h: 15: void Async(AsyncCallback_t callback, char *string);
 [; ;async.h: 18: void AsyncTick();
-"6 async.c
+[; ;crashHelper.h: 6: extern int IsCrashed;
+[; ;crashHelper.h: 8: void Crash();
+"7 async.c
 [v _callbackA `*F16500 ~T0 @X0 1 e ]
-[; ;async.c: 6: AsyncCallback_t callbackA;
-"7
-[v _callbackAString `uc ~T0 @X0 -> 200 `i s ]
-[; ;async.c: 7: static char callbackAString[200];
-"9
-[v _callbackB `*F16500 ~T0 @X0 1 e ]
-[; ;async.c: 9: AsyncCallback_t callbackB;
+[; ;async.c: 7: AsyncCallback_t callbackA;
+"8
+[v _callbackAString `uc ~T0 @X0 -> 100 `i s ]
+[; ;async.c: 8: static char callbackAString[100];
 "10
-[v _callbackBString `uc ~T0 @X0 -> 200 `i s ]
-[; ;async.c: 10: static char callbackBString[200];
-"12
-[v _callbackC `*F16500 ~T0 @X0 1 e ]
-[; ;async.c: 12: AsyncCallback_t callbackC;
+[v _callbackB `*F16500 ~T0 @X0 1 e ]
+[; ;async.c: 10: AsyncCallback_t callbackB;
+"11
+[v _callbackBString `uc ~T0 @X0 -> 100 `i s ]
+[; ;async.c: 11: static char callbackBString[100];
 "13
-[v _callbackCString `uc ~T0 @X0 -> 200 `i s ]
-[; ;async.c: 13: static char callbackCString[200];
-"15
-[v _callbackD `*F16500 ~T0 @X0 1 e ]
-[; ;async.c: 15: AsyncCallback_t callbackD;
+[v _callbackC `*F16500 ~T0 @X0 1 e ]
+[; ;async.c: 13: AsyncCallback_t callbackC;
+"14
+[v _callbackCString `uc ~T0 @X0 -> 100 `i s ]
+[; ;async.c: 14: static char callbackCString[100];
 "16
-[v _callbackDString `uc ~T0 @X0 -> 200 `i s ]
-[; ;async.c: 16: static char callbackDString[200];
-"18
 [v _AsyncMessage `*uc ~T0 @X0 1 e ]
 [i _AsyncMessage
 -> -> 0 `i `*uc
 ]
-[; ;async.c: 18: static char *AsyncMessage = 0;
-"20
+[; ;async.c: 16: static char *AsyncMessage = 0;
+"18
 [v _Async `(v ~T0 @X0 1 ef2`*F16500`*uc ]
 {
-[; ;async.c: 20: void Async(AsyncCallback_t function, char *string) {
+[; ;async.c: 18: void Async(AsyncCallback_t function, char *string) {
 [e :U _Async ]
 [v _function `*F16500 ~T0 @X0 1 r1 ]
 [v _string `*uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;async.c: 22: if (callbackA == 0) {
-"22
+[; ;async.c: 20: if (callbackA == 0) {
+"20
 [e $ ! == _callbackA -> -> 0 `i `*F16500 2093  ]
 {
-[; ;async.c: 23: strcpy2(callbackAString, string);
-"23
+[; ;async.c: 21: strcpy2(callbackAString, string);
+"21
 [e ( _strcpy2 (2 , &U _callbackAString -> _string `*Cuc ]
-[; ;async.c: 24: callbackA = function;
-"24
+[; ;async.c: 22: callbackA = function;
+"22
 [e = _callbackA _function ]
-"25
+"23
 }
-[; ;async.c: 25: } else if (callbackB == 0) {
+[; ;async.c: 23: } else if (callbackB == 0) {
 [e $U 2094  ]
 [e :U 2093 ]
 [e $ ! == _callbackB -> -> 0 `i `*F16500 2095  ]
 {
-[; ;async.c: 26: strcpy2(callbackBString, string);
-"26
+[; ;async.c: 24: strcpy2(callbackBString, string);
+"24
 [e ( _strcpy2 (2 , &U _callbackBString -> _string `*Cuc ]
-[; ;async.c: 27: callbackB = function;
-"27
+[; ;async.c: 25: callbackB = function;
+"25
 [e = _callbackB _function ]
-"28
+"26
 }
-[; ;async.c: 28: } else if (callbackC == 0) {
+[; ;async.c: 26: } else if (callbackC == 0) {
 [e $U 2096  ]
 [e :U 2095 ]
 [e $ ! == _callbackC -> -> 0 `i `*F16500 2097  ]
 {
-[; ;async.c: 29: strcpy2(callbackCString, string);
-"29
+[; ;async.c: 27: strcpy2(callbackCString, string);
+"27
 [e ( _strcpy2 (2 , &U _callbackCString -> _string `*Cuc ]
-[; ;async.c: 30: callbackC = function;
-"30
+[; ;async.c: 28: callbackC = function;
+"28
 [e = _callbackC _function ]
-"31
+"29
 }
-[; ;async.c: 31: } else if (callbackD == 0) {
+[; ;async.c: 29: } else {
 [e $U 2098  ]
 [e :U 2097 ]
-[e $ ! == _callbackD -> -> 0 `i `*F16500 2099  ]
 {
-[; ;async.c: 32: strcpy2(callbackDString, string);
-"32
-[e ( _strcpy2 (2 , &U _callbackDString -> _string `*Cuc ]
-[; ;async.c: 33: callbackD = function;
-"33
-[e = _callbackD _function ]
-"34
+[; ;async.c: 30: Crash();
+"30
+[e ( _Crash ..  ]
+"31
 }
-[e :U 2099 ]
-"35
 [e :U 2098 ]
 [e :U 2096 ]
 [e :U 2094 ]
-[; ;async.c: 34: }
-[; ;async.c: 35: }
+[; ;async.c: 31: }
+[; ;async.c: 32: }
+"32
 [e :UE 2092 ]
 }
-"37
+"34
 [v _AsyncTick `(v ~T0 @X0 1 ef ]
 {
-[; ;async.c: 37: void AsyncTick() {
+[; ;async.c: 34: void AsyncTick() {
 [e :U _AsyncTick ]
 [f ]
-[; ;async.c: 39: if (callbackA) {
-"39
-[e $ ! != _callbackA -> -> 0 `i `*F16500 2101  ]
+[; ;async.c: 36: if (callbackA) {
+"36
+[e $ ! != _callbackA -> -> 0 `i `*F16500 2100  ]
 {
-[; ;async.c: 40: AsyncMessage = callbackAString;
-"40
+[; ;async.c: 37: AsyncMessage = callbackAString;
+"37
 [e = _AsyncMessage &U _callbackAString ]
-[; ;async.c: 41: callbackA();
-"41
+[; ;async.c: 38: callbackA();
+"38
 [e ( *U _callbackA ..  ]
+"39
+}
+[e :U 2100 ]
+[; ;async.c: 39: }
+[; ;async.c: 41: if (callbackB) {
+"41
+[e $ ! != _callbackB -> -> 0 `i `*F16500 2101  ]
+{
+[; ;async.c: 42: AsyncMessage = callbackBString;
 "42
+[e = _AsyncMessage &U _callbackBString ]
+[; ;async.c: 43: callbackB();
+"43
+[e ( *U _callbackB ..  ]
+"44
 }
 [e :U 2101 ]
-[; ;async.c: 42: }
-[; ;async.c: 44: if (callbackB) {
-"44
-[e $ ! != _callbackB -> -> 0 `i `*F16500 2102  ]
-{
-[; ;async.c: 45: AsyncMessage = callbackBString;
-"45
-[e = _AsyncMessage &U _callbackBString ]
-[; ;async.c: 46: callbackB();
+[; ;async.c: 44: }
+[; ;async.c: 46: if (callbackC) {
 "46
-[e ( *U _callbackB ..  ]
+[e $ ! != _callbackC -> -> 0 `i `*F16500 2102  ]
+{
+[; ;async.c: 47: AsyncMessage = callbackCString;
 "47
+[e = _AsyncMessage &U _callbackCString ]
+[; ;async.c: 48: callbackC();
+"48
+[e ( *U _callbackC ..  ]
+"49
 }
 [e :U 2102 ]
-[; ;async.c: 47: }
-[; ;async.c: 49: if (callbackC) {
-"49
-[e $ ! != _callbackC -> -> 0 `i `*F16500 2103  ]
-{
-[; ;async.c: 50: AsyncMessage = callbackCString;
-"50
-[e = _AsyncMessage &U _callbackCString ]
-[; ;async.c: 51: callbackC();
-"51
-[e ( *U _callbackC ..  ]
+[; ;async.c: 49: }
+[; ;async.c: 52: AsyncBegin();
 "52
-}
-[e :U 2103 ]
-[; ;async.c: 52: }
-[; ;async.c: 54: if (callbackD) {
-"54
-[e $ ! != _callbackD -> -> 0 `i `*F16500 2104  ]
-{
-[; ;async.c: 55: AsyncMessage = callbackDString;
-"55
-[e = _AsyncMessage &U _callbackDString ]
-[; ;async.c: 56: callbackD();
-"56
-[e ( *U _callbackD ..  ]
-"57
-}
-[e :U 2104 ]
-[; ;async.c: 57: }
-[; ;async.c: 60: AsyncBegin();
-"60
 [e ( _AsyncBegin ..  ]
-[; ;async.c: 61: }
-"61
-[e :UE 2100 ]
+[; ;async.c: 53: }
+"53
+[e :UE 2099 ]
 }
-"63
+"55
 [v _AsyncBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;async.c: 63: void AsyncBegin() {
+[; ;async.c: 55: void AsyncBegin() {
 [e :U _AsyncBegin ]
 [f ]
-[; ;async.c: 65: callbackA = 0;
-"65
+[; ;async.c: 57: callbackA = 0;
+"57
 [e = _callbackA -> -> 0 `i `*F16500 ]
-[; ;async.c: 66: callbackB = 0;
-"66
+[; ;async.c: 58: callbackB = 0;
+"58
 [e = _callbackB -> -> 0 `i `*F16500 ]
-[; ;async.c: 67: callbackC = 0;
-"67
+[; ;async.c: 59: callbackC = 0;
+"59
 [e = _callbackC -> -> 0 `i `*F16500 ]
-[; ;async.c: 68: callbackD = 0;
-"68
-[e = _callbackD -> -> 0 `i `*F16500 ]
-[; ;async.c: 69: }
-"69
-[e :UE 2105 ]
+[; ;async.c: 60: }
+"60
+[e :UE 2103 ]
 }

@@ -18955,6 +18955,5 @@ LedCounterBegin();
 
 while (1) {
 onLoop();
-AsyncTick();
 }
 }

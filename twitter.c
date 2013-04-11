@@ -44,7 +44,12 @@ void TwitterOnReceive() {
 
 //Setup interfaces, etc.
 void TwitterCustomSetup() {
-    JWireBegin(0x4F);
+}
+
+//Add Twitter to I2C Slave
+void TwitterAddWireSlave(int id) {
+    JWireBegin(id);
+    JWireOnReceive(TwitterOnReceive);
 }
 //####################################################################
 
