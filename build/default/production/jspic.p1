@@ -6,7 +6,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2025 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
 [u S2023 `S2024 1 `S2025 1 ]
 [n S2023 . . . ]
-"33045 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"33045 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
 "6 macaw.h
 [v _MacawBegin `(v ~T0 @X0 0 ef ]
@@ -14,18 +14,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SuperSimpleSerialBegin `(v ~T0 @X0 0 ef ]
 "12 async.h
 [v _AsyncBegin `(v ~T0 @X0 0 ef ]
-"15 jspic.h
+"16 jspic.h
 [v _onSetup `(v ~T0 @X0 0 ef ]
-"35851 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"35851 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 "36183
 [v _PEIE `Vb ~T0 @X0 0 e@32662 ]
 "6 ledCounter.h
 [v _LedCounterBegin `(v ~T0 @X0 0 ef ]
-"16 jspic.h
+"17 jspic.h
 [v _onLoop `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f2680.h
+"46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
 [; <" RXF6SIDH equ 0D60h ;# ">
 [; ;pic18f2680.h: 49: typedef union {
@@ -14886,9 +14886,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.h: 11: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
+[; ;superSimpleSerial.h: 13: void putch(char);
 [; ;ledCounter.h: 6: void LedCounterBegin();
-[; ;jspic.h: 15: void onSetup();
-[; ;jspic.h: 16: void onLoop();
+[; ;jspic.h: 16: void onSetup();
+[; ;jspic.h: 17: void onLoop();
 "3 jspic.c
 [p x OSC=IRCIO7 ]
 "4

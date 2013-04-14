@@ -5,7 +5,7 @@ void MacawBegin() {
     TRISB = 0;
 }
 
-#ifdef MACAW_CONSOLE
+#if 0
 void putch(char data) {
     //Ignore MSB because it is the clock bit, should work with all ascii characters
     LATB = data;
@@ -14,6 +14,6 @@ void putch(char data) {
     RB7 = 1;
     RB7 = 0;
 
-    __delay_us(35);
+    __delay_us(100);
 }
 #endif

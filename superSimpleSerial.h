@@ -9,7 +9,7 @@ void SuperSimpleSerialBegin();
 //Write a byte of data
 void Sout(char byte);
 
-#ifdef SERIAL_COSOLE
+#if 1
 void putch(char);
 #endif
 

@@ -8,5 +8,6 @@ crashHelper.h  \
 twitter.h  \
 json.h  \
 macaw.h  \
+serial.h  \
 globals.h  \
 wireMaster.h 

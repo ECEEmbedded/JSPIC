@@ -25,7 +25,7 @@ void Sout(char byte) {
     TXREG = byte;
 }
 
-#ifdef SERIAL_CONSOLE
+#if 1
 void putch(char byte) {
     Sout(byte);
 }

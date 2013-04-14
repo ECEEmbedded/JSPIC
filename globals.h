@@ -1,10 +1,6 @@
 #ifndef GLOBALS_H_
 #define GLOBALS_H_
 
-//Output printf to the JSPic Macaw custom debugger or serial?
-//#define MACAW_CONSLE
-#define SERIAL_CONSOLE
-
 //DO NOT INCLUDE LOCAL FILES HERE
 #include <xc.h>
 #include <stdio.h>

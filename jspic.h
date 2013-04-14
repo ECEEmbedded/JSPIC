@@ -11,6 +11,7 @@
 #include "globals.h"
 #include "superSimpleSerial.h"
 #include "ledCounter.h"
+#include "macaw.h"
 
 void onSetup();
 void onLoop();
