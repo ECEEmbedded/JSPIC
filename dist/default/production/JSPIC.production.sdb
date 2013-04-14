@@ -9,10 +9,12 @@
 [s S28 SUBJECT 22 `[20]uc 1 subject 20 0 `*.M(v 1 callback 2 20 ]
 "17 jwire.h
 [s S55 WIRE_SLAVE 22 `i 1 id 2 0 `[20]uc 1 name 20 2 ]
+"11 interval.h
+[v F16559 `(v  1 t 0 ]
 "9 async.h
 [v async@F16500 `(v  1 t 0 ]
 "17 wireMaster.h
-[s S299 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S316 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -21,7 +23,7 @@
 `uc 1 PEIE_GIEL 1 0 :1:6 
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
-[s S308 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S325 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -30,7 +32,7 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S317 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S334 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -39,7 +41,7 @@
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[s S326 . 1 `uc 1 . 1 0 :1:0 
+[s S343 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -48,35 +50,35 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S335 . 1 `uc 1 . 1 0 :6:0 
+[s S352 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S339 . 1 `S299 1 . 1 0 `S308 1 . 1 0 `S317 1 . 1 0 `S326 1 . 1 0 `S335 1 . 1 0 ]
+[u S356 . 1 `S316 1 . 1 0 `S325 1 . 1 0 `S334 1 . 1 0 `S343 1 . 1 0 `S352 1 . 1 0 ]
 "11 interrupts.h
 [v F16544 `(v  1 t 0 ]
 "5 interval.c
 [v F16513 `(v  1 t 0 ]
-[s S414 INTERVAL_CALLBACK_T 4 `*.M(v 1 function 2 0 `s 1 delay 2 2 ]
+[s S431 INTERVAL_CALLBACK_T 4 `*.M(v 1 function 2 0 `s 1 delay 2 2 ]
 "9 async.h
 [v async@F16500 `(v  1 t 0 ]
 "11 interval.h
 [v F16510 `(v  1 t 0 ]
-[s S420 . 1 `uc 1 T0PS 1 0 :3:0 
+[s S437 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
 `uc 1 T08BIT 1 0 :1:6 
 `uc 1 TMR0ON 1 0 :1:7 
 ]
-[s S427 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S444 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 `uc 1 T0PS3 1 0 :1:3 
 ]
-[u S432 . 1 `S420 1 . 1 0 `S427 1 . 1 0 ]
+[u S449 . 1 `S437 1 . 1 0 `S444 1 . 1 0 ]
 "33120 /opt/microchip/xc8/v1.12/include/pic18f2680.h
-[s S448 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S465 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -86,7 +88,7 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "33120
-[s S457 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S474 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -96,7 +98,7 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "33120
-[s S466 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S483 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -106,7 +108,7 @@
 `uc 1 GIEH 1 0 :1:7 
 ]
 "33120
-[s S475 . 1 `uc 1 . 1 0 :1:0 
+[s S492 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -116,38 +118,38 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "33120
-[s S484 . 1 `uc 1 . 1 0 :6:0 
+[s S501 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "33120
-[u S488 . 1 `S299 1 . 1 0 `S308 1 . 1 0 `S317 1 . 1 0 `S326 1 . 1 0 `S335 1 . 1 0 ]
+[u S505 . 1 `S316 1 . 1 0 `S325 1 . 1 0 `S334 1 . 1 0 `S343 1 . 1 0 `S352 1 . 1 0 ]
 "34 interval.c
 [v F16524 `(v  1 t 0 ]
 "110 json.c
-[s S577 . 1 `uc 1 SCS 1 0 :2:0 
+[s S594 . 1 `uc 1 SCS 1 0 :2:0 
 `uc 1 IOFS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 `uc 1 IDLEN 1 0 :1:7 
 ]
-[s S583 . 1 `uc 1 SCS0 1 0 :1:0 
+[s S600 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S590 . 1 `S577 1 . 1 0 `S583 1 . 1 0 ]
+[u S607 . 1 `S594 1 . 1 0 `S600 1 . 1 0 ]
 "9 async.h
 [v async@F16500 `(v  1 t 0 ]
-[s S637 . 1 `uc 1 . 1 0 :2:0 
+[s S650 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
-[s S640 . 1 `uc 1 . 1 0 :5:0 
+[s S653 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S643 . 1 `uc 1 BF 1 0 :1:0 
+[s S656 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -156,70 +158,70 @@
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S652 . 1 `uc 1 . 1 0 :2:0 
+[s S665 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
-[s S655 . 1 `uc 1 . 1 0 :5:0 
+[s S668 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S658 . 1 `uc 1 . 1 0 :2:0 
+[s S671 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S663 . 1 `uc 1 . 1 0 :2:0 
+[s S676 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S669 . 1 `uc 1 . 1 0 :2:0 
+[s S682 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S674 . 1 `uc 1 . 1 0 :2:0 
+[s S687 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S677 . 1 `uc 1 . 1 0 :5:0 
+[s S690 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S680 . 1 `uc 1 . 1 0 :2:0 
+[s S693 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S685 . 1 `uc 1 . 1 0 :2:0 
+[s S698 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S690 . 1 `uc 1 . 1 0 :2:0 
+[s S703 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S695 . 1 `uc 1 . 1 0 :5:0 
+[s S708 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S698 . 1 `uc 1 . 1 0 :2:0 
+[s S711 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 ]
-[s S701 . 1 `uc 1 . 1 0 :3:0 
+[s S714 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 START 1 0 :1:3 
 ]
-[s S704 . 1 `uc 1 . 1 0 :4:0 
+[s S717 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 STOP 1 0 :1:4 
 ]
-[s S707 . 1 `uc 1 . 1 0 :2:0 
+[s S720 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 ]
-[s S710 . 1 `uc 1 . 1 0 :5:0 
+[s S723 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S713 . 1 `S637 1 . 1 0 `S640 1 . 1 0 `S643 1 . 1 0 `S637 1 . 1 0 `S640 1 . 1 0 `S658 1 . 1 0 `S663 1 . 1 0 `S669 1 . 1 0 `S674 1 . 1 0 `S677 1 . 1 0 `S680 1 . 1 0 `S685 1 . 1 0 `S690 1 . 1 0 `S695 1 . 1 0 `S698 1 . 1 0 `S701 1 . 1 0 `S704 1 . 1 0 `S707 1 . 1 0 `S710 1 . 1 0 ]
+[u S726 . 1 `S650 1 . 1 0 `S653 1 . 1 0 `S656 1 . 1 0 `S650 1 . 1 0 `S653 1 . 1 0 `S671 1 . 1 0 `S676 1 . 1 0 `S682 1 . 1 0 `S687 1 . 1 0 `S690 1 . 1 0 `S693 1 . 1 0 `S698 1 . 1 0 `S703 1 . 1 0 `S708 1 . 1 0 `S711 1 . 1 0 `S714 1 . 1 0 `S717 1 . 1 0 `S720 1 . 1 0 `S723 1 . 1 0 ]
 "15
-[s S813 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S826 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -228,7 +230,7 @@
 `uc 1 TRISC6 1 0 :1:6 
 `uc 1 TRISC7 1 0 :1:7 
 ]
-[s S822 . 1 `uc 1 RC0 1 0 :1:0 
+[s S835 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -237,11 +239,11 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S831 . 1 `S813 1 . 1 0 `S822 1 . 1 0 ]
+[u S844 . 1 `S826 1 . 1 0 `S835 1 . 1 0 ]
 "9
 [v async@F16500 `(v  1 t 0 ]
 "38007 /opt/microchip/xc8/v1.12/include/pic18f2680.h
-[s S908 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S924 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -251,7 +253,7 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "38007
-[s S917 . 1 `uc 1 RC0 1 0 :1:0 
+[s S933 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -261,9 +263,9 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "38007
-[u S926 . 1 `S813 1 . 1 0 `S822 1 . 1 0 ]
+[u S942 . 1 `S826 1 . 1 0 `S835 1 . 1 0 ]
 "31139
-[s S969 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S984 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -272,7 +274,7 @@
 `uc 1 TRISC6 1 0 :1:6 
 `uc 1 TRISC7 1 0 :1:7 
 ]
-[s S978 . 1 `uc 1 RC0 1 0 :1:0 
+[s S993 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -281,27 +283,19 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S987 . 1 `S813 1 . 1 0 `S822 1 . 1 0 ]
+[u S1002 . 1 `S826 1 . 1 0 `S835 1 . 1 0 ]
 "9 async.h
 [v async@F16500 `(v  1 t 0 ]
-[s S1002 . 160 `i 1 isSending 2 0 `i 1 address 2 2 `[150]uc 1 data 150 4 `i 1 bytesLeft 2 154 `i 1 len 2 156 `*.M(v 1 callback 2 158 ]
+[s S1017 . 160 `i 1 isSending 2 0 `i 1 address 2 2 `[150]uc 1 data 150 4 `i 1 bytesLeft 2 154 `i 1 len 2 156 `*.M(v 1 callback 2 158 ]
 "11 interval.h
 [v interval@F16510 `(v  1 t 0 ]
 "9 async.h
 [v F16501 `(v  1 t 0 ]
-"57 /opt/microchip/xc8/v1.12/include/stdio.h
-[v F13 `(v  1 t 0 ]
-[s S1096 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
+"11 interval.h
+[v F16521 `(v  1 t 0 ]
 "533 /opt/microchip/xc8/v1.12/sources/doprnt.c
-[s S1116 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
-[u S1119 . 5 `ui 1 _val 2 0 `S1116 1 _str 5 0 ]
-"57 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/stdio.h
-[v stdio@F13 `(v  1 t 0 ]
-[s S1394 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
-[v stdio@F13 `(v  1 t 0 ]
-[s S1414 __prbuf 5 `*.Muc 1 ptr 3 0 `*.M(v 1 func 2 3 ]
-"32 /opt/microchip/xc8/v1.12/sources/sprintf.c
-[v F69 `(v  1 t 0 ]
+[s S1132 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
+[u S1135 . 5 `ui 1 _val 2 0 `S1132 1 _str 5 0 ]
 "5 ../common/asfladd.c
 [v ___asfladd `(d  1 e 3 0 ]
 "5 ../common/asfldiv.c
@@ -356,8 +350,8 @@
 [v ___awtoft `(f  1 e 3 0 ]
 "3 /opt/microchip/xc8/v1.12/sources/bmul.c
 [v ___bmul `(uc  1 e 1 0 ]
-"459 /opt/microchip/xc8/v1.12/sources/doprnt.c
-[v __doprnt `(i  1 e 2 0 ]
+"493 /opt/microchip/xc8/v1.12/sources/doprnt.c
+[v _sprintf `(i  1 e 2 0 ]
 "64 /opt/microchip/xc8/v1.12/sources/double.c
 [v ___flpack `(d  1 e 3 0 ]
 "89 /opt/microchip/xc8/v1.12/sources/fladd.c
@@ -428,10 +422,6 @@
 [v ___lwtoft `(f  1 e 3 0 ]
 "13 /opt/microchip/xc8/v1.12/sources/memcpy.c
 [v _memcpy `(*.Mv  1 e 1 0 ]
-"14 /opt/microchip/xc8/v1.12/sources/printf.c
-[v _printf `(i  1 e 2 0 ]
-"14 /opt/microchip/xc8/v1.12/sources/sprintf.c
-[v _sprintf `(i  1 e 2 0 ]
 "5 /opt/microchip/xc8/v1.12/sources/strchr.c
 [v _strchr `(*.Muc  1 e 1 0 ]
 "34 /opt/microchip/xc8/v1.12/sources/strcmp.c
@@ -460,8 +450,6 @@
 [v i2_AsyncBegin `(v  1 e 0 0 ]
 "6 crashHelper.c
 [v _Crash `(v  1 e 0 0 ]
-[v i2_Crash `(v  1 e 0 0 ]
-[v i2_Crash `(v  1 e 0 0 ]
 "3 interrupts.c
 [v _onInterrupt `II(v  1 e 0 0 ]
 "14 interval.c
@@ -484,13 +472,13 @@
 [v _main `(i  1 e 2 0 ]
 "25 jwire.c
 [v _JWireOnInterrupt `(v  1 e 0 0 ]
-"103
+"112
 [v _JWireOnReceive `(v  1 e 0 0 ]
-"108
+"117
 [v _JWireOnRequest `(v  1 e 0 0 ]
-"113
+"122
 [v _JWireBegin `(v  1 e 0 0 ]
-"135
+"144
 [v _JWireRespond `(v  1 e 0 0 ]
 "4 ledCounter.c
 [v _CountUp `(v  1 e 0 0 ]
@@ -498,61 +486,69 @@
 [v _LedCounterBegin `(v  1 e 0 0 ]
 "3 macaw.c
 [v _MacawBegin `(v  1 e 0 0 ]
-"5 main.c
+"14 main.c
 [v _call `(v  1 e 0 0 ]
-"12
+"26
+[v _call2 `(v  1 e 0 0 ]
+"37
 [v _onSetup `(v  1 e 0 0 ]
-"18
+"52
 [v _onLoop `(v  1 e 0 0 ]
 "12 serial.c
 [v _OnSerialInterrupt `(v  1 e 0 0 ]
-"34
+"44
 [v _SerialBegin `(v  1 e 0 0 ]
-"59
+"69
 [v _OnSerial `(v  1 e 0 0 ]
-"70
+"80
 [v _SerialWrite `(v  1 e 0 0 ]
-"86
+"96
 [v _SerialWriteInterrupt `(v  1 e 0 0 ]
 "3 string2.c
 [v _strcpy2 `(v  1 e 0 0 ]
-[v i2_strcpy2 `(v  1 e 0 0 ]
-[v i2_strcpy2 `(v  1 e 0 0 ]
 "3 superSimpleSerial.c
 [v _SuperSimpleSerialBegin `(v  1 e 0 0 ]
 "21
 [v _Sout `(v  1 e 0 0 ]
 "29
 [v _putch `(v  1 e 0 0 ]
-"49 twitter.c
+"44 twitter.c
+[v _TwitterOnReceiveFromWireSlave `(v  1 e 0 0 ]
+"50
+[v _TwitterOnReceiveFromWireMaster `(v  1 e 0 0 ]
+"56
+[v _TwitterOnReceiveFromSerial `(v  1 e 0 0 ]
+"77
 [v _TwitterWireSlaveOnRequest `(v  1 e 0 0 ]
-"54
+"88
 [v _TwitterWireSlaveBegin `(v  1 e 0 0 ]
-"79
+"113
 [v _TwitterWireMasterRequestSlave `(v  1 e 0 0 ]
-"91
+"128
 [v _TwitterWireMasterBegin `(v  1 e 0 0 ]
-"96
+"135
 [v _TwitterWireMasterAddSlave `(v  1 e 0 0 ]
-"119
+"158
 [v _TwitterSerialBegin `(v  1 e 0 0 ]
-"129
+"169
 [v _TwitterSendToAll `(v  1 e 0 0 ]
-"148
+"196
 [v _TwitterSendToOne `(v  1 e 0 0 ]
-"174
+"223
 [v _TwitterOnReceive `(v  1 e 0 0 ]
-"221
+"271
 [v _TwitterSignUp `(v  1 e 0 0 ]
-"243
+"293
 [v _Tweet `(v  1 e 0 0 ]
-"284
+"334
 [v _TweetValue `(v  1 e 0 0 ]
-"291
+"341
 [v _TweetReturn `(v  1 e 0 0 ]
-"314
+"367
+[v _TweetReturnValue `(v  1 e 0 0 ]
+"373
 [v _TwitterRegisterHashtag `(v  1 e 0 0 ]
-"329
+"388
 [v _TwitterRegisterSubject `(v  1 e 0 0 ]
 "32 wireMaster.c
 [v _WireBegin `(v  1 e 0 0 ]
@@ -576,7 +572,7 @@
 [v _TRISA `VEuc  1 e 1 @3986 ]
 "29397
 [v _TRISB `VEuc  1 e 1 @3987 ]
-[s S813 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S826 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -586,7 +582,7 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "29650
-[s S822 . 1 `uc 1 RC0 1 0 :1:0 
+[s S835 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -595,10 +591,8 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S831 . 1 `S813 1 . 1 0 `S822 1 . 1 0 ]
-[v _TRISCbits `VES831  1 e 1 @3988 ]
-"30697
-[v _RCSTA `VEuc  1 e 1 @4011 ]
+[u S844 . 1 `S826 1 . 1 0 `S835 1 . 1 0 ]
+[v _TRISCbits `VES844  1 e 1 @3988 ]
 "31117
 [v _TXREG `VEuc  1 e 1 @4013 ]
 "31128
@@ -609,14 +603,14 @@
 [v _SSPCON1 `VEuc  1 e 1 @4038 ]
 "32063
 [v _SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S637 . 1 `uc 1 . 1 0 :2:0 
+[s S650 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "32165
-[s S640 . 1 `uc 1 . 1 0 :5:0 
+[s S653 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S643 . 1 `uc 1 BF 1 0 :1:0 
+[s S656 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -625,75 +619,75 @@
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S658 . 1 `uc 1 . 1 0 :2:0 
+[s S671 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S663 . 1 `uc 1 . 1 0 :2:0 
+[s S676 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S669 . 1 `uc 1 . 1 0 :2:0 
+[s S682 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S674 . 1 `uc 1 . 1 0 :2:0 
+[s S687 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S677 . 1 `uc 1 . 1 0 :5:0 
+[s S690 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S680 . 1 `uc 1 . 1 0 :2:0 
+[s S693 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S685 . 1 `uc 1 . 1 0 :2:0 
+[s S698 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S690 . 1 `uc 1 . 1 0 :2:0 
+[s S703 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S695 . 1 `uc 1 . 1 0 :5:0 
+[s S708 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S698 . 1 `uc 1 . 1 0 :2:0 
+[s S711 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 ]
-[s S701 . 1 `uc 1 . 1 0 :3:0 
+[s S714 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 START 1 0 :1:3 
 ]
-[s S704 . 1 `uc 1 . 1 0 :4:0 
+[s S717 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 STOP 1 0 :1:4 
 ]
-[s S707 . 1 `uc 1 . 1 0 :2:0 
+[s S720 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 ]
-[s S710 . 1 `uc 1 . 1 0 :5:0 
+[s S723 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S713 . 1 `S637 1 . 1 0 `S640 1 . 1 0 `S643 1 . 1 0 `S637 1 . 1 0 `S640 1 . 1 0 `S658 1 . 1 0 `S663 1 . 1 0 `S669 1 . 1 0 `S674 1 . 1 0 `S677 1 . 1 0 `S680 1 . 1 0 `S685 1 . 1 0 `S690 1 . 1 0 `S695 1 . 1 0 `S698 1 . 1 0 `S701 1 . 1 0 `S704 1 . 1 0 `S707 1 . 1 0 `S710 1 . 1 0 ]
-[v _SSPSTATbits `VES713  1 e 1 @4039 ]
+[u S726 . 1 `S650 1 . 1 0 `S653 1 . 1 0 `S656 1 . 1 0 `S650 1 . 1 0 `S653 1 . 1 0 `S671 1 . 1 0 `S676 1 . 1 0 `S682 1 . 1 0 `S687 1 . 1 0 `S690 1 . 1 0 `S693 1 . 1 0 `S698 1 . 1 0 `S703 1 . 1 0 `S708 1 . 1 0 `S711 1 . 1 0 `S714 1 . 1 0 `S717 1 . 1 0 `S720 1 . 1 0 `S723 1 . 1 0 ]
+[v _SSPSTATbits `VES726  1 e 1 @4039 ]
 "32329
 [v _SSPADD `VEuc  1 e 1 @4040 ]
 "32335
 [v _SSPBUF `VEuc  1 e 1 @4041 ]
-[s S577 . 1 `uc 1 SCS 1 0 :2:0 
+[s S594 . 1 `uc 1 SCS 1 0 :2:0 
 `uc 1 IOFS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 `uc 1 IDLEN 1 0 :1:7 
 ]
 "33045
-[s S583 . 1 `uc 1 SCS0 1 0 :1:0 
+[s S600 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 IRCF0 1 0 :1:4 
@@ -701,11 +695,11 @@
 `uc 1 IRCF2 1 0 :1:6 
 ]
 "33045
-[u S590 . 1 `S577 1 . 1 0 `S583 1 . 1 0 ]
+[u S607 . 1 `S594 1 . 1 0 `S600 1 . 1 0 ]
 "33045
 "33045
-[v _OSCCONbits `VES590  1 e 1 @4051 ]
-[s S420 . 1 `uc 1 T0PS 1 0 :3:0 
+[v _OSCCONbits `VES607  1 e 1 @4051 ]
+[s S437 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -713,17 +707,17 @@
 `uc 1 TMR0ON 1 0 :1:7 
 ]
 "33120
-[s S427 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S444 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 `uc 1 T0PS3 1 0 :1:3 
 ]
 "33120
-[u S432 . 1 `S420 1 . 1 0 `S427 1 . 1 0 ]
+[u S449 . 1 `S437 1 . 1 0 `S444 1 . 1 0 ]
 "33120
 "33120
-[v _T0CONbits `VES432  1 e 1 @4053 ]
-[s S299 . 1 `uc 1 RBIF 1 0 :1:0 
+[v _T0CONbits `VES449  1 e 1 @4053 ]
+[s S316 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -733,7 +727,7 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "33645
-[s S308 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S325 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -743,7 +737,7 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "33645
-[s S317 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S334 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -753,7 +747,7 @@
 `uc 1 GIEH 1 0 :1:7 
 ]
 "33645
-[s S326 . 1 `uc 1 . 1 0 :1:0 
+[s S343 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -763,15 +757,15 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "33645
-[s S335 . 1 `uc 1 . 1 0 :6:0 
+[s S352 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "33645
-[u S339 . 1 `S299 1 . 1 0 `S308 1 . 1 0 `S317 1 . 1 0 `S326 1 . 1 0 `S335 1 . 1 0 ]
+[u S356 . 1 `S316 1 . 1 0 `S325 1 . 1 0 `S334 1 . 1 0 `S343 1 . 1 0 `S352 1 . 1 0 ]
 "33645
 "33645
-[v _INTCONbits `VES339  1 e 1 @4082 ]
+[v _INTCONbits `VES356  1 e 1 @4082 ]
 "33921
 [v _ACKEN `VEb  1 e 0 @32300 ]
 "35433
@@ -782,8 +776,14 @@
 [v _CKP `VEb  1 e 0 @32308 ]
 "35513
 [v _CREN `VEb  1 e 0 @32092 ]
+"35749
+[v _FERR `VEb  1 e 0 @32090 ]
 "35851
 [v _GIE `VEb  1 e 0 @32663 ]
+"35983
+[v _LA3 `VEb  1 e 0 @31819 ]
+"36135
+[v _OERR `VEb  1 e 0 @32089 ]
 "36183
 [v _PEIE `VEb  1 e 0 @32662 ]
 "36187
@@ -848,13 +848,13 @@
 [v _AsyncMessage `*.buc  1 e 2 0 ]
 "4 crashHelper.c
 [v _IsCrashed `i  1 e 2 0 ]
-[s S414 INTERVAL_CALLBACK_T 4 `*.f(v 1 function 2 0 `s 1 delay 2 2 ]
+[s S431 INTERVAL_CALLBACK_T 4 `*.f(v 1 function 2 0 `s 1 delay 2 2 ]
 "9 interval.c
-[v interval@callbackA `S414  1 s 4 callbackA ]
+[v interval@callbackA `S431  1 s 4 callbackA ]
 "10
-[v interval@callbackB `S414  1 s 4 callbackB ]
+[v interval@callbackB `S431  1 s 4 callbackB ]
 "11
-[v interval@callbackC `S414  1 s 4 callbackC ]
+[v interval@callbackC `S431  1 s 4 callbackC ]
 "21 json.c
 [v _result `[150]uc  1 s 150 result ]
 "6 jwire.c
@@ -862,7 +862,7 @@
 "7
 [v _requestCallback `*.f(v  1 s 2 requestCallback ]
 "15
-[v _buffer `[100]uc  1 s 100 buffer ]
+[v _buffer `[150]uc  1 s 150 buffer ]
 "16
 [v _bufferReadPos `i  1 s 2 bufferReadPos ]
 "17
@@ -877,13 +877,13 @@
 [v _bufferPosition `i  1 s 2 bufferPosition ]
 "10
 [v _callback `*.f(v  1 s 2 callback ]
-"65
+"75
 [v _writeBuffer `[100]uc  1 e 100 0 ]
-"66
+"76
 [v _writeBufferPosition `i  1 s 2 writeBufferPosition ]
-"67
+"77
 [v _writeBufferPositionOpen `i  1 s 2 writeBufferPositionOpen ]
-"68
+"78
 [v _isDoneTransmitting `i  1 s 2 isDoneTransmitting ]
 "4 twitter.c
 [v _tempBuffer `[150]uc  1 s 150 tempBuffer ]
@@ -906,32 +906,38 @@
 [v _subjectB `S28  1 s 22 subjectB ]
 "35
 [v _name `[20]uc  1 s 20 name ]
-"43
+"40
+[v _lastInterface `uc  1 s 1 lastInterface ]
+"68
 [v _TwitterWireSlaveEnabled `i  1 s 2 TwitterWireSlaveEnabled ]
-"46
-[v _twitterWireSlaveMessageToSend `[150]uc  1 s 150 twitterWireSlaveMessageToSend ]
-[s S55 WIRE_SLAVE 22 `i 1 id 2 0 `[20]uc 1 name 20 2 ]
-"72
-[v _wireSlaveA `S55  1 s 22 wireSlaveA ]
 "73
-[v _wireSlaveB `S55  1 s 22 wireSlaveB ]
+[v _twitterWireSlaveMessageToSend `[150]uc  1 s 150 twitterWireSlaveMessageToSend ]
 "74
+[v _slaveHasRequest `i  1 s 2 slaveHasRequest ]
+[s S55 WIRE_SLAVE 22 `i 1 id 2 0 `[20]uc 1 name 20 2 ]
+"106
+[v _wireSlaveA `S55  1 s 22 wireSlaveA ]
+"107
+[v _wireSlaveB `S55  1 s 22 wireSlaveB ]
+"108
 [v _wireSlaveC `S55  1 s 22 wireSlaveC ]
-"76
+"110
 [v _TwitterWireMasterEnabled `i  1 s 2 TwitterWireMasterEnabled ]
-"117
+"156
 [v _TwitterSerialEnabled `i  1 s 2 TwitterSerialEnabled ]
+"168
+[v _isARelay `i  1 s 2 isARelay ]
 "3 wireMaster.c
 [v _wireMasterEnabled `i  1 e 2 0 ]
-[s S1002 . 160 `i 1 isSending 2 0 `i 1 address 2 2 `[150]uc 1 data 150 4 `i 1 bytesLeft 2 154 `i 1 len 2 156 `*.f(v 1 callback 2 158 ]
+[s S1017 . 160 `i 1 isSending 2 0 `i 1 address 2 2 `[150]uc 1 data 150 4 `i 1 bytesLeft 2 154 `i 1 len 2 156 `*.f(v 1 callback 2 158 ]
 "14
-[v _wireSendA `S1002  1 s 160 wireSendA ]
+[v _wireSendA `S1017  1 s 160 wireSendA ]
 "15
-[v _wireSendB `S1002  1 s 160 wireSendB ]
+[v _wireSendB `S1017  1 s 160 wireSendB ]
 "27
 [v _state `i  1 s 2 state ]
 "30
-[v _personBeingHelped `*.bS1002  1 s 2 personBeingHelped ]
+[v _personBeingHelped `*.bS1017  1 s 2 personBeingHelped ]
 "26 jspic.c
 [v _main `(i  1 e 2 0 ]
 {
@@ -952,41 +958,42 @@
 {
 "19
 } 0
-"12 main.c
+"37 main.c
 [v _onSetup `(v  1 e 0 0 ]
 {
-"16
+"50
 } 0
-"54 twitter.c
-[v _TwitterWireSlaveBegin `(v  1 e 0 0 ]
+"34 interval.c
+[v _SetInterval `(v  1 e 0 0 ]
 {
-[v TwitterWireSlaveBegin@id `i  1 p 2 2 ]
+[v SetInterval@delayInMs `i  1 p 2 0 ]
+[v SetInterval@callbackToUse `*.f(v  1 p 2 2 ]
+"36
+[v SetInterval@hasLoaded `uc  1 s 1 hasLoaded ]
 "63
 } 0
-"113 jwire.c
-[v _JWireBegin `(v  1 e 0 0 ]
+"158 twitter.c
+[v _TwitterSerialBegin `(v  1 e 0 0 ]
 {
-[v JWireBegin@id `i  1 p 2 0 ]
-"133
+"164
 } 0
-"103
-[v _JWireOnReceive `(v  1 e 0 0 ]
+"44 serial.c
+[v _SerialBegin `(v  1 e 0 0 ]
 {
-[v JWireOnReceive@callbackToUse `*.f(v  1 p 2 0 ]
-"105
+"67
 } 0
-"108
-[v _JWireOnRequest `(v  1 e 0 0 ]
+"69
+[v _OnSerial `(v  1 e 0 0 ]
 {
-[v JWireOnRequest@callbackToUse `*.f(v  1 p 2 0 ]
-"110
+[v OnSerial@callbackToUse `*.f(v  1 p 2 0 ]
+"72
 } 0
-"221 twitter.c
+"271 twitter.c
 [v _TwitterSignUp `(v  1 e 0 0 ]
 {
 [v TwitterSignUp@nameToUse `*.cuc  1 a 1 wreg ]
 [v TwitterSignUp@nameToUse `*.cuc  1 a 1 wreg ]
-"241
+"291
 } 0
 "10 /opt/microchip/xc8/v1.12/sources/strcpy.c
 [v _strcpy `(*.Muc  1 e 1 0 ]
@@ -998,45 +1005,10 @@
 [v strcpy@from `*.sCuc  1 p 2 2 ]
 "24
 } 0
-"329 twitter.c
-[v _TwitterRegisterSubject `(v  1 e 0 0 ]
-{
-[v TwitterRegisterSubject@subject `*.cuc  1 a 1 wreg ]
-[v TwitterRegisterSubject@subject `*.cuc  1 a 1 wreg ]
-[v TwitterRegisterSubject@callback `*.f(v  1 p 2 4 ]
-"339
-} 0
-"6 crashHelper.c
-[v _Crash `(v  1 e 0 0 ]
-{
-[v Crash@id `i  1 p 2 0 ]
-"13
-} 0
-"3 string2.c
-[v _strcpy2 `(v  1 e 0 0 ]
-{
-[v strcpy2@dest `*.buc  1 p 2 0 ]
-[v strcpy2@loc `*.sCuc  1 p 2 2 ]
-"14
-} 0
-"13 ledCounter.c
-[v _LedCounterBegin `(v  1 e 0 0 ]
-{
-"17
-} 0
-"34 interval.c
-[v _SetInterval `(v  1 e 0 0 ]
-{
-[v SetInterval@delayInMs `i  1 p 2 0 ]
-[v SetInterval@callbackToUse `*.f(v  1 p 2 2 ]
-"36
-[v SetInterval@hasLoaded `uc  1 s 1 hasLoaded ]
-"63
-} 0
-"18 main.c
+"52 main.c
 [v _onLoop `(v  1 e 0 0 ]
 {
-"19
+"53
 } 0
 "3 interrupts.c
 [v _onInterrupt `II(v  1 e 0 0 ]
@@ -1055,32 +1027,94 @@
 [v IntervalTick@time `i  1 s 2 time ]
 "27
 } 0
-"174 twitter.c
+"56 twitter.c
+[v _TwitterOnReceiveFromSerial `(v  1 e 0 0 ]
+{
+"60
+} 0
+"50
+[v _TwitterOnReceiveFromWireMaster `(v  1 e 0 0 ]
+{
+"54
+} 0
+"44
+[v _TwitterOnReceiveFromWireSlave `(v  1 e 0 0 ]
+{
+"48
+} 0
+"223
 [v _TwitterOnReceive `(v  1 e 0 0 ]
 {
-"200
-[v TwitterOnReceive@key `i  1 a 2 69 ]
-"175
-[v TwitterOnReceive@message `*.buc  1 a 2 71 ]
-"218
+"250
+[v TwitterOnReceive@key `i  1 a 2 61 ]
+"224
+[v TwitterOnReceive@message `*.buc  1 a 2 63 ]
+"268
 } 0
-"129
-[v _TwitterSendToAll `(v  1 e 0 0 ]
+"83 json.c
+[v _JsonGetString `(i  1 e 2 0 ]
 {
-[v TwitterSendToAll@message `*.buc  1 p 2 18 ]
-"146
+"97
+[v JsonGetString@i `i  1 a 2 55 ]
+"95
+[v JsonGetString@length_sub_s `ul  1 a 4 51 ]
+"94
+[v JsonGetString@length_substr2_s `ul  1 a 4 45 ]
+"93
+[v JsonGetString@length_substr_s `ul  1 a 4 41 ]
+"103
+[v JsonGetString@p `*.buc  1 a 2 57 ]
+"92
+[v JsonGetString@substr2_s `*.buc  1 a 2 49 ]
+"86
+[v JsonGetString@substr_s `*.buc  1 a 2 59 ]
+"83
+[v JsonGetString@input `*.buc  1 p 2 32 ]
+[v JsonGetString@key `*.cuc  1 p 1 34 ]
+[v JsonGetString@string `*.buc  1 p 2 35 ]
+"110
+} 0
+"27
+[v _JsonGetValue `(i  1 e 2 0 ]
+{
+"55
+[v JsonGetValue@p `*.buc  1 a 2 49 ]
+"46
+[v JsonGetValue@i `i  1 a 2 47 ]
+"43
+[v JsonGetValue@length_sub_s `i  1 a 2 45 ]
+"52
+[v JsonGetValue@result_float `i  1 a 2 43 ]
+"42
+[v JsonGetValue@length_substr2_s `i  1 a 2 41 ]
+"41
+[v JsonGetValue@length_substr_s `i  1 a 2 39 ]
+"38
+[v JsonGetValue@substr2_s `*.buc  1 a 2 37 ]
+"30
+[v JsonGetValue@substr_s `*.buc  1 a 2 51 ]
+"27
+[v JsonGetValue@input `*.buc  1 p 2 32 ]
+[v JsonGetValue@key `*.cuc  1 p 1 34 ]
+"67
 } 0
 "25 jwire.c
 [v _JWireOnInterrupt `(v  1 e 0 0 ]
 {
 "36
-[v JWireOnInterrupt@data `i  1 a 2 33 ]
-"100
+[v JWireOnInterrupt@data `i  1 a 2 8 ]
+"109
 } 0
-"49 twitter.c
+"77 twitter.c
 [v _TwitterWireSlaveOnRequest `(v  1 e 0 0 ]
 {
-"51
+"85
+} 0
+"144 jwire.c
+[v _JWireRespond `(v  1 e 0 0 ]
+{
+[v JWireRespond@msg `*.suc  1 p 2 4 ]
+"147
 } 0
 "176 wireMaster.c
 [v _WireOnInterrupt `(v  1 e 0 0 ]
@@ -1095,31 +1129,23 @@
 "12 serial.c
 [v _OnSerialInterrupt `(v  1 e 0 0 ]
 {
-"14
-[v OnSerialInterrupt@data `uc  1 a 1 8 ]
-"32
+"25
+[v OnSerialInterrupt@i `i  1 a 2 8 ]
+"13
+[v OnSerialInterrupt@data `uc  1 s 1 data ]
+"42
 } 0
-"86
+"96
 [v _SerialWriteInterrupt `(v  1 e 0 0 ]
 {
-"106
+"116
 } 0
-"116 wireMaster.c
-[v _HandleSends `(v  1 e 0 0 ]
+"14 main.c
+[v _call `(v  1 e 0 0 ]
 {
-"140
-} 0
-"142
-[v _HandleReads `(v  1 e 0 0 ]
-{
-"174
-} 0
-"18 async.c
-[v _Async `(v  1 e 0 0 ]
-{
-[v Async@function `*.f(v  1 p 2 4 ]
-[v Async@string `*.buc  1 p 2 6 ]
-"32
+"15
+[v call@count `i  1 s 2 count ]
+"24
 } 0
 "4 ledCounter.c
 [v _CountUp `(v  1 e 0 0 ]
@@ -1128,166 +1154,19 @@
 [v CountUp@count `i  1 s 2 count ]
 "11
 } 0
-"5 main.c
-[v _call `(v  1 e 0 0 ]
+"113 twitter.c
+[v _TwitterWireMasterRequestSlave `(v  1 e 0 0 ]
 {
-"6
-[v call@value `i  1 s 2 value ]
-"10
+"114
+[v TwitterWireMasterRequestSlave@current `i  1 s 2 current ]
+"126
 } 0
-"14 /opt/microchip/xc8/v1.12/sources/printf.c
-[v _printf `(i  1 e 2 0 ]
+"95 wireMaster.c
+[v _WireGetString `(v  1 e 0 0 ]
 {
-[v printf@f `*.cCuc  1 a 1 wreg ]
-[s S1096 __prbuf 4 `*.buc 1 ptr 2 0 `*.f(v 1 func 2 2 ]
-"21
-[v printf@pb `S1096  1 a 4 29 ]
-"15
-[v printf@ap `[1]*.Mv  1 a 1 28 ]
-"14
-[v printf@f `*.cCuc  1 a 1 wreg ]
-"28
-} 0
-"291 twitter.c
-[v _TweetReturn `(v  1 e 0 0 ]
-{
-[v TweetReturn@msg `*.cuc  1 a 1 wreg ]
-[v TweetReturn@msg `*.cuc  1 a 1 wreg ]
-"292
-[v TweetReturn@sessionKey `i  1 s 2 sessionKey ]
-"298
-[v TweetReturn@to `[20]uc  1 s 20 to ]
-"299
-[v TweetReturn@from `[20]uc  1 s 20 from ]
-"312
-} 0
-"148
-[v _TwitterSendToOne `(v  1 e 0 0 ]
-{
-[v TwitterSendToOne@name `*.buc  1 p 2 18 ]
-[v TwitterSendToOne@message `*.buc  1 p 2 20 ]
-"171
-} 0
-"70 wireMaster.c
-[v _WireSend `(v  1 e 0 0 ]
-{
-[v WireSend@address `i  1 p 2 10 ]
-[v WireSend@data `*.buc  1 p 2 12 ]
-[v WireSend@len `i  1 p 2 14 ]
-[v WireSend@callback `*.f(v  1 p 2 16 ]
-"93
-} 0
-"70 serial.c
-[v _SerialWrite `(v  1 e 0 0 ]
-{
-[v SerialWrite@data `*.buc  1 p 2 6 ]
-"84
-} 0
-"34 /opt/microchip/xc8/v1.12/sources/strcmp.c
-[v _strcmp `(i  1 e 2 0 ]
-{
-"35
-[v strcmp@r `c  1 a 1 6 ]
-"34
-[v strcmp@s1 `*.sCuc  1 p 2 0 ]
-[v strcmp@s2 `*.bCuc  1 p 2 2 ]
-"42
-} 0
-"83 json.c
-[v _JsonGetString `(i  1 e 2 0 ]
-{
-"97
-[v JsonGetString@i `i  1 a 2 62 ]
-"95
-[v JsonGetString@length_sub_s `ul  1 a 4 58 ]
-"94
-[v JsonGetString@length_substr2_s `ul  1 a 4 52 ]
-"93
-[v JsonGetString@length_substr_s `ul  1 a 4 48 ]
-"103
-[v JsonGetString@p `*.buc  1 a 2 64 ]
-"92
-[v JsonGetString@substr2_s `*.buc  1 a 2 56 ]
-"86
-[v JsonGetString@substr_s `*.buc  1 a 2 66 ]
-"83
-[v JsonGetString@input `*.buc  1 p 2 39 ]
-[v JsonGetString@key `*.cuc  1 p 1 41 ]
-[v JsonGetString@string `*.buc  1 p 2 42 ]
-"110
-} 0
-"27
-[v _JsonGetValue `(i  1 e 2 0 ]
-{
-"55
-[v JsonGetValue@p `*.buc  1 a 2 56 ]
-"46
-[v JsonGetValue@i `i  1 a 2 54 ]
-"43
-[v JsonGetValue@length_sub_s `i  1 a 2 52 ]
-"52
-[v JsonGetValue@result_float `i  1 a 2 50 ]
-"42
-[v JsonGetValue@length_substr2_s `i  1 a 2 48 ]
-"41
-[v JsonGetValue@length_substr_s `i  1 a 2 46 ]
-"38
-[v JsonGetValue@substr2_s `*.buc  1 a 2 44 ]
-"30
-[v JsonGetValue@substr_s `*.buc  1 a 2 58 ]
-"27
-[v JsonGetValue@input `*.buc  1 p 2 39 ]
-[v JsonGetValue@key `*.cuc  1 p 1 41 ]
-"67
-} 0
-"23
-[v _JsonNew `(v  1 e 0 0 ]
-{
-[v JsonNew@string `*.buc  1 p 2 39 ]
-"25
-} 0
-"69
-[v _JsonSetString `(v  1 e 0 0 ]
-{
-"70
-[v JsonSetString@original_json_input_len `ul  1 a 4 46 ]
-"69
-[v JsonSetString@input `*.buc  1 p 2 39 ]
-[v JsonSetString@key `*.cuc  1 p 1 41 ]
-[v JsonSetString@str `*.suc  1 p 2 42 ]
-"74
-} 0
-"76
-[v _JsonSetValue `(v  1 e 0 0 ]
-{
-"77
-[v JsonSetValue@original_json_input_len `ul  1 a 4 46 ]
-"76
-[v JsonSetValue@input `*.buc  1 p 2 39 ]
-[v JsonSetValue@key `*.cuc  1 p 1 41 ]
-[v JsonSetValue@value `i  1 p 2 42 ]
-"81
-} 0
-"5 /opt/microchip/xc8/v1.12/sources/strlen.c
-[v _strlen `(ui  1 e 2 0 ]
-{
-"6
-[v strlen@cp `*.sCuc  1 a 2 2 ]
-"5
-[v strlen@s `*.sCuc  1 p 2 0 ]
-"13
-} 0
-"14 /opt/microchip/xc8/v1.12/sources/sprintf.c
-[v _sprintf `(i  1 e 2 0 ]
-{
-"29
-[v sprintf@pb `S1096  1 a 4 35 ]
-"28
-[v sprintf@ap `[1]*.Mv  1 a 1 34 ]
-"14
-[v sprintf@wh `*.buc  1 p 2 25 ]
-[v sprintf@f `*.cCuc  1 p 1 27 ]
-"38
+[v WireGetString@address `i  1 p 2 0 ]
+[v WireGetString@callback `*.f(v  1 p 2 2 ]
+"114
 } 0
 "5 /opt/microchip/xc8/v1.12/sources/strstr.c
 [v _strstr `(*.Muc  1 e 1 0 ]
@@ -1307,6 +1186,157 @@
 [v atoi@s `*.bCuc  1 p 2 6 ]
 "24
 } 0
+"116 wireMaster.c
+[v _HandleSends `(v  1 e 0 0 ]
+{
+"140
+} 0
+"142
+[v _HandleReads `(v  1 e 0 0 ]
+{
+"174
+} 0
+"18 async.c
+[v _Async `(v  1 e 0 0 ]
+{
+[v Async@function `*.f(v  1 p 2 4 ]
+[v Async@string `*.buc  1 p 2 6 ]
+"32
+} 0
+"6 crashHelper.c
+[v _Crash `(v  1 e 0 0 ]
+{
+[v Crash@id `i  1 p 2 0 ]
+"13
+} 0
+"334 twitter.c
+[v _TweetValue `(v  1 e 0 0 ]
+{
+[v TweetValue@to `*.cuc  1 a 1 wreg ]
+[v TweetValue@to `*.cuc  1 a 1 wreg ]
+[v TweetValue@subject `*.cuc  1 p 1 48 ]
+[v TweetValue@value `i  1 p 2 49 ]
+[v TweetValue@callback `*.f(v  1 p 2 51 ]
+"335
+[v TweetValue@message `[10]uc  1 s 10 message ]
+"338
+} 0
+"293
+[v _Tweet `(v  1 e 0 0 ]
+{
+[v Tweet@to `*.cuc  1 a 1 wreg ]
+[v Tweet@to `*.cuc  1 a 1 wreg ]
+[v Tweet@subject `*.cuc  1 p 1 43 ]
+[v Tweet@message `*.0uc  1 p 1 44 ]
+[v Tweet@callback `*.f(v  1 p 2 45 ]
+"295
+[v Tweet@sessionKey `uc  1 s 1 sessionKey ]
+"305
+[v Tweet@nextSession `i  1 s 2 nextSession ]
+"332
+} 0
+"169
+[v _TwitterSendToAll `(v  1 e 0 0 ]
+{
+[v TwitterSendToAll@message `*.buc  1 p 2 18 ]
+"194
+} 0
+"196
+[v _TwitterSendToOne `(v  1 e 0 0 ]
+{
+[v TwitterSendToOne@name `*.suc  1 p 2 18 ]
+[v TwitterSendToOne@message `*.buc  1 p 2 20 ]
+"220
+} 0
+"70 wireMaster.c
+[v _WireSend `(v  1 e 0 0 ]
+{
+[v WireSend@address `i  1 p 2 10 ]
+[v WireSend@data `*.buc  1 p 2 12 ]
+[v WireSend@len `i  1 p 2 14 ]
+[v WireSend@callback `*.f(v  1 p 2 16 ]
+"93
+} 0
+"80 serial.c
+[v _SerialWrite `(v  1 e 0 0 ]
+{
+[v SerialWrite@data `*.buc  1 p 2 6 ]
+"94
+} 0
+"34 /opt/microchip/xc8/v1.12/sources/strcmp.c
+[v _strcmp `(i  1 e 2 0 ]
+{
+"35
+[v strcmp@r `c  1 a 1 6 ]
+"34
+[v strcmp@s1 `*.sCuc  1 p 2 0 ]
+[v strcmp@s2 `*.sCuc  1 p 2 2 ]
+"42
+} 0
+"23 json.c
+[v _JsonNew `(v  1 e 0 0 ]
+{
+[v JsonNew@string `*.buc  1 p 2 32 ]
+"25
+} 0
+"69
+[v _JsonSetString `(v  1 e 0 0 ]
+{
+"70
+[v JsonSetString@original_json_input_len `ul  1 a 4 39 ]
+"69
+[v JsonSetString@input `*.buc  1 p 2 32 ]
+[v JsonSetString@key `*.cuc  1 p 1 34 ]
+[v JsonSetString@str `*.suc  1 p 2 35 ]
+"74
+} 0
+"5 /opt/microchip/xc8/v1.12/sources/strlen.c
+[v _strlen `(ui  1 e 2 0 ]
+{
+"6
+[v strlen@cp `*.sCuc  1 a 2 2 ]
+"5
+[v strlen@s `*.sCuc  1 p 2 0 ]
+"13
+} 0
+"76 json.c
+[v _JsonSetValue `(v  1 e 0 0 ]
+{
+"77
+[v JsonSetValue@original_json_input_len `ul  1 a 4 39 ]
+"76
+[v JsonSetValue@input `*.buc  1 p 2 32 ]
+[v JsonSetValue@key `*.cuc  1 p 1 34 ]
+[v JsonSetValue@value `i  1 p 2 35 ]
+"81
+} 0
+"3 string2.c
+[v _strcpy2 `(v  1 e 0 0 ]
+{
+[v strcpy2@dest `*.buc  1 p 2 0 ]
+[v strcpy2@loc `*.sCuc  1 p 2 2 ]
+"14
+} 0
+"493 /opt/microchip/xc8/v1.12/sources/doprnt.c
+[v _sprintf `(i  1 e 2 0 ]
+{
+[s S1132 . 4 `*.sCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+"533
+[u S1135 . 4 `ui 1 _val 2 0 `S1132 1 _str 4 0 ]
+[v sprintf@_val `S1135  1 a 4 27 ]
+"499
+[v sprintf@c `c  1 a 1 31 ]
+"494
+[v sprintf@ap `[1]*.sv  1 a 1 26 ]
+"506
+[v sprintf@prec `c  1 a 1 25 ]
+"508
+[v sprintf@flag `uc  1 a 1 24 ]
+"493
+[v sprintf@sp `*.buc  1 p 2 12 ]
+[v sprintf@f `*.cCuc  1 p 1 14 ]
+"1548
+} 0
 "50 wireMaster.c
 [v _TryToHelp `(v  1 e 0 0 ]
 {
@@ -1325,40 +1355,6 @@
 [v memcpy@n `ui  1 p 2 4 ]
 "32
 } 0
-"459 /opt/microchip/xc8/v1.12/sources/doprnt.c
-[v __doprnt `(i  1 e 2 0 ]
-{
-[v __doprnt@pb `*.aS1096  1 a 1 wreg ]
-[s S1116 . 4 `*.sCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
-"533
-[u S1119 . 4 `ui 1 _val 2 0 `S1116 1 _str 4 0 ]
-[v __doprnt@_val `S1119  1 a 4 19 ]
-"499
-[v __doprnt@c `c  1 a 1 23 ]
-"506
-[v __doprnt@prec `c  1 a 1 18 ]
-"508
-[v __doprnt@flag `uc  1 a 1 17 ]
-"459
-[v __doprnt@pb `*.aS1096  1 a 1 wreg ]
-[v __doprnt@f `*.cCuc  1 p 1 12 ]
-[v __doprnt@ap `*.a*.av  1 p 1 13 ]
-"1548
-} 0
-"29 superSimpleSerial.c
-[v _putch `(v  1 e 0 0 ]
-{
-[v putch@byte `uc  1 a 1 wreg ]
-[v putch@byte `uc  1 a 1 wreg ]
-"31
-} 0
-"21
-[v _Sout `(v  1 e 0 0 ]
-{
-[v Sout@byte `uc  1 a 1 wreg ]
-[v Sout@byte `uc  1 a 1 wreg ]
-"26
-} 0
 "13 /opt/microchip/xc8/v1.12/sources/isdigit.c
 [v _isdigit `(b  1 e 0 0 ]
 {
@@ -1376,6 +1372,19 @@
 [v ___awmod@dividend `i  1 p 2 0 ]
 [v ___awmod@divisor `i  1 p 2 2 ]
 "35
+} 0
+"5 /opt/microchip/xc8/v1.12/sources/lbmod.c
+[v ___lbmod `(uc  1 e 1 0 ]
+{
+[v ___lbmod@dividend `uc  1 a 1 wreg ]
+"6
+[v ___lbmod@rem `uc  1 a 1 3 ]
+"7
+[v ___lbmod@counter `uc  1 a 1 2 ]
+"5
+[v ___lbmod@dividend `uc  1 a 1 wreg ]
+[v ___lbmod@divisor `uc  1 p 1 0 ]
+"18
 } 0
 "10 /opt/microchip/xc8/v1.12/sources/lwdiv.c
 [v ___lwdiv `(ui  1 e 2 0 ]
@@ -1428,19 +1437,6 @@
 [v i2_AsyncBegin `(v  1 e 0 0 ]
 {
 "60
-} 0
-"3 string2.c
-[v i2_strcpy2 `(v  1 e 0 0 ]
-{
-[v i2strcpy2@dest `*.buc  1 p 2 0 ]
-[v i2strcpy2@loc `*.sCuc  1 p 2 2 ]
-"14
-} 0
-"6 crashHelper.c
-[v i2_Crash `(v  1 e 0 0 ]
-{
-[v i2Crash@id `i  1 p 2 0 ]
-"13
 } 0
 "10 /opt/microchip/xc8/v1.12/sources/strcpy.c
 [v i2_strcpy `(*.Muc  1 e 1 0 ]

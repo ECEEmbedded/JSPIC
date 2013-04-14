@@ -20,8 +20,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 "36183
 [v _PEIE `Vb ~T0 @X0 0 e@32662 ]
-"6 ledCounter.h
-[v _LedCounterBegin `(v ~T0 @X0 0 ef ]
 "17 jspic.h
 [v _onLoop `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -14945,9 +14943,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jspic.c: 40: PEIE = 1;
 "40
 [e = _PEIE -> -> 1 `i `b ]
-[; ;jspic.c: 43: LedCounterBegin();
-"43
-[e ( _LedCounterBegin ..  ]
 [; ;jspic.c: 45: while (1) {
 "45
 [e :U 2094 ]

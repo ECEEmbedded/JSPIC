@@ -10,21 +10,31 @@ static int bufferPosition = 0;
 static AsyncCallback_t callback = 0;
 
 void OnSerialInterrupt() {
-    unsigned char err = RCSTA;
-    char data = RCREG;
-    
+    static char data;
+    data = RCREG;
+
+    //Error
+    if (FERR | OERR) {
+        CREN = 0;
+        CREN = 1;
+        return;
+    }
+
     //EOF
-    if (data == '\0') {
+    if (data == 0) {
+        for (int i = 0; i < 10; ++i)
+        LA3 = ~LA3;
         bufferSerial[bufferPosition] = 0;
         bufferPosition = 0;
 
         //Que the handler
         if (callback) {
+
             Async(callback, bufferSerial);
         }
 
         return;
-    }
+     }
 
      //Put data in buffer
      bufferSerial[bufferPosition] = data;
@@ -88,7 +98,7 @@ void SerialWriteInterrupt() {
         TXIE = 0;
         return;
     }
-    
+
     if (writeBuffer[writeBufferPosition] == 0) {
         TXREG = 0;
         writeBufferPosition = 0;

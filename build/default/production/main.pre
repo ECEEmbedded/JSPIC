@@ -18922,13 +18922,14 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 12 "twitter.h"
+# 13 "twitter.h"
 void TwitterSignUp(char *name);
 
 
 void Tweet(char *to, char *subject, char *message, AsyncCallback_t callback);
 void TweetValue(char *to, char *subject, int message, AsyncCallback_t callback);
 void TweetReturn(char *msg);
+void TweetReturnValue(int value);
 
 
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
@@ -18938,6 +18939,11 @@ void TwitterRegisterSubject(char *subject, AsyncCallback_t callback);
 
 
 void TwitterOnReceive();
+
+
+void TwitterOnReceiveFromSerial();
+void TwitterOnReceiveFromWireMaster();
+void TwitterOnReceiveFromWireSlave();
 
 
 
@@ -18955,17 +18961,45 @@ void TwitterWireMasterAddSlave(int id, char *name);
 void TwitterSerialBegin();
 
 # 5 "main.c"
-void call() {
 static int value = 0;
-value = JsonGetValue(AsyncMessage, "msg");
-printf("%d\n", value);
-TweetReturn("Thanks! :D");
+
+# 14
+void call() {
+static int count = 0;
+if (count == 0)
+count = 1;
+else
+count = count << 1;
+
+TweetValue("#motor", "", count, (0));
+
+count = count % 8;
+}
+
+void call2() {
+
+
+
+
+static int count;
+count = JsonGetValue(AsyncMessage, "msg");
+LATA = (PORTA & 0xF8) | count;
+count = count % 8;
 }
 
 void onSetup() {
+TRISA = 0;
+
 TwitterSignUp("@motor");
-TwitterWireSlaveBegin(0x4F);
-TwitterRegisterSubject("set", call);
+
+
+
+
+TwitterSerialBegin();
+
+
+
+SetInterval(150, call);
 }
 
 void onLoop() {

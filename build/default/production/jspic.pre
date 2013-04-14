@@ -18954,7 +18954,7 @@ GIE = 1;
 PEIE = 1;
 
 
-LedCounterBegin();
+
 
 while (1) {
 onLoop();

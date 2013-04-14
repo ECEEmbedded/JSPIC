@@ -18858,7 +18858,7 @@ static AsyncCallback_t receiveCallback = 0;
 static AsyncCallback_t requestCallback = 0;
 
 # 15
-static char buffer[100];
+static char buffer[150];
 static int bufferReadPos = 0;
 static int bufferWritePos = 0;
 
@@ -18907,7 +18907,16 @@ locked = 1;
 
 bufferWritePos = 0;
 }
+
 int temp = SSPBUF;
+
+
+if ((buffer[bufferWritePos]) == 0) {
+locked = 0;
+SSPBUF = 0;
+CKP = 1;
+return;
+}
 
 SSPBUF = buffer[bufferWritePos];
 CKP = 1;
@@ -18923,7 +18932,7 @@ if (locked) {
 bufferWritePos = bufferWritePos + 1;
 SSPBUF = buffer[bufferWritePos];
 
-# 86
+# 95
 if(buffer[bufferWritePos] == 0) {
 locked = 0;
 }

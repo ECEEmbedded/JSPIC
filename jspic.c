@@ -40,7 +40,7 @@ int main() {
     PEIE = 1;
 
     //Start counter on LA0-2, should tick up at 500ms per count
-    LedCounterBegin();
+    //LedCounterBegin();
 
     while (1) {
         onLoop();

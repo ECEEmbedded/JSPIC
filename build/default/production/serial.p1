@@ -1,10 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "9 async.h
 [v F16500 `(v ~T0 @X0 0 tf ]
-"30697 /opt/microchip/xc8/v1.12/include/pic18f2680.h
-[v _RCSTA `Vuc ~T0 @X0 0 e@4011 ]
-"31128
+"31128 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
+"35749
+[v _FERR `Vb ~T0 @X0 0 e@32090 ]
+"36135
+[v _OERR `Vb ~T0 @X0 0 e@32089 ]
+"35513
+[v _CREN `Vb ~T0 @X0 0 e@32092 ]
+"35983
+[v _LA3 `Vb ~T0 @X0 0 e@31819 ]
 "15 async.h
 [v _Async `(v ~T0 @X0 0 ef2`*F16500`*uc ]
 "38007 /opt/microchip/xc8/v1.12/include/pic18f2680.h
@@ -25,8 +31,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SYNC `Vb ~T0 @X0 0 e@32100 ]
 "37993
 [v _SENDB `Vb ~T0 @X0 0 e@32099 ]
-"35513
-[v _CREN `Vb ~T0 @X0 0 e@32092 ]
 "35435
 [v _BRGH `Vb ~T0 @X0 0 e@32098 ]
 "35433
@@ -14908,248 +14912,280 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _OnSerialInterrupt ]
 [f ]
 "13
-[v _err `uc ~T0 @X0 1 a ]
-[; ;serial.c: 13: unsigned char err = RCSTA;
-[e = _err _RCSTA ]
+[v F16516 `uc ~T0 @X0 1 s data ]
+[; ;serial.c: 13: static char data;
+[; ;serial.c: 14: data = RCREG;
 "14
-[v _data `uc ~T0 @X0 1 a ]
-[; ;serial.c: 14: char data = RCREG;
-[e = _data _RCREG ]
-[; ;serial.c: 17: if (data == '\0') {
+[e = F16516 _RCREG ]
+[; ;serial.c: 17: if (FERR | OERR) {
 "17
-[e $ ! == -> _data `ui -> 0 `ui 2093  ]
+[e $ ! | _FERR _OERR 2093  ]
 {
-[; ;serial.c: 18: bufferSerial[bufferPosition] = 0;
+[; ;serial.c: 18: CREN = 0;
 "18
-[e = *U + &U _bufferSerial * -> -> _bufferPosition `ui `ux -> -> # *U &U _bufferSerial `ui `ux -> -> 0 `i `uc ]
-[; ;serial.c: 19: bufferPosition = 0;
+[e = _CREN -> -> 0 `i `b ]
+[; ;serial.c: 19: CREN = 1;
 "19
-[e = _bufferPosition -> 0 `i ]
-[; ;serial.c: 22: if (callback) {
-"22
-[e $ ! != _callback -> -> 0 `i `*F16500 2094  ]
-{
-[; ;serial.c: 23: Async(callback, bufferSerial);
-"23
-[e ( _Async (2 , _callback &U _bufferSerial ]
-"24
-}
-[e :U 2094 ]
-[; ;serial.c: 24: }
-[; ;serial.c: 26: return;
-"26
+[e = _CREN -> -> 1 `i `b ]
+[; ;serial.c: 20: return;
+"20
 [e $UE 2092  ]
-"27
+"21
 }
 [e :U 2093 ]
-[; ;serial.c: 27: }
-[; ;serial.c: 30: bufferSerial[bufferPosition] = data;
-"30
-[e = *U + &U _bufferSerial * -> -> _bufferPosition `ui `ux -> -> # *U &U _bufferSerial `ui `ux _data ]
-[; ;serial.c: 31: ++bufferPosition;
+[; ;serial.c: 21: }
+[; ;serial.c: 24: if (data == 0) {
+"24
+[e $ ! == -> F16516 `i -> 0 `i 2094  ]
+{
+[; ;serial.c: 25: for (int i = 0; i < 10; ++i)
+"25
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 2095  ]
+[e $U 2096  ]
+"26
+[e :U 2095 ]
+[; ;serial.c: 26: LA3 = ~LA3;
+[e = _LA3 ! _LA3 ]
+"25
+[e =+ _i -> 1 `i ]
+[e $ < _i -> 10 `i 2095  ]
+[e :U 2096 ]
+"26
+}
+[; ;serial.c: 27: bufferSerial[bufferPosition] = 0;
+"27
+[e = *U + &U _bufferSerial * -> -> _bufferPosition `ui `ux -> -> # *U &U _bufferSerial `ui `ux -> -> 0 `i `uc ]
+[; ;serial.c: 28: bufferPosition = 0;
+"28
+[e = _bufferPosition -> 0 `i ]
+[; ;serial.c: 31: if (callback) {
 "31
+[e $ ! != _callback -> -> 0 `i `*F16500 2098  ]
+{
+[; ;serial.c: 33: Async(callback, bufferSerial);
+"33
+[e ( _Async (2 , _callback &U _bufferSerial ]
+"34
+}
+[e :U 2098 ]
+[; ;serial.c: 34: }
+[; ;serial.c: 36: return;
+"36
+[e $UE 2092  ]
+"37
+}
+[e :U 2094 ]
+[; ;serial.c: 37: }
+[; ;serial.c: 40: bufferSerial[bufferPosition] = data;
+"40
+[e = *U + &U _bufferSerial * -> -> _bufferPosition `ui `ux -> -> # *U &U _bufferSerial `ui `ux F16516 ]
+[; ;serial.c: 41: ++bufferPosition;
+"41
 [e =+ _bufferPosition -> 1 `i ]
-[; ;serial.c: 32: }
-"32
+[; ;serial.c: 42: }
+"42
 [e :UE 2092 ]
 }
-"34
+"44
 [v _SerialBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;serial.c: 34: void SerialBegin() {
+[; ;serial.c: 44: void SerialBegin() {
 [e :U _SerialBegin ]
 [f ]
-[; ;serial.c: 36: SPEN = 1;
-"36
+[; ;serial.c: 46: SPEN = 1;
+"46
 [e = _SPEN -> -> 1 `i `b ]
-[; ;serial.c: 37: TRISCbits.RC7 = 1;
-"37
-[e = . . _TRISCbits 1 7 -> -> 1 `i `uc ]
-[; ;serial.c: 38: TRISCbits.RC6 = 1;
-"38
-[e = . . _TRISCbits 1 6 -> -> 1 `i `uc ]
-[; ;serial.c: 41: TX9 = 0;
-"41
-[e = _TX9 -> -> 0 `i `b ]
-[; ;serial.c: 42: TXEN = 1;
-"42
-[e = _TXEN -> -> 1 `i `b ]
-[; ;serial.c: 43: SYNC = 0;
-"43
-[e = _SYNC -> -> 0 `i `b ]
-[; ;serial.c: 44: SENDB = 1;
-"44
-[e = _SENDB -> -> 1 `i `b ]
-[; ;serial.c: 47: CREN = 1;
+[; ;serial.c: 47: TRISCbits.RC7 = 1;
 "47
-[e = _CREN -> -> 1 `i `b ]
-[; ;serial.c: 50: BRGH = 1;
-"50
-[e = _BRGH -> -> 1 `i `b ]
-[; ;serial.c: 51: BRG16 = 1;
+[e = . . _TRISCbits 1 7 -> -> 1 `i `uc ]
+[; ;serial.c: 48: TRISCbits.RC6 = 1;
+"48
+[e = . . _TRISCbits 1 6 -> -> 1 `i `uc ]
+[; ;serial.c: 51: TX9 = 0;
 "51
-[e = _BRG16 -> -> 1 `i `b ]
-[; ;serial.c: 52: SPBRG = 34;
+[e = _TX9 -> -> 0 `i `b ]
+[; ;serial.c: 52: TXEN = 1;
 "52
-[e = _SPBRG -> -> 34 `i `uc ]
-[; ;serial.c: 55: TXIE = 0;
-"55
-[e = _TXIE -> -> 0 `i `b ]
-[; ;serial.c: 56: RCIE = 1;
-"56
-[e = _RCIE -> -> 1 `i `b ]
-[; ;serial.c: 57: }
+[e = _TXEN -> -> 1 `i `b ]
+[; ;serial.c: 53: SYNC = 0;
+"53
+[e = _SYNC -> -> 0 `i `b ]
+[; ;serial.c: 54: SENDB = 1;
+"54
+[e = _SENDB -> -> 1 `i `b ]
+[; ;serial.c: 57: CREN = 1;
 "57
-[e :UE 2095 ]
+[e = _CREN -> -> 1 `i `b ]
+[; ;serial.c: 60: BRGH = 1;
+"60
+[e = _BRGH -> -> 1 `i `b ]
+[; ;serial.c: 61: BRG16 = 1;
+"61
+[e = _BRG16 -> -> 1 `i `b ]
+[; ;serial.c: 62: SPBRG = 34;
+"62
+[e = _SPBRG -> -> 34 `i `uc ]
+[; ;serial.c: 65: TXIE = 0;
+"65
+[e = _TXIE -> -> 0 `i `b ]
+[; ;serial.c: 66: RCIE = 1;
+"66
+[e = _RCIE -> -> 1 `i `b ]
+[; ;serial.c: 67: }
+"67
+[e :UE 2099 ]
 }
-"59
+"69
 [v _OnSerial `(v ~T0 @X0 1 ef1`*F16500 ]
 {
-[; ;serial.c: 59: void OnSerial(AsyncCallback_t callbackToUse) {
+[; ;serial.c: 69: void OnSerial(AsyncCallback_t callbackToUse) {
 [e :U _OnSerial ]
 [v _callbackToUse `*F16500 ~T0 @X0 1 r1 ]
 [f ]
-[; ;serial.c: 61: callback = callbackToUse;
-"61
+[; ;serial.c: 71: callback = callbackToUse;
+"71
 [e = _callback _callbackToUse ]
-[; ;serial.c: 62: }
-"62
-[e :UE 2096 ]
+[; ;serial.c: 72: }
+"72
+[e :UE 2100 ]
 }
-"65
+"75
 [v _writeBuffer `uc ~T0 @X0 -> 100 `i e ]
-[; ;serial.c: 65: char writeBuffer[100];
-"66
+[; ;serial.c: 75: char writeBuffer[100];
+"76
 [v _writeBufferPosition `i ~T0 @X0 1 s ]
 [i _writeBufferPosition
 -> 0 `i
 ]
-[; ;serial.c: 66: static int writeBufferPosition = 0;
-"67
+[; ;serial.c: 76: static int writeBufferPosition = 0;
+"77
 [v _writeBufferPositionOpen `i ~T0 @X0 1 s ]
 [i _writeBufferPositionOpen
 -> 0 `i
 ]
-[; ;serial.c: 67: static int writeBufferPositionOpen = 0;
-"68
+[; ;serial.c: 77: static int writeBufferPositionOpen = 0;
+"78
 [v _isDoneTransmitting `i ~T0 @X0 1 s ]
 [i _isDoneTransmitting
 -> 0 `i
 ]
-[; ;serial.c: 68: static int isDoneTransmitting = 0;
-"70
+[; ;serial.c: 78: static int isDoneTransmitting = 0;
+"80
 [v _SerialWrite `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;serial.c: 70: void SerialWrite(char *data) {
+[; ;serial.c: 80: void SerialWrite(char *data) {
 [e :U _SerialWrite ]
 [v _data `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;serial.c: 71: if (writeBufferPositionOpen == 0) {
-"71
-[e $ ! == _writeBufferPositionOpen -> 0 `i 2098  ]
+[; ;serial.c: 81: if (writeBufferPositionOpen == 0) {
+"81
+[e $ ! == _writeBufferPositionOpen -> 0 `i 2102  ]
 {
-[; ;serial.c: 72: strcpy(writeBuffer, data);
-"72
-[e ( _strcpy (2 , &U _writeBuffer -> _data `*Cuc ]
-"73
-}
-[; ;serial.c: 73: } else {
-[e $U 2099  ]
-[e :U 2098 ]
-{
-[; ;serial.c: 74: writeBuffer[writeBufferPositionOpen] = 1;
-"74
-[e = *U + &U _writeBuffer * -> -> _writeBufferPositionOpen `ui `ux -> -> # *U &U _writeBuffer `ui `ux -> -> 1 `i `uc ]
-[; ;serial.c: 75: strcpy(&writeBuffer[writeBufferPositionOpen+1], data);
-"75
-[e ( _strcpy (2 , &U *U + &U _writeBuffer * -> -> + _writeBufferPositionOpen -> 1 `i `ui `ux -> -> # *U &U _writeBuffer `ui `ux -> _data `*Cuc ]
-[; ;serial.c: 76: ++writeBufferPositionOpen;
-"76
-[e =+ _writeBufferPositionOpen -> 1 `i ]
-"77
-}
-[e :U 2099 ]
-[; ;serial.c: 77: }
-[; ;serial.c: 79: writeBufferPositionOpen = writeBufferPositionOpen + strlen(data);
-"79
-[e = _writeBufferPositionOpen -> + -> _writeBufferPositionOpen `ui ( _strlen (1 -> _data `*Cuc `i ]
-[; ;serial.c: 82: TXIE = 1;
+[; ;serial.c: 82: strcpy(writeBuffer, data);
 "82
-[e = _TXIE -> -> 1 `i `b ]
-[; ;serial.c: 83: isDoneTransmitting = 0;
+[e ( _strcpy (2 , &U _writeBuffer -> _data `*Cuc ]
 "83
-[e = _isDoneTransmitting -> 0 `i ]
-[; ;serial.c: 84: }
-"84
-[e :UE 2097 ]
 }
-"86
-[v _SerialWriteInterrupt `(v ~T0 @X0 1 ef ]
-{
-[; ;serial.c: 86: void SerialWriteInterrupt() {
-[e :U _SerialWriteInterrupt ]
-[f ]
-[; ;serial.c: 87: if (isDoneTransmitting) {
-"87
-[e $ ! != _isDoneTransmitting -> 0 `i 2101  ]
-{
-[; ;serial.c: 88: TXIE = 0;
-"88
-[e = _TXIE -> -> 0 `i `b ]
-[; ;serial.c: 89: return;
-"89
-[e $UE 2100  ]
-"90
-}
-[e :U 2101 ]
-[; ;serial.c: 90: }
-[; ;serial.c: 92: if (writeBuffer[writeBufferPosition] == 0) {
-"92
-[e $ ! == -> *U + &U _writeBuffer * -> -> _writeBufferPosition `ui `ux -> -> # *U &U _writeBuffer `ui `ux `i -> 0 `i 2102  ]
-{
-[; ;serial.c: 93: TXREG = 0;
-"93
-[e = _TXREG -> -> 0 `i `uc ]
-[; ;serial.c: 94: writeBufferPosition = 0;
-"94
-[e = _writeBufferPosition -> 0 `i ]
-[; ;serial.c: 95: writeBufferPositionOpen = 0;
-"95
-[e = _writeBufferPositionOpen -> 0 `i ]
-[; ;serial.c: 96: isDoneTransmitting = 1;
-"96
-[e = _isDoneTransmitting -> 1 `i ]
-"98
-}
-[; ;serial.c: 98: } else if (writeBuffer[writeBufferPosition] == 1) {
+[; ;serial.c: 83: } else {
 [e $U 2103  ]
 [e :U 2102 ]
-[e $ ! == -> *U + &U _writeBuffer * -> -> _writeBufferPosition `ui `ux -> -> # *U &U _writeBuffer `ui `ux `i -> 1 `i 2104  ]
 {
-[; ;serial.c: 99: TXREG = 0;
-"99
-[e = _TXREG -> -> 0 `i `uc ]
-[; ;serial.c: 100: ++writeBufferPosition;
-"100
-[e =+ _writeBufferPosition -> 1 `i ]
-"102
+[; ;serial.c: 84: writeBuffer[writeBufferPositionOpen] = 1;
+"84
+[e = *U + &U _writeBuffer * -> -> _writeBufferPositionOpen `ui `ux -> -> # *U &U _writeBuffer `ui `ux -> -> 1 `i `uc ]
+[; ;serial.c: 85: strcpy(&writeBuffer[writeBufferPositionOpen+1], data);
+"85
+[e ( _strcpy (2 , &U *U + &U _writeBuffer * -> -> + _writeBufferPositionOpen -> 1 `i `ui `ux -> -> # *U &U _writeBuffer `ui `ux -> _data `*Cuc ]
+[; ;serial.c: 86: ++writeBufferPositionOpen;
+"86
+[e =+ _writeBufferPositionOpen -> 1 `i ]
+"87
 }
-[; ;serial.c: 102: } else {
-[e $U 2105  ]
-[e :U 2104 ]
+[e :U 2103 ]
+[; ;serial.c: 87: }
+[; ;serial.c: 89: writeBufferPositionOpen = writeBufferPositionOpen + strlen(data);
+"89
+[e = _writeBufferPositionOpen -> + -> _writeBufferPositionOpen `ui ( _strlen (1 -> _data `*Cuc `i ]
+[; ;serial.c: 92: TXIE = 1;
+"92
+[e = _TXIE -> -> 1 `i `b ]
+[; ;serial.c: 93: isDoneTransmitting = 0;
+"93
+[e = _isDoneTransmitting -> 0 `i ]
+[; ;serial.c: 94: }
+"94
+[e :UE 2101 ]
+}
+"96
+[v _SerialWriteInterrupt `(v ~T0 @X0 1 ef ]
 {
-[; ;serial.c: 103: TXREG = writeBuffer[writeBufferPosition];
-"103
-[e = _TXREG *U + &U _writeBuffer * -> -> _writeBufferPosition `ui `ux -> -> # *U &U _writeBuffer `ui `ux ]
-[; ;serial.c: 104: ++writeBufferPosition;
-"104
-[e =+ _writeBufferPosition -> 1 `i ]
-"105
+[; ;serial.c: 96: void SerialWriteInterrupt() {
+[e :U _SerialWriteInterrupt ]
+[f ]
+[; ;serial.c: 97: if (isDoneTransmitting) {
+"97
+[e $ ! != _isDoneTransmitting -> 0 `i 2105  ]
+{
+[; ;serial.c: 98: TXIE = 0;
+"98
+[e = _TXIE -> -> 0 `i `b ]
+[; ;serial.c: 99: return;
+"99
+[e $UE 2104  ]
+"100
 }
 [e :U 2105 ]
-[e :U 2103 ]
-[; ;serial.c: 105: }
-[; ;serial.c: 106: }
+[; ;serial.c: 100: }
+[; ;serial.c: 102: if (writeBuffer[writeBufferPosition] == 0) {
+"102
+[e $ ! == -> *U + &U _writeBuffer * -> -> _writeBufferPosition `ui `ux -> -> # *U &U _writeBuffer `ui `ux `i -> 0 `i 2106  ]
+{
+[; ;serial.c: 103: TXREG = 0;
+"103
+[e = _TXREG -> -> 0 `i `uc ]
+[; ;serial.c: 104: writeBufferPosition = 0;
+"104
+[e = _writeBufferPosition -> 0 `i ]
+[; ;serial.c: 105: writeBufferPositionOpen = 0;
+"105
+[e = _writeBufferPositionOpen -> 0 `i ]
+[; ;serial.c: 106: isDoneTransmitting = 1;
 "106
-[e :UE 2100 ]
+[e = _isDoneTransmitting -> 1 `i ]
+"108
+}
+[; ;serial.c: 108: } else if (writeBuffer[writeBufferPosition] == 1) {
+[e $U 2107  ]
+[e :U 2106 ]
+[e $ ! == -> *U + &U _writeBuffer * -> -> _writeBufferPosition `ui `ux -> -> # *U &U _writeBuffer `ui `ux `i -> 1 `i 2108  ]
+{
+[; ;serial.c: 109: TXREG = 0;
+"109
+[e = _TXREG -> -> 0 `i `uc ]
+[; ;serial.c: 110: ++writeBufferPosition;
+"110
+[e =+ _writeBufferPosition -> 1 `i ]
+"112
+}
+[; ;serial.c: 112: } else {
+[e $U 2109  ]
+[e :U 2108 ]
+{
+[; ;serial.c: 113: TXREG = writeBuffer[writeBufferPosition];
+"113
+[e = _TXREG *U + &U _writeBuffer * -> -> _writeBufferPosition `ui `ux -> -> # *U &U _writeBuffer `ui `ux ]
+[; ;serial.c: 114: ++writeBufferPosition;
+"114
+[e =+ _writeBufferPosition -> 1 `i ]
+"115
+}
+[e :U 2109 ]
+[e :U 2107 ]
+[; ;serial.c: 115: }
+[; ;serial.c: 116: }
+"116
+[e :UE 2104 ]
 }

@@ -7,6 +7,7 @@
 #include "jwire.h"
 #include "wireMaster.h"
 #include "serial.h"
+#include "interval.h"
 
 //Register as a twitter user
 void TwitterSignUp(char *name);
@@ -15,6 +16,7 @@ void TwitterSignUp(char *name);
 void Tweet(char *to, char *subject, char *message, AsyncCallback_t callback);
 void TweetValue(char *to, char *subject, int message, AsyncCallback_t callback);
 void TweetReturn(char *msg);  //Return a message from a callback
+void TweetReturnValue(int value);   //Yeahhhhhh
 
 //What to do when we receive a certain hashtag
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
@@ -24,6 +26,11 @@ void TwitterRegisterSubject(char *subject, AsyncCallback_t callback);
 
 //Call this when receiving a mesasge from some interface
 void TwitterOnReceive();
+
+//Proxy to TwitterOnReceive to avoid loopbacks in multicasts (Don't send back)
+void TwitterOnReceiveFromSerial();
+void TwitterOnReceiveFromWireMaster();
+void TwitterOnReceiveFromWireSlave();
 
 //##################
 //Twitter slave wire
