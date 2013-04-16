@@ -294,7 +294,16 @@
 "11 interval.h
 [v F16521 `(v  1 t 0 ]
 "30 main.c
-[s S1126 . 1 `uc 1 RB0 1 0 :1:0 
+[s S1126 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+[s S1135 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -303,33 +312,10 @@
 `uc 1 RB6 1 0 :1:6 
 `uc 1 RB7 1 0 :1:7 
 ]
-[s S1135 . 1 `uc 1 INT0 1 0 :1:0 
-`uc 1 INT1 1 0 :1:1 
-`uc 1 INT2 1 0 :1:2 
-`uc 1 CANRX 1 0 :1:3 
-`uc 1 KBI0 1 0 :1:4 
-`uc 1 KBI1 1 0 :1:5 
-`uc 1 KBI2 1 0 :1:6 
-`uc 1 KBI3 1 0 :1:7 
-]
-[s S1144 . 1 `uc 1 AN10 1 0 :1:0 
-`uc 1 AN8 1 0 :1:1 
-`uc 1 CANTX 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 AN9 1 0 :1:4 
-`uc 1 PGM 1 0 :1:5 
-`uc 1 PGC 1 0 :1:6 
-`uc 1 PGD 1 0 :1:7 
-]
-[s S1153 . 1 `uc 1 FLT0 1 0 :1:0 
-]
-[s S1155 . 1 `uc 1 . 1 0 :3:0 
-`uc 1 CCP2_PA2 1 0 :1:3 
-]
-[u S1158 . 1 `S1126 1 . 1 0 `S1135 1 . 1 0 `S1144 1 . 1 0 `S1153 1 . 1 0 `S1155 1 . 1 0 ]
+[u S1144 . 1 `S1126 1 . 1 0 `S1135 1 . 1 0 ]
 "533 /opt/microchip/xc8/v1.12/sources/doprnt.c
-[s S1230 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
-[u S1233 . 5 `ui 1 _val 2 0 `S1230 1 _str 5 0 ]
+[s S1199 . 5 `*.MCuc 1 _cp 3 0 `ui 1 _len 2 3 ]
+[u S1202 . 5 `ui 1 _val 2 0 `S1199 1 _str 5 0 ]
 "5 ../common/asfladd.c
 [v ___asfladd `(d  1 e 3 0 ]
 "5 ../common/asfldiv.c
@@ -614,41 +600,6 @@
 [v _WireOnInterrupt `(v  1 e 0 0 ]
 "27998 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _PORTA `VEuc  1 e 1 @3968 ]
-[s S1126 . 1 `uc 1 RB0 1 0 :1:0 
-`uc 1 RB1 1 0 :1:1 
-`uc 1 RB2 1 0 :1:2 
-`uc 1 RB3 1 0 :1:3 
-`uc 1 RB4 1 0 :1:4 
-`uc 1 RB5 1 0 :1:5 
-`uc 1 RB6 1 0 :1:6 
-`uc 1 RB7 1 0 :1:7 
-]
-"28246
-[s S1135 . 1 `uc 1 INT0 1 0 :1:0 
-`uc 1 INT1 1 0 :1:1 
-`uc 1 INT2 1 0 :1:2 
-`uc 1 CANRX 1 0 :1:3 
-`uc 1 KBI0 1 0 :1:4 
-`uc 1 KBI1 1 0 :1:5 
-`uc 1 KBI2 1 0 :1:6 
-`uc 1 KBI3 1 0 :1:7 
-]
-[s S1144 . 1 `uc 1 AN10 1 0 :1:0 
-`uc 1 AN8 1 0 :1:1 
-`uc 1 CANTX 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 AN9 1 0 :1:4 
-`uc 1 PGM 1 0 :1:5 
-`uc 1 PGC 1 0 :1:6 
-`uc 1 PGD 1 0 :1:7 
-]
-[s S1153 . 1 `uc 1 FLT0 1 0 :1:0 
-]
-[s S1155 . 1 `uc 1 . 1 0 :3:0 
-`uc 1 CCP2_PA2 1 0 :1:3 
-]
-[u S1158 . 1 `S1126 1 . 1 0 `S1135 1 . 1 0 `S1144 1 . 1 0 `S1153 1 . 1 0 `S1155 1 . 1 0 ]
-[v _PORTBbits `VES1158  1 e 1 @3969 ]
 "28780
 [v _LATA `VEuc  1 e 1 @3977 ]
 "29176
@@ -664,7 +615,7 @@
 `uc 1 TRISC6 1 0 :1:6 
 `uc 1 TRISC7 1 0 :1:7 
 ]
-"29650
+"29429
 [s S844 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
@@ -675,6 +626,8 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 [u S853 . 1 `S835 1 . 1 0 `S844 1 . 1 0 ]
+[v _TRISBbits `VES853  1 e 1 @3987 ]
+"29650
 [v _TRISCbits `VES853  1 e 1 @3988 ]
 "31117
 [v _TXREG `VEuc  1 e 1 @4013 ]
@@ -865,16 +818,16 @@
 [v _GIE `VEb  1 e 0 @32663 ]
 "35983
 [v _LA3 `VEb  1 e 0 @31819 ]
-"36041
-[v _LB0 `VEb  1 e 0 @31824 ]
-"36043
-[v _LB1 `VEb  1 e 0 @31825 ]
 "36135
 [v _OERR `VEb  1 e 0 @32089 ]
 "36183
 [v _PEIE `VEb  1 e 0 @32662 ]
 "36187
 [v _PEN `VEb  1 e 0 @32298 ]
+"36241
+[v _RB6 `VEb  1 e 0 @31758 ]
+"36243
+[v _RB7 `VEb  1 e 0 @31759 ]
 "36275
 [v _RCEN `VEb  1 e 0 @32299 ]
 "36279
@@ -1446,10 +1399,10 @@
 "493 /opt/microchip/xc8/v1.12/sources/doprnt.c
 [v _sprintf `(i  1 e 2 0 ]
 {
-[s S1230 . 4 `*.sCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+[s S1199 . 4 `*.sCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
 "533
-[u S1233 . 4 `ui 1 _val 2 0 `S1230 1 _str 4 0 ]
-[v sprintf@_val `S1233  1 a 4 27 ]
+[u S1202 . 4 `ui 1 _val 2 0 `S1199 1 _str 4 0 ]
+[v sprintf@_val `S1202  1 a 4 27 ]
 "499
 [v sprintf@c `c  1 a 1 31 ]
 "494
@@ -1559,6 +1512,14 @@
 [v ___wmul@multiplicand `ui  1 p 2 2 ]
 "13
 } 0
+"10 /opt/microchip/xc8/v1.12/sources/strcpy.c
+[v i2_strcpy `(*.Muc  1 e 1 0 ]
+{
+[v i2strcpy@cp `*.buc  1 a 2 4 ]
+[v i2strcpy@to `*.buc  1 p 2 0 ]
+[v i2strcpy@from `*.sCuc  1 p 2 2 ]
+"24
+} 0
 "55 async.c
 [v i2_AsyncBegin `(v  1 e 0 0 ]
 {
@@ -1569,12 +1530,4 @@
 {
 [v i2Count@number `i  1 p 2 0 ]
 "20
-} 0
-"10 /opt/microchip/xc8/v1.12/sources/strcpy.c
-[v i2_strcpy `(*.Muc  1 e 1 0 ]
-{
-[v i2strcpy@cp `*.buc  1 a 2 4 ]
-[v i2strcpy@to `*.buc  1 p 2 0 ]
-[v i2strcpy@from `*.sCuc  1 p 2 2 ]
-"24
 } 0

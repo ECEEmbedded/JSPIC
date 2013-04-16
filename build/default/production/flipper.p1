@@ -1,22 +1,18 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[s S1762 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1762 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-[s S1763 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1763 . INT0 INT1 INT2 CANRX KBI0 KBI1 KBI2 KBI3 ]
-[s S1764 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1764 . AN10 AN8 CANTX . AN9 PGM PGC PGD ]
-[s S1765 :1 `uc 1 ]
-[n S1765 . FLT0 ]
-[s S1766 :3 `uc 1 :1 `uc 1 ]
-[n S1766 . . CCP2_PA2 ]
-[u S1761 `S1762 1 `S1763 1 `S1764 1 `S1765 1 `S1766 1 ]
-[n S1761 . . . . . . ]
-"28246 /opt/microchip/xc8/v1.12/include/pic18f2680.h
-[v _PORTBbits `VS1761 ~T0 @X0 0 e@3969 ]
-"36041
-[v _LB0 `Vb ~T0 @X0 0 e@31824 ]
-"36043
-[v _LB1 `Vb ~T0 @X0 0 e@31825 ]
+[s S1837 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1837 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
+[s S1838 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1838 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+[u S1836 `S1837 1 `S1838 1 ]
+[n S1836 . . . ]
+"29429 /opt/microchip/xc8/v1.12/include/pic18f2680.h
+[v _TRISBbits `VS1836 ~T0 @X0 0 e@3987 ]
+[t ~ __deprecated__ ]
+[t T19 __deprecated__ ]
+"36243
+[v _RB7 `Vb ~T19 @X0 0 e@31759 ]
+"36241
+[v _RB6 `Vb ~T19 @X0 0 e@31758 ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14867,12 +14863,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 "6
 [e $ ! ! != _hasSetup -> 0 `i 2093  ]
 {
-[; ;flipper.c: 7: PORTBbits.RB0 = 0;
+[; ;flipper.c: 7: TRISBbits.RB6 = 0;
 "7
-[e = . . _PORTBbits 0 0 -> -> 0 `i `uc ]
-[; ;flipper.c: 8: PORTBbits.RB1 = 0;
+[e = . . _TRISBbits 1 6 -> -> 0 `i `uc ]
+[; ;flipper.c: 8: TRISBbits.RB7 = 0;
 "8
-[e = . . _PORTBbits 0 1 -> -> 0 `i `uc ]
+[e = . . _TRISBbits 1 7 -> -> 0 `i `uc ]
 "9
 }
 [e :U 2093 ]
@@ -14902,8 +14898,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2096  ]
 "18
 [e :U 2095 ]
-[; ;flipper.c: 18: LB0 = ~LB0;
-[e = _LB0 ! _LB0 ]
+[; ;flipper.c: 18: RB7 = ~RB7;
+[e = _RB7 ! _RB7 ]
 "17
 [e =+ _i -> 1 `i ]
 [e $ < _i -> 5 `i 2095  ]
@@ -14932,8 +14928,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2100  ]
 "25
 [e :U 2099 ]
-[; ;flipper.c: 25: LB1 = ~LB1;
-[e = _LB1 ! _LB1 ]
+[; ;flipper.c: 25: RB6 = ~RB6;
+[e = _RB6 ! _RB6 ]
 "24
 [e =+ _i -> 1 `i ]
 [e $ < _i -> 5 `i 2099  ]

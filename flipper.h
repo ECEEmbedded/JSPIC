@@ -5,10 +5,10 @@
 
 //Flip bits for debugging
 
-//Flip RB0 5 times
+//Flip RB7 5 times
 void FlipA();
 
-//Flip RB1 5 times
+//Flip RB1 6 times
 void FlipB();
 
 #endif

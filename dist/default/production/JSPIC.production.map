@@ -21,7 +21,7 @@ Linker command line:
   -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
   -pfarbss=FARRAM,fardata=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
-  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtqytW7D.obj \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtZiaIJo.obj \
   dist/default/production/JSPIC.production.obj 
 
 Object code version is 3.10
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgtqytW7D.obj
+/tmp/cgtZiaIJo.obj
                 end_init                             18       18        4        4       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -42,9 +42,9 @@ Call graph: (short form)
 dist/default/production/JSPIC.production.obj
                 intcode                               8        8       10        4       0
                 smallconst                          D00      D00       72      680       0
-                text69                             2B62     2B62       4A      6B9       0
-                text68                             2F66     2F66       14      6B9       0
-                text67                             2F9A     2F9A        E      6B9       0
+                text69                             2F66     2F66       14      6B9       0
+                text68                             2F9A     2F9A        E      6B9       0
+                text67                             2B62     2B62       4A      6B9       0
                 text66                             2CA6     2CA6       36      6B9       0
                 text65                             2C38     2C38       38      6B9       0
                 text64                             2116     2116       A8      6B9       0
@@ -136,9 +136,9 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                             18       18        4         0
                 intcode                               8        8       10         0
                 reset_vec                             0        0        4         0
-                text69                             2B62     2B62       4A         0
-                text68                             2F66     2F66       14         0
-                text67                             2F9A     2F9A        E         0
+                text69                             2F66     2F66       14         0
+                text68                             2F9A     2F9A        E         0
+                text67                             2B62     2B62       4A         0
                 text66                             2CA6     2CA6       36         0
                 text65                             2C38     2C38       38         0
                 text64                             2116     2116       A8         0
@@ -496,8 +496,6 @@ _JsonSetString                           text52       00287E
 _JsonSetValue                            text54       0028F8
 _LA3                                     (abs)        007C4B
 _LATA                                    (abs)        000F89
-_LB0                                     (abs)        007C50
-_LB1                                     (abs)        007C51
 _LedCounterBegin                         text10       002EBC
 _MacawBegin                              text2        002FD4
 _OERR                                    (abs)        007D59
@@ -508,7 +506,8 @@ _OnSerialInterrupt                       text30       002302
 _PEIE                                    (abs)        007F96
 _PEN                                     (abs)        007E2A
 _PORTA                                   (abs)        000F80
-_PORTBbits                               (abs)        000F81
+_RB6                                     (abs)        007C0E
+_RB7                                     (abs)        007C0F
 _RCEN                                    (abs)        007E2B
 _RCIE                                    (abs)        007CED
 _RCIF                                    (abs)        007CF5
@@ -539,6 +538,7 @@ _SuperSimpleSerialBegin                  text3        002E84
 _T0CONbits                               (abs)        000FD5
 _TRISA                                   (abs)        000F92
 _TRISB                                   (abs)        000F93
+_TRISBbits                               (abs)        000F93
 _TRISC3                                  (abs)        007CA3
 _TRISC4                                  (abs)        007CA4
 _TRISCbits                               (abs)        000F94
@@ -968,9 +968,9 @@ __end_of_strcpy2                         text55       00287E
 __end_of_strlen                          text53       002BF4
 __end_of_strncmp                         text64       0021BE
 __end_of_strstr                          text42       002302
-__end_ofi2_AsyncBegin                    text67       002FA8
-__end_ofi2_Count                         text68       002F7A
-__end_ofi2_strcpy                        text69       002BAC
+__end_ofi2_AsyncBegin                    text68       002FA8
+__end_ofi2_Count                         text69       002F7A
+__end_ofi2_strcpy                        text67       002BAC
 __initialization                         cinit        0021BE
 __mediumconst                            mediumconst  000000
 __pbssBANK0                              bssBANK0     000060
@@ -1057,9 +1057,9 @@ __ptext63                                text63       002A7E
 __ptext64                                text64       002116
 __ptext65                                text65       002C38
 __ptext66                                text66       002CA6
-__ptext67                                text67       002F9A
-__ptext68                                text68       002F66
-__ptext69                                text69       002B62
+__ptext67                                text67       002B62
+__ptext68                                text68       002F9A
+__ptext69                                text69       002F66
 __ptext7                                 text7        002FA8
 __ptext70                                text70       000000
 __ptext8                                 text8        002B18
@@ -1159,7 +1159,7 @@ _hashtagC                                bssBANK1     00012C
 _isARelay                                bssCOMRAM    000050
 _isDoneTransmitting                      bssBANK0     000088
 _isdigit                                 text59       002DE0
-_isdigit$1432                            cstackCOMRAM 000002
+_isdigit$1401                            cstackCOMRAM 000002
 _jWireEnabled                            bssBANK0     00008A
 _lastInterface                           bssCOMRAM    000058
 _locked                                  bssBANK0     00008C
@@ -1206,9 +1206,9 @@ atoi@sign                                cstackCOMRAM 00000B
 count@counter                            bssBANK0     00009A
 end_of_initialization                    cinit        00225A
 i2Count@number                           cstackCOMRAM 000001
-i2_AsyncBegin                            text67       002F9A
-i2_Count                                 text68       002F66
-i2_strcpy                                text69       002B62
+i2_AsyncBegin                            text68       002F9A
+i2_Count                                 text69       002F66
+i2_strcpy                                text67       002B62
 i2strcpy@cp                              cstackCOMRAM 000005
 i2strcpy@from                            cstackCOMRAM 000003
 i2strcpy@to                              cstackCOMRAM 000001
@@ -3521,6 +3521,42 @@ Total ram usage:        6 bytes
  This function uses a non-reentrant model
 
 
+ *************** function i2_strcpy *****************
+ Defined at:
+		line 10 in file "/opt/microchip/xc8/v1.12/sources/strcpy.c"
+ Parameters:    Size  Location     Type
+  strcpy          2    0[COMRAM] PTR unsigned char 
+		 -> writeBuffer(100), name(20), twitterWireSlaveMessageToSend(150), 
+  strcpy          2    2[COMRAM] PTR const unsigned char 
+		 -> STR_36(8), callbackCString(150), callbackBString(150), callbackAString(150), 
+		 -> NULL(0), tempBuffer(150), 
+ Auto vars:     Size  Location     Type
+  strcpy          2    4[COMRAM] PTR unsigned char 
+		 -> writeBuffer(100), name(20), twitterWireSlaveMessageToSend(150), 
+ Return value:  Size  Location     Type
+                  1    wreg      PTR unsigned char 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         4       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        6 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_TwitterSendToAll
+		_TwitterSendToOne
+		_SerialWrite
+ This function uses a non-reentrant model
+
+
  *************** function i2_AsyncBegin *****************
  Defined at:
 		line 55 in file "async.c"
@@ -3576,42 +3612,6 @@ Total ram usage:        2 bytes
 		Nothing
  This function is called by:
 		_respond
- This function uses a non-reentrant model
-
-
- *************** function i2_strcpy *****************
- Defined at:
-		line 10 in file "/opt/microchip/xc8/v1.12/sources/strcpy.c"
- Parameters:    Size  Location     Type
-  strcpy          2    0[COMRAM] PTR unsigned char 
-		 -> writeBuffer(100), name(20), twitterWireSlaveMessageToSend(150), 
-  strcpy          2    2[COMRAM] PTR const unsigned char 
-		 -> STR_36(8), callbackCString(150), callbackBString(150), callbackAString(150), 
-		 -> NULL(0), tempBuffer(150), 
- Auto vars:     Size  Location     Type
-  strcpy          2    4[COMRAM] PTR unsigned char 
-		 -> writeBuffer(100), name(20), twitterWireSlaveMessageToSend(150), 
- Return value:  Size  Location     Type
-                  1    wreg      PTR unsigned char 
- Registers used:
-		wreg, fsr0l, fsr0h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         4       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        6 bytes
- Hardware stack levels used:    1
- This function calls:
-		Nothing
- This function is called by:
-		_TwitterSendToAll
-		_TwitterSendToOne
-		_SerialWrite
  This function uses a non-reentrant model
 
 
