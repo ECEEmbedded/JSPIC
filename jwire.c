@@ -1,6 +1,6 @@
 #include "jwire.h"
 
-#define MAX_MESSAGE_SIZE 100
+#define MAX_MESSAGE_SIZE 150
 
 //Handlers
 static AsyncCallback_t receiveCallback = 0;
@@ -62,10 +62,19 @@ void JWireOnInterrupt() {
             //Send some data back, specifically the first data byte
             bufferWritePos = 0;
         }
+
         int temp = SSPBUF;
 
-        SSPBUF = buffer[bufferWritePos];
-        CKP = 1;
+
+        if ((buffer[bufferWritePos]) == 0) {
+            locked = 0;
+            SSPBUF = 0;
+            CKP = 1;
+            return;
+        }
+
+          SSPBUF = buffer[bufferWritePos];
+          CKP = 1;
 
 //        LA4 = ~LA4;
 //        LA4 = ~LA4;

@@ -67,12 +67,21 @@ void TwitterOnReceiveFromSerial() {
 //Slave Wire#########
 static int TwitterWireSlaveEnabled = 0;
 
+#define twitterWireSlaveMessageToSend_Length 150
+
 //Wait around to be pulled and send a slave message
-static char twitterWireSlaveMessageToSend[150];
+static char twitterWireSlaveMessageToSend[twitterWireSlaveMessageToSend_Length];
+static int slaveHasRequest = 0;
 
 //Master is requesting something
 void TwitterWireSlaveOnRequest() {
-    JWireRespond(AsyncMessage);
+    if (slaveHasRequest)
+        JWireRespond(twitterWireSlaveMessageToSend);
+    else
+        JWireRespond("");
+
+    twitterWireSlaveMessageToSend[0] = 0;
+    slaveHasRequest = 0;
 }
 
 //Add Twitter to I2C Slave
@@ -120,7 +129,7 @@ void TwitterWireMasterBegin() {
     WireBegin();
     TwitterWireMasterEnabled = 1;
 
-    SetInterval(50, TwitterWireMasterRequestSlave);
+    SetInterval(100, TwitterWireMasterRequestSlave);
 }
 
 void TwitterWireMasterAddSlave(int id, char *name) {
@@ -162,6 +171,7 @@ void TwitterSendToAll(char *message) {
         if (isARelay && lastInterface != WireSlaveIF || (!isARelay)) {
             //Multicast
             strcpy(twitterWireSlaveMessageToSend, message);
+            slaveHasRequest = 1;
         }
     }
 
@@ -200,6 +210,7 @@ void TwitterSendToOne(char *name, char *message) {
 
     if (TwitterWireSlaveEnabled) {
         strcpy(twitterWireSlaveMessageToSend, message);
+        slaveHasRequest = 1;
     }
 
     //We can't know what's downstream here, just send a message
@@ -209,7 +220,6 @@ void TwitterSendToOne(char *name, char *message) {
 }
 
 //Register this callback function for incomming messages
-static int counter  = 0;
 void TwitterOnReceive() {
     char *message = AsyncMessage;
 
@@ -348,7 +358,16 @@ void TweetReturn(char *msg) {
     JsonSetString(tempBuffer, "sub", "cc");
     JsonSetString(tempBuffer, "msg", msg);
 
+    if (TwitterWireSlaveEnabled)
+        slaveHasRequest = 1;
+
     TwitterSendToOne(from, tempBuffer);
+}
+
+void TweetReturnValue(int value) {
+    static char data[15];
+    sprintf(data, "%d", value);
+    TweetReturn(data);
 }
 
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback) {

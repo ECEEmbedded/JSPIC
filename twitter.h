@@ -16,6 +16,7 @@ void TwitterSignUp(char *name);
 void Tweet(char *to, char *subject, char *message, AsyncCallback_t callback);
 void TweetValue(char *to, char *subject, int message, AsyncCallback_t callback);
 void TweetReturn(char *msg);  //Return a message from a callback
+void TweetReturnValue(int value);   //Yeahhhhhh
 
 //What to do when we receive a certain hashtag
 void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
