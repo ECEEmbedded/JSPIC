@@ -129,7 +129,7 @@ void TwitterWireMasterBegin() {
     WireBegin();
     TwitterWireMasterEnabled = 1;
 
-    SetInterval(100, TwitterWireMasterRequestSlave);
+    SetInterval(90/3, TwitterWireMasterRequestSlave);
 }
 
 void TwitterWireMasterAddSlave(int id, char *name) {
@@ -395,4 +395,12 @@ void TwitterRegisterSubject(char *subject, AsyncCallback_t callback) {
     } else {
         Crash(3);
     }
+}
+
+int TweetGetValue() {
+    return JsonGetValue(AsyncMessage, "msg");
+}
+
+void TweetGetString(char *output) {
+    JsonGetString(AsyncMessage, "msg", output);
 }

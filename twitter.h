@@ -24,6 +24,10 @@ void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
 //What to do when we receive a certain subject
 void TwitterRegisterSubject(char *subject, AsyncCallback_t callback);
 
+//Get data from message
+int TweetGetValue();
+void TweetGetString(char *output);
+
 //Call this when receiving a mesasge from some interface
 void TwitterOnReceive();
 
