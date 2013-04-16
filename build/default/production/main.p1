@@ -1,21 +1,21 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"28 twitter.h
+"29 twitter.h
 [v _TweetGetValue `(i ~T0 @X0 0 ef ]
 "9 ledCounter.h
 [v _Count `(v ~T0 @X0 0 ef1`i ]
 "9 async.h
 [v F16501 `(v ~T0 @X0 0 tf ]
-"17 twitter.h
+"18 twitter.h
 [v _TweetValue `(v ~T0 @X0 0 ef4`*uc`*uc`i`*F16501 ]
-"13
+"14
 [v _TwitterSignUp `(v ~T0 @X0 0 ef1`*uc ]
-"52
-[v _TwitterSerialBegin `(v ~T0 @X0 0 ef ]
+"48
+[v _TwitterWireMasterAddSlave `(v ~T0 @X0 0 ef2`i`*uc ]
+"47
+[v _TwitterWireMasterBegin `(v ~T0 @X0 0 ef ]
 "11 interval.h
 [v F16521 `(v ~T0 @X0 0 tf ]
 [v _SetInterval `(v ~T0 @X0 0 ef2`i`*F16521 ]
-"9 flipper.h
-[v _FlipA `(v ~T0 @X0 0 ef ]
 [; ;pic18f2680.h: 44: extern volatile unsigned char RXF6SIDH @ 0xD60;
 "46 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [; ;pic18f2680.h: 46: asm("RXF6SIDH equ 0D60h");
@@ -14875,38 +14875,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
-[; ;interrupts.h: 11: interrupt void onInterrupt();
+[; ;flipper.h: 9: void FlipA();
+[; ;flipper.h: 12: void FlipB();
+[; ;interrupts.h: 12: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
 [; ;superSimpleSerial.h: 13: void putch(char);
 [; ;ledCounter.h: 6: void LedCounterBegin();
 [; ;ledCounter.h: 9: void Count(int number);
-[; ;flipper.h: 9: void FlipA();
-[; ;flipper.h: 12: void FlipB();
 [; ;jspic.h: 17: void onSetup();
 [; ;jspic.h: 18: void onLoop();
-[; ;json.h: 6: void JsonNew(char* string);
-[; ;json.h: 9: void JsonSetString(char* input, char* key, char* string);
-[; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
-[; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
-[; ;json.h: 13: int JsonGetValue(char* input, char* key);
-[; ;twitter.h: 13: void TwitterSignUp(char *name);
-[; ;twitter.h: 16: void Tweet(char *to, char *subject, char *message, AsyncCallback_t callback);
-[; ;twitter.h: 17: void TweetValue(char *to, char *subject, int message, AsyncCallback_t callback);
-[; ;twitter.h: 18: void TweetReturn(char *msg);
-[; ;twitter.h: 19: void TweetReturnValue(int value);
-[; ;twitter.h: 22: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
-[; ;twitter.h: 25: void TwitterRegisterSubject(char *subject, AsyncCallback_t callback);
-[; ;twitter.h: 28: int TweetGetValue();
-[; ;twitter.h: 29: void TweetGetString(char *output);
-[; ;twitter.h: 32: void TwitterOnReceive();
-[; ;twitter.h: 35: void TwitterOnReceiveFromSerial();
-[; ;twitter.h: 36: void TwitterOnReceiveFromWireMaster();
-[; ;twitter.h: 37: void TwitterOnReceiveFromWireSlave();
-[; ;twitter.h: 41: void TwitterWireSlaveBegin(int id);
-[; ;twitter.h: 46: void TwitterWireMasterBegin();
-[; ;twitter.h: 47: void TwitterWireMasterAddSlave(int id, char *name);
-[; ;twitter.h: 52: void TwitterSerialBegin();
+[; ;json.h: 7: void JsonNew(char* string);
+[; ;json.h: 10: void JsonSetString(char* input, char* key, char* string);
+[; ;json.h: 11: void JsonSetValue(char* input, char* key, int value);
+[; ;json.h: 13: int JsonGetString(char* input, char* key, char* string);
+[; ;json.h: 14: int JsonGetValue(char* input, char* key);
+[; ;twitter.h: 14: void TwitterSignUp(char *name);
+[; ;twitter.h: 17: void Tweet(char *to, char *subject, char *message, AsyncCallback_t callback);
+[; ;twitter.h: 18: void TweetValue(char *to, char *subject, int message, AsyncCallback_t callback);
+[; ;twitter.h: 19: void TweetReturn(char *msg);
+[; ;twitter.h: 20: void TweetReturnValue(int value);
+[; ;twitter.h: 23: void TwitterRegisterHashtag(char *hashtag, AsyncCallback_t callback);
+[; ;twitter.h: 26: void TwitterRegisterSubject(char *subject, AsyncCallback_t callback);
+[; ;twitter.h: 29: int TweetGetValue();
+[; ;twitter.h: 30: void TweetGetString(char *output);
+[; ;twitter.h: 33: void TwitterOnReceive();
+[; ;twitter.h: 36: void TwitterOnReceiveFromSerial();
+[; ;twitter.h: 37: void TwitterOnReceiveFromWireMaster();
+[; ;twitter.h: 38: void TwitterOnReceiveFromWireSlave();
+[; ;twitter.h: 42: void TwitterWireSlaveBegin(int id);
+[; ;twitter.h: 47: void TwitterWireMasterBegin();
+[; ;twitter.h: 48: void TwitterWireMasterAddSlave(int id, char *name);
+[; ;twitter.h: 53: void TwitterSerialBegin();
 "5 main.c
 [v _respond `(v ~T0 @X0 1 ef ]
 {
@@ -14961,9 +14961,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 20: TwitterSignUp("@master");
 "20
 [e ( _TwitterSignUp (1 -> :s 3C `*uc ]
-[; ;main.c: 23: TwitterSerialBegin();
-"23
-[e ( _TwitterSerialBegin ..  ]
+[; ;main.c: 21: TwitterWireMasterAddSlave(0x4F, "@motor");
+"21
+[e ( _TwitterWireMasterAddSlave (2 , -> 79 `i -> :s 4C `*uc ]
+[; ;main.c: 22: TwitterWireMasterBegin();
+"22
+[e ( _TwitterWireMasterBegin ..  ]
 [; ;main.c: 25: SetInterval(400, count);
 "25
 [e ( _SetInterval (2 , -> 400 `i &U _count ]
@@ -14977,13 +14980,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 28: void onLoop() {
 [e :U _onLoop ]
 [f ]
-[; ;main.c: 29: FlipA();
+[; ;main.c: 29: }
 "29
-[e ( _FlipA ..  ]
-[; ;main.c: 30: }
-"30
 [e :UE 2095 ]
 }
 [a 2C 115 101 116 0 ]
 [a 1C 64 109 111 116 111 114 0 ]
+[a 4C 64 109 111 116 111 114 0 ]
 [a 3C 64 109 97 115 116 101 114 0 ]

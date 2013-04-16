@@ -18832,7 +18832,13 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 6 "json.h"
+# 9 "flipper.h"
+void FlipA();
+
+
+void FlipB();
+
+# 7 "json.h"
 void JsonNew(char* string);
 
 
@@ -18903,7 +18909,7 @@ void OnIntervalInterrupt();
 
 void SetInterval(int delayInMs, void (*callbackToUse)());
 
-# 13 "twitter.h"
+# 14 "twitter.h"
 void TwitterSignUp(char *name);
 
 

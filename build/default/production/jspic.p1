@@ -14883,14 +14883,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
-[; ;interrupts.h: 11: interrupt void onInterrupt();
+[; ;flipper.h: 9: void FlipA();
+[; ;flipper.h: 12: void FlipB();
+[; ;interrupts.h: 12: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
 [; ;superSimpleSerial.h: 13: void putch(char);
 [; ;ledCounter.h: 6: void LedCounterBegin();
 [; ;ledCounter.h: 9: void Count(int number);
-[; ;flipper.h: 9: void FlipA();
-[; ;flipper.h: 12: void FlipB();
 [; ;jspic.h: 17: void onSetup();
 [; ;jspic.h: 18: void onLoop();
 "3 jspic.c

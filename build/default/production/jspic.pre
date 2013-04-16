@@ -18893,7 +18893,13 @@ void WireBegin();
 
 void WireOnInterrupt();
 
-# 11 "interrupts.h"
+# 9 "flipper.h"
+void FlipA();
+
+
+void FlipB();
+
+# 12 "interrupts.h"
 interrupt void onInterrupt();
 
 # 7 "superSimpleSerial.h"
@@ -18910,12 +18916,6 @@ void LedCounterBegin();
 
 
 void Count(int number);
-
-# 9 "flipper.h"
-void FlipA();
-
-
-void FlipB();
 
 # 17 "jspic.h"
 void onSetup();

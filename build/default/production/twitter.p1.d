@@ -8,6 +8,7 @@ crashHelper.h  \
 twitter.h  \
 json.h  \
 macaw.h  \
+flipper.h  \
 serial.h  \
 globals.h  \
 interval.h  \

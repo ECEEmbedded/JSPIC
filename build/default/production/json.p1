@@ -7,8 +7,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 "67 /opt/microchip/xc8/v1.12/include/stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
-"6 string2.h
-[v _strcpy2 `(v ~T0 @X0 0 ef2`*uc`*Cuc ]
+"36 /opt/microchip/xc8/v1.12/include/string.h
+[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -14842,11 +14842,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strrchr(const char *, int);
 [; ;string.h: 59: extern char * strrichr(const char *, int);
 [; ;string2.h: 6: void strcpy2(char *dest, const char *loc);
-[; ;json.h: 6: void JsonNew(char* string);
-[; ;json.h: 9: void JsonSetString(char* input, char* key, char* string);
-[; ;json.h: 10: void JsonSetValue(char* input, char* key, int value);
-[; ;json.h: 12: int JsonGetString(char* input, char* key, char* string);
-[; ;json.h: 13: int JsonGetValue(char* input, char* key);
+[; ;flipper.h: 9: void FlipA();
+[; ;flipper.h: 12: void FlipB();
+[; ;json.h: 7: void JsonNew(char* string);
+[; ;json.h: 10: void JsonSetString(char* input, char* key, char* string);
+[; ;json.h: 11: void JsonSetValue(char* input, char* key, int value);
+[; ;json.h: 13: int JsonGetString(char* input, char* key, char* string);
+[; ;json.h: 14: int JsonGetValue(char* input, char* key);
 [; ;string.h: 22: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 23: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 24: extern void * memset(void *, int, size_t);
@@ -14888,7 +14890,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _JsonNew ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;json.c: 24: sprintf(string, "{\n}");
+[; ;json.c: 24: sprintf(string, "");
 "24
 [e ( _sprintf (1 , _string :s 1C ]
 [; ;json.c: 25: }
@@ -14903,270 +14905,169 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;json.c: 29: sprintf(result, "\"%s\": ", key);
 "29
-[e ( _sprintf (1 , (. , &U _result :s 2C -> _key `*Cuc ]
-"30
 [v _substr_s `*uc ~T0 @X0 1 a ]
-[; ;json.c: 30: char* substr_s = strstr(input, result);
-[e = _substr_s ( _strstr (2 , -> _input `*Cuc -> &U _result `*Cuc ]
-[; ;json.c: 32: substr_s = strstr(substr_s, " ");
+[; ;json.c: 29: char* substr_s = strstr(input, key);
+[e = _substr_s ( _strstr (2 , -> _input `*Cuc -> _key `*Cuc ]
+"31
+[v _length_key `i ~T0 @X0 1 a ]
+[; ;json.c: 31: int length_key = strlen(key);
+[e = _length_key -> ( _strlen (1 -> _key `*Cuc `i ]
+[; ;json.c: 32: substr_s = substr_s + length_key + 1;
 "32
-[e = _substr_s ( _strstr (2 , -> _substr_s `*Cuc :s 3C ]
-[; ;json.c: 33: substr_s++;
-"33
-[e ++ _substr_s * -> -> 1 `i `x -> -> # *U _substr_s `i `x ]
-[; ;json.c: 36: if(substr_s != (0)) {
-"36
+[e = _substr_s + + _substr_s * -> _length_key `x -> -> # *U _substr_s `i `x * -> -> 1 `i `x -> -> # *U + _substr_s * -> _length_key `x -> -> # *U _substr_s `i `x `i `x ]
+[; ;json.c: 35: if(substr_s != (0)) {
+"35
 [e $ ! != _substr_s -> -> 0 `i `*uc 2094  ]
 {
-"38
-[v _substr2_s `*uc ~T0 @X0 1 a ]
-[; ;json.c: 38: char* substr2_s = strstr(substr_s, ",\n");
-[e = _substr2_s ( _strstr (2 , -> _substr_s `*Cuc :s 4C ]
-"41
-[v _length_substr_s `i ~T0 @X0 1 a ]
-[; ;json.c: 41: int length_substr_s = strlen(substr_s);
-[e = _length_substr_s -> ( _strlen (1 -> _substr_s `*Cuc `i ]
-"42
-[v _length_substr2_s `i ~T0 @X0 1 a ]
-[; ;json.c: 42: int length_substr2_s = strlen(substr2_s);
-[e = _length_substr2_s -> ( _strlen (1 -> _substr2_s `*Cuc `i ]
-"43
-[v _length_sub_s `i ~T0 @X0 1 a ]
-[; ;json.c: 43: int length_sub_s = length_substr_s - length_substr2_s;
-[e = _length_sub_s - _length_substr_s _length_substr2_s ]
-[; ;json.c: 46: for (int i=0; i<length_sub_s; i++) {
-"46
+[; ;json.c: 37: for(int i = 0; substr_s[i] != '\n'; ++i) {
+"37
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 2098  ]
 [e :U 2095 ]
 {
-[; ;json.c: 47: result[i] = substr_s[i];
-"47
+[; ;json.c: 38: result[i] = substr_s[i];
+"38
 [e = *U + &U _result * -> -> _i `ui `ux -> -> # *U &U _result `ui `ux *U + _substr_s * -> _i `x -> -> # *U _substr_s `i `x ]
-"48
+[; ;json.c: 39: result[i+1] = 0;
+"39
+[e = *U + &U _result * -> -> + _i -> 1 `i `ui `ux -> -> # *U &U _result `ui `ux -> -> 0 `i `uc ]
+"40
 }
-"46
-[e ++ _i -> 1 `i ]
+"37
+[e =+ _i -> 1 `i ]
 [e :U 2098 ]
-[e $ < _i _length_sub_s 2095  ]
+[e $ != -> *U + _substr_s * -> _i `x -> -> # *U _substr_s `i `x `ui -> 10 `ui 2095  ]
 [e :U 2096 ]
-"48
+"40
 }
-[; ;json.c: 48: }
-[; ;json.c: 50: result[length_sub_s] = 0;
-"50
-[e = *U + &U _result * -> -> _length_sub_s `ui `ux -> -> # *U &U _result `ui `ux -> -> 0 `i `uc ]
-"52
-[v _result_float `i ~T0 @X0 1 a ]
-[; ;json.c: 52: int result_float = 0;
-[e = _result_float -> 0 `i ]
-[; ;json.c: 54: if(result[0] == '\"') {
-"54
-[e $ ! == -> *U + &U _result * -> -> -> 0 `i `ui `ux -> -> # *U &U _result `ui `ux `ui -> 34 `ui 2099  ]
-{
-"55
-[v _p `*uc ~T0 @X0 1 a ]
-[; ;json.c: 55: char *p = result;
-[e = _p &U _result ]
-[; ;json.c: 56: p++;
-"56
-[e ++ _p * -> -> 1 `i `x -> -> # *U _p `i `x ]
-[; ;json.c: 57: p[strlen(p)-1] = 0;
-"57
-[e = *U + _p * -> - ( _strlen (1 -> _p `*Cuc -> -> 1 `i `ui `ux -> -> # *U _p `ui `ux -> -> 0 `i `uc ]
-[; ;json.c: 58: result_float = atoi(p);
-"58
-[e = _result_float ( _atoi (1 -> _p `*Cuc ]
-"59
-}
-[; ;json.c: 59: }
-[e $U 2100  ]
-"60
-[e :U 2099 ]
-[; ;json.c: 60: else {
-{
-[; ;json.c: 61: result_float = atoi(result);
-"61
-[e = _result_float ( _atoi (1 -> &U _result `*Cuc ]
-"62
-}
-[e :U 2100 ]
-[; ;json.c: 62: }
-[; ;json.c: 64: return result_float;
-"64
-[e ) _result_float ]
+[; ;json.c: 40: }
+[; ;json.c: 42: return atoi(result);
+"42
+[e ) ( _atoi (1 -> &U _result `*Cuc ]
 [e $UE 2093  ]
-"65
+"43
 }
 [e :U 2094 ]
-[; ;json.c: 65: }
-[; ;json.c: 66: return 666;
-"66
+[; ;json.c: 43: }
+[; ;json.c: 44: return 666;
+"44
 [e ) -> 666 `i ]
 [e $UE 2093  ]
-[; ;json.c: 67: }
-"67
+[; ;json.c: 45: }
+"45
 [e :UE 2093 ]
 }
-"69
+"48
 [v _JsonSetString `(v ~T0 @X0 1 ef3`*uc`*uc`*uc ]
 {
-[; ;json.c: 69: void JsonSetString(char* input, char* key, char* str) {
+[; ;json.c: 48: void JsonSetString(char* input, char* key, char* str) {
 [e :U _JsonSetString ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [v _str `*uc ~T0 @X0 1 r3 ]
 [f ]
-"70
-[v _original_json_input_len `ul ~T0 @X0 1 a ]
-[; ;json.c: 70: unsigned long original_json_input_len = strlen(input);
-[e = _original_json_input_len -> ( _strlen (1 -> _input `*Cuc `ul ]
-[; ;json.c: 71: input[original_json_input_len - 1] = 0;
-"71
-[e = *U + _input * -> - _original_json_input_len -> -> -> 1 `i `l `ul `ux -> -> # *U _input `ui `ux -> -> 0 `i `uc ]
-[; ;json.c: 72: strcpy2(result, input);
-"72
-[e ( _strcpy2 (2 , &U _result -> _input `*Cuc ]
-[; ;json.c: 73: sprintf(input, "%s\"%s\": \"%s\",\n}", result, key, str);
-"73
-[e ( _sprintf (1 , , , (. , _input :s 5C -> &U _result `*Cuc -> _key `*Cuc -> _str `*Cuc ]
-[; ;json.c: 74: }
-"74
-[e :UE 2101 ]
+"49
+[v _len `i ~T0 @X0 1 a ]
+[; ;json.c: 49: int len = strlen(input);
+[e = _len -> ( _strlen (1 -> _input `*Cuc `i ]
+[; ;json.c: 50: sprintf(input+len, "%s:%s\n", key, str);
+"50
+[e ( _sprintf (1 , , (. , + _input * -> _len `x -> -> # *U _input `i `x :s 2C -> _key `*Cuc -> _str `*Cuc ]
+[; ;json.c: 51: }
+"51
+[e :UE 2099 ]
 }
-"76
+"53
 [v _JsonSetValue `(v ~T0 @X0 1 ef3`*uc`*uc`i ]
 {
-[; ;json.c: 76: void JsonSetValue(char* input, char* key, int value) {
+[; ;json.c: 53: void JsonSetValue(char* input, char* key, int value) {
 [e :U _JsonSetValue ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [v _value `i ~T0 @X0 1 r3 ]
 [f ]
-"77
-[v _original_json_input_len `ul ~T0 @X0 1 a ]
-[; ;json.c: 77: unsigned long original_json_input_len = strlen(input);
-[e = _original_json_input_len -> ( _strlen (1 -> _input `*Cuc `ul ]
-[; ;json.c: 78: input[original_json_input_len - 1] = 0;
-"78
-[e = *U + _input * -> - _original_json_input_len -> -> -> 1 `i `l `ul `ux -> -> # *U _input `ui `ux -> -> 0 `i `uc ]
-[; ;json.c: 79: strcpy2(result, input);
-"79
-[e ( _strcpy2 (2 , &U _result -> _input `*Cuc ]
-[; ;json.c: 80: sprintf(input, "%s\"%s\": %d,\n}", result, key, value);
-"80
-[e ( _sprintf (1 , , , (. , _input :s 6C -> &U _result `*Cuc -> _key `*Cuc _value ]
-[; ;json.c: 81: }
-"81
-[e :UE 2102 ]
+"54
+[v _len `i ~T0 @X0 1 a ]
+[; ;json.c: 54: int len = strlen(input);
+[e = _len -> ( _strlen (1 -> _input `*Cuc `i ]
+[; ;json.c: 55: sprintf(input+len, "%s:%d\n", key, value);
+"55
+[e ( _sprintf (1 , , (. , + _input * -> _len `x -> -> # *U _input `i `x :s 3C -> _key `*Cuc _value ]
+[; ;json.c: 56: }
+"56
+[e :UE 2100 ]
 }
-"83
+"59
 [v _JsonGetString `(i ~T0 @X0 1 ef3`*uc`*uc`*uc ]
 {
-[; ;json.c: 83: int JsonGetString(char* input, char* key, char* string) {
+[; ;json.c: 59: int JsonGetString(char* input, char* key, char* string) {
 [e :U _JsonGetString ]
 [v _input `*uc ~T0 @X0 1 r1 ]
 [v _key `*uc ~T0 @X0 1 r2 ]
 [v _string `*uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;json.c: 85: sprintf(result, "\"%s\"%s", key, ": ");
-"85
-[e ( _sprintf (1 , , (. , &U _result :s 7C -> _key `*Cuc :s 8C ]
-"86
+"61
 [v _substr_s `*uc ~T0 @X0 1 a ]
-[; ;json.c: 86: char* substr_s = strstr(input, result);
-[e = _substr_s ( _strstr (2 , -> _input `*Cuc -> &U _result `*Cuc ]
-[; ;json.c: 88: substr_s = strstr(substr_s, " ");
-"88
-[e = _substr_s ( _strstr (2 , -> _substr_s `*Cuc :s 9C ]
-[; ;json.c: 89: substr_s++;
-"89
-[e ++ _substr_s * -> -> 1 `i `x -> -> # *U _substr_s `i `x ]
-[; ;json.c: 91: if(substr_s != (0)) {
-"91
-[e $ ! != _substr_s -> -> 0 `i `*uc 2104  ]
+[; ;json.c: 61: char* substr_s = strstr(input, key);
+[e = _substr_s ( _strstr (2 , -> _input `*Cuc -> _key `*Cuc ]
+"63
+[v _length_key `i ~T0 @X0 1 a ]
+[; ;json.c: 63: int length_key = strlen(key);
+[e = _length_key -> ( _strlen (1 -> _key `*Cuc `i ]
+[; ;json.c: 64: substr_s = substr_s + length_key + 1;
+"64
+[e = _substr_s + + _substr_s * -> _length_key `x -> -> # *U _substr_s `i `x * -> -> 1 `i `x -> -> # *U + _substr_s * -> _length_key `x -> -> # *U _substr_s `i `x `i `x ]
+[; ;json.c: 68: if(substr_s != (0)) {
+"68
+[e $ ! != _substr_s -> -> 0 `i `*uc 2102  ]
 {
-"92
-[v _substr2_s `*uc ~T0 @X0 1 a ]
-[; ;json.c: 92: char* substr2_s = strstr(substr_s, ",\n");
-[e = _substr2_s ( _strstr (2 , -> _substr_s `*Cuc :s 10C ]
-"93
-[v _length_substr_s `ul ~T0 @X0 1 a ]
-[; ;json.c: 93: unsigned long length_substr_s = strlen(substr_s);
-[e = _length_substr_s -> ( _strlen (1 -> _substr_s `*Cuc `ul ]
-"94
-[v _length_substr2_s `ul ~T0 @X0 1 a ]
-[; ;json.c: 94: unsigned long length_substr2_s = strlen(substr2_s);
-[e = _length_substr2_s -> ( _strlen (1 -> _substr2_s `*Cuc `ul ]
-"95
-[v _length_sub_s `ul ~T0 @X0 1 a ]
-[; ;json.c: 95: unsigned long length_sub_s = length_substr_s - length_substr2_s;
-[e = _length_sub_s - _length_substr_s _length_substr2_s ]
-[; ;json.c: 97: for (int i=0; i<length_sub_s; i++) {
-"97
+[; ;json.c: 70: for(int i = 0; substr_s[i] != '\n'; ++i) {
+"70
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 2108  ]
-[e :U 2105 ]
+[e $U 2106  ]
+[e :U 2103 ]
 {
-[; ;json.c: 98: result[i] = substr_s[i];
-"98
+[; ;json.c: 71: result[i] = substr_s[i];
+"71
 [e = *U + &U _result * -> -> _i `ui `ux -> -> # *U &U _result `ui `ux *U + _substr_s * -> _i `x -> -> # *U _substr_s `i `x ]
-"99
+[; ;json.c: 72: result[i+1] = 0;
+"72
+[e = *U + &U _result * -> -> + _i -> 1 `i `ui `ux -> -> # *U &U _result `ui `ux -> -> 0 `i `uc ]
+"73
 }
-"97
-[e ++ _i -> 1 `i ]
-[e :U 2108 ]
-[e $ < -> -> _i `l `ul _length_sub_s 2105  ]
+"70
+[e =+ _i -> 1 `i ]
 [e :U 2106 ]
-"99
-}
-[; ;json.c: 99: }
-[; ;json.c: 101: result[length_sub_s] = 0;
-"101
-[e = *U + &U _result * -> _length_sub_s `ux -> -> # *U &U _result `ui `ux -> -> 0 `i `uc ]
-"103
-[v _p `*uc ~T0 @X0 1 a ]
-[; ;json.c: 103: char *p = result;
-[e = _p &U _result ]
-[; ;json.c: 104: p++;
-"104
-[e ++ _p * -> -> 1 `i `x -> -> # *U _p `i `x ]
-[; ;json.c: 105: p[strlen(p)-1] = 0;
-"105
-[e = *U + _p * -> - ( _strlen (1 -> _p `*Cuc -> -> 1 `i `ui `ux -> -> # *U _p `ui `ux -> -> 0 `i `uc ]
-[; ;json.c: 106: strcpy2(string, p);
-"106
-[e ( _strcpy2 (2 , _string -> _p `*Cuc ]
-[; ;json.c: 107: return 0;
-"107
-[e ) -> 0 `i ]
-[e $UE 2103  ]
-"108
-}
+[e $ != -> *U + _substr_s * -> _i `x -> -> # *U _substr_s `i `x `ui -> 10 `ui 2103  ]
 [e :U 2104 ]
-[; ;json.c: 108: }
-[; ;json.c: 109: return -1;
-"109
+"73
+}
+[; ;json.c: 73: }
+[; ;json.c: 75: strcpy(string, result);
+"75
+[e ( _strcpy (2 , _string -> &U _result `*Cuc ]
+[; ;json.c: 76: return 0;
+"76
+[e ) -> 0 `i ]
+[e $UE 2101  ]
+"77
+}
+[e :U 2102 ]
+[; ;json.c: 77: }
+[; ;json.c: 78: return -1;
+"78
 [e ) -U -> 1 `i ]
-[e $UE 2103  ]
-[; ;json.c: 110: }
-"110
-[e :UE 2103 ]
+[e $UE 2101  ]
+[; ;json.c: 79: }
+"79
+[e :UE 2101 ]
 }
 [p f _sprintf 8650880 ]
-[a 1C 123 10 125 0 ]
-[a 6C 37 115 34 37 115 34 58 32 37 100 44 10 125 0 ]
-[a 5C 37 115 34 37 115 34 58 32 34 37 115 34 44 10 125 0 ]
-[a 7C 34 37 115 34 37 115 0 ]
-[a 2C 34 37 115 34 58 32 0 ]
-[a 8C 58 32 0 ]
-[a 3C 32 0 ]
-[a 9C 32 0 ]
-[a 4C 44 10 0 ]
-[a 10C 44 10 0 ]
+[a 2C 37 115 58 37 115 10 0 ]
+[a 3C 37 115 58 37 100 10 0 ]
+[a 1C 0 ]

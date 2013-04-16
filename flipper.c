@@ -14,13 +14,13 @@ void FlipLazyBegin() {
 void FlipA() {
     FlipLazyBegin();
     
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 4; ++i)
         RB7 = ~RB7;
 }
 
 void FlipB() {
     FlipLazyBegin();
 
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 4; ++i)
         RB6 = ~RB6;
 }

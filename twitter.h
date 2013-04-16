@@ -8,6 +8,7 @@
 #include "wireMaster.h"
 #include "serial.h"
 #include "interval.h"
+#include "flipper.h"
 
 //Register as a twitter user
 void TwitterSignUp(char *name);

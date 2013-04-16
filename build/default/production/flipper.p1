@@ -14889,12 +14889,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flipper.c: 15: FlipLazyBegin();
 "15
 [e ( _FlipLazyBegin ..  ]
-[; ;flipper.c: 17: for (int i = 0; i < 5; ++i)
+[; ;flipper.c: 17: for (int i = 0; i < 4; ++i)
 "17
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 2095  ]
+[e $ < _i -> 4 `i 2095  ]
 [e $U 2096  ]
 "18
 [e :U 2095 ]
@@ -14902,7 +14902,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RB7 ! _RB7 ]
 "17
 [e =+ _i -> 1 `i ]
-[e $ < _i -> 5 `i 2095  ]
+[e $ < _i -> 4 `i 2095  ]
 [e :U 2096 ]
 "18
 }
@@ -14919,12 +14919,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flipper.c: 22: FlipLazyBegin();
 "22
 [e ( _FlipLazyBegin ..  ]
-[; ;flipper.c: 24: for (int i = 0; i < 5; ++i)
+[; ;flipper.c: 24: for (int i = 0; i < 4; ++i)
 "24
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 2099  ]
+[e $ < _i -> 4 `i 2099  ]
 [e $U 2100  ]
 "25
 [e :U 2099 ]
@@ -14932,7 +14932,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RB6 ! _RB6 ]
 "24
 [e =+ _i -> 1 `i ]
-[e $ < _i -> 5 `i 2099  ]
+[e $ < _i -> 4 `i 2099  ]
 [e :U 2100 ]
 "25
 }

@@ -21,89 +21,58 @@
 static char result[MAX_STRING_SIZE];  // Shouldn't need more than 200
 
 void JsonNew(char* string) {
-    sprintf(string, "{\n}");
+    sprintf(string, "");
 }
 
 int JsonGetValue(char* input, char* key) {
     //Find the key
-    sprintf(result, "\"%s\": ", key);
-    char* substr_s = strstr(input, result);
+    char* substr_s = strstr(input, key);
 
-    substr_s = strstr(substr_s, " "); //Move to value of the key
-    substr_s++;     //Removes the first character in the char array
-
+    int length_key = strlen(key);
+    substr_s = substr_s + length_key + 1;   //Removes the semi-colon
+    //Pointing at 'value' now
     //At the value
     if(substr_s != NULL) {
         //After value
-        char* substr2_s = strstr(substr_s, ",\n");
-
-        //Lengths
-        int length_substr_s = strlen(substr_s);
-        int length_substr2_s = strlen(substr2_s);
-        int length_sub_s = length_substr_s - length_substr2_s;
-
-        // Will know to look here if this becomes a problem.
-        for (int i=0; i<length_sub_s; i++) {
+        for(int i = 0; substr_s[i] != '\n'; ++i) {
             result[i] = substr_s[i];
+            result[i+1] = 0;
         }
 
-        result[length_sub_s] = 0;
-
-        int result_float = 0;
-
-        if(result[0] == '\"') {     // If it's quoted, remove the quotes.
-            char *p = result;
-            p++;
-            p[strlen(p)-1] = 0;
-            result_float = atoi(p);
-        }
-        else {
-            result_float = atoi(result);
-        }
-        
-        return result_float;
+        return atoi(result);
     }
     return 666;
 }
 
+
 void JsonSetString(char* input, char* key, char* str) {
-    unsigned long original_json_input_len = strlen(input);
-    input[original_json_input_len - 1] = 0;
-    strcpy2(result, input);
-    sprintf(input, "%s\"%s\": \"%s\",\n}", result, key, str);
+    int len = strlen(input);
+    sprintf(input+len, "%s:%s\n", key, str);
 }
 
 void JsonSetValue(char* input, char* key, int value) {
-    unsigned long original_json_input_len = strlen(input);
-    input[original_json_input_len - 1] = 0;
-    strcpy2(result, input);
-    sprintf(input, "%s\"%s\": %d,\n}", result, key, value);
+    int len = strlen(input);
+    sprintf(input+len, "%s:%d\n", key, value);
 }
 
+
 int JsonGetString(char* input, char* key, char* string) {
-    // Will know to look here if this becomes a problem.
-    sprintf(result, "\"%s\"%s", key, COLON_SPACE);
-    char* substr_s = strstr(input, result);
+    //Find the key
+    char* substr_s = strstr(input, key);
 
-    substr_s = strstr(substr_s, " ");
-    substr_s++;     //Removes the first character in the char array
+    int length_key = strlen(key);
+    substr_s = substr_s + length_key + 1;   //Removes the semi-colon
+    //Pointing at 'string' now
 
+    //At the string
     if(substr_s != NULL) {
-        char* substr2_s = strstr(substr_s, ",\n");
-        unsigned long length_substr_s = strlen(substr_s);
-        unsigned long length_substr2_s = strlen(substr2_s);
-        unsigned long length_sub_s = length_substr_s - length_substr2_s;
-        // Will know to look here if this becomes a problem.
-        for (int i=0; i<length_sub_s; i++) {
+        //After value
+        for(int i = 0; substr_s[i] != '\n'; ++i) {
             result[i] = substr_s[i];
+            result[i+1] = 0;
         }
 
-        result[length_sub_s] = 0;
-
-        char *p = result;
-        p++;
-        p[strlen(p)-1] = 0;
-        strcpy2(string, p);
+        strcpy(string, result);
         return 0;
     }
     return -1;

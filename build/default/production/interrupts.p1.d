@@ -7,6 +7,7 @@ interrupts.h  \
 string2.h  \
 crashHelper.h  \
 macaw.h  \
+flipper.h  \
 serial.h  \
 interval.h  \
 globals.h  \

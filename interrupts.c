@@ -1,7 +1,6 @@
 #include "interrupts.h"
 
 interrupt void onInterrupt() {
-
     //I2C
     //###########################################
     if (SSPIF) {

@@ -18,13 +18,12 @@ void count() {
 void onSetup() {
     Count(0);
     TwitterSignUp("@master");
-    //TwitterWireMasterAddSlave(0x4F, "@motor");
-    //TwitterWireMasterBegin();
-    TwitterSerialBegin();
+    TwitterWireMasterAddSlave(0x4F, "@motor");
+    TwitterWireMasterBegin();
+   // TwitterSerialBegin();
 
     SetInterval(400, count);
 }
 
 void onLoop() {
-    FlipA();
 }

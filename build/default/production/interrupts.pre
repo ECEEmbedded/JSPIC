@@ -18893,12 +18893,17 @@ void WireBegin();
 
 void WireOnInterrupt();
 
-# 11 "interrupts.h"
+# 9 "flipper.h"
+void FlipA();
+
+
+void FlipB();
+
+# 12 "interrupts.h"
 interrupt void onInterrupt();
 
 # 3 "interrupts.c"
 interrupt void onInterrupt() {
-
 
 
 if (SSPIF) {

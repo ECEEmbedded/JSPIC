@@ -18893,7 +18893,13 @@ void WireBegin();
 
 void WireOnInterrupt();
 
-# 11 "interrupts.h"
+# 9 "flipper.h"
+void FlipA();
+
+
+void FlipB();
+
+# 12 "interrupts.h"
 interrupt void onInterrupt();
 
 # 7 "superSimpleSerial.h"
@@ -18911,17 +18917,11 @@ void LedCounterBegin();
 
 void Count(int number);
 
-# 9 "flipper.h"
-void FlipA();
-
-
-void FlipB();
-
 # 17 "jspic.h"
 void onSetup();
 void onLoop();
 
-# 6 "json.h"
+# 7 "json.h"
 void JsonNew(char* string);
 
 
@@ -18931,7 +18931,7 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 13 "twitter.h"
+# 14 "twitter.h"
 void TwitterSignUp(char *name);
 
 
@@ -18990,13 +18990,12 @@ TweetValue("@motor", "set", counter, respond);
 void onSetup() {
 Count(0);
 TwitterSignUp("@master");
+TwitterWireMasterAddSlave(0x4F, "@motor");
+TwitterWireMasterBegin();
 
-
-TwitterSerialBegin();
 
 SetInterval(400, count);
 }
 
 void onLoop() {
-FlipA();
 }

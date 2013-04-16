@@ -7,6 +7,7 @@
 #include "jwire.h"
 #include "wireMaster.h"
 #include "crashHelper.h"
+#include "flipper.h"
 
 interrupt void onInterrupt();
 
