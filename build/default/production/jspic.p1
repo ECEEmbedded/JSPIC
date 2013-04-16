@@ -14871,23 +14871,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jwire.h: 23: void JWireRespond(char *msg);
 [; ;interval.h: 8: void OnIntervalInterrupt();
 [; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;serial.h: 8: void OnSerialInterrupt();
-[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
-[; ;serial.h: 14: void SerialBegin();
-[; ;serial.h: 17: void SerialWrite(char *data);
-[; ;serial.h: 20: void SerialWriteInterrupt();
+[; ;crashHelper.h: 6: extern int IsCrashed;
+[; ;crashHelper.h: 8: void Crash(int id);
+[; ;serial.h: 9: void OnSerialInterrupt();
+[; ;serial.h: 12: void OnSerial(AsyncCallback_t callback);
+[; ;serial.h: 15: void SerialBegin();
+[; ;serial.h: 18: void SerialWrite(char *data);
+[; ;serial.h: 21: void SerialWriteInterrupt();
 [; ;wireMaster.h: 6: extern int wireMasterEnabled;
 [; ;wireMaster.h: 8: void WireSend(int deviceId, unsigned char *data, int len, AsyncCallback_t callback);
 [; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
-[; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash(int id);
 [; ;interrupts.h: 11: interrupt void onInterrupt();
 [; ;superSimpleSerial.h: 7: void SuperSimpleSerialBegin();
 [; ;superSimpleSerial.h: 10: void Sout(char byte);
 [; ;superSimpleSerial.h: 13: void putch(char);
 [; ;ledCounter.h: 6: void LedCounterBegin();
+[; ;ledCounter.h: 7: void Count(int number);
 [; ;jspic.h: 16: void onSetup();
 [; ;jspic.h: 17: void onLoop();
 "3 jspic.c
@@ -14945,24 +14946,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;jspic.c: 40: PEIE = 1;
 "40
 [e = _PEIE -> -> 1 `i `b ]
-[; ;jspic.c: 43: LedCounterBegin();
-"43
+[; ;jspic.c: 44: LedCounterBegin();
+"44
 [e ( _LedCounterBegin ..  ]
-[; ;jspic.c: 45: while (1) {
-"45
+[; ;jspic.c: 46: while (1) {
+"46
 [e :U 2094 ]
 {
-[; ;jspic.c: 46: onLoop();
-"46
-[e ( _onLoop ..  ]
+[; ;jspic.c: 47: onLoop();
 "47
+[e ( _onLoop ..  ]
+"48
 }
 [e :U 2093 ]
-"45
+"46
 [e $U 2094  ]
 [e :U 2095 ]
-[; ;jspic.c: 47: }
 [; ;jspic.c: 48: }
-"48
+[; ;jspic.c: 49: }
+"49
 [e :UE 2092 ]
 }

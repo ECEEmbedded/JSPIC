@@ -3,6 +3,7 @@
 
 #include <xc.h>
 #include "async.h"
+#include "crashHelper.h"
 
 //Called on the actual serial interrupt (Individual bytes)
 void OnSerialInterrupt();

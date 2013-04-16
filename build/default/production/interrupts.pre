@@ -18838,7 +18838,12 @@ void OnIntervalInterrupt();
 
 void SetInterval(int delayInMs, void (*callbackToUse)());
 
-# 8 "serial.h"
+# 6 "crashHelper.h"
+extern int IsCrashed;
+
+void Crash(int id);
+
+# 9 "serial.h"
 void OnSerialInterrupt();
 
 
@@ -18887,11 +18892,6 @@ void WireBegin();
 
 
 void WireOnInterrupt();
-
-# 6 "crashHelper.h"
-extern int IsCrashed;
-
-void Crash(int id);
 
 # 11 "interrupts.h"
 interrupt void onInterrupt();

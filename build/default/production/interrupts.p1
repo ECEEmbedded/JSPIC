@@ -27,11 +27,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _OnIntervalInterrupt `(v ~T0 @X0 0 ef ]
 "36281 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _RCIF `Vb ~T0 @X0 0 e@31989 ]
-"8 serial.h
+"9 serial.h
 [v _OnSerialInterrupt `(v ~T0 @X0 0 ef ]
 "38957 /opt/microchip/xc8/v1.12/include/pic18f2680.h
 [v _TXIF `Vb ~T0 @X0 0 e@31988 ]
-"20 serial.h
+"21 serial.h
 [v _SerialWriteInterrupt `(v ~T0 @X0 0 ef ]
 "18 async.h
 [v _AsyncTick `(v ~T0 @X0 0 ef ]
@@ -14879,11 +14879,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;async.h: 18: void AsyncTick();
 [; ;interval.h: 8: void OnIntervalInterrupt();
 [; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
-[; ;serial.h: 8: void OnSerialInterrupt();
-[; ;serial.h: 11: void OnSerial(AsyncCallback_t callback);
-[; ;serial.h: 14: void SerialBegin();
-[; ;serial.h: 17: void SerialWrite(char *data);
-[; ;serial.h: 20: void SerialWriteInterrupt();
+[; ;crashHelper.h: 6: extern int IsCrashed;
+[; ;crashHelper.h: 8: void Crash(int id);
+[; ;serial.h: 9: void OnSerialInterrupt();
+[; ;serial.h: 12: void OnSerial(AsyncCallback_t callback);
+[; ;serial.h: 15: void SerialBegin();
+[; ;serial.h: 18: void SerialWrite(char *data);
+[; ;serial.h: 21: void SerialWriteInterrupt();
 [; ;macaw.h: 6: void MacawBegin();
 [; ;jwire.h: 8: extern int jWireEnabled;
 [; ;jwire.h: 11: void JWireOnInterrupt();
@@ -14896,8 +14898,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;wireMaster.h: 11: void WireGetString(int address, AsyncCallback_t callback);
 [; ;wireMaster.h: 14: void WireBegin();
 [; ;wireMaster.h: 17: void WireOnInterrupt();
-[; ;crashHelper.h: 6: extern int IsCrashed;
-[; ;crashHelper.h: 8: void Crash(int id);
 [; ;interrupts.h: 11: interrupt void onInterrupt();
 "11 interrupts.h
 [v F16544 `(v ~T0 @X0 1 tf ]

@@ -3,5 +3,6 @@
  serial.c  \
 async.h  \
 string2.h  \
+crashHelper.h  \
 serial.h  \
 globals.h 

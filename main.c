@@ -2,18 +2,20 @@
 #include "json.h"
 #include "twitter.h"
 
-void call() {
-    static int value = 0;
-    value = JsonGetValue(AsyncMessage, "msg");
-    printf("%d\n", value);
-    TweetReturn("Thanks! :D");
+void counter() {
+    static int n = 0;
+    Count(n);
+    ++n;
 }
 
 void onSetup() {
-    TwitterSignUp("@motor");
-    TwitterWireSlaveBegin(0x4F);
-    TwitterRegisterSubject("set", call);
+    TwitterSignUp("@master");
+    TwitterSerialBegin();
+    TwitterWireMasterBegin();
+    TwitterWireMasterAddSlave(0x4F, "@ir");
+    //SetInterval(80, call);
 }
 
 void onLoop() {
+    counter();
 }

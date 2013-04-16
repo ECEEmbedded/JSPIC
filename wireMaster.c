@@ -100,6 +100,7 @@ void WireGetString(int address, AsyncCallback_t callback) {
         wireSendA.len = 0;
         wireSendA.callback = callback;
         wireSendA.isSending = 0;
+        wireSendA.data[0] = 0;
     }
 
     else if (BIsVacant) {
@@ -107,6 +108,7 @@ void WireGetString(int address, AsyncCallback_t callback) {
         wireSendB.len = 0;
         wireSendB.callback = callback;
         wireSendB.isSending = 0;
+        wireSendB.data[0] = 0;
     }
     //###############################################
 

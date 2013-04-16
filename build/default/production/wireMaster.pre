@@ -18938,6 +18938,7 @@ wireSendA.address = address;
 wireSendA.len = 0;
 wireSendA.callback = callback;
 wireSendA.isSending = 0;
+wireSendA.data[0] = 0;
 }
 
 else if ((wireSendB.address == -1)) {
@@ -18945,6 +18946,7 @@ wireSendB.address = address;
 wireSendB.len = 0;
 wireSendB.callback = callback;
 wireSendB.isSending = 0;
+wireSendB.data[0] = 0;
 }
 
 

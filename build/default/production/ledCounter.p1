@@ -14849,44 +14849,76 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interval.h: 8: void OnIntervalInterrupt();
 [; ;interval.h: 11: void SetInterval(int delayInMs, void (*callbackToUse)());
 [; ;ledCounter.h: 6: void LedCounterBegin();
+[; ;ledCounter.h: 7: void Count(int number);
 "4 ledCounter.c
-[v _CountUp `(v ~T0 @X0 1 ef ]
-{
-[; ;ledCounter.c: 4: void CountUp() {
-[e :U _CountUp ]
-[f ]
-"5
-[v F16513 `i ~T0 @X0 1 s count ]
-[i F16513
+[v _manualCount `i ~T0 @X0 1 s ]
+[i _manualCount
 -> 0 `i
 ]
-[; ;ledCounter.c: 5: static int count = 0;
-[; ;ledCounter.c: 7: LATA = (PORTA & 0xF8) | count;
+[; ;ledCounter.c: 4: static int manualCount = 0;
+"5
+[v _CountUp `(v ~T0 @X0 1 ef ]
+{
+[; ;ledCounter.c: 5: void CountUp() {
+[e :U _CountUp ]
+[f ]
+[; ;ledCounter.c: 6: if (!manualCount) {
+"6
+[e $ ! ! != _manualCount -> 0 `i 2093  ]
+{
 "7
-[e = _LATA -> | & -> _PORTA `i -> 248 `i F16513 `uc ]
-[; ;ledCounter.c: 9: ++count;
+[v F16516 `i ~T0 @X0 1 s count ]
+[i F16516
+-> 0 `i
+]
+[; ;ledCounter.c: 7: static int count = 0;
+[; ;ledCounter.c: 9: LATA = (PORTA & 0xF8) | count;
 "9
-[e =+ F16513 -> 1 `i ]
-[; ;ledCounter.c: 10: count = count % 8;
-"10
-[e = F16513 % F16513 -> 8 `i ]
-[; ;ledCounter.c: 11: }
+[e = _LATA -> | & -> _PORTA `i -> 248 `i F16516 `uc ]
+[; ;ledCounter.c: 11: ++count;
 "11
+[e =+ F16516 -> 1 `i ]
+[; ;ledCounter.c: 12: count = count % 8;
+"12
+[e = F16516 % F16516 -> 8 `i ]
+"13
+}
+[e :U 2093 ]
+[; ;ledCounter.c: 13: }
+[; ;ledCounter.c: 14: }
+"14
 [e :UE 2092 ]
 }
-"13
+"15
+[v _Count `(v ~T0 @X0 1 ef1`i ]
+{
+[; ;ledCounter.c: 15: void Count(int number) {
+[e :U _Count ]
+[v _number `i ~T0 @X0 1 r1 ]
+[f ]
+[; ;ledCounter.c: 17: manualCount = 1;
+"17
+[e = _manualCount -> 1 `i ]
+[; ;ledCounter.c: 19: LATA = (PORTA & 0xF8) | number;
+"19
+[e = _LATA -> | & -> _PORTA `i -> 248 `i _number `uc ]
+[; ;ledCounter.c: 20: }
+"20
+[e :UE 2094 ]
+}
+"22
 [v _LedCounterBegin `(v ~T0 @X0 1 ef ]
 {
-[; ;ledCounter.c: 13: void LedCounterBegin() {
+[; ;ledCounter.c: 22: void LedCounterBegin() {
 [e :U _LedCounterBegin ]
 [f ]
-[; ;ledCounter.c: 14: TRISA = 0;
-"14
+[; ;ledCounter.c: 23: TRISA = 0;
+"23
 [e = _TRISA -> -> 0 `i `uc ]
-[; ;ledCounter.c: 16: SetInterval(250, CountUp);
-"16
+[; ;ledCounter.c: 25: SetInterval(250, CountUp);
+"25
 [e ( _SetInterval (2 , -> 250 `i &U _CountUp ]
-[; ;ledCounter.c: 17: }
-"17
-[e :UE 2093 ]
+[; ;ledCounter.c: 26: }
+"26
+[e :UE 2095 ]
 }

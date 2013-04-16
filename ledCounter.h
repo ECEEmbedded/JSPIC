@@ -4,5 +4,6 @@
 #include "interval.h"
 
 void LedCounterBegin();
+void Count(int number);
 
 #endif

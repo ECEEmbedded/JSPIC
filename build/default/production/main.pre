@@ -18859,7 +18859,12 @@ void OnIntervalInterrupt();
 
 void SetInterval(int delayInMs, void (*callbackToUse)());
 
-# 8 "serial.h"
+# 6 "crashHelper.h"
+extern int IsCrashed;
+
+void Crash(int id);
+
+# 9 "serial.h"
 void OnSerialInterrupt();
 
 
@@ -18888,11 +18893,6 @@ void WireBegin();
 
 void WireOnInterrupt();
 
-# 6 "crashHelper.h"
-extern int IsCrashed;
-
-void Crash(int id);
-
 # 11 "interrupts.h"
 interrupt void onInterrupt();
 
@@ -18907,6 +18907,7 @@ void putch(char);
 
 # 6 "ledCounter.h"
 void LedCounterBegin();
+void Count(int number);
 
 # 16 "jspic.h"
 void onSetup();
@@ -18922,7 +18923,7 @@ void JsonSetValue(char* input, char* key, int value);
 int JsonGetString(char* input, char* key, char* string);
 int JsonGetValue(char* input, char* key);
 
-# 12 "twitter.h"
+# 13 "twitter.h"
 void TwitterSignUp(char *name);
 
 
@@ -18940,6 +18941,11 @@ void TwitterRegisterSubject(char *subject, AsyncCallback_t callback);
 void TwitterOnReceive();
 
 
+void TwitterOnReceiveFromSerial();
+void TwitterOnReceiveFromWireMaster();
+void TwitterOnReceiveFromWireSlave();
+
+
 
 void TwitterWireSlaveBegin(int id);
 
@@ -18955,18 +18961,20 @@ void TwitterWireMasterAddSlave(int id, char *name);
 void TwitterSerialBegin();
 
 # 5 "main.c"
-void call() {
-static int value = 0;
-value = JsonGetValue(AsyncMessage, "msg");
-printf("%d\n", value);
-TweetReturn("Thanks! :D");
+void counter() {
+static int n = 0;
+Count(n);
+++n;
 }
 
 void onSetup() {
-TwitterSignUp("@motor");
-TwitterWireSlaveBegin(0x4F);
-TwitterRegisterSubject("set", call);
+TwitterSignUp("@master");
+TwitterSerialBegin();
+TwitterWireMasterBegin();
+TwitterWireMasterAddSlave(0x4F, "@ir");
+
 }
 
 void onLoop() {
+counter();
 }

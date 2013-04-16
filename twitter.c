@@ -35,6 +35,31 @@ static Subject subjectB;
 static char name[20];
 
 
+//Where did the message come from? (Proxy to the real twitter receive)
+//####################################################################
+static char lastInterface = 0;
+#define WireSlaveIF 0
+#define WireMasterIF 1
+#define SerialIF 2
+void TwitterOnReceiveFromWireSlave() {
+    lastInterface = WireSlaveIF;
+
+    TwitterOnReceive();
+}
+
+void TwitterOnReceiveFromWireMaster() {
+    lastInterface = WireMasterIF;
+
+    TwitterOnReceive();
+}
+
+void TwitterOnReceiveFromSerial() {
+    lastInterface = SerialIF;
+
+    TwitterOnReceive();
+}
+//####################################################################
+
 //Modify these for your platforms specific needs
 //####################################################################
 
@@ -43,17 +68,17 @@ static char name[20];
 static int TwitterWireSlaveEnabled = 0;
 
 //Wait around to be pulled and send a slave message
-static char twitterWireSlaveMessageToSend[150];;
+static char twitterWireSlaveMessageToSend[150];
 
 //Master is requesting something
 void TwitterWireSlaveOnRequest() {
-    printf("Got a slave request!");
+    JWireRespond(AsyncMessage);
 }
 
 //Add Twitter to I2C Slave
 void TwitterWireSlaveBegin(int id) {
     JWireBegin(id);
-    JWireOnReceive(TwitterOnReceive);
+    JWireOnReceive(TwitterOnReceiveFromWireSlave);
     JWireOnRequest(TwitterWireSlaveOnRequest);
 
     //Clear message
@@ -80,31 +105,36 @@ void TwitterWireMasterRequestSlave() {
     static int current = 0;
 
     if (current == 0 && wireSlaveA.id != 0) {
-        WireGetString(wireSlaveA.id, TwitterOnReceive);
+        WireGetString(wireSlaveA.id, TwitterOnReceiveFromWireMaster);
     } else if (current == 1 && wireSlaveB.id != 0) {
-        WireGetString(wireSlaveB.id, TwitterOnReceive);
+        WireGetString(wireSlaveB.id, TwitterOnReceiveFromWireMaster);
     } else if (current == 2 && wireSlaveC.id != 0) {
-        WireGetString(wireSlaveB.id, TwitterOnReceive);
+        WireGetString(wireSlaveB.id, TwitterOnReceiveFromWireMaster);
     }
+
+    current += 1;
+    current = current % 3;
 }
 
 void TwitterWireMasterBegin() {
     WireBegin();
     TwitterWireMasterEnabled = 1;
+
+    SetInterval(50, TwitterWireMasterRequestSlave);
 }
 
 void TwitterWireMasterAddSlave(int id, char *name) {
     if (wireSlaveA.id == 0) {
         wireSlaveA.id = id;
-        strcpy(wireSlaveA.name, name);
+        strcpy2(wireSlaveA.name, name);
 
     } else if (wireSlaveB.id == 0) {
         wireSlaveB.id = id;
-        strcpy(wireSlaveB.name, name);
+        strcpy2(wireSlaveB.name, name);
 
     } else if (wireSlaveC.id == 0) {
         wireSlaveC.id = id;
-        strcpy(wireSlaveC.name, name);
+        strcpy2(wireSlaveC.name, name);
 
     } else {
         Crash(3);
@@ -121,27 +151,35 @@ void TwitterSerialBegin() {
 
     SerialBegin();
 
-    OnSerial(TwitterOnReceive);
+    OnSerial(TwitterOnReceiveFromSerial);
 }
 //###############################################################
 
 //Global multicast to all interfaces
+static int isARelay = 0;  //Message coming from outside source
 void TwitterSendToAll(char *message) {
     if (TwitterWireSlaveEnabled) {
+        if (isARelay && lastInterface != WireSlaveIF || (!isARelay)) {
+            //Multicast
+            strcpy(twitterWireSlaveMessageToSend, message);
+        }
     }
 
     if (TwitterWireMasterEnabled) {
-        //Multicast to slaves
-        if (wireSlaveA.id)
-            WireSend(wireSlaveA.id, message, strlen(message)+1, NULL);
-        if (wireSlaveB.id)
-            WireSend(wireSlaveB.id, message, strlen(message)+1, NULL);
-        if (wireSlaveC.id)
-            WireSend(wireSlaveC.id, message, strlen(message)+1, NULL);
+        if (isARelay && lastInterface != WireMasterIF || (!isARelay)) {
+            //Multicast to slaves
+            if (wireSlaveA.id)
+                WireSend(wireSlaveA.id, message, strlen(message)+1, NULL);
+            if (wireSlaveB.id)
+               WireSend(wireSlaveB.id, message, strlen(message)+1, NULL);
+            if (wireSlaveC.id)
+               WireSend(wireSlaveC.id, message, strlen(message)+1, NULL);
+        }
     }
 
     if (TwitterSerialEnabled) {
-        SerialWrite(message);
+        if (isARelay && lastInterface != SerialIF || (!isARelay))
+            SerialWrite(message);
     }
 }
 
@@ -171,6 +209,7 @@ void TwitterSendToOne(char *name, char *message) {
 }
 
 //Register this callback function for incomming messages
+static int counter  = 0;
 void TwitterOnReceive() {
     char *message = AsyncMessage;
 
@@ -189,20 +228,21 @@ void TwitterOnReceive() {
         }
 
         //Send message back if needed
+        isARelay = 1;
         TwitterSendToAll(message);
+        isARelay = 0;
 
     //Is this message directed towards me?
     } else if (!strcmp(tempBuffer, name)) {
         JsonGetString(message, "sub", tempBuffer);
-
         //Is this part of a session?
         if (tempBuffer[0] == 'c' && tempBuffer[1] == 'c') {
             int key = JsonGetValue(message, "key");
             //Find the callback
-            if (sessionA.key == key) {
+            if (sessionA.key == key && sessionA.key != -1) {
                 Async(sessionA.callback, message);
                 sessionA.key = -1;
-            } else if (sessionB.key == key) {
+            } else if (sessionB.key == key && sessionB.key != -1) {
                 Async(sessionB.callback, message);
                 sessionB.key = -1;
             }
@@ -262,7 +302,7 @@ void Tweet(char *to, char *subject, char *message, AsyncCallback_t callback) {
             sessionB.key = sessionKey;
         }
 
-        ++nextSession;
+        nextSession += 1;
         nextSession = nextSession % 2;
 
         JsonSetValue(tempBuffer, "key", sessionKey);
@@ -305,7 +345,7 @@ void TweetReturn(char *msg) {
     JsonSetValue(tempBuffer, "key", sessionKey);
     JsonSetString(tempBuffer, "to", from);
     JsonSetString(tempBuffer, "from", to);
-    JsonSetString(tempBuffer, "subject", "cc");
+    JsonSetString(tempBuffer, "sub", "cc");
     JsonSetString(tempBuffer, "msg", msg);
 
     TwitterSendToOne(from, tempBuffer);

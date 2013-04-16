@@ -18832,7 +18832,12 @@ void Async(AsyncCallback_t callback, char *string);
 
 void AsyncTick();
 
-# 8 "serial.h"
+# 6 "crashHelper.h"
+extern int IsCrashed;
+
+void Crash(int id);
+
+# 9 "serial.h"
 void OnSerialInterrupt();
 
 
@@ -18855,16 +18860,24 @@ static int bufferPosition = 0;
 static AsyncCallback_t callback = 0;
 
 void OnSerialInterrupt() {
-unsigned char err = RCSTA;
-char data = RCREG;
+static char data;
+data = RCREG;
 
 
-if (data == '\0') {
+if (FERR | OERR) {
+CREN = 0;
+CREN = 1;
+return;
+}
+
+
+if (data == 0) {
 bufferSerial[bufferPosition] = 0;
 bufferPosition = 0;
 
 
 if (callback) {
+
 Async(callback, bufferSerial);
 }
 
