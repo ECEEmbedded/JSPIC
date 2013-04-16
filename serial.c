@@ -59,7 +59,7 @@ void SerialBegin() {
     //Configure baud-rate to 57kbits/s
     BRGH = 1;
     BRG16 = 1;
-    SPBRG = 34;
+    SPBRG = 103;
 
     //Enable interrupts
     TXIE = 0;

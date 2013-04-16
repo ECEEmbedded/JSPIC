@@ -12,6 +12,7 @@
 #include "superSimpleSerial.h"
 #include "ledCounter.h"
 #include "macaw.h"
+#include "flipper.h"
 
 void onSetup();
 void onLoop();

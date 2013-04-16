@@ -129,7 +129,7 @@ void TwitterWireMasterBegin() {
     WireBegin();
     TwitterWireMasterEnabled = 1;
 
-    SetInterval(90/3, TwitterWireMasterRequestSlave);
+    SetInterval(100/3, TwitterWireMasterRequestSlave);
 }
 
 void TwitterWireMasterAddSlave(int id, char *name) {

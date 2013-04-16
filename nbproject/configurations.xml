@@ -24,6 +24,7 @@
         <itemPath>jspic.h</itemPath>
         <itemPath>ledCounter.h</itemPath>
         <itemPath>crashHelper.h</itemPath>
+        <itemPath>flipper.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="src" projectFiles="true">
         <logicalFolder name="f1" displayName="Twitter" projectFiles="true">
@@ -42,6 +43,7 @@
         <itemPath>wireMaster.c</itemPath>
         <itemPath>ledCounter.c</itemPath>
         <itemPath>crashHelper.c</itemPath>
+        <itemPath>flipper.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -150,8 +152,6 @@
         <property key="opt-xc8-linker-serial" value=""/>
         <property key="program-the-device-with-default-config-words" value="true"/>
       </HI-TECH-LINK>
-      <PICkit2PlatformTool>
-      </PICkit2PlatformTool>
       <PICkit3PlatformTool>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="Freeze Peripherals" value="true"/>
